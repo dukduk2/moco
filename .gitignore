@@ -1,6 +1,7 @@
 *.DS_Store
 bin
 target
+.classpath
 .settings
 src/main/webapp/META-INF
 .idea
