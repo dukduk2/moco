@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DirectorBoardMapper">
+	<!-- 글작성 -->
+	<insert id="write" parameterType="directorBoardDTO">
+		insert into directorboard
+		(num, title, writer, contents, reg_date, hit, genre, curPrice, 
+		targetPrice, state, targetDate, fname, oname, openDate) 
+		values
+		(directorboard_seq.nextval, #{title}, #{writer}, #{contents}, sysdate,
+		0, #{genre}, 0, #{targetPrice}, 1, #{targetDate}, #{fname}, #{oname}, sysdate)
+	</insert>
+	
+	<!-- delete -->
+	<delete id="delete" parameterType="int">
+		delete directorboard where num=#{num}
+	</delete>
+	
+	<!-- 리스트 뽑아오기 -->
+	<select id="list" parameterType="java.util.Map" resultType="directorBoardDTO">
+		select * from 
+		(select rownum r, t.* from 
+    	(select * from DIRECTORBOARD 
+   			<where>
+   			<if test="genreCheck=='true'">
+	    		<foreach collection="genreList" item="item">
+	    				and genre like '%'||#{item}||'%'
+	    		</foreach>
+   			</if>
+	   		<if test="state==0">
+	   			and state=0
+	   		</if>
+	   		<if test="state==1">
+	   			and state=1
+	   		</if>
+   			</where>
+    	 order by num desc) t)
+    	 where r between #{startRow} and #{lastRow}
+	</select>
+	
+	<!-- view -->
+	<select id="view" parameterType="int" resultType="directorBoardDTO">
+		select * from DIRECTORBOARD where num=#{num}
+	</select>	
+	
+	<!-- state update -->
+	<update id="stateUpdate">
+		update DIRECTORBOARD set state=0 where TARGETDATE <![CDATA[ < ]]> SYSDATE
+	</update>
+	<update id="stateUpdateFinish" parameterType="int">
+		update DIRECTORBOARD set state=0 where num=#{num}
+	</update>
+	
+	<!-- totalCount -->
+	<select id="totalCount" parameterType="java.util.Map" resultType="int">
+		select count(num) from 
+		(select * from DIRECTORBOARD 
+   			<where>
+   			<if test="genreCheck=='true'">
+	    		<foreach collection="genreList" item="item">
+	    			and genre like '%'||#{item}||'%'
+	    		</foreach>
+	    	</if>
+    		<if test="state==0">
+	   			and state=0 
+    		</if>
+    		<if test="state==1">
+    			and state=1
+    		</if>
+   			</where>
+   		)
+	</select>
+	
+	<!-- targetDate가 오늘 날짜인 리스트 -->
+	<select id="compareDate" resultType="directorBoardDTO">
+		select * from 
+		(select * from DIRECTORBOARD, (select trunc(sysdate) from dual) F ) 
+		where targetdate=trunc(sysdate)
+	</select>
+	
+</mapper>

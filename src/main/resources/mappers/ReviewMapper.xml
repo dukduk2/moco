@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper">
+    <select id="reviewCheck" parameterType="com.moco.review.ReviewDTO" resultType="com.moco.review.ReviewDTO">
+    	select * from review where writer=#{writer} and bnum=#{bNum} and lnum=#{lNum}
+    </select>
+    <select id="reviewSelectList" parameterType="java.util.Map" resultType="com.moco.review.ReviewDTO">
+    	select * from    
+		(select rownum R, D.* from
+		(select * from review where bnum=#{bNum} and lnum=#{lNum} order by num desc) D)
+		where R between #{row.startRow} and #{row.lastRow}
+    </select>
+    <select id="reviewSelectOne" parameterType="java.lang.Integer" resultType="com.moco.review.ReviewDTO">
+    	select * from review where num=#{num}
+    </select>
+    <insert id="reviewInsert" parameterType="com.moco.review.ReviewDTO">
+    	insert into review values(NVL((select max(num) from review),0)+1, #{writer}, #{contents}, 
+    	#{myRating}, #{bNum}, #{lNum}, 0)
+    </insert>
+    <update id="reviewUpdate" parameterType="com.moco.review.ReviewDTO">
+    	update review set contents=#{contents}, myRating=#{myRating} where num=#{num}
+    </update>
+    <delete id="reviewDelete" parameterType="java.lang.Integer">
+    	delete from review where num=#{num}
+    </delete>
+    <!-- 좋아요 삭제 -->
+    <delete id="reviewDelete2" parameterType="java.lang.Integer">
+    	delete from reviewLike where rnum=#{rNum}
+    </delete>
+    <select id="reviewTotalCount" parameterType="com.moco.review.ReviewDTO" resultType="java.lang.Integer">
+    	select count(num) from review where bnum=#{bNum}
+    </select>
+    <!-- 각각의 board에 userRating 입력 -->
+    <select id="reviewHuman" parameterType="com.moco.review.ReviewDTO" resultType="java.lang.Integer">
+		select count(num) from review where bnum=#{bNum} and lnum=#{lNum}			    	
+    </select>
+    <select id="reviewUserRating" parameterType="com.moco.review.ReviewDTO" resultType="java.lang.Integer">
+    	select myRating from review where bnum=#{bNum} and lnum=#{lNum}
+    </select>
+    <update id="basicMovieUserRating" parameterType="com.moco.movieAPI.BasicMovieDTO">
+    	update basicMovie set user_rating=#{user_rating} where num=#{num}
+    </update>
+    <update id="lowPriceMovieUserRating" parameterType="com.moco.lowpricemovie.LowPriceMovieDTO">
+    	update lowpriceMovie set user_rating=#{user_rating} where num=#{num}
+    </update>
+    <!-- 좋아요 -->
+    <select id="reviewLikesCheck" parameterType="com.moco.review.ReviewLikeDTO" resultType="com.moco.review.ReviewLikeDTO">
+    	select * from reviewLike where id=#{id} and rNum=#{rNum}
+    </select>
+    <insert id="reviewLikesInsert" parameterType="com.moco.review.ReviewLikeDTO">
+    	insert into reviewLike values(#{id}, #{rNum})
+    </insert>
+    <update id="reviewLikesInsert2" parameterType="java.lang.Integer">
+    	update review set likes=likes+1 where num=#{num}
+    </update>
+</mapper>

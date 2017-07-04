@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BasicMovieMapper">
+	<!-- 영화 INSERT -->
+	<insert id="insert" parameterType="basicMovieDTO">
+		insert into basicmovie(num,
+		title, eng_title, genre, director, actor, year, nation, trailer,
+		pub_date, watching_rate, play_time, story, thumnail, keyword,
+		user_rating)
+		values(BASICMOVIE_SEQ.nextval, #{title}, #{eng_title}, #{genre}, #{director}, #{actor}, #{year},
+		#{nation}, #{trailer}, #{pub_date}, #{watching_rate}, #{play_time},
+		#{story}, #{thumnail}, #{keyword}, 0)
+	</insert>
+	
+	<!-- 독립영화 INSERT -->
+	<insert id="lowPriceInsert" parameterType="basicMovieDTO">
+		insert into lowpricemovie(num,
+		title, eng_title, genre, director, actor, year, nation, trailer,
+		pub_date, watching_rate, play_time, story, thumnail, keyword,
+		user_rating)
+		values(LOWPRICEMOVIE_SEQ.nextval, #{title}, #{eng_title}, #{genre}, #{director}, #{actor}, #{year},
+		#{nation}, #{trailer}, #{pub_date}, #{watching_rate}, #{play_time},
+		#{story}, #{thumnail}, #{keyword}, 0)
+	</insert>
+	
+	<!-- 검색 LIST뽑아오기 -->
+	<select id="list" parameterType="java.util.Map" resultType="basicMovieDTO">
+		select * from
+		(select rownum r, t.* from
+		(select * from basicmovie
+		<where>
+			<if test="searchDTO.title neq null">
+				and title like '%'||#{searchDTO.title}||'%' 
+				or eng_title like '%'||#{searchDTO.title}||'%' 
+			</if>
+			<if test="searchDTO.genre neq null">
+				and genre like '%'||#{searchDTO.genre}||'%' 
+			</if>
+			and year between #{searchDTO.yearMin} and #{searchDTO.yearMax} 
+			<if test="searchDTO.nation neq null">
+				and nation like '%'||#{searchDTO.nation}||'%' 
+			</if>
+			<if test="searchDTO.director neq null">
+				and director like '%'||#{searchDTO.director}||'%' 
+			</if>
+			<if test="searchDTO.actor neq null">
+				and actor like '%'||#{searchDTO.actor}||'%' 
+			</if>
+		</where>
+		order by user_rating desc) t) 
+		where r between #{rowMaker.startRow} and #{rowMaker.lastRow}
+	</select>
+	
+	<!-- totalCount -->
+	<select id="totalCount" parameterType="java.util.Map" resultType="int">
+		select count(num) from
+		(select * from basicmovie
+		<where>
+			<if test="searchDTO.title neq null">
+				and title like '%'||#{searchDTO.title}||'%' 
+			</if>
+			<if test="searchDTO.genre neq null">
+				and genre like '%'||#{searchDTO.genre}||'%' 
+			</if>
+			and year between #{searchDTO.yearMin} and #{searchDTO.yearMax} 
+			<if test="searchDTO.nation neq null">
+				and nation like '%'||#{searchDTO.nation}||'%' 
+			</if>
+			<if test="searchDTO.director neq null">
+				and director like '%'||#{searchDTO.director}||'%' 
+			</if>
+			<if test="searchDTO.actor neq null">
+				and actor like '%'||#{searchDTO.actor}||'%' 
+			</if>
+		</where>
+		)
+	</select>
+	
+	<!-- NATION 리스트 -->
+	<select id="nationList" resultType="String">
+		select distinct nation from basicmovie order by nation
+	</select>
+	
+	<!-- view -->
+	<select id="view" parameterType="int" resultType="basicMovieDTO">
+		select * from basicmovie where num=#{num}
+	</select>
+	
+	<!-- 찜하기 확인 -->
+	<select id="jjimCheck" parameterType="com.moco.jjim.JjimDTO" resultType="com.moco.jjim.JjimDTO">
+		select * from jjim where id=#{id} and bnum=#{bNum}
+	</select>
+	
+	<!-- 찜하기 INSERT -->
+	<insert id="jjimInsert" parameterType="com.moco.jjim.JjimDTO">
+		insert into jjim values(#{id}, #{bNum}, 0)
+	</insert>
+	
+	<!-- 찜하기 DELETE -->
+	<delete id="jjimDelete" parameterType="com.moco.jjim.JjimDTO">
+		delete jjim where id=#{id} and bnum=#{bNum}
+	</delete>
+	
+	<!-- 리뷰참여 명 수 -->
+	<select id="reviewCount" parameterType="int" resultType="int">
+		select count(writer) from review where bnum=#{bNum}
+	</select>
+</mapper>

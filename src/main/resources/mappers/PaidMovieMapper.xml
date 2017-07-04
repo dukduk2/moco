@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PaidMovieMapper">
+	<select id="movieList" parameterType="java.util.Map" resultType="com.moco.paidMovie.PaidMovieDTO">
+		select * from
+		(select rownum R, P.* from
+		(select * from paidMovie where oname like '%'||#{search}||'%' order by num desc) P)
+		where R between #{row.startRow} and #{row.lastRow}
+	</select>
+	<select id="movieOne" parameterType="java.lang.Integer" resultType="com.moco.paidMovie.PaidMovieDTO">
+		select * from paidMovie where num=#{num}
+	</select>
+	<insert id="movieInsert" parameterType="com.moco.paidMovie.PaidMovieDTO">
+		insert into paidMovie values(NVL((select max(num) from paidMovie),0)+1, #{price}, #{fname}, #{oname}, #{bNum},#{lNum})
+	</insert>
+	<update id="movieUpdate" parameterType="com.moco.paidMovie.PaidMovieDTO">
+		update paidMovie set price=#{price}, fname=#{fname}, oname=#{oname} where num=#{num}
+	</update>
+	<delete id="movieDelete" parameterType="java.lang.String">
+		delete from paidMovie where fname=#{fileName}
+	</delete>
+	<select id="movieTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count(num) from paidMovie where oname like '%'||#{search}||'%'
+	</select>
+	<!-- SUZI -->
+	<select id="paidMovieSelectOne" parameterType="java.util.Map" resultType="com.moco.paidMovie.PaidMovieDTO">
+		select * from paidmovie 
+		<if test="kind == 'bNum'">
+			where bNum=#{num}
+		</if>
+		<if test="kind == 'lNum'">
+			where lNum=#{num}
+		</if>
+	</select>
+	
+	<!-- movieRequest 연관 -->
+	<select id="basicSearch" parameterType="com.moco.movieAPI.BasicMovieDTO" resultType="com.moco.movieAPI.BasicMovieDTO">
+		select * from basicMovie where num=#{num} and title=#{title}
+	</select>
+	<delete id="movieRequestDelete" parameterType="com.moco.movieRequest.MovieRequestDTO">
+		delete from movieRequest where bnum=#{bNum} and lnum=#{lNum}
+	</delete>
+</mapper>

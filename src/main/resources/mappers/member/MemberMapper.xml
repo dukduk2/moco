@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberMapper">
+	<insert id="memberJoin" parameterType="com.moco.member.MemberDTO">
+		insert into member values(#{id},#{password},#{name},#{birth},#{address},#{phone},#{email},#{kind},#{grade},#{likes},#{point},#{avaliableLikes},#{joinState},#{fname},#{oname},sysdate,#{question},#{answer})
+	</insert>
+	
+	<select id="memberLogin" parameterType="com.moco.member.MemberDTO" resultType="com.moco.member.MemberDTO">
+		select * from member where id=#{id} and password=#{password} and joinstate='승인'
+	</select>
+	
+	<!-- add -->
+	<select id="memberPermission" parameterType="java.lang.String" resultType="java.lang.String">
+		select joinstate from member where id=#{id}
+	</select>
+	<!-- add -->
+	
+	<select id="memberView" parameterType="com.moco.member.MemberDTO" resultType="com.moco.member.MemberDTO">
+		select * from member where id=#{id}
+	</select>
+	
+	<delete id="memberDelete" parameterType="java.lang.String">
+		delete from member where id=#{id}
+	</delete>
+	
+	<update id="memberUpdate" parameterType="com.moco.member.MemberDTO">
+		update member set password=#{password},name=#{name},phone=#{phone},address=#{address},email=#{email},fname=#{fname},oname=#{oname} where id=#{id}
+	</update>
+	
+	<select id="memberIdCheck" parameterType="java.lang.String" resultType="java.lang.String">
+		select id from member where id=#{id}
+	</select>
+	
+	<update id="memberFileDelete" parameterType="com.moco.member.MemberDTO">
+		update member set fname=' ', oname=' ' where id=#{id}
+	</update>
+	
+	<select id="memberList" parameterType="com.moco.member.MemberDTO" resultType="com.moco.member.MemberDTO">
+		select * from 
+		(select rownum r, t.* from 
+		(select * from member 
+		<if test="kind=='id'">
+			where id like '%'||#{search}||'%' 
+		</if>
+		<if test="kind=='name'">
+			where name like '%'||#{search}||'%' 
+		</if>
+		order by joinstate asc, joindate desc) t) 
+		where r between #{rowMaker.startRow} and #{rowMaker.lastRow}
+	</select>
+	
+	<select id="memberCount" resultType="java.lang.Integer">
+		select count(id) from member 
+		<if test="kind=='id'">
+			where id like '%'||#{search}||'%'
+		</if>
+		<if test="kind=='name'">
+			where name like '%'||#{search}||'%'
+		</if>
+	</select>
+	
+	<update id="managementUpdate" parameterType="java.lang.String">
+		update member set joinState=#{joinState}, grade=#{grade} where id=#{id}
+	</update>
+	
+	<select id="memberSearchID" resultType="java.lang.String">
+		select id from member where name=#{name} and email=#{email}
+	</select>
+	
+	<select id="memberQuestionCheck" parameterType="java.lang.String" resultType="java.lang.String">
+		select question from member where id=#{id}
+	</select>
+	
+	<select id="memberSearchPW" parameterType="java.lang.String" resultType="java.lang.String">
+		select password from member where id=#{id} and email=#{email} and answer=#{answer}
+	</select>
+	
+	<!-- adminStateCount 서비스까지 -->
+	<select id="adminStateCount" resultType="java.lang.Integer">
+		select count(id) from member where joinstate='대기'
+	</select>
+</mapper>

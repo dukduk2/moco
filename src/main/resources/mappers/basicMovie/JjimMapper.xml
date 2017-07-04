@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="JjimMapper">
+	<insert id="jjimInsert" parameterType="com.moco.jjim.JjimDTO">
+		insert into jjim values(#{id},#{bNum},#{lNum})
+	</insert>
+	<delete id="jjimDelete" parameterType="com.moco.jjim.JjimDTO">
+		delete from jjim where id=#{id} and bnum=#{bNum} and lnum=#{lNum}
+	</delete>
+	<delete id="jjimDeleteMember" parameterType="java.lang.String">
+		delete from jjim where id=#{id}
+	</delete>
+	
+	<!-- bnum, lnum -->
+	<select id="jjimBnum" parameterType="java.lang.String" resultType="com.moco.jjim.JjimDTO">
+		select bnum from jjim where id=#{id}
+	</select>
+	<select id="jjimBasicOne" parameterType="java.lang.Integer" resultType="com.moco.movieAPI.BasicMovieDTO">
+		select * from basicMovie where num=#{num}
+	</select>
+	<select id="jjimLnum" parameterType="java.lang.String" resultType="com.moco.jjim.JjimDTO">
+		select lnum from jjim where id=#{id}
+	</select>
+	<!-- <select id="jjimLowOne" parameterType="java.lang.Integer" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
+		select * from lowpriceMovie where num=#{num}
+	</select> -->
+	<select id="jjimCount" parameterType="int" resultType="int">
+		select count(id) from jjim where bnum=#{bnum}
+	</select>
+</mapper>

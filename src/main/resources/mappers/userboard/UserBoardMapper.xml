@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="UserBoardMapper">
+	<!-- board -->
+	<select id="userBoardContents" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select contents from userBoard where num=#{num}
+	</select>
+	<select id="list" parameterType="java.util.Map" resultType="com.moco.userBoard.UserBoardDTO">
+		select * from
+		(select rownum R,U.* from
+		(select * from userboard where commit=1 and season like #{season} and
+		 <if test="kind == 'title'">
+		 	title like '%'||#{search}||'%'
+		 </if>
+		 <if test="kind == 'writer'">
+		 	writer like '%'||#{search}||'%'
+		 </if>
+		 <if test="kind == 'genre'">
+		 	genre like '%'||#{search}||'%'
+		 </if>
+		 order by num desc) U)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	<select id="view" parameterType="java.lang.Integer" resultType="com.moco.userBoard.UserBoardDTO">
+		select * from userboard
+		where num=#{num}
+	</select>
+	<insert id="write" parameterType="com.moco.userBoard.UserBoardDTO">
+		insert into userboard
+		values(NVL((select max(num) from userboard)+1,1), #{title},#{writer},
+		#{contents},sysdate,0,#{genre},0,#{fname},#{oname},
+		#{season},0,0)
+	</insert>
+	<!-- user 수정 -->
+	<update id="update" parameterType="com.moco.userBoard.UserBoardDTO">
+		update userboard
+		set title=#{title}, contents=#{contents}, genre=#{genre}
+		where num=#{num}
+	</update>
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from userboard
+		where num=#{num}
+	</delete>
+	<select id="totalCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(num) from userboard
+		<if test="kind == 'title'">
+		 	where title like '%'||#{search}||'%'
+		 </if>
+		<if test="kind == 'writer'">
+		 	where writer like '%'||#{search}||'%'
+		 </if>
+		 <if test="kind == 'genre'">
+		 	where genre like '%'||#{search}||'%'
+		 </if>
+		and season like #{season} and commit=1
+	</select>
+	<update id="hitPlus" parameterType="java.lang.Integer">
+		update userboard set hit=hit+1 where num=#{num}
+	</update>
+	<update id="hitMinus" parameterType="java.lang.Integer">
+		update userboard set hit=hit-1 where num=#{num}
+	</update>
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	
+	<!-- likes -->
+	<select id="likesCheck" parameterType="com.moco.likes.LikesDTO" resultType="java.lang.String">
+		select id from likes where unum=#{unum} and id=#{id}
+	</select>
+	<insert id="likesInsert" parameterType="com.moco.likes.LikesDTO">
+		insert into likes values(#{id}, null,#{unum})
+	</insert>
+	<delete id="likesDelete" parameterType="com.moco.likes.LikesDTO">
+		delete from likes where id=#{id} and unum=#{unum} 
+	</delete>
+	<!-- likes - board -->
+	<select id="boardLikesCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select likes from userboard where num=#{num}
+	</select>
+	<update id="boardLikesPlus" parameterType="java.lang.Integer">
+		update userboard set likes=likes+1 where num=#{num}
+	</update>
+	<update id="boardLikesMinus" parameterType="java.lang.Integer">
+		update userboard set likes=likes-1 where num=#{num}
+	</update>
+	<!-- boardDelete에 따른 Likes삭제 -->
+	<delete id="likesDelete2" parameterType="java.lang.Integer">
+		delete from likes where unum=#{unum}
+	</delete>
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	
+	
+	<!-- adminCommitUpdate && adminVideoStateUpdate -->
+	<select id="adminCommitSelect" resultType="com.moco.userBoard.UserBoardDTO">
+		select * from
+		(select rownum R,U.* from
+		(select * from userboard where commit=0 and season like #{season} and
+		 <if test="kind == 'title'">
+		 	title like '%'||#{search}||'%'
+		 </if>
+		 <if test="kind == 'writer'">
+		 	writer like '%'||#{search}||'%'
+		 </if>
+		 <if test="kind == 'genre'">
+		 	genre like '%'||#{search}||'%'
+		 </if>
+		 order by num desc) U)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	<select id="adminIndexCount" resultType="java.lang.Integer">
+		select count(num) from userboard where commit=0
+	</select>
+	<select id="adminTotalCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(num) from userboard
+		<if test="kind == 'title'">
+		 	where title like '%'||#{search}||'%'
+		 </if>
+		<if test="kind == 'writer'">
+		 	where writer like '%'||#{search}||'%'
+		 </if>
+		 <if test="kind == 'genre'">
+		 	where genre like '%'||#{search}||'%'
+		 </if>
+		and season like #{season} and commit=0
+	</select>
+	<update id="adminCommitUpdate" parameterType="java.lang.Integer">
+		update userBoard
+		set commit=1, hit=0
+		where num=#{num}
+	</update>
+	<update id="adminVideoStateUpdate" parameterType="java.lang.Integer">
+		update userBoard
+		set videostate=1
+		where num=#{num}
+	</update>
+</mapper>

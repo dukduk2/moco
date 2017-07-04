@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.title {
+	text-align: center;
+}
+
+.member_Table {
+ 	width: 800px;
+ 	margin: 20px auto;
+}
+
+tr {
+	height: 50px;
+}
+
+td.name {
+	width: 200px;
+	text-align: center;
+}
+
+td.push {
+	width: 300px;
+}
+
+td.result {
+	width: 300px;
+	font-size: 0.9em;
+	vertical-align: middle;
+}

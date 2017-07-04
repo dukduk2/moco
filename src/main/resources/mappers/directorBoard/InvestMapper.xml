@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="InvestMapper">
+	<!-- invest table에 투자자 insert -->
+	<insert id="insert" parameterType="investDTO">
+		insert into invest(id, money, pnum) 
+		values(#{id}, #{money}, #{pnum})
+	</insert>
+	
+	<!-- member에서 투자자 가용포인트 update -->
+	<update id="avaliableLikesUpdate" parameterType="java.util.Map">
+		update member set 
+		<if test="kind=='investor'">
+			<if test="flag=='minus'">
+				avaliableLikes=avaliableLikes-#{money} 
+			</if>
+			<if test="flag=='plus'">
+				avaliableLikes=avaliableLikes+#{money} 
+			</if>
+		</if>
+		<if test="kind=='director'">
+			avaliableLikes=avaliableLikes+#{totalMoney} 
+		</if>
+		where id=#{id}
+	</update>
+	
+	<!-- deleteInvest -->
+	<delete id="deleteInvest" parameterType="int">
+		delete invest where pnum=#{pnum}	
+	</delete>
+	
+	<!-- 현재 금액 update -->
+	<update id="curPriceUpdate" parameterType="investDTO">
+		update directorboard set curPrice=curPrice+#{money} where num=#{pnum}
+	</update>
+	
+	<!-- 재투자 여부 체크 -->
+	<select id="reInvestCheck" parameterType="investDTO" resultType="investDTO">
+		select * from invest where id=#{id} and pnum=#{pnum}
+	</select>
+	
+	<!-- 재투자 update -->
+	<update id="reInvest" parameterType="investDTO">
+		update invest set money=money+#{money} where id=#{id} and pnum=#{pnum}
+	</update>
+	
+	<!-- 투자자 리스트 -->
+	<select id="investorList" parameterType="investDTO" resultType="investDTO">
+		select * from invest where pnum=#{pnum}
+	</select>
+	
+	<!-- 투자자 info -->
+	<select id="investorInfo" parameterType="String" resultType="memberDTO">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- 투자자 수 -->
+	<select id="countInvestors" parameterType="int" resultType="int">
+		select count(id) from invest where pnum=#{pnum}
+	</select>
+	
+	<!-- 나의 투자금 -->
+	<select id="myInvestMoney" parameterType="java.util.Map" resultType="int">
+		select money from invest where id=#{id} and pnum=#{pnum}
+	</select>
+	
+	<!-- pnum=num인 리스트 -->
+	<select id="checkPnum" parameterType="int" resultType="investDTO">
+		select * from invest where pnum=#{pnum}
+	</select>
+	
+	<!-- 투자금 총합 -->
+	<select id="totalMoney" parameterType="int" resultType="int">
+		select sum(money) from invest where pnum=#{pnum}
+	</select>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="AgencyMapper">
+    	<select id="agencyList" parameterType="java.util.Map" resultType="com.moco.agency.AgencyDTO">
+    		select * from
+    		(select rownum R, A.* from 
+    		(select * from agencyrequest where director=#{director} order by num asc) A) 
+    		where R between #{startRow} and #{lastRow}
+    	</select> 
+    	
+    	<select id="agencyListCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    		select count(num) from agencyrequest where director=#{director}
+    	</select>
+    	
+  		<!-- 승인된거 -->
+    	<select id="agencyCommitList" parameterType="java.util.Map" resultType="com.moco.agency.AgencyDTO">
+  			select * from 
+			(select rownum R, A.* from 
+			(select * from agencyrequest where commit=1 order by num asc) A) 
+			where R between #{startRow1} and #{lastRow1}
+    	</select>
+    	
+    	<select id="agencyCommitCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    		select count(num) from agencyrequest where commit=1
+    	</select>
+    	
+    	<!-- 승인안된거 -->
+    	<select id="agencyUncommitList" parameterType="java.util.Map" resultType="com.moco.agency.AgencyDTO">
+    		select * from 
+			(select rownum R, A.* from 
+			(select * from agencyrequest where commit=0 order by num asc) A) 
+			where R between #{startRow2} and #{lastRow2}
+    	</select>
+    	
+    	<select id="agencyUncommitCount" resultType="java.lang.Integer">
+    		select count(num) from agencyrequest where commit=0
+    	</select>
+    	
+    	
+    	
+    	<select id="agencyView" parameterType="java.lang.Integer" resultType="com.moco.agency.AgencyDTO">
+			select * from agencyrequest where num=#{num}
+    	</select>
+    	
+    	<delete id="agencyDelete" parameterType="java.lang.Integer">
+    		delete from agencyrequest where num=#{num}
+    	</delete>
+    	
+    	<update id="agencyUpdate" parameterType="com.moco.agency.AgencyDTO">
+    		update agencyrequest set title=#{title}, pubdate=#{pubdate}, fname=#{fname}, oname=#{oname} where num=#{num}
+    	</update>
+    	
+    	<insert id="agencyRequest" parameterType="com.moco.agency.AgencyDTO">
+    		insert into agencyrequest values(NVL((select max(num) from agencyrequest)+1,1), #{title}, #{director}, #{pubdate}, #{fname}, #{oname}, 0)
+    	</insert>
+    	
+    	<update id="agencyCommit" parameterType="java.lang.Integer">
+    		update agencyrequest set commit=1 where num=#{num}
+    	</update>
+    	
+    	<update id="agencyCommitCancel" parameterType="java.lang.Integer">
+    		update agencyrequest set commit=0 where num=#{num}
+    	</update>
+    	
+    </mapper>

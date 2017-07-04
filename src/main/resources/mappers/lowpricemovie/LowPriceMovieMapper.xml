@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="LowPriceMovieMapper">
+	
+	<select id="totalCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+ 		select count(num) from lowpricemovie
+ 		<if test="kind == 'title'">
+ 			where title like '%'||#{search}||'%'
+ 		</if>
+ 	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
+		select * from 
+		(select rownum R, T.* from 
+		(select * from lowpricemovie 
+		<if test="kind == 'title'">
+			where title like '%'||#{search}||'%'
+		</if>
+		order by num desc) T) 
+		where R between #{row.startRow} and #{row.lastRow}
+	</select>
+	
+	<select id="view" parameterType="java.lang.Integer" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
+		select * from lowpricemovie where num=#{num}
+	</select>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete lowpricemovie where num=#{num}
+	</delete>
+	
+	<insert id="insert" parameterType="com.moco.lowpricemovie.LowPriceMovieDTO">
+		insert into lowpricemovie values(NVL((select max(num) from lowpricemovie), 0)+1, #{title}, #{eng_title}, #{genre}, #{director}, #{actor}, #{year}, #{nation}, #{trailer}, #{pub_date}, #{watching_rate}, #{play_time}, #{story}, #{thumnail}, #{keyword}, #{user_rating})
+	</insert>
+	
+	<update id="update" parameterType="com.moco.lowpricemovie.LowPriceMovieDTO">
+		update lowpricemovie set pub_date=#{pub_date}, watching_rate=#{watching_rate} where num=#{num}
+	</update>
+	
+	<!-- 찜 check -->
+	<select id="jjimCheck" parameterType="com.moco.jjim.JjimDTO" resultType="com.moco.jjim.JjimDTO">
+		select * from jjim where id=#{id} and lnum=#{lNum}
+	</select>
+	
+	<!-- 찜 insert -->
+	<insert id="jjimInsert" parameterType="com.moco.jjim.JjimDTO">
+		insert into jjim values(#{id}, 0, #{lNum})
+	</insert>
+	
+	<!-- 찜 delete -->
+	<delete id="jjimDelete" parameterType="com.moco.jjim.JjimDTO">
+		delete jjim where id=#{id} and lnum=#{lNum}
+	</delete>
+	
+	
+</mapper>

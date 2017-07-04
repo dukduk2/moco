@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="MovieRequestMapper">
+	<!-- insert 되어 있다면, 신청 중인 상태 > List -->
+	<select id="movieRequestForList" parameterType="java.util.Map" resultType="com.moco.movieRequest.MovieRequestDTO">
+		select * from
+		(select rownum R, M.* from
+		(select * from movieRequest) M)
+		where R between #{row.startRow} and #{row.lastRow}
+	</select>
+	<select id="basicMovieList" parameterType="java.lang.Integer" resultType="com.moco.movieAPI.BasicMovieDTO">
+		select * from basicMovie where num=#{num}
+	</select>
+	<select id="lowPriceMovieList" parameterType="java.lang.Integer" resultType="com.moco.movieAPI.BasicMovieDTO">
+		select * from lowPriceMovie where num=#{num}
+	</select>
+	<select id="movieRequestTotalCount" resultType="java.lang.Integer">
+		select count(num) from movieRequest
+	</select>
+	<!-- SUZI -->
+	<insert id="movieRequestInsert" parameterType="java.util.Map">
+		insert into movierequest 
+		<if test="kind == 'bNum'">
+			values(movierequest_seq.nextval, #{num}, 0)
+		</if>
+		<if test="kind == 'lNum'">
+			values(movierequest_seq.nextval, 0, #{num})
+		</if>
+	</insert>
+	<select id="movieRequestSelectOne" parameterType="java.util.Map" resultType="com.moco.movieRequest.MovieRequestDTO">
+		select * from movierequest 
+		<if test="kind == 'bNum'">
+			where bNum=#{num}
+		</if>
+		<if test="kind == 'lNum'">
+			where lNum=#{num}
+		</if>
+	</select>
+</mapper>

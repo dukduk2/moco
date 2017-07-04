@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="MovieScheduleMapper">
+	<select id="movieScheduleShow" resultType="com.moco.movieSchedule.MovieScheduleDTO">
+		select * from movieschedule <!-- where to_char( moviedate, 'yyyymmdd' ) >= to_char( sysdate, 'yyyymmdd') -->
+	</select>
+
+	<select id="movieScheduleList" parameterType="com.moco.movieSchedule.MovieScheduleDTO" resultType="com.moco.movieSchedule.MovieScheduleDTO">
+		select * from 
+		(select rownum r, t.* from 
+		(select * from movieschedule 
+		where to_char( moviedate, 'yyyymmdd' ) >= #{search} 
+		order by moviedate asc) t) 
+		where r between #{rowMaker.startRow} and #{rowMaker.lastRow}
+	</select>
+	
+	<select id="movieScheduleCount" resultType="java.lang.Integer">
+		select count(num) from movieschedule where to_char( moviedate, 'yyyymmdd' ) >= #{search}
+	</select>
+
+	<insert id="movieScheduleAdd" parameterType="com.moco.movieSchedule.MovieScheduleDTO">
+		insert into movieschedule values(movieschedule_seq.nextval,#{title},#{moviedate},#{pnum})
+	</insert>
+	
+	<delete id="movieScheduleDelete" parameterType="java.lang.Integer">
+		delete from movieschedule where num=#{num}
+	</delete>
+
+	<select id="paidMovieCheck1" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select oname from paidmovie where num=#{pnum}
+	</select>
+
+	<select id="paidMovieCheck2" parameterType="java.sql.Date" resultType="java.sql.Date">
+		select moviedate from movieschedule where moviedate=#{moviedate}
+	</select>
+</mapper>

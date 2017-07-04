@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="SeasonMapper">
+	<!-- Admin season -->
+	<select id="adminOrderSelect2" parameterType="java.util.Map" resultType="com.moco.season.SeasonDTO">
+		select * from
+		(select rownum R, S.* from
+		(select * from season where kind=#{kind} order by num desc) S)
+		where R between #{row.startRow} and #{row.lastRow}
+	</select>
+	<select id="adminOrderSelect" parameterType="java.lang.String" resultType="com.moco.season.SeasonDTO">
+		select * from
+		(select rownum R, S.* from
+		(select * from season where kind=#{kind} order by num desc) S)
+		where R between 1 and 10
+	</select>
+	<select id="adminOrderSelectOne" parameterType="java.lang.String" resultType="com.moco.season.SeasonDTO">
+		select * from season where kind=#{kind} and state=1
+	</select>
+	<insert id="adminOrderInsert" parameterType="com.moco.season.SeasonDTO">
+		insert into season 
+		values(NVL((select max(num) from season)+1,1), #{kind}, #{season}, 0, #{startDate}, #{endDate})
+	</insert>
+	<update id="adminOrderStart" parameterType="java.lang.Integer">
+		update season
+		set state=1
+		where num=#{num}
+	</update>
+	<update id="adminOrderEnd" parameterType="java.lang.Integer">
+		update season
+		set state=0
+		where num=#{num}
+	</update>
+	<delete id="adminOrderDelete" parameterType="java.lang.Integer">
+		delete from season
+		where num=#{num}
+	</delete>
+	<select id="adminOrderCheck" resultType="com.moco.season.SeasonDTO" parameterType="java.lang.String">
+		select * from season where kind=#{kind} and state=1
+	</select>
+	<select id="seasonTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count(num) from season where kind=#{kind}
+	</select>
+</mapper>

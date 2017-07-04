@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="ViewCheckMapper">
+    	<select id="viewCheck" parameterType="com.moco.viewCheck.ViewCheckDTO" resultType="com.moco.viewCheck.ViewCheckDTO">
+    		select * from viewCheck where id=#{id} and bnum=#{bNum} and lnum=#{lNum}
+    	</select>
+    	<insert id="viewCheckInsert" parameterType="com.moco.viewCheck.ViewCheckDTO">
+    		insert into viewCheck values(#{id}, #{bNum}, #{lNum})
+    	</insert>
+    	<delete id="viewCheckDelete" parameterType="java.lang.String">
+    		delete from viewCheck where id=#{id}
+    	</delete>
+    	<!-- bnum, lnum 조회해서 basicMovie, lowPriceMovie List 불러오기 -->
+    	<select id="viewCheckBnum" parameterType="java.lang.String" resultType="com.moco.viewCheck.ViewCheckDTO">
+    		select bnum from viewCheck where id=#{id} 
+    	</select>
+    	<select id="viewCheckLnum" parameterType="java.lang.String" resultType="com.moco.viewCheck.ViewCheckDTO">
+    		select lnum from viewCheck where id=#{id} 
+    	</select>
+    	<select id="viewCheckBasicMovieOne" parameterType="java.lang.Integer" resultType="com.moco.movieAPI.BasicMovieDTO">
+    		select * from basicMovie where num=#{num}
+    	</select>
+    	<select id="viewCheckLowpriceMovieOne" parameterType="java.lang.Integer" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
+    		select * from lowpriceMovie where num=#{num}
+    	</select>
+    </mapper>

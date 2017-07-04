@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="TheaterMapper">
+	<resultMap type="java.util.HashMap" id="finalMap" />
+	
+	<select id="totalCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+ 		select count(num) from theater
+ 		<if test="kind == 'title'">
+ 			where title like '%'||#{search}||'%'
+ 		</if>
+	</select>
+	
+	<select id="list" parameterType="java.util.Map" resultType="com.moco.theater.TheaterDTO">
+		select * from 
+		(select rownum R, T.* from 
+		(select * from theater 
+		<if test="kind == 'title'">
+			where title like '%'||#{search}||'%'
+		</if>
+		order by num desc) T) 
+		where R between #{row.startRow} and #{row.lastRow}
+	</select>
+    
+    <insert id="theaterRequest" parameterType="java.util.Map" statementType="CALLABLE" >
+    	{ CALL theaterRequest(
+	    	#{theaterDTO.name, mode=IN}, 
+	    	#{theaterDTO.location, mode=IN}, 
+	    	#{theaterDTO.phone, mode=IN}, 
+	    	#{theaterDTO.price, mode=IN}, 
+	    	#{theaterDTO.opening_time, mode=IN}, 
+	    	#{theaterDTO.commit, mode=IN}, 
+	    	#{multiplexDTO.name, mode=IN}, 
+	    	#{multiplexDTO.totalseat, mode=IN},  
+	    	#{result, javaType=int, mode=OUT, jdbcType=INTEGER, resultMap=finalMap}) }
+    </insert>	
+   
+	<select id="view" parameterType="java.lang.Integer" resultType="com.moco.theater.TheaterDTO">
+		select * from theater where num=#{num}
+	</select>
+	
+	
+	
+</mapper>

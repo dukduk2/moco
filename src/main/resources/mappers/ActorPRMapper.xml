@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ActorPRMapper">
+	<!-- voteList -->
+	<select id="voteListSelect" parameterType="java.lang.String" resultType="java.lang.String">
+		select * from votelist where id=#{id}
+	</select>
+	
+	<insert id="voteListInsert" parameterType="java.lang.String">
+		insert into votelist values(#{id})
+	</insert>
+	
+	<delete id="voteListDelete">
+		delete from votelist
+	</delete>
+
+	<update id="hitUpdate1" parameterType="java.lang.Integer">
+		update actorprboard set hit=hit+1 where num=#{num}
+	</update>
+	
+	<update id="hitUpdate2" parameterType="java.lang.Integer">
+		update actorprboard set hit=hit-1 where num=#{num}
+	</update>
+	
+	<select id="onameSelect" parameterType="java.util.Map" resultType="java.lang.String">		
+		select oname from member where name=#{name} and kind=#{actor}
+	</select>
+	
+	
+	<select id="actorSearch" parameterType="java.lang.String"
+		resultType="com.moco.actorPR.ActorPRDTO">
+		select * from actorprboard where writer='%%%'
+	</select>
+
+	<!-- 글 갯수 -->
+	<select id="totalCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(num) from actorprboard where writer like '%'||#{search}||'%' and season like #{season}
+	</select>
+
+	<delete id="actorPRDelete" parameterType="java.lang.Integer">
+		delete from actorprboard where num=#{num}
+	</delete>
+	<insert id="actorPRWrite" parameterType="com.moco.actorPR.ActorPRDTO">
+		insert into actorprboard values(NVL((select max(num) from
+		actorprboard)+1,1), #{title}, #{writer}, #{contents}, sysdate, 0,
+		#{fname}, #{oname}, #{season}, 0)
+	</insert>
+
+	<!-- 인기순 정렬 -->
+	<select id="actorPRList1" parameterType="java.util.Map"
+		resultType="com.moco.actorPR.ActorPRDTO">
+		<!-- select * from actorprboard order by votecount desc -->
+		
+		select * from actorprboard where writer like '%'||#{search}||'%' order by votecount desc
+		<!-- select * from 
+		(select rownum R, A.* from 
+		(select * from actorprboard where season like #{season} and writer like '%'||#{search}||'%' 
+		order by votecount desc) A) 
+		where R between #{startRow} and #{lastRow} -->
+	</select>
+
+	<!-- 이름순 정렬 -->
+	<select id="actorPRList2" parameterType="java.util.Map"
+		resultType="com.moco.actorPR.ActorPRDTO">
+		<!-- select * from actorprboard order by writer asc -->
+		
+		select * from actorprboard where writer like '%'||#{search}||'%' order by writer asc
+		
+		<!-- select * from 
+		(select rownum R, A.* from 
+		(select * from actorprboard where season like #{season} and writer like '%'||#{search}||'%' 
+		order by writer asc) A) 
+		where R between #{startRow} and #{lastRow} -->
+	</select>
+
+	<select id="actorPRView" parameterType="java.lang.Integer"
+		resultType="com.moco.actorPR.ActorPRDTO">
+		select * from actorprboard where num=#{num}
+	</select>
+
+	<update id="actorPRUpdate" parameterType="com.moco.actorPR.ActorPRDTO">
+		update actorprboard set title=#{title}, contents=#{contents},
+		fname=#{fname}, oname=#{oname}, reg_date=sysdate, season=#{season}
+		where num=#{num}
+	</update>
+
+	<update id="voteCountUpdate" parameterType="java.lang.String">
+		update actorprboard set votecount=votecount+1 where writer=#{writer}
+	</update>
+
+</mapper>
