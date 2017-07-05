@@ -14,6 +14,11 @@ public class SeasonDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "SeasonMapper.";
 	
+	// likesAbleCheck
+	public int likesAbleCheck(SeasonDTO seasonDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"likesAbleCheck", seasonDTO);
+	}
+	
 	// adminOrderSelect - parameter > String kind , result > List<SeasonDTO>
 	public List<SeasonDTO> adminOrderSelect(String kind) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"adminOrderSelect", kind);

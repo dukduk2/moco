@@ -44,4 +44,8 @@
 	<select id="seasonTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
 		select count(num) from season where kind=#{kind}
 	</select>
+	<!-- 시즌이 진행 중일 때만 좋아요를 누를 수 있도록 check하는 db -->
+	<select id="likesAbleCheck" parameterType="com.moco.season.SeasonDTO" resultType="java.lang.Integer">
+		select state from season where season=#{season} and kind=#{kind}
+	</select>
 </mapper>

@@ -1,8 +1,6 @@
 package com.moco.finalProject;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,20 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.moco.board.BoardDTO;
 import com.moco.fileTest.FileSaver;
 import com.moco.likes.LikesDTO;
 import com.moco.member.MemberDTO;
-import com.moco.reply.ReplyService;
 import com.moco.season.SeasonDTO;
 import com.moco.season.SeasonService;
 import com.moco.userBoard.UserBoardDTO;
 import com.moco.userBoard.UserBoardService;
-import com.moco.util.PageMaker;
-import com.moco.util.PageResult;
 import com.moco.util.RowMaker;
 
 @Controller
@@ -109,6 +101,14 @@ public class UserBoardController {
 		}else { // '좋아요' 하지 않은 상태 >> 좋아요
 			model.addAttribute("message", false);
 		}
+		
+		// 현재 시즌이 진행 중 일 때만 '좋아요'를 누를 수 있도록 하자
+		SeasonDTO seasonDTO = new SeasonDTO();
+		seasonDTO.setSeason(userBoardDTO.getSeason()); // 게시물을 작성할 때의 시즌
+		seasonDTO.setKind("user");
+		check = seasonService.likesAbleCheck(seasonDTO);
+		
+		model.addAttribute("likesAbleCheck", check);
 		model.addAttribute("likesResult", userBoardService.boardLikesCount(userBoardDTO.getNum()));
 	}
 	
