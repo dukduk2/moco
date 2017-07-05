@@ -19,10 +19,10 @@
 	.menuTable{
 		margin : 0 auto;
 		width: 1000px;
-		border-style: ridge; 
+		border: 2px ridge black;
 	}
 	tr{
-		border-style: ridge;	
+		border: 2px ridge black;	
 	}
 	.iconIMG{
 		width: 150px;
@@ -49,6 +49,7 @@
 	}
 	.contentsTD{
 		vertical-align: middle;
+		border-right: 2px ridge black;	
 	}
 </style>
 </head>
@@ -59,7 +60,7 @@
 			<tr class="titleTR tableTR">
 				<!-- Member 관리 -->
 				<td colspan="2">
-					<img alt="" src="../resources/adminIndexIcon/member_icon.png" class="iconIMG">
+					<a href="./memberList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/member_icon.png" class="iconIMG"></a>
 				</td>
 				<td colspan="2" class="titleTD contentsTD">
 					<span class="titleSpan"><a href="./memberList">memberList</a></span>
@@ -69,7 +70,7 @@
 			<tr class="tableTR">
 				<!-- movieRequest -->
 				<td class="imgTD">
-					<img alt="" src="../resources/adminIndexIcon/movieRequest_icon.png" class="iconIMG">
+					<a href="./movieRequestList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/movieRequest_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
 					<span class="titleSpan"><a href="./movieRequestList">MovieRequest</a></span>
@@ -77,7 +78,7 @@
 				</td>
 				<!-- movieUpload -->
 				<td class="imgTD">
-					<img alt="" src="../resources/adminIndexIcon/upload_icon.png" class="iconIMG">
+					<a href="./movieUpload" class="imgATag"><img alt="" src="../resources/adminIndexIcon/upload_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
 					<span class="titleSpan"><a href="./movieUpload">Movie Upload</a></span>
@@ -86,14 +87,14 @@
 			<tr class="tableTR">
 				<!-- season -->
 				<td class="imgTD">
-					<img alt="" src="../resources/adminIndexIcon/season_icon.png" class="iconIMG">
+					<a href="./adminSeason" class="imgATag"><img alt="" src="../resources/adminIndexIcon/season_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
 					<span class="titleSpan"><a href="./adminSeason">SEASON</a></span>
 				</td>
 				<!-- schedule  -->
 				<td class="imgTD">
-					<img alt="" src="../resources/adminIndexIcon/schedule_icon.png" class="iconIMG">
+					<a href="./movieScheduleList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/schedule_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
 					<span class="titleSpan"><a href="./movieScheduleList">movieScheduleList</a></span>
@@ -102,7 +103,7 @@
 			<tr class="tableTR">
 				<!-- userboardCommit -->
 				<td class="imgTD">
-					<img alt="" src="../resources/adminIndexIcon/userBoardCommit_icon.png" class="iconIMG">
+					<a href="./userBoardCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/userBoardCommit_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
 					<span class="titleSpan"><a href="./userBoardCommit">userBoard Commit</a></span>
@@ -110,7 +111,7 @@
 				</td>
 				<!-- agency -->
 				<td class="imgTD">
-					<img alt="" src="../resources/adminIndexIcon/agency_icon.png" class="iconIMG">
+					<a href="./agencyList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/agency_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
 					<span class="titleSpan"><a href="./agencyList">Agency</a></span>
