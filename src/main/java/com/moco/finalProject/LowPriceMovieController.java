@@ -2,6 +2,7 @@ package com.moco.finalProject;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -240,8 +241,27 @@ public class LowPriceMovieController {
 	public void screenAdd(int multi_num, Model model) throws Exception{
 		List<ScreenDTO> ar = lowPriceMovieService.screenList(multi_num);
 		int lNum = ar.get(0).getMovie_num();
-
+		
+		List<Date> dates = new ArrayList<Date>();
+		List<String> hours = new ArrayList<String>();
+		List<String> minutes = new ArrayList<String>();
+		for(int i=0; i<ar.size() ; i++){
+			dates.add(ar.get(i).getShow_date());
+			if(0<=ar.get(i).getHour() && ar.get(i).getHour()<10){
+				hours.add("0"+ar.get(i).getHour());
+			}
+			if(0<=ar.get(i).getMinute() && ar.get(i).getMinute()<10){
+				minutes.add("0"+ar.get(i).getMinute());
+			}
+			if(ar.get(i).getMinute() % 10 == 0){
+				minutes.add(ar.get(i).getMinute()+"0");
+			}
+		}
+		
 		model.addAttribute("screenList", ar);
+		model.addAttribute("date", dates);
+		model.addAttribute("hour", hours);
+		model.addAttribute("minute", minutes);
 		model.addAttribute("lowpricemovie", lowPriceMovieService.view(lNum));
 	}
 	/*
