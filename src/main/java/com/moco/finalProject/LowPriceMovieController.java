@@ -1,6 +1,7 @@
 package com.moco.finalProject;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -242,24 +243,13 @@ public class LowPriceMovieController {
 		List<ScreenDTO> ar = lowPriceMovieService.screenList(multi_num);
 		int lNum = ar.get(0).getMovie_num();
 		
-		for(ScreenDTO s : ar){
-			System.out.println(s.getNum());
-			System.out.println(s.getMulti_num());
-			System.out.println(s.getMovie_num());
-			System.out.println(s.getShow_date());
-			System.out.println(s.getHour());
-			System.out.println(s.getMinute());
-			System.out.println(s.getAvailable_seat());
-			System.out.println(s.getCommit());
-			System.out.println("==============");
-		}
-		
-		List<Date> dates = new ArrayList<Date>();
+		List<String> dates = new ArrayList<String>();
 		List<String> hours = new ArrayList<String>();
 		List<String> minutes = new ArrayList<String>();
 		
 		for(int i=0; i<ar.size() ; i++){
-			dates.add(ar.get(i).getShow_date());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			dates.add(sdf.format(ar.get(i).getShow_date()));
 			
 			if(0<=ar.get(i).getHour() && ar.get(i).getHour()<10){
 				hours.add("0"+ar.get(i).getHour());
@@ -272,10 +262,6 @@ public class LowPriceMovieController {
 			}else{
 				minutes.add(ar.get(i).getMinute()+"");
 			}
-		}
-		
-		for(int i=0; i<ar.size(); i++){
-			System.out.println(dates.get(i)+" "+hours.get(i)+":"+minutes.get(i));
 		}
 		
 		model.addAttribute("screenList", ar);
