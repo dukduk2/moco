@@ -11,9 +11,9 @@
 		$('.screenAdd').click(function(){
 			var screenAdd = $(this).attr('id');
 			var num = screenAdd.substring(1);
-			screenAdd = "#"+screenAdd
+			var result = "#result"+num;
 			$.post('screen_ajax', {multi_num:num}, function(data){
-				$(screenAdd).append(data);
+				$(result).html(data);
 			}); 
 		});
 		
@@ -31,6 +31,7 @@
 	
 	<c:forEach items="${multiplexList }" var="list">
 		<p><span id="s${list.num}" class="screenAdd">${list.name}</span></p>
+		<div id="result${list.num}"></div>
 	</c:forEach>
 </body>
 </html>

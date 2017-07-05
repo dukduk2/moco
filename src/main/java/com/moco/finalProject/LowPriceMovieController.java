@@ -242,20 +242,40 @@ public class LowPriceMovieController {
 		List<ScreenDTO> ar = lowPriceMovieService.screenList(multi_num);
 		int lNum = ar.get(0).getMovie_num();
 		
+		for(ScreenDTO s : ar){
+			System.out.println(s.getNum());
+			System.out.println(s.getMulti_num());
+			System.out.println(s.getMovie_num());
+			System.out.println(s.getShow_date());
+			System.out.println(s.getHour());
+			System.out.println(s.getMinute());
+			System.out.println(s.getAvailable_seat());
+			System.out.println(s.getCommit());
+			System.out.println("==============");
+		}
+		
 		List<Date> dates = new ArrayList<Date>();
 		List<String> hours = new ArrayList<String>();
 		List<String> minutes = new ArrayList<String>();
+		
 		for(int i=0; i<ar.size() ; i++){
 			dates.add(ar.get(i).getShow_date());
+			
 			if(0<=ar.get(i).getHour() && ar.get(i).getHour()<10){
 				hours.add("0"+ar.get(i).getHour());
+			}else{
+				hours.add(ar.get(i).getHour()+"");
 			}
+			
 			if(0<=ar.get(i).getMinute() && ar.get(i).getMinute()<10){
 				minutes.add("0"+ar.get(i).getMinute());
+			}else{
+				minutes.add(ar.get(i).getMinute()+"");
 			}
-			if(ar.get(i).getMinute() % 10 == 0){
-				minutes.add(ar.get(i).getMinute()+"0");
-			}
+		}
+		
+		for(int i=0; i<ar.size(); i++){
+			System.out.println(dates.get(i)+" "+hours.get(i)+":"+minutes.get(i));
 		}
 		
 		model.addAttribute("screenList", ar);
