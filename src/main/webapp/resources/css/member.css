@@ -16,6 +16,7 @@ tr {
 td.name {
 	width: 200px;
 	text-align: center;
+	font-weight: bold;
 }
 
 td.push {
