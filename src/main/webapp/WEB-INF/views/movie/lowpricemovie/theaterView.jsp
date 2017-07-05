@@ -17,6 +17,10 @@
 			}); 
 		});
 		
+		$('.reservationAdd').click(function(){
+			
+		})
+		
 	});
 </script>
 <title>Insert title here</title>
