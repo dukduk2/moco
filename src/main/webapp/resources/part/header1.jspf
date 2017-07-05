@@ -1,75 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
-<<<<<<< HEAD
-<style>
-/* Note: Try to remove the following lines to see the effect of CSS positioning */
-.affix {
-	top: 0;
-	width: 100%;
-	-webkit-transition: all .5s ease-in-out;
-	transition: all .5s ease-in-out;
-}
-
-.affix+.container-fluid {
-	padding-top: 70px;
-}
-
-.affix-top {
-	position: static;
-	top: -35px;
-}
-
-.affix + .container-fluid {
-	padding-top: 70px;
-}
-</style>
-
-<div class="container-fluid switch1">
-	<h1>Left Side</h1>
-</div>
-
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
-	<ul class="nav navbar-nav">
-
-		<li class="switch1 dropdown">
-			<a style="color: white !important" href="${pageContext.request.contextPath}/movie/movieHome">Main</a>
-			<div class="dropdown-content">
-				<a style="color: white !important" href="${pageContext.request.contextPath}">Home</a>
-  			</div>
-		</li>
-		
-		<li class="dropdown">
-			<a href="">영화검색&추천</a>
-			<div class="dropdown-content">
-				<a href="${pageContext.request.contextPath}/movie/basicMovieSearch/movieSearchHome">일반영화</a>
-				<a href="${pageContext.request.contextPath}/movie/lowpricemovie/lowpricemovieSearchHome">독립영화</a>
-  			</div>
-		</li>
-		
-		<li class="dropdown">
-			<a href="${pageContext.request.contextPath}/movie/lowpricemovie/lowpricemovieList">LowMovieSearch</a>
-			<div class="dropdown-content">
-				<a href="#">Link 1</a>
-				<a href="#">Link 2</a>
-				<a href="#">Link 3</a>
-  			</div>
-		</li>
-		
-		<%-- <li class="dropdown">
-			<a href="${pageContext.request.contextPath}/movie/movieSchedule/movieScheduleTable">Movie Schedule</a>
-			<div class="dropdown-content">
-				<a href="#">Link 1</a>
-				<a href="#">Link 2</a>
-				<a href="#">Link 3</a>
-  			</div>
-		</li> --%>
-	</ul>
-</nav>
-<%-- <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
-=======
->>>>>>> d2dc7d471d7519113a356454a041487812809411
 
 <header>
 	<div class="container-fluid switch1">
@@ -160,4 +93,4 @@
 			</div>
 		</div>
 	</nav>
-</header> --%>
+</header>
