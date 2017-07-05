@@ -210,19 +210,21 @@
 				</td>
 			</tr>
 		</c:if>
-		<tr>
-			<td colspan="2" class="likesTD">
-				<span id="likesResult" class="likes">
-					<c:if test="${message == true}">
-						좋아요 취소 <i class="fa fa-thumbs-up" style="font-size:36px;color:skyblue"></i>
-					</c:if>
-					<c:if test="${message == false }">
-						좋아요 <i class="fa fa-thumbs-o-up" style="font-size:36px"></i>
-					</c:if> 
-					${likesResult}
-				</span>
-			</td>
-		</tr>
+		<c:if test="${likesAbleCheck}">
+			<tr>
+				<td colspan="2" class="likesTD">
+					<span id="likesResult" class="likes">
+						<c:if test="${message == true}">
+							좋아요 취소 <i class="fa fa-thumbs-up" style="font-size:36px;color:skyblue"></i>
+						</c:if>
+						<c:if test="${message == false }">
+							좋아요 <i class="fa fa-thumbs-o-up" style="font-size:36px"></i>
+						</c:if> 
+						${likesResult}
+					</span>
+				</td>
+			</tr>
+		</c:if>
 	</table>
 	
 	<c:if test="${memberDTO.id == UserBoardDTO.writer}">

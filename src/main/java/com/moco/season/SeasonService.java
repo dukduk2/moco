@@ -17,6 +17,16 @@ public class SeasonService {
 	@Autowired
 	private SeasonDAO seasonDAO;
 
+	// likesAbleCheck
+	public boolean likesAbleCheck(SeasonDTO seasonDTO) throws Exception{
+		boolean check = true;
+		// 시즌이 끝났다면, false
+		if(seasonDAO.likesAbleCheck(seasonDTO) == 0){
+			check = !check;
+		}
+		return check;
+	}
+
 	// adminOrderSelect - parameter > String kind , result > List<SeasonDTO>
 	public List<SeasonDTO> adminOrderSelect(String kind) throws Exception{
 		return seasonDAO.adminOrderSelect(kind);
@@ -31,7 +41,7 @@ public class SeasonService {
 
 		map.put("kind", kind);
 		map.put("row", rowMaker);
-		
+
 		return seasonDAO.adminOrderSelect2(map);
 	}
 	// adminOrderSelectOne - parameter String kind, result > SeasonDTO
