@@ -83,14 +83,15 @@
 	border-bottom: 1px solid RGB(157, 157, 157);
 	width: 250px;
 	height: 250px;
-	margin-right: 10px;
+	margin-right: 20px;
 	margin-top: 10px;
+	margin-left: 20px;
 	display: inline-block;
 }
 
 #frm{
 	float: left;
-	width: 1350px;
+	width: 1200px;
 	border:1px solid gray;
 }
 
@@ -99,13 +100,9 @@
 }
 
 #buttonList{
-	width:1350px;
+	width:1200px;
 }
-.contents-wrap {
-	width: 1700px;
-	margin: 0 auto;
-	margin-left: 300px;
-}
+
 
 .chk {
 	float: right;
