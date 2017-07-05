@@ -38,7 +38,7 @@ public class jjimMail {
 		//비교일. 오늘 날짜.
 		Calendar today = Calendar.getInstance();
 		today.setTime(new Date());
-		today.add(Calendar.DATE, 9);
+		today.add(Calendar.DATE, 7);
 		
 		Date todayTest=today.getTime();
 		
