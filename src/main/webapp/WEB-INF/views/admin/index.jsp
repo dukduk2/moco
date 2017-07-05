@@ -21,29 +21,48 @@
 </head>
 <body>
 	<%@ include file="/resources/part/adminHeader.jspf" %>
-	
 	<section>
-	<br>
-	<p><a href="./movieUpload">Movie Upload</a></p>
-	<p><a href="./movieScheduleList">movieScheduleList</a></p>
-	<p>
-		<a href="./userBoardCommit">userBoard Commit</a>&nbsp;
-			<span class="badge">${userBoardCommitCount}</span>			
-	</p>
-	<p><a href="./adminSeason">SEASON</a></p>
-	<p>
-		<a href="./agencyList">Agency</a>
-		<span class="badge">${agencyCommitCount}</span>
-	</p>
-	<p>
-		<a href="./memberList">memberList</a>&nbsp;
-		<span class="badge">${memberStateCount}</span>
-	</p>
-	<p>
-		<a href="./movieRequestList">MovieRequest</a>
-		<span class="badge">${movieRequest}</span>
-	</p>
-	<p><a href="../">HOME</a></p>
+		<table>
+			<tr>
+				<!-- Member 관리 -->
+				<td>
+					<img alt="" src="">
+				</td>
+				<td colspan="2">
+					<a href="./memberList">memberList</a>&nbsp;
+					<span class="badge">${memberStateCount}</span>
+				</td>
+			</tr>
+			<tr>
+				<!--  -->
+				<td>
+					<a href="./movieRequestList">MovieRequest</a>
+					<span class="badge">${movieRequest}</span>
+				</td>
+				<td>
+					<a href="./movieUpload">Movie Upload</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./adminSeason">SEASON</a>
+				</td>
+				<td>
+					<a href="./movieScheduleList">movieScheduleList</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./userBoardCommit">userBoard Commit</a>&nbsp;
+					<span class="badge">${userBoardCommitCount}</span>
+				</td>
+				<td>
+					<a href="./agencyList">Agency</a>
+					<span class="badge">${agencyCommitCount}</span>			
+				</td>
+			</tr>
+		</table>
 	</section>
+	
 </body>
 </html>
