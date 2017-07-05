@@ -15,8 +15,6 @@
 			$.post('screen_ajax', {multi_num:num}, function(data){
 				$(screenAdd).append(data);
 			}); 
-			
-			
 		});
 		
 	});
