@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moco.lowpricemovie.LowPriceMovieDTO;
+import com.moco.member.MemberDTO;
 import com.moco.movieAPI.BasicMovieDTO;
 
 @Service
@@ -14,7 +15,19 @@ public class JjimService {
 
 	@Autowired
 	private JjimDAO jjimDAO;
-
+	
+	public List<BasicMovieDTO> jjimList() throws Exception{
+		return jjimDAO.jjimList();
+	}
+	
+	public List<JjimDTO> jjimListId(int bnum) throws Exception{
+		return jjimDAO.jjimListId(bnum);
+	}
+	
+	public List<MemberDTO> jjimListMember(String id) throws Exception{
+		return jjimDAO.jjimListMember(id);
+	}
+	
 	// insert
 	public int jjimInsert(JjimDTO jjimDTO) throws Exception{
 		return jjimDAO.jjimInsert(jjimDTO);

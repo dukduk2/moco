@@ -3,6 +3,18 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="JjimMapper">
+	<!-- 찜한 영화 리스트 -->
+	<select id="jjimList" resultType="com.moco.movieAPI.BasicMovieDTO">
+		select basicmovie.* from basicmovie, jjim where jjim.bnum=basicmovie.num
+	</select>
+	<!-- 찜한 영화 보는 사람 id -->
+	<select id="jjimListId" parameterType="java.lang.Integer" resultType="com.moco.jjim.JjimDTO">
+		select * from jjim where bnum=#{bnum}
+	</select>
+	<!-- 찜한 영화 보는 사람 email -->
+	<select id="jjimListMember" parameterType="java.lang.String" resultType="com.moco.member.MemberDTO">
+		select * from member where id=#{id}
+	</select>
 	<insert id="jjimInsert" parameterType="com.moco.jjim.JjimDTO">
 		insert into jjim values(#{id},#{bNum},#{lNum})
 	</insert>

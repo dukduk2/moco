@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.moco.lowpricemovie.LowPriceMovieDTO;
+import com.moco.member.MemberDTO;
 import com.moco.movieAPI.BasicMovieDTO;
 
 @Repository
@@ -15,6 +16,18 @@ public class JjimDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "JjimMapper.";
+	
+	public List<BasicMovieDTO> jjimList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"jjimList");
+	}
+	
+	public List<JjimDTO> jjimListId(int bnum) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"jjimListId", bnum);
+	}
+	
+	public List<MemberDTO> jjimListMember(String id) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"jjimListMember", id);
+	}
 	
 	// insert
 	public int jjimInsert(JjimDTO jjimDTO) throws Exception{
