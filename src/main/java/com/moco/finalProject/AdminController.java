@@ -1,6 +1,7 @@
 package com.moco.finalProject;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieRequest.MovieRequestDTO;
 import com.moco.movieRequest.MovieRequestService;
+import com.moco.movieSchedule.MovieScheduleDTO;
+import com.moco.movieSchedule.MovieScheduleService;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
 import com.moco.season.SeasonDTO;
@@ -48,6 +51,8 @@ public class AdminController {
 	private MemberService memberService;
 	@Inject
 	private MovieRequestService movieRequestService;
+	@Inject
+	private MovieScheduleService movieScheduleService;
 
 	// index
 	@RequestMapping(value="index" , method=RequestMethod.GET)
@@ -568,5 +573,141 @@ public class AdminController {
 		session.setAttribute("memberDTO", (MemberDTO)session.getAttribute("memberDTO"));
 
 		return "/admin/memberList";
+	}
+	
+	//무비 스케쥴
+	@RequestMapping(value="movieScheduleList", method=RequestMethod.GET)
+	public String movieScheduleList(Integer curPage, @RequestParam(required=false)String search, Model model){
+		System.out.println("- movieScheduleController -> ListShow");
+		
+		try {
+			if(curPage == null){
+				curPage = 1;
+			}
+			if(search == null){
+				search="00000101";
+			}
+			
+			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
+			model.addAttribute("list", map.get("list"));
+			model.addAttribute("pageResult",map.get("pageResult"));
+			model.addAttribute("curPage",curPage);
+			model.addAttribute("search", search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "/admin/movieScheduleList";
+	}
+	
+	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.GET)
+	public void movieScheduleAdd() {
+		System.out.println("- movieScheduleController -> Add1");
+	}
+	
+	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.POST)
+	public String movieScheduleAdd(MovieScheduleDTO movieScheduleDTO, Integer curPage, @RequestParam(required=false)String search, Model model){
+		System.out.println("- movieScheduleController -> Add2");
+
+		try {
+			movieScheduleService.movieScheduleAdd(movieScheduleDTO);
+
+			if(curPage == null){
+				curPage = 1;
+			}
+			if(search == null){
+				search="00000101";
+			}
+
+			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
+			model.addAttribute("list", map.get("list"));
+			model.addAttribute("pageResult",map.get("pageResult"));
+			model.addAttribute("curPage",curPage);
+			model.addAttribute("search", search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "redirect:/admin/movieScheduleList";
+	}
+	
+	@RequestMapping(value="paidMovieCheck1", method=RequestMethod.POST)
+	public String paidMovieCheck1(int pnum, Model model){
+		System.out.println("- movieScheduleController -> paidMovieCheck1");
+		
+		String title = null;
+		
+		try {
+			title = movieScheduleService.paidMovieCheck1(pnum);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(title == null){
+			model.addAttribute("message", null);
+		} else {
+			model.addAttribute("message", title);
+		}
+		
+		System.out.println("title : "+title);
+
+		return "/admin/action/movieSearchResult";
+	}
+	
+	@RequestMapping(value="paidMovieCheck2", method=RequestMethod.POST)
+	public String paidMovieCheck2(Date moviedate, Model model){
+		System.out.println("- movieScheduleController -> paidMovieCheck2");
+		
+		Date date = null;
+		
+		try {
+			date = movieScheduleService.paidMovieCheck2(moviedate);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(date == null){
+			System.out.println("날짜가 중복되지 않습니다.");
+		} else {
+			System.out.println("날짜가 중복됩니다.");
+		}
+
+		model.addAttribute("message", date);
+		System.out.println("Date : "+date);
+
+		return "/admin/action/movieSearchResult";
+	}
+	
+	@RequestMapping(value="movieScheduleDelete", method=RequestMethod.POST)
+	public String movieScheduleDelete(int num, Integer curPage, @RequestParam(required=false)String search, Model model){
+		System.out.println("- movieScheduleController -> movieScheduleDeleteS");
+
+		int result = 0;
+		
+		try {
+			result = movieScheduleService.movieScheduleDelete(num);
+			
+			if(curPage == null){
+				curPage = 1;
+			}
+			if(search == null){
+				search="00000101";
+			}
+			
+			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
+			model.addAttribute("list", map.get("list"));
+			model.addAttribute("pageResult",map.get("pageResult"));
+			model.addAttribute("curPage",curPage);
+			model.addAttribute("search", search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "/admin/action/ScheduleListResult";
 	}
 }

@@ -25,7 +25,7 @@
 	<section>
 	<br>
 	<p><a href="./movieUpload">Movie Upload</a></p>
-	<p><a href="./scheduler">Scheduler</a></p>
+	<p><a href="./movieScheduleList">movieScheduleList</a></p>
 	<p>
 		<a href="./userBoardCommit">userBoard Commit</a>&nbsp;
 			<span class="badge">${userBoardCommitCount}</span>			

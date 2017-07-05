@@ -9,12 +9,12 @@
 <script type="text/javascript">
 	$(function(){
 		$('.screenAdd').click(function(){
-			var num = $(this).attr('id');
-			num = num.substring(1);
-			
+			var screenAdd = $(this).attr('id');
+			var num = screenAdd.substring(1);
+			screenAdd = "#"+screenAdd
 			$.post('screen_ajax', {multi_num:num}, function(data){
-				
-			});
+				$(screenAdd).append(data);
+			}); 
 			
 			
 		});
@@ -32,8 +32,7 @@
 	<p>문의전화 : ${theater.phone }</p>
 	
 	<c:forEach items="${multiplexList }" var="list">
-	
-		<p><span id="s${list.num}" class="screenAdd">${list.name }</span></p>
+		<p><span id="s${list.num}" class="screenAdd">${list.name}</span></p>
 	</c:forEach>
 </body>
 </html>

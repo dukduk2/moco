@@ -241,7 +241,7 @@ public class LowPriceMovieController {
 		List<ScreenDTO> ar = lowPriceMovieService.screenList(multi_num);
 		int lNum = ar.get(0).getMovie_num();
 
-		model.addAttribute("screen", ar);
+		model.addAttribute("screenList", ar);
 		model.addAttribute("lowpricemovie", lowPriceMovieService.view(lNum));
 	}
 	/*
