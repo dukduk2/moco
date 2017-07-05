@@ -9,6 +9,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
 <title>Insert title here</title>
 <style type="text/css">
 .profile{
@@ -44,32 +45,57 @@ $(function(){
 	<%@ include file="/resources/part/header1.jspf" %>
 
 	<section>
-	<h2>Member View</h2>
-	<input type="text" name="id" value="${memberDTO.kind}" readonly="readonly">
-	<h3>ID : ${memberDTO.id}</h3>
-	<h3>NAME : ${memberDTO.name}</h3>
-	<h3>PHONE : ${memberDTO.phone}</h3>
-	<h3>IMG</h3>
+		<div class="container">
+			<h2 class="title">Member View</h2>
 
-	<c:if test="${memberDTO.getFname() ne ' '}">
-		<p><img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}"></p>
-	</c:if>
+			<table class="member_Table">
+				<tr>
+					<td class="name">IMG</td>
+					<td class="push">
+						<c:if test="${memberDTO.getFname() ne ' '}">
+							<p><img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}"></p>
+						</c:if>
 
-	<c:if test="${memberDTO.getFname() eq ' '}">
-		<p>사진이 없습니다.</p>
-	</c:if>
+						<c:if test="${memberDTO.getFname() eq ' '}">
+							<p>사진이 없습니다.</p>
+						</c:if>
+					</td>
+				</tr>
 
-	<div>
-		<input type="button" class="btn btn-warning" value="UPDATE" id="update">
-		<input type="button" class="btn btn-danger" value="DELETE" id="delete">
-		<input type="button" class="btn btn-success" value="HOME" id="home">
+				<tr>
+					<td class="name">ID :</td>
+					<td class="push">${memberDTO.id}</td>
+				</tr>
 
-		<%-- <c:if test="${memberDTO.getKind() eq '관리자'}">
-			<input type="button" class="btn btn-info" value="회원 MANAGEMENT" id="Member_management">
-			<input type="button" class="btn btn-info" value="영화 MANAGEMENT" id="Movie_management">
-		</c:if> --%>
-		
-	</div>
+				<tr>
+					<td class="name">NAME :</td>
+					<td class="push">${memberDTO.name}</td>
+				</tr>
+
+				<tr>
+					<td class="name">PHONE :</td>
+					<td class="push">${memberDTO.phone}</td>
+				</tr>
+				
+				<tr>
+					<td class="name" colspan="2">
+						<input type="button" class="btn btn-warning" value="UPDATE" id="update">
+						<input type="button" class="btn btn-danger" value="DELETE" id="delete">
+						<input type="button" class="btn btn-success" value="HOME" id="home">
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div>
+			
+	
+			<%-- <c:if test="${memberDTO.getKind() eq '관리자'}">
+				<input type="button" class="btn btn-info" value="회원 MANAGEMENT" id="Member_management">
+				<input type="button" class="btn btn-info" value="영화 MANAGEMENT" id="Movie_management">
+			</c:if> --%>
+			
+		</div>
 	</section>
 </body>
 </html>
