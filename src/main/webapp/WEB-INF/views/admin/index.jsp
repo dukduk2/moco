@@ -16,48 +16,104 @@
 	});
 </script>
 <style type="text/css">
-	
+	.menuTable{
+		margin : 0 auto;
+		width: 1000px;
+		border-style: ridge; 
+	}
+	tr{
+		border-style: ridge;	
+	}
+	.iconIMG{
+		width: 150px;
+		height: 150px;
+	}
+	.titleSpan{
+		font-size: 1.4em;
+		font-weight: bold;
+	}
+	.badge{
+		font-size: 1.4em;
+	}
+	.titleTR{
+		text-align: center;
+	}
+	.tableTR{
+		height: 180px;
+	}
+	.imgTD{
+		text-align: center;
+	}
+	.titleTD{
+		text-align: left;
+	}
+	.contentsTD{
+		vertical-align: middle;
+	}
 </style>
 </head>
 <body>
-	<%@ include file="/resources/part/adminHeader.jspf" %>
+	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
-		<table>
-			<tr>
+		<table class="menuTable">
+			<tr class="titleTR tableTR">
 				<!-- Member 관리 -->
-				<td>
-					<img alt="" src="">
-				</td>
 				<td colspan="2">
-					<a href="./memberList">memberList</a>&nbsp;
+					<img alt="" src="../resources/adminIndexIcon/member_icon.png" class="iconIMG">
+				</td>
+				<td colspan="2" class="titleTD contentsTD">
+					<span class="titleSpan"><a href="./memberList">memberList</a></span>
 					<span class="badge">${memberStateCount}</span>
 				</td>
 			</tr>
-			<tr>
-				<!--  -->
-				<td>
-					<a href="./movieRequestList">MovieRequest</a>
+			<tr class="tableTR">
+				<!-- movieRequest -->
+				<td class="imgTD">
+					<img alt="" src="../resources/adminIndexIcon/movieRequest_icon.png" class="iconIMG">
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./movieRequestList">MovieRequest</a></span>
 					<span class="badge">${movieRequest}</span>
 				</td>
-				<td>
-					<a href="./movieUpload">Movie Upload</a>
+				<!-- movieUpload -->
+				<td class="imgTD">
+					<img alt="" src="../resources/adminIndexIcon/upload_icon.png" class="iconIMG">
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./movieUpload">Movie Upload</a></span>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<a href="./adminSeason">SEASON</a>
+			<tr class="tableTR">
+				<!-- season -->
+				<td class="imgTD">
+					<img alt="" src="../resources/adminIndexIcon/season_icon.png" class="iconIMG">
 				</td>
-				<td>
-					<a href="./movieScheduleList">movieScheduleList</a>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./adminSeason">SEASON</a></span>
+				</td>
+				<!-- schedule  -->
+				<td class="imgTD">
+					<img alt="" src="../resources/adminIndexIcon/schedule_icon.png" class="iconIMG">
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./movieScheduleList">movieScheduleList</a></span>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<a href="./userBoardCommit">userBoard Commit</a>&nbsp;
+			<tr class="tableTR">
+				<!-- userboardCommit -->
+				<td class="imgTD">
+					<img alt="" src="../resources/adminIndexIcon/userBoardCommit_icon.png" class="iconIMG">
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./userBoardCommit">userBoard Commit</a></span>
 					<span class="badge">${userBoardCommitCount}</span>
 				</td>
-				<td>
-					<a href="./agencyList">Agency</a>
+				<!-- agency -->
+				<td class="imgTD">
+					<img alt="" src="../resources/adminIndexIcon/agency_icon.png" class="iconIMG">
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./agencyList">Agency</a></span>
 					<span class="badge">${agencyCommitCount}</span>			
 				</td>
 			</tr>
