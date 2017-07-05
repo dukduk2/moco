@@ -30,13 +30,13 @@ $(function(){
 		location.href="../";
 	});
 
-	$("#Member_management").click(function(){
+	/* $("#Member_management").click(function(){
 		location.href="memberList?curPage=1&kind=&search=";
 	});
 
 	$("#Movie_management").click(function(){
 		location.href="../movie/movieSchedule/movieScheduleList";
-	});
+	}); */
 });
 </script>
 </head>
@@ -64,10 +64,10 @@ $(function(){
 		<input type="button" class="btn btn-danger" value="DELETE" id="delete">
 		<input type="button" class="btn btn-success" value="HOME" id="home">
 
-		<c:if test="${memberDTO.getKind() eq '관리자'}">
+		<%-- <c:if test="${memberDTO.getKind() eq '관리자'}">
 			<input type="button" class="btn btn-info" value="회원 MANAGEMENT" id="Member_management">
 			<input type="button" class="btn btn-info" value="영화 MANAGEMENT" id="Movie_management">
-		</c:if>
+		</c:if> --%>
 		
 	</div>
 	</section>

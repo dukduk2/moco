@@ -22,7 +22,7 @@
 	<h2>Admin Index</h2>
 	<br>
 	<p><a href="./movieUpload">Movie Upload</a></p>
-	<p><a href="./scheduler">Scheduler</a></p>
+	<p><a href="./movieScheduleList">movieScheduleList</a></p>
 	<p>
 		<a href="./userBoardCommit">userBoard Commit</a>&nbsp;
 		<c:if test="${userBoardCommitCount != null}">
