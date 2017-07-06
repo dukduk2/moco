@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moco.member.MemberDTO;
-import com.moco.movieAPI.Json.JsonMain;
+import com.moco.movieAPI.BasicMovieDTO;
+import com.moco.movieAPI.BasicMovieService;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
+import com.moco.pay.PayDTO;
+import com.moco.pay.PayService;
 
 /**
  * Handles requests for the application home page.
@@ -31,6 +34,10 @@ public class HomeController {
 	
 	@Inject
 	PaidMovieService paidMovieService;
+	@Inject
+	PayService payService;
+	@Inject
+	BasicMovieService basicMovieService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -69,5 +76,70 @@ public class HomeController {
 		paidMovieDTO=paidMovieService.paidMovieSelectOne(map);
 
 		model.addAttribute("dto", paidMovieDTO);
+	}
+	
+	
+	
+	@RequestMapping(value="/movie/payMovie", method=RequestMethod.GET)
+	public String payMovie(int num, Model model, HttpSession session) throws Exception{
+		Map<String, Object> map1=new HashMap<String, Object>(); //pay
+		Map<String, Object> map2=new HashMap<String, Object>(); //paidMovie
+		
+		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+		
+		map2.put("kind", "bNum");
+		map2.put("num", num);
+		
+		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
+		paidMovieDTO=paidMovieService.paidMovieSelectOne(map2);
+		
+		map1.put("id", id);
+		map1.put("kind", "bNum");
+		map1.put("num", num);
+		
+		PayDTO payDTO=new PayDTO();
+
+		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
+		int price=paidMovieDTO.getPrice();
+		
+		/*model.addAttribute("myPoint", myPoint);
+		model.addAttribute("price", price);*/
+		model.addAttribute("dto", basicMovieService.view(num));
+		
+		return "redirect:/movie/payMovie";
+	}
+	
+	@RequestMapping(value="/movie/payMovie", method=RequestMethod.POST)
+	public void payMovie(BasicMovieDTO basicMovieDTO, int num, HttpSession session) throws Exception{		
+		Map<String, Object> map1=new HashMap<String, Object>(); //pay
+		Map<String, Object> map2=new HashMap<String, Object>(); //paidMovie
+		
+		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+		
+		map2.put("kind", "bNum");
+		map2.put("num", num);
+		
+		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
+		paidMovieDTO=paidMovieService.paidMovieSelectOne(map2);
+		
+		map1.put("id", id);
+		map1.put("kind", "bNum");
+		map1.put("num", num);
+		
+		PayDTO payDTO=new PayDTO();
+
+		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
+		int price=paidMovieDTO.getPrice();
+		
+		/*System.out.println("myPoint"+myPoint);
+		System.out.println("price"+price);
+		
+		if(price<=myPoint){
+			map1.put("id", id);
+			map1.put("kind", "bNum");
+			map1.put("bnum", num);
+		
+			payService.payInsert(map1);
+		}*/
 	}
 }

@@ -280,7 +280,7 @@
 				if(check == 'check'){
 					location.href="../moviePlay?num="+bNum;
 				}else{
-					location.href="";
+					location.href="../payMovie?num="+bNum;
 				}
 			}else if(request == '영화신청하기'){
 				$.ajax({
