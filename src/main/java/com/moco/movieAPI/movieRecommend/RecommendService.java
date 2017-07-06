@@ -30,18 +30,18 @@ public class RecommendService {
 	}
 
 	// review list
-	public List<ReviewRankDTO> reviewList() throws Exception{
-		return recommendDAO.reviewList();
+	public List<ReviewRankDTO> reviewList(Map<String, Object> map) throws Exception{
+		return recommendDAO.reviewList(map);
 	}
 
 	// jjim list
-	public List<JjimRankDTO> jjimRankList() throws Exception{
-		return recommendDAO.jjimRankList();
+	public List<JjimRankDTO> jjimRankList(Map<String, Object> map) throws Exception{
+		return recommendDAO.jjimRankList(map);
 	}
 
 	// recent list
-	public List<BasicMovieDTO> recentList() throws Exception {
-		return recommendDAO.recentList();
+	public List<BasicMovieDTO> recentList(Map<String, Object> map) throws Exception {
+		return recommendDAO.recentList(map);
 	}
 
 	// 나이별 id 리스

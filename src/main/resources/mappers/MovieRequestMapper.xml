@@ -23,19 +23,19 @@
 	<!-- SUZI -->
 	<insert id="movieRequestInsert" parameterType="java.util.Map">
 		insert into movierequest 
-		<if test="kind == 'bNum'">
+		<if test="kind == 'basic'">
 			values(movierequest_seq.nextval, #{num}, 0)
 		</if>
-		<if test="kind == 'lNum'">
+		<if test="kind == 'low'">
 			values(movierequest_seq.nextval, 0, #{num})
 		</if>
 	</insert>
 	<select id="movieRequestSelectOne" parameterType="java.util.Map" resultType="com.moco.movieRequest.MovieRequestDTO">
 		select * from movierequest 
-		<if test="kind == 'bNum'">
+		<if test="kind == 'basic'">
 			where bNum=#{num}
 		</if>
-		<if test="kind == 'lNum'">
+		<if test="kind == 'low'">
 			where lNum=#{num}
 		</if>
 	</select>

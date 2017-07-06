@@ -21,22 +21,21 @@ import com.moco.movieAPI.movieRecommend.subDTO.ReviewRankDTO;
 import com.moco.movieAPI.movieRecommend.weather.Getweather;
 
 @Controller
-@RequestMapping(value="/movie/basicMovieSearch/movieRecommend/")
-public class BasicMovieRecommendController {
-	
+@RequestMapping(value="/movie/lowpricemovie/movieRecommend/")
+public class LowPriceMovieRecommendController {
 	@Inject
 	RecommendService recommendService;
 	
 	@RequestMapping(value="recommendHome", method=RequestMethod.GET)
-	public void recommendHome(){
-		
+	public String recommendHome(){
+		return "/movie/basicMovieSearch/movieRecommend/recommendHome";
 	}
 	
 	@RequestMapping(value="recommendList", method=RequestMethod.GET)
-	public void recommendList(String criteria, String subCriteria, Model model){
+	public String recommendList(String criteria, String subCriteria, Model model){
 		List<BasicMovieDTO> movieList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
 		Map<String, Object> criteria_map = new HashMap<String, Object>(); // 조건 map
-		criteria_map.put("kind", "basic");
+		criteria_map.put("kind", "low");
 		Map<String, Object> movie_map = new HashMap<String, Object>(); // 넘겨줄 list map
 		try{
 			// 장르별
@@ -116,5 +115,6 @@ public class BasicMovieRecommendController {
 			e.printStackTrace();
 		}
 		model.addAttribute("movie_map", movie_map).addAttribute("criteria", criteria);
+		return "/movie/basicMovieSearch/movieRecommend/recommendList";
 	}
 }

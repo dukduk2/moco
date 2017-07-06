@@ -29,31 +29,31 @@ public class BasicMovieDAO {
 		return sqlSession.selectList(MAPPER_NAME+"list", map);
 	}
 	// NATION 리스트 뽑아오기
-	public List<String> nationList() throws Exception{
-		return sqlSession.selectList(MAPPER_NAME+"nationList");
+	public List<String> nationList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(MAPPER_NAME+"nationList", map);
 	}
 	// totalCount
 	public int totalCount(Map<String, Object> map) throws Exception{
 		return sqlSession.selectOne(MAPPER_NAME+"totalCount", map);
 	}
 	// view
-	public BasicMovieDTO view(int num) throws Exception{
-		return sqlSession.selectOne(MAPPER_NAME+"view", num);
+	public BasicMovieDTO view(Map<String, Object> map) throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"view", map);
 	}
 	// 찜하기 확인
-	public JjimDTO jjimCheck(JjimDTO jjimDTO) throws Exception{
-		return sqlSession.selectOne(MAPPER_NAME+"jjimCheck", jjimDTO);
+	public JjimDTO jjimCheck(Map<String, Object> map) throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"jjimCheck", map);
 	}
 	// 찜하기 INSERT
-	public int jjimInsert(JjimDTO jjimDTO) throws Exception{
-		return sqlSession.insert(MAPPER_NAME+"jjimInsert", jjimDTO);
+	public int jjimInsert(Map<String, Object> map) throws Exception{
+		return sqlSession.insert(MAPPER_NAME+"jjimInsert", map);
 	}
 	// 찜하기 DELETE
-	public int jjimDelete(JjimDTO jjimDTO) throws Exception{
-		return sqlSession.delete(MAPPER_NAME+"jjimDelete", jjimDTO);
+	public int jjimDelete(Map<String, Object> map) throws Exception{
+		return sqlSession.delete(MAPPER_NAME+"jjimDelete", map);
 	}
 	// 리뷰 참여 명 수
-	public int reviewCount(int bNum) throws Exception{
-		return sqlSession.selectOne(MAPPER_NAME+"reviewCount", bNum);
+	public int reviewCount(Map<String, Object> map) throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"reviewCount", map);
 	}
 }

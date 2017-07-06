@@ -5,7 +5,12 @@
 
 <mapper namespace="BasicMovieRecommendMapper">
 	<select id="movieList" parameterType="java.util.Map" resultType="basicMovieDTO">
+	<if test="kind eq 'basic'">
 		select * from basicMovie
+	</if>
+	<if test="kind eq 'low'">
+		select * from lowpriceMovie
+	</if>
 		<!-- 장르별 -->
 		<if test="genre neq null">
 			<if test="genre neq 'all'">
@@ -81,21 +86,40 @@
 		group by L.director
 	</select>
 	<!-- review rank -->
-	<select id="reviewRankList" resultType="com.moco.movieAPI.movieRecommend.subDTO.ReviewRankDTO">
-		select F.count, BasicMovie.* from Basicmovie, ( 
-		(select count(writer) count, BNUM from review GROUP by BNUM order by count desc) F)
-		where F.BNUM = basicmovie.num and rownum <![CDATA[ < 21]]>
+	<select id="reviewRankList" parameterType="java.util.Map" resultType="com.moco.movieAPI.movieRecommend.subDTO.ReviewRankDTO">
+		<if test="kind eq 'basic'">
+			select F.count, BasicMovie.* from Basicmovie, ( 
+			(select count(writer) count, BNUM from review GROUP by BNUM order by count desc) F)
+			where F.BNUM = basicmovie.num and rownum <![CDATA[ < 21]]>
+		</if>
+		<if test="kind eq 'low'">
+			select F.count, lowpricemovie.* from lowpricemovie, ( 
+			(select count(writer) count, BNUM from review GROUP by LNUM order by count desc) F)
+			where F.LNUM = lowpricemovie.num and rownum <![CDATA[ < 21]]>
+		</if>
 	</select>
 	<!-- jjim rank -->
-	<select id="jjimRankList" resultType="com.moco.movieAPI.movieRecommend.subDTO.JjimRankDTO">
-		select rownum, F.count, BasicMovie.* from Basicmovie, ( 
-		(select count(id) count, bnum from jjim group by bnum order by count desc) F)
-		where F.BNUM = basicmovie.num and rownum<![CDATA[ < 21]]>
+	<select id="jjimRankList" parameterType="java.util.Map" resultType="com.moco.movieAPI.movieRecommend.subDTO.JjimRankDTO">
+		<if test="kind eq 'basic'">
+			select rownum, F.count, BasicMovie.* from Basicmovie, ( 
+			(select count(id) count, bnum from jjim group by bnum order by count desc) F)
+			where F.BNUM = basicmovie.num and rownum<![CDATA[ < 21]]>
+		</if>
+		<if test="kind eq 'low'">
+			select rownum, F.count, lowpricemovie.* from lowpricemovie, ( 
+			(select count(id) count, lnum from jjim group by lnum order by count desc) F)
+			where F.lnum = lowpricemovie.num and rownum<![CDATA[ < 21]]>
+		</if>
 	</select>
 	<!-- pub_date list -->
-	<select id="recentList" resultType="basicMovieDTO">
+	<select id="recentList" parameterType="java.util.Map" resultType="basicMovieDTO">
 		select rownum, F.* from ( 
-		(select * from basicmovie where pub_date>sysdate order by pub_date) F)
+		<if test="kind eq 'basic'">
+			(select * from basicmovie where pub_date>sysdate order by pub_date) F)
+		</if>
+		<if test="kind eq 'low'">
+			(select * from lowpricemovie where pub_date>sysdate order by pub_date) F)
+		</if>
 		where rownum<![CDATA[ < 21]]>
 	</select>
 	<!-- 나이별 멤버 id 리스트 -->
@@ -120,14 +144,27 @@
 	</select>
 	<!-- 나이별 최다 관람(view check) 리스트 -->
 	<select id="ageGroupViewList" parameterType="java.util.Map" resultType="com.moco.movieAPI.movieRecommend.subDTO.AgeViewDTO" >
-		select * from basicmovie, 
-		((select count(id) count, bnum from viewcheck 
-		<where>
-			<foreach collection="ageList" item="item" >
-				or id=#{item}
-			</foreach>
-		</where>
-		group by bnum order by count desc)F)
-		where basicmovie.num=F.bnum
+		<if test="kind eq 'basic'">
+			select * from basicmovie, 
+			((select count(id) count, bnum from viewcheck 
+			<where>
+				<foreach collection="ageList" item="item" >
+					or id=#{item}
+				</foreach>
+			</where>
+			group by bnum order by count desc)F)
+			where basicmovie.num=F.bnum
+		</if>
+		<if test="kind eq 'low'">
+			select * from lowpricemovie, 
+			((select count(id) count, lnum from viewcheck 
+			<where>
+				<foreach collection="ageList" item="item" >
+					or id=#{item}
+				</foreach>
+			</where>
+			group by lnum order by count desc)F)
+			where lowpricemovie.num=F.lnum
+		</if>
 	</select>
 </mapper>

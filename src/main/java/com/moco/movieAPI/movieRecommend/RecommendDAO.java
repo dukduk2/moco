@@ -31,18 +31,18 @@ public class RecommendDAO {
 	}
 	
 	// review list
-	public List<ReviewRankDTO> reviewList() throws Exception{
-		return sqlSession.selectList(MAPPER_NAME+"reviewRankList");
+	public List<ReviewRankDTO> reviewList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(MAPPER_NAME+"reviewRankList", map);
 	}
 	
 	// jjim list
-	public List<JjimRankDTO> jjimRankList() throws Exception{
-		return sqlSession.selectList(MAPPER_NAME+"jjimRankList");
+	public List<JjimRankDTO> jjimRankList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(MAPPER_NAME+"jjimRankList", map);
 	}
 	
 	// recent list
-	public List<BasicMovieDTO> recentList() throws Exception {
-		return sqlSession.selectList(MAPPER_NAME+"recentList");
+	public List<BasicMovieDTO> recentList(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(MAPPER_NAME+"recentList", map);
 	}
 	
 	// 나이별 id 리스

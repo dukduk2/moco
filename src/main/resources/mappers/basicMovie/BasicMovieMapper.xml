@@ -30,7 +30,12 @@
 	<select id="list" parameterType="java.util.Map" resultType="basicMovieDTO">
 		select * from
 		(select rownum r, t.* from
-		(select * from basicmovie
+		<if test="kind eq 'basic'">
+			(select * from basicmovie
+		</if>
+		<if test="kind eq 'low'">
+			(select * from lowpricemovie
+		</if>
 		<where>
 			<if test="searchDTO.title neq null">
 				and title like '%'||#{searchDTO.title}||'%' 
@@ -57,7 +62,12 @@
 	<!-- totalCount -->
 	<select id="totalCount" parameterType="java.util.Map" resultType="int">
 		select count(num) from
-		(select * from basicmovie
+		<if test="kind eq 'basic'">
+			(select * from basicmovie
+		</if>
+		<if test="kind eq 'low'">
+			(select * from lowpricemovie
+		</if>
 		<where>
 			<if test="searchDTO.title neq null">
 				and title like '%'||#{searchDTO.title}||'%' 
@@ -80,32 +90,70 @@
 	</select>
 	
 	<!-- NATION 리스트 -->
-	<select id="nationList" resultType="String">
-		select distinct nation from basicmovie order by nation
+	<select id="nationList" parameterType="java.util.Map" resultType="String">
+		select distinct nation 
+		<if test="kind eq 'basic'">
+			from basicmovie 
+		</if>
+		<if test="kind eq 'low'">
+			from lowpricemovie 
+		</if>
+		order by nation
 	</select>
 	
 	<!-- view -->
-	<select id="view" parameterType="int" resultType="basicMovieDTO">
-		select * from basicmovie where num=#{num}
+	<select id="view" parameterType="java.util.Map" resultType="basicMovieDTO">
+		select * 
+		<if test="kind eq 'basic'">
+			from basicmovie 
+		</if>
+		<if test="kind eq 'low'">
+			from lowpricemovie 
+		</if>
+		where num=#{num}
 	</select>
 	
 	<!-- 찜하기 확인 -->
-	<select id="jjimCheck" parameterType="com.moco.jjim.JjimDTO" resultType="com.moco.jjim.JjimDTO">
-		select * from jjim where id=#{id} and bnum=#{bNum}
+	<select id="jjimCheck" parameterType="java.util.Map" resultType="com.moco.jjim.JjimDTO">
+		select * from jjim where id=#{id} 
+		<if test="kind eq 'basic'">
+			and bnum=#{num}
+		</if>
+		<if test="kind eq 'low'">
+			and lnum=#{num}
+		</if>
 	</select>
 	
 	<!-- 찜하기 INSERT -->
-	<insert id="jjimInsert" parameterType="com.moco.jjim.JjimDTO">
-		insert into jjim values(#{id}, #{bNum}, 0)
+	<insert id="jjimInsert" parameterType="java.util.Map">
+		insert into jjim 
+		<if test="kind eq 'basic'">
+			values(#{id}, #{num}, 0)
+		</if>
+		<if test="kind eq 'low'">
+			values(#{id}, 0, #{num})
+		</if>
 	</insert>
 	
 	<!-- 찜하기 DELETE -->
-	<delete id="jjimDelete" parameterType="com.moco.jjim.JjimDTO">
-		delete jjim where id=#{id} and bnum=#{bNum}
+	<delete id="jjimDelete" parameterType="java.util.Map">
+		delete jjim where id=#{id} 
+		<if test="kind eq 'basic'">
+			and bnum=#{num}
+		</if>		
+		<if test="kind eq 'low'">
+			and lnum=#{num}
+		</if>	
 	</delete>
 	
 	<!-- 리뷰참여 명 수 -->
-	<select id="reviewCount" parameterType="int" resultType="int">
-		select count(writer) from review where bnum=#{bNum}
+	<select id="reviewCount" parameterType="java.util.Map" resultType="int">
+		select count(writer) from review 
+		<if test="kind eq 'basic'">
+			where bnum=#{num}
+		</if>
+		<if test="kind eq 'low'">
+			where lnum=#{num}
+		</if>
 	</select>
 </mapper>

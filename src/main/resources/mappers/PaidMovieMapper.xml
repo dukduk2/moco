@@ -25,11 +25,11 @@
 	<!-- SUZI -->
 	<select id="paidMovieSelectOne" parameterType="java.util.Map" resultType="com.moco.paidMovie.PaidMovieDTO">
 		select * from paidmovie 
-		<if test="kind == 'bNum'">
-			where bNum=#{num}
+		<if test="kind == 'basic'">
+			where bnum=#{num}
 		</if>
-		<if test="kind == 'lNum'">
-			where lNum=#{num}
+		<if test="kind == 'low'">
+			where lnum=#{num}
 		</if>
 	</select>
 	

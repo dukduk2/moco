@@ -43,13 +43,6 @@
 			<a href="theaterInsert?num=${lowpricemovie.num }">상영관 신청하기</a>
 		</div>
 	</div>
-
-
-	
-	
-	
-	
-	
 	
 	<%-- <h4>S_DATE - E_DATE : ${screen.s_date} - ${screen.e_date}</h4> --%>
 	<a href="lowpricemovieList">LIST</a>

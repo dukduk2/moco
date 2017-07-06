@@ -27,31 +27,31 @@ public class BasicMovieService {
 		return basicMovieDAO.list(map);
 	}
 	// NATION 리스트 뽑아오기
-	public List<String> nationList() throws Exception{
-		return basicMovieDAO.nationList();
+	public List<String> nationList(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.nationList(map);
 	}
 	// totalCount
 	public int totalCount(Map<String, Object> map) throws Exception{
 		return basicMovieDAO.totalCount(map);
 	}
 	// view
-	public BasicMovieDTO view(int num) throws Exception{
-		return basicMovieDAO.view(num);
+	public BasicMovieDTO view(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.view(map);
 	}
 	// 찜하기 확인
-	public JjimDTO jjimCheck(JjimDTO jjimDTO) throws Exception{
-		return basicMovieDAO.jjimCheck(jjimDTO);
+	public JjimDTO jjimCheck(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.jjimCheck(map);
 	}
 	// 찜하기 INSERT
-	public int jjimInsert(JjimDTO jjimDTO) throws Exception{
-		return basicMovieDAO.jjimInsert(jjimDTO);
+	public int jjimInsert(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.jjimInsert(map);
 	}
 	// 찜하기 DELETE
-	public int jjimDelete(JjimDTO jjimDTO) throws Exception{
-		return basicMovieDAO.jjimDelete(jjimDTO);
+	public int jjimDelete(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.jjimDelete(map);
 	}
 	// 리뷰 참여 명 수
-	public int reviewCount(int bNum) throws Exception{
-		return basicMovieDAO.reviewCount(bNum);
+	public int reviewCount(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.reviewCount(map);
 	}
 }

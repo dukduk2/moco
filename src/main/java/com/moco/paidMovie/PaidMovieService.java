@@ -72,7 +72,7 @@ public class PaidMovieService {
 	public int movieTotalCount(String search) throws Exception{
 		return paidMovieDAO.movieTotalCount(search);
 	}
-	// movieSelectOne(bNum, lNum)
+	// movieSelectOne(basic, low)
 	public PaidMovieDTO paidMovieSelectOne(Map<String, Object> map) throws Exception{
 		return paidMovieDAO.paidMovieSelectOne(map);
 	}

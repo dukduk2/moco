@@ -43,7 +43,7 @@ public class PaidMovieDAO {
 		return sqlSession.selectOne(NAMESPACE+"movieTotalCount", search);
 	}
 
-	// movieSelectOne(bNum, lNum)
+	// movieSelectOne(basic, low)
 	public PaidMovieDTO paidMovieSelectOne(Map<String, Object> map) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"paidMovieSelectOne", map);
 	}

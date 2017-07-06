@@ -261,13 +261,13 @@
 			$(".jjimDelete").css('display','none');
 		});
 		// 찜 function
-		function jjim(flag, bNum){
+		function jjim(flag, num){
 			$.ajax({
 				url : "./jjim",
 				type : "GET",
 				data : {
 					flag : flag, 
-					bNum : bNum
+					num : num
 				},
 			});
 		}
@@ -399,6 +399,11 @@
 	<input type="hidden" value="basicMovie" id="boardKind">
 	<input type="hidden" value="${movieDTO.num}" id="boardNum">
 	<div id="reviewResult" class="container"></div>
+	<c:if test="${movieKind eq 'low'}">
+	<div>
+		<a href="theaterInsert?num=${movieDTO.num }">상영관 신청하기</a>
+	</div>
+	</c:if>
 	</section>
 </body>
 </html>

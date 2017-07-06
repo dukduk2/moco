@@ -40,7 +40,9 @@ public class BasicMovieController {
 	public void movieSearchHome(Model model){
 		List<String> nationList = new ArrayList<String>();
 		try {
-			nationList = basicMovieService.nationList();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("kind", "basic");
+			nationList = basicMovieService.nationList(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,6 +53,7 @@ public class BasicMovieController {
 	public String movieSearch(SearchDTO searchDTO, Integer curPage, Model model, HttpSession session){
 		List<BasicMovieDTO> movieList = new ArrayList<BasicMovieDTO>();
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", "basic");
 		// curPage
 		if(curPage == null){
 			curPage = 1;
@@ -119,16 +122,21 @@ public class BasicMovieController {
 		MovieRequestDTO movieRequestDTO = null;
 		PaidMovieDTO paidMovieDTO = null;
 		try {
-			basicMovieDTO = basicMovieService.view(num);
-			JjimDTO testJjim = new JjimDTO();
-			testJjim.setbNum(num);
-			testJjim.setId(((MemberDTO)session.getAttribute("memberDTO")).getId());
-			jjimDTO = basicMovieService.jjimCheck(testJjim);
-			review_count = basicMovieService.reviewCount(num);
+			Map<String, Object> view_map = new HashMap<String, Object>();
+			view_map.put("num", num);
+			view_map.put("kind", "basic");
+			basicMovieDTO = basicMovieService.view(view_map);
+			
+			Map<String, Object> jjim_map = new HashMap<String, Object>();
+			jjim_map.put("kind", "basic");
+			jjim_map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
+			jjim_map.put("num", num);
+			jjimDTO = basicMovieService.jjimCheck(jjim_map);
+			review_count = basicMovieService.reviewCount(jjim_map);
 
 			// 신청하기, 보러가기, 접수중
 			Map<String, Object> check_map = new HashMap<String, Object>();
-			check_map.put("kind", "bNum");
+			check_map.put("kind", "basic");
 			check_map.put("num", num);
 			paidMovieDTO = paidMovieService.paidMovieSelectOne(check_map);
 			movieRequestDTO = movieRequestService.movieRequestSelectOne(check_map);
@@ -141,7 +149,7 @@ public class BasicMovieController {
 			}
 
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 		model.addAttribute("movieDTO", basicMovieDTO).addAttribute("kind", kind).addAttribute("jjimDTO", jjimDTO)
 		.addAttribute("review_count", review_count);
@@ -151,7 +159,10 @@ public class BasicMovieController {
 	public void movieViewStroy(int num, Model model){
 		BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
 		try {
-			basicMovieDTO = basicMovieService.view(num);
+			Map<String, Object> view_map = new HashMap<String, Object>();
+			view_map.put("num", num);
+			view_map.put("kind", "basic");
+			basicMovieDTO = basicMovieService.view(view_map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -162,7 +173,10 @@ public class BasicMovieController {
 	public void movieViewTrailer(int num, Model model){
 		BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
 		try {
-			basicMovieDTO = basicMovieService.view(num);
+			Map<String, Object> view_map = new HashMap<String, Object>();
+			view_map.put("num", num);
+			view_map.put("kind", "basic");
+			basicMovieDTO = basicMovieService.view(view_map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,15 +184,16 @@ public class BasicMovieController {
 	}
 	// 찜하기
 	@RequestMapping(value = "jjim", method = RequestMethod.GET)
-	public void jjim(boolean flag, int bNum, HttpSession session){
-		JjimDTO jjimDTO = new JjimDTO();
-		jjimDTO.setId(((MemberDTO)session.getAttribute("memberDTO")).getId());
-		jjimDTO.setbNum(bNum);
+	public void jjim(boolean flag, int num, HttpSession session){
+		Map<String, Object> jjim_map = new HashMap<String, Object>();
+		jjim_map.put("kind", "basic");
+		jjim_map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
+		jjim_map.put("num", num);
 		try{
 			if(flag){
-				basicMovieService.jjimInsert(jjimDTO);
+				basicMovieService.jjimInsert(jjim_map);
 			}else{
-				basicMovieService.jjimDelete(jjimDTO);
+				basicMovieService.jjimDelete(jjim_map);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -188,7 +203,7 @@ public class BasicMovieController {
 	@RequestMapping(value = "movieRequest", method = RequestMethod.GET)
 	public void movieRequest(int num){
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("kind", "bNum");
+		map.put("kind", "basic");
 		map.put("num", num);
 		try {
 			movieRequestService.movieRequestInsert(map);

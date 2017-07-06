@@ -20,11 +20,10 @@
 			</li>
 			
 			<li class="dropdown">
-				<a href="${pageContext.request.contextPath}/movie/basicMovieSearch/movieSearchHome">BasicMovieSearch</a>
+				<a href="">영화검색&추천</a>
 				<div class="dropdown-content">
-					<a href="#">Link 1</a>
-					<a href="#">Link 2</a>
-					<a href="#">Link 3</a>
+					<a href="${pageContext.request.contextPath}/movie/basicMovieSearch/movieSearchHome">일반영화</a>
+					<a href="${pageContext.request.contextPath}/movie/lowpricemovie/movieSearchHome">독립영화</a>
 	  			</div>
 			</li>
 			
