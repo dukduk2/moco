@@ -6,7 +6,7 @@
 <mapper namespace="BasicMovieMapper">
 	<!-- 영화 INSERT -->
 	<insert id="insert" parameterType="basicMovieDTO">
-		insert into basicmovie(basicmovie_seq,
+		insert into basicmovie(num,
 		title, eng_title, genre, director, actor, year, nation, trailer,
 		pub_date, watching_rate, play_time, story, thumnail, keyword,
 		user_rating)
@@ -17,7 +17,7 @@
 	
 	<!-- 독립영화 INSERT -->
 	<insert id="lowPriceInsert" parameterType="basicMovieDTO">
-		insert into lowpricemovie(lowpricemovie_seq,
+		insert into lowpricemovie(num,
 		title, eng_title, genre, director, actor, year, nation, trailer,
 		pub_date, watching_rate, play_time, story, thumnail, keyword,
 		user_rating)

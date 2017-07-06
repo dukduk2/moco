@@ -22,6 +22,7 @@ import com.moco.fileTest.FileSaver;
 import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
+import com.moco.movieAPI.BasicMovieService;
 import com.moco.movieRequest.MovieRequestService;
 import com.moco.movieSchedule.MovieScheduleDTO;
 import com.moco.movieSchedule.MovieScheduleService;
@@ -52,6 +53,8 @@ public class AdminController {
 	private MovieRequestService movieRequestService;
 	@Inject
 	private MovieScheduleService movieScheduleService;
+	@Inject
+	private BasicMovieService basicMovieService;
 
 	// index
 	@RequestMapping(value="index" , method=RequestMethod.GET)
@@ -718,16 +721,23 @@ public class AdminController {
 
 	// 영화 정보 업로드 
 	@RequestMapping(value="movieInfoWrite", method=RequestMethod.POST)
-	public void movieInfoWrite(BasicMovieDTO basicMovieDTO, MultipartFile trailer, MultipartFile thumnail, String kind, HttpSession session){
+	public String movieInfoWrite(BasicMovieDTO basicMovieDTO, MultipartFile trailer, MultipartFile thumnail, String kind, HttpSession session){
+		System.out.println("ENTER CONTROLLER");
 		FileSaver fileSaver = new FileSaver();
 		String path = session.getServletContext().getRealPath("resources/upload/movieInfo");
-		
+		String redirect_path = "";
 		try {
 			basicMovieDTO.setTrailer(fileSaver.saver(trailer, path));
 			basicMovieDTO.setThumnail(fileSaver.saver(thumnail, path));
+			if(kind.equals("basic")){
+				basicMovieService.insert(basicMovieDTO);
+			}else{
+				basicMovieService.lowPriceInsert(basicMovieDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "redirect:movie/movieHome";
 	}
 
 }

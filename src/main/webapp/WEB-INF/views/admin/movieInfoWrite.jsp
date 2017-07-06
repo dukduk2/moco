@@ -32,7 +32,7 @@
 </script>
 </head>
 <body>
-	<form name="frm" action="./movieInfoWrite" method="post" enctype="multipart/form-data">
+	<form name="frm" action="movieInfoWrite" method="post" enctype="multipart/form-data">
 		KIND 
 		일반영화<input type="radio" name="kind" value="basic">
 		독립영화<input type="radio" name="kind" value="low"><br>
