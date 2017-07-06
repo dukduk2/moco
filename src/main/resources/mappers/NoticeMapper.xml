@@ -21,12 +21,11 @@
 
 	<insert id="noticeInsert" parameterType="com.moco.notice.NoticeDTO">
 		insert into notice values(NVL((select max(num) from
-		notice)+1,1), #{title}, #{writer}, #{contents}, sysdate, 0, #{fname}, #{oname}))
+		notice)+1,1), #{title}, #{writer}, #{contents}, sysdate, 0)
 	</insert>
 
 	<update id="noticeUpdate" parameterType="com.moco.notice.NoticeDTO">
-		update notice set title=#{title}, contents=#{contents}, reg_date=sysdate,
-		fname=#{fname}, oname=#{oname} where num=#{num}
+		update notice set title=#{title}, contents=#{contents}, reg_date=sysdate where num=#{num}
 	</update>
 
 	<delete id="noticeDelete" parameterType="java.lang.Integer">

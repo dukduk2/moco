@@ -9,8 +9,7 @@ public class NoticeDTO {
 	private String contents;
 	private Date reg_date;
 	private int hit;
-	private String fname;
-	private String oname;
+
 	public int getNum() {
 		return num;
 	}
@@ -47,17 +46,6 @@ public class NoticeDTO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public String getFname() {
-		return fname;
-	}
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-	public String getOname() {
-		return oname;
-	}
-	public void setOname(String oname) {
-		this.oname = oname;
-	}
+
 	
 }
