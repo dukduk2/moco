@@ -18,13 +18,17 @@
 		$("#likesResult").click(function() {
 			var id = '${memberDTO.id}';
 			var unum = '${UserBoardDTO.num}';
-			$.post("./userBoardLikes", {
-				id : id,
-				unum : unum
-			},
-			function(data) {
-				$("#likesResult").html(data);
-			});
+			if(${likesAbleCheck}){
+				$.post("./userBoardLikes", {
+					id : id,
+					unum : unum
+				},
+				function(data) {
+					$("#likesResult").html(data);
+				});
+			}else{
+				alert("시즌이 진행 중일 때만 참여 가능 합니다.");
+			}
 		}); 
 		
 		// Board Delete
@@ -159,9 +163,18 @@
 	});
 </script>
 <style type="text/css">
+	.contentsTable{
+		margin: 0 auto;
+	}
 	.title{
-		font-size : 1.4em;
+		font-size : 2em;
 		font-weight: bold;
+	}
+	.title2{
+		height : 50px;
+		font-size : 1.1em;
+		font-weight: bold;
+		text-align: right;
 	}
 	.likesTD{
 		text-align: center;
@@ -178,39 +191,59 @@
 	.replyViewDisp{
 		border: none;
 	}
+	.contentsDIV{
+		text-align: center;
+	}
+	.videoDIV{
+		text-align: center;
+	}
+	.videoView{
+		height: 330px;
+	}
 </style>
 </head>
 <body>
 	
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
-<div class="container">
-	<h2>UserBoardView</h2>
-	<table>
-		<tr>
-			<td colspan="2" class="title">${UserBoardDTO.title}</td>
-		</tr>
-		<tr>
-			<td colspan="2">${UserBoardDTO.season} / ${UserBoardDTO.writer} / ${UserBoardDTO.reg_date} / ${UserBoardDTO.hit}</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div>
-					${UserBoardDTO.contents}
-				</div>
-			</td>
-		</tr>
-		<!-- videoState -->
-		<c:if test="${UserBoardDTO.videoState == 0}">
+		<div>
+		<table class="contentsTable">
 			<tr>
-				<td class="videoView" colspan="2">
-					<video width="500" controls="controls">
-						<source src="../../resources/upload/userBoard/${UserBoardDTO.fname}" type="video/mp4">
-					</video>
+				<td colspan="2" class="title">${UserBoardDTO.title}</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="title2">
+					<span>
+						<i class="fa fa-clock-o" style="font-size:24px"></i>&nbsp;<span>${UserBoardDTO.reg_date}&nbsp;&nbsp;</span>
+						<i class="fa fa-eye" style="font-size:24px"></i>&nbsp;<span>${UserBoardDTO.hit}&nbsp;&nbsp;</span>
+					</span>
 				</td>
 			</tr>
-		</c:if>
-		<c:if test="${likesAbleCheck}">
+			<tr>
+				<td colspan="2">
+					<div class="contentsDIV">
+						${UserBoardDTO.contents}
+					</div>
+				</td>
+			</tr>
+			<!-- videoState -->
+			<c:if test="${UserBoardDTO.videoState == 0}">
+				<tr>
+					<td class="videoView" colspan="2">
+						<div class="videoDIV">
+							<video width="500" controls="controls">
+								<source src="../../resources/upload/userBoard/${UserBoardDTO.fname}" type="video/mp4">
+							</video>
+						</div>
+					</td>
+				</tr>
+			</c:if>
+			<tr>
+				<td colspan="2" class="title2">
+					<i class="fa fa-bookmark" style="font-size:24px"></i>&nbsp;<span>${UserBoardDTO.season}&nbsp;&nbsp;</span>
+					<i class="fa fa-pencil" style="font-size:24px"></i>&nbsp;<span>${UserBoardDTO.writer}&nbsp;&nbsp;</span>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="2" class="likesTD">
 					<span id="likesResult" class="likes">
@@ -224,20 +257,21 @@
 					</span>
 				</td>
 			</tr>
-		</c:if>
-	</table>
-	
-	<c:if test="${memberDTO.id == UserBoardDTO.writer}">
-		<input type="button" id="delete" value="delete" class="btn btn-danger">
-	</c:if>
-	<hr>
-	
-	<!-- 댓글 -->
-	<input type="hidden" id="boardKind" value="userBoard">
-	<input type="hidden" id="boardNum" value="${UserBoardDTO.num}">
-	<div id="replyResult" class="container"></div>
-	
-</div>
+		</table>
+		
+		<article>
+			<c:if test="${memberDTO.id == UserBoardDTO.writer}">
+				<input type="button" id="delete" value="delete" class="btn btn-danger">
+			</c:if>
+		</article>
+		
+		<article>
+			<!-- 댓글 -->
+			<input type="hidden" id="boardKind" value="userBoard">
+			<input type="hidden" id="boardNum" value="${UserBoardDTO.num}">
+			<div id="replyResult" class="container"></div>
+		</article>
+		
 	</section>
 </body>
 </html>
