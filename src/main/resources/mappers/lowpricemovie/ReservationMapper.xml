@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="ReservationMapper">
+	<resultMap type="java.util.HashMap" id="myMap" />
+
+	<insert id="insert" parameterType="java.util.Map" statementType="CALLABLE" >
+    	{ CALL reservationInsert(
+	    	#{reservationDTO.id, mode=IN}, 
+	    	#{reservationDTO.screen_num, mode=IN}, 
+	    	#{reservationDTO.seat, mode=IN}, 
+	    	#{reservationDTO.rprice, mode=IN},   
+	    	#{result, javaType=int, mode=OUT, jdbcType=INTEGER, resultMap=myMap}) }
+    </insert>	
+</mapper>

@@ -28,8 +28,12 @@ import com.moco.movieAPI.movieSearch.SearchDTO;
 import com.moco.movieRequest.MovieRequestDTO;
 import com.moco.movieRequest.MovieRequestService;
 import com.moco.multiplex.MultiplexDTO;
+<<<<<<< HEAD
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
+=======
+import com.moco.reservation.ReservationDTO;
+>>>>>>> kh_duk
 import com.moco.screen.ScreenDTO;
 import com.moco.theater.TheaterDTO;
 import com.moco.util.PageMaker;
@@ -441,6 +445,23 @@ public class LowPriceMovieController {
 		model.addAttribute("hour", hours);
 		model.addAttribute("minute", minutes);
 		model.addAttribute("lowpricemovie", lowPriceMovieService.view(lNum));
+	}
+	
+	@RequestMapping(value="reservationInsert", method=RequestMethod.POST)
+	public String reservationInsert(ReservationDTO reservationDTO) throws Exception{
+		
+		System.out.println("controller in");
+		System.out.println(reservationDTO.getId());
+		System.out.println(reservationDTO.getScreen_num());
+		System.out.println(reservationDTO.getSeat());
+		System.out.println(reservationDTO.getRprice());
+		
+		int result = 0;
+		//프로시저 사용.(reservation db insert & screen db update)
+		result = lowPriceMovieService.reservationInsert(reservationDTO);
+		
+		return "movie/lowpricemovie/theaterView?num=2";
+		
 	}
 	/*
 	//상영관 수정(관리자)
