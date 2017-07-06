@@ -38,7 +38,7 @@ $(function() {
 				idCheck = true;
 			}
 		})
-	})
+	});
 	
 	$("#pw1").keyup(function(){
 		var pattern = /^[A-Za-z0-9]{8,14}$/;
@@ -58,7 +58,7 @@ $(function() {
 			$("#pw_result2").html("<font color='blue'>Check!!</font>");
 			pwCheck = true;
 		}
-	})
+	});
 	
 	$("#pw2").keyup(function(){
 		var pattern = /^[A-Za-z0-9]{8,14}$/;
@@ -72,7 +72,7 @@ $(function() {
 			$("#pw_result2").html("<font color='blue'>Check!!</font>");
 			pwCheck = true;
 		}
-	})
+	});
 	
 	$("#answer").keyup(function(){
 		var answer = document.frm.answer.value;
@@ -82,7 +82,7 @@ $(function() {
 		} else {
 			answerCheck = true;
 		}
-	})
+	});
 	
 	
 	$("#name").keyup(function(){
@@ -93,7 +93,7 @@ $(function() {
 		} else {
 			nameCheck = true;
 		}
-	})
+	});
 	
 	$("#email").keyup(function(){
 		var pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
@@ -104,8 +104,8 @@ $(function() {
 		} else {
 			emailCheck = true;
 		}
-	})
-	
+	});
+
 	$("#kind").click(function(){
 		var kind = document.frm.kind.value;
 		
@@ -114,7 +114,7 @@ $(function() {
 		} else if(kind == "배우" || kind == "감독" || kind == "평론가") {
 			$("#joinState").val("대기");
 		}
-	})
+	});
 	
 	$("#frm").on("click", "#btn", function() {
 		if(idCheck == false){
@@ -129,9 +129,8 @@ $(function() {
 			alert("이메일을 다시 확인해주세요");
 		} else {
 			document.frm.submit("memberJoin");
-			window.close();
 		}
-	})
+	});
 });
 </script>
 
