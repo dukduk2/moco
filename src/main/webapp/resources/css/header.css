@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 header {
-	width: 1200px; /* header width 같게하기 */
+	width: 1500px; /* header width 같게하기 */
 	margin: 0 auto;
 }
 
@@ -14,7 +14,7 @@ header {
 }
 
 .navbar {
-	width: 1200px; /* header width 같게하기 */
+	width: 1500px; /* header width 같게하기 */
 	margin-bottom: 0;
 	background-color: #f4511e;
 	z-index: 9999;
@@ -106,7 +106,7 @@ header {
 /* ------ menu 이동 ------- */
 .affix {
 	top: 0;
-	width: 1200px; /* header width 같게하기 */
+	width: 1500px; /* header width 같게하기 */
 	-webkit-transition: all .5s ease-in-out;
 	transition: all .5s ease-in-out;
 }

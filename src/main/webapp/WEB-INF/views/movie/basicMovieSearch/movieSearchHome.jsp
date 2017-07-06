@@ -13,84 +13,139 @@
 	#searchResult{
 		margin-top: 50px;
 	}
+
 	.searchResultWrap{
-		width: 100%;
+		width: 1000px;
 		height: 220px;
-		border-bottom: 1px solid #cccccc;
+		margin: 10px auto;
+		cursor: pointer;
+		background-color: gray;
+		border-radius: 10px;
 	}
+
 	.searchResultWrap-left{
-		width: 15%;
-		height: 200px;
+		width: 190px;
+		height: 205px;
 		margin-top: 10px;
+		margin-left: 10px;
 		float: left; 
 	}
+
 	.searchResultWrap-left img{
 		width: 180px;
 		height: 200px;
 	}
+
 	.searchResultWrap-right{
-		width: 75%;
-		height: 180px;
+		width: 780px;
+		height: 200px;
 		margin-top: 10px;
-		float: left; 
+		float: left;
 	}
-	#contentsWrap{
-		width: 1400px;
+
+	#searchForm{
+		width: 580px;
+		margin: 20px auto;
+	}
+
+	.search_table {
+		width: 510px;
 		margin: 0 auto;
 	}
-	#searchForm, #searchForm table{
-		width: 100%;
-		margin-top: 20px;
-	}
+
 	#searchForm table tr{
 		height: 42px;
 	}
-	#searchForm table input, select{
+
+	/* #searchForm table input, select{
 		margin-left: 15px;
 		height: 30px;
-	}
+	} */
+
 	#searchForm select{
 		width: 140px;
 	}
+
 	#title, #director, #actor{
 		width: 98%;
 	}
+
 	#yearMin, #yearMax{
 		width: 140px;
 	}
+
 	.title{
-		width: 13%;
-		background-color: #525f78;
+		width: 30%;
+		background-color: black;
 		color: white;
 		font-weight: bold;
 		font-size: 13px;
 		text-indent: 10px;
+		text-align: center;
 	}
+
+	td.top {
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+
+	td.bottom {
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+
 	.input{
-		border: 1px solid #cccccc;
+		background-color: white;
+		padding-left: 3px;
+		padding-right: 3px;
+		border-bottom: 1px solid #cccccc;
 	}
+
 	#searchBtn{
-		width: 181px;
+		width: 100%;
 		height: 42px;
 		float: right;
 		margin-top: 10px;
-		background-color: #525f78;
+		background-color: gray;
 		color: white;
+		border-radius: 5px;
 	}
+
 	/* 별점 */
 	.star-rating{ 
 		width: 100px;
 	}
+
 	.star-rating,.star-rating span{ 
 		display:inline-block; 
 		height:19px; 
 		overflow:hidden; 
 		background:url(../../resources/images/movie/star.png)no-repeat; 
 	}
+
 	.star-rating span{ 
 		background-position:left bottom; 
 		line-height:0; 
 		vertical-align:top; 
+	}
+
+	.form-group {
+		width: 157px;
+	}
+
+	.point {
+		font-size: 1.1em;
+		color: black;
+		font-weight: bold;
+	}
+
+	.paging{
+		text-align: center;	
+	}
+
+	.go{
+		font-size : 1.2em;
+		cursor: pointer;
 	}
 </style>
 <script type="text/javascript">
@@ -152,7 +207,7 @@
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
-		<section id="contentsWrap">
+		<section>
 			<ul class="nav nav-tabs nav-justified">
 			    <li class="active"><a href="#">영화검색</a></li>
 			    <li><a href="./movieRecommend/recommendHome">영화추천</a></li>
@@ -160,15 +215,17 @@
 			
 			<!-- SEARCH -->
 			<div id="searchForm">
-				<table>
-					<tr>
-						<td class="title">제목</td>
-						<td class="input"><input type="text" id="title"></td>
+				<table class="search_table">
+					<tr class="top">
+						<td class="title top">제목</td>
+						<td class="input top"><input type="text" class="form-control" id="title" style="width :100%;"></td>
 					</tr>
+
 					<tr>
 						<td class="title">장르</td>
+
 						<td class="input">
-							<select id="genre">
+							<select class="form-control" id="genre" style="width :100%;">
 								<option value="all">전체장르</option>
 								<option value="판타지">판타지</option>
 								<option value="공포">공포</option>
@@ -189,24 +246,41 @@
 							</select>
 						</td>
 					</tr>
+
 					<tr>
 						<td class="title">제작년도</td>
+
 						<td class="input">
-							<input type="number" min="1950" id="yearMin" value="1950">  -<input type="number" min="1950" max="2050" id="yearMax" value="2050">
+							<span class="form-inline" role="form">
+								<span class="form-group">
+									<label class="sr-only" for="yearMin">Start Year</label>
+									<input class="form-control" type="number" min="1950" id="yearMin" value="1950" style="width :100%;">
+								</span>
+								
+								&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+
+								<span class="form-group">
+									<label class="sr-only" for="yearMax">yearMax</label>
+									<input type="number" class="form-control" min="1950" max="2050" id="yearMax" value="2050" style="width :100%;">
+								</span>
+							</span>
 						</td>
 					</tr>
+
 					<tr>
 						<td class="title">감독</td>
-						<td class="input"><input type="text" id="director"></td>
+						<td class="input"><input type="text" class="form-control" id="director" style="width :100%;"></td>
 					</tr>
+
 					<tr>
 						<td class="title">배우</td>
-						<td class="input"><input type="text" id="actor"></td>
+						<td class="input"><input type="text" class="form-control" id="actor" style="width :100%;"></td>
 					</tr>
+
 					<tr>
-						<td class="title">제작국가</td>
-						<td class="input">
-							<select id="nation">
+						<td class="title bottom">제작국가</td>
+						<td class="input bottom">
+							<select class="form-control" id="nation" style="width :100%;">
 								<option value="all">전체국가</option>
 								<c:forEach var="list" items="${nationList }">
 									<option value="${list }">${list }</option>
@@ -214,12 +288,16 @@
 							</select>
 						</td>
 					</tr>
+					
+					<tr>
+						<td colspan="2"><input type="button" value="검색" id="searchBtn" class="btn"></td>
+					</tr>
 				</table>
-				<input type="button" value="검색" id="searchBtn" class="btn">
 			</div>
-			<!-- RESULT -->
-			<div id="searchResult">
-				
+			
+			<div class="container">
+				<!-- RESULT -->
+				<div id="searchResult"></div>
 			</div>
 		</section>
 </body>
