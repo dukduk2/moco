@@ -5,6 +5,13 @@ public class PayDTO {
 	private String id;
 	private int bnum;
 	private int lnum;
+	private int rnum;
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 	public String getId() {
 		return id;
 	}

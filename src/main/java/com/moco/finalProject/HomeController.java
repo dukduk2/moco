@@ -2,8 +2,11 @@ package com.moco.finalProject;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moco.member.MemberDTO;
 import com.moco.movieAPI.Json.JsonMain;
+import com.moco.paidMovie.PaidMovieDTO;
+import com.moco.paidMovie.PaidMovieService;
 
 /**
  * Handles requests for the application home page.
@@ -23,6 +28,9 @@ import com.moco.movieAPI.Json.JsonMain;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Inject
+	PaidMovieService paidMovieService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -51,4 +59,15 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value="/movie/moviePlay", method=RequestMethod.GET)
+	public void moviePlay(int num, Model model) throws Exception{
+		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("kind", "bNum");
+		map.put("num", num);
+		
+		paidMovieDTO=paidMovieService.paidMovieSelectOne(map);
+
+		model.addAttribute("dto", paidMovieDTO);
+	}
 }
