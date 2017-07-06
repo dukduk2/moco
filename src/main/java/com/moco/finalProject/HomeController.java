@@ -84,8 +84,11 @@ public class HomeController {
 	public String payMovie(int num, Model model, HttpSession session) throws Exception{
 		Map<String, Object> map1=new HashMap<String, Object>(); //pay
 		Map<String, Object> map2=new HashMap<String, Object>(); //paidMovie
-		
+		Map<String, Object> map3=new HashMap<String, Object>(); //basicMovie
 		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+		
+		map3.put("num", num);
+		map3.put("kind", "basic");
 		
 		map2.put("kind", "bNum");
 		map2.put("num", num);
@@ -104,7 +107,7 @@ public class HomeController {
 		
 		/*model.addAttribute("myPoint", myPoint);
 		model.addAttribute("price", price);*/
-		model.addAttribute("dto", basicMovieService.view(num));
+		model.addAttribute("dto", basicMovieService.view(map3));
 		
 		return "redirect:/movie/payMovie";
 	}
