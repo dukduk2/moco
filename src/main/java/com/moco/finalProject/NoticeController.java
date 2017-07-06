@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.moco.member.MemberDTO;
 import com.moco.notice.NoticeDTO;
 import com.moco.notice.NoticeService;
 import com.moco.util.PageMaker;

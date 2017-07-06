@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.moco.actorPR.ActorPRDTO;
 import com.moco.actorPR.ActorPRService;
@@ -24,9 +23,6 @@ import com.moco.member.MemberService;
 import com.moco.reply.ReplyService;
 import com.moco.season.SeasonDTO;
 import com.moco.season.SeasonService;
-import com.moco.util.PageMaker;
-import com.moco.util.PageResult;
-import com.moco.util.RowMaker;
 
 @Controller
 @RequestMapping(value="/user/actorPR/")

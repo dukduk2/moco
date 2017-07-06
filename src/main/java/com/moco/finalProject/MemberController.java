@@ -1,7 +1,5 @@
 package com.moco.finalProject;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -18,9 +15,6 @@ import com.moco.fileTest.FileSaver;
 import com.moco.member.MailService;
 import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
-import com.moco.movieSchedule.MovieScheduleDTO;
-import com.moco.movieSchedule.MovieScheduleService;
-import com.moco.util.RowMaker;
 
 @Controller
 @RequestMapping(value="/member/**")

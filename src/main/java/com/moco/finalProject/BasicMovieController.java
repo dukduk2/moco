@@ -228,7 +228,7 @@ public class BasicMovieController {
 	
 	// 영화 삭제하기
 	@RequestMapping(value = "movieDelete", method = RequestMethod.GET)
-	public void movieDelete(int num){
+	public String movieDelete(int num){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("kind", "basic");
 		map.put("num", num);
@@ -237,6 +237,7 @@ public class BasicMovieController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "redirect:movie/basicMovieSearch/movieSearchHome";
 	}
 
 }

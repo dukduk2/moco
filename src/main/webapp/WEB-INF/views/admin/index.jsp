@@ -12,7 +12,16 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
-		
+		var insertMessage = '${insertMessage}';
+		var processMessage = '${processMessage}';
+		if(insertMessage != null && insertMessage != ''){
+			alert(insertMessage);
+		}
+		if(processMessage != null && processMessage != ''){
+			if(confirm(processMessage)){
+				location.href="./movieInfoWriteForm";
+			}
+		}
 	});
 </script>
 <style type="text/css">
@@ -68,10 +77,10 @@
 				</td>
 				<!-- movieInfo -->
 				<td>
-					<a href="./movieInfoWrite"><img class="iconIMG" alt="" src="../resources/adminIndexIcon/member_icon.png"></a>
+					<a href="./movieInfoWriteForm"><img class="iconIMG" alt="" src="../resources/adminIndexIcon/member_icon.png"></a>
 				</td>
 				<td>
-					<a href="./movieInfoWrite"><span class="titleSpan">MovieInfoUpload</span></a>
+					<a href="./movieInfoWriteForm"><span class="titleSpan">MovieInfoUpload</span></a>
 				</td>
 			</tr>
 			<tr class="tableTR">

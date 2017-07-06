@@ -169,7 +169,7 @@
 						<td class="title">장르</td>
 						<td class="input">
 							<select id="genre">
-								<option value="all">전체장르</option>
+								<option value="all">전체</option>
 								<option value="판타지">판타지</option>
 								<option value="공포">공포</option>
 								<option value="로맨스/멜로">로맨스/멜로</option>
@@ -207,7 +207,7 @@
 						<td class="title">제작국가</td>
 						<td class="input">
 							<select id="nation">
-								<option value="all">전체국가</option>
+								<option value="all">전체</option>
 								<c:forEach var="list" items="${nationList }">
 									<option value="${list }">${list }</option>
 								</c:forEach>

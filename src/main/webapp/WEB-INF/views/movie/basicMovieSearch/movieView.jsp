@@ -410,7 +410,7 @@
 	</div>
 	</c:if>
 	<c:if test="${memberDTO.id eq 'admin' }">
-		<a href="">영화정보삭제</a>
+		<a href="./movieDelete?num=${movieDTO.num }">영화정보삭제</a>
 	</c:if>
 	</section>
 </body>

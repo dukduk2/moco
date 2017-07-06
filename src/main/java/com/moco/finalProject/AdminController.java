@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.moco.agency.AgencyDTO;
 import com.moco.agency.AgencyService;
@@ -714,30 +715,37 @@ public class AdminController {
 	}
 
 	// 영화 정보 업로드 페이지
-	@RequestMapping(value="movieInfoWrite", method=RequestMethod.GET)
+	@RequestMapping(value="movieInfoWriteForm", method=RequestMethod.GET)
 	public void movieInfoWriteForm(){
 		
 	}
 
 	// 영화 정보 업로드 
 	@RequestMapping(value="movieInfoWrite", method=RequestMethod.POST)
-	public String movieInfoWrite(BasicMovieDTO basicMovieDTO, MultipartFile trailer, MultipartFile thumnail, String kind, HttpSession session){
-		System.out.println("ENTER CONTROLLER");
+	public String movieInfoWrite(BasicMovieDTO basicMovieDTO,MultipartFile trailer_file, 
+			MultipartFile thumnail_file, String kind, HttpSession session, RedirectAttributes attributes){
 		FileSaver fileSaver = new FileSaver();
 		String path = session.getServletContext().getRealPath("resources/upload/movieInfo");
-		String redirect_path = "";
+		int result = 0;
 		try {
-			basicMovieDTO.setTrailer(fileSaver.saver(trailer, path));
-			basicMovieDTO.setThumnail(fileSaver.saver(thumnail, path));
+			basicMovieDTO.setTrailer(fileSaver.saver(trailer_file, path));
+			basicMovieDTO.setThumnail(fileSaver.saver(thumnail_file, path));
+			basicMovieDTO.setKeyword("");
 			if(kind.equals("basic")){
-				basicMovieService.insert(basicMovieDTO);
+				result = basicMovieService.insert(basicMovieDTO);
 			}else{
-				basicMovieService.lowPriceInsert(basicMovieDTO);
+				result = basicMovieService.lowPriceInsert(basicMovieDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:movie/movieHome";
+		if(result>0){
+			attributes.addFlashAttribute("insertMessage", "SUCCESS");
+		}else{
+			attributes.addFlashAttribute("insertMessage", "FAIL");
+		}
+		attributes.addFlashAttribute("processMessage", "계속 업로드 하시겠습니까?");
+		return "redirect:/admin/index";
 	}
 
 }
