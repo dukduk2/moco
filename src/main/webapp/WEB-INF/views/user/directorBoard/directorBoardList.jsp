@@ -168,7 +168,7 @@
 			드라마<input type="checkbox" class="chx" name="genre" value="드라마">
 			판타지<input type="checkbox" class="chx" name="genre" value="판타지">
 			공포<input type="checkbox" class="chx" name="genre" value="공포">
-			멜로<input type="checkbox" class="chx" name="genre" value="멜로">
+			로맨스/멜로<input type="checkbox" class="chx" name="genre" value="로맨스/멜로">
 			모험<input type="checkbox" class="chx" name="genre" value="모험">
 			스릴러<input type="checkbox" class="chx" name="genre" value="스릴러">
 			느와르<input type="checkbox" class="chx" name="genre" value="느와르">

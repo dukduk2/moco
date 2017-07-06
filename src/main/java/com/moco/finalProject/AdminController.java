@@ -22,7 +22,6 @@ import com.moco.fileTest.FileSaver;
 import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
-import com.moco.movieRequest.MovieRequestDTO;
 import com.moco.movieRequest.MovieRequestService;
 import com.moco.movieSchedule.MovieScheduleDTO;
 import com.moco.movieSchedule.MovieScheduleService;
@@ -81,20 +80,20 @@ public class AdminController {
 		PageResult pageResult = pageMaker.paging(movieRequestService.movieRequestTotalCount());
 		model.addAttribute("pageResult", pageResult);
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// movieUpload
 	@RequestMapping(value="movieUpload",method=RequestMethod.GET)
 	public void movieUpload(Integer movieNum, String movieTitle, Integer curPage, String search, HttpSession session, Model model) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		if(curPage == null){
 			curPage = 1;
 		}
 		if(search == null){
 			search = "%%%";
 		}
-		
+
 		// movieRequest에서 영화Upload로 넘어갈 때
 		if(movieNum == null){
 			movieNum = 0;
@@ -108,7 +107,7 @@ public class AdminController {
 		map.put("row", rowMaker);
 		map.put("search", search);
 		map.put("curPage", curPage);
-		
+
 		// pageing
 		PageMaker pageMaker = new PageMaker(curPage);
 		int totalCount = paidMovieService.movieTotalCount(search);
@@ -120,11 +119,11 @@ public class AdminController {
 		// Upload한 movies
 		List<PaidMovieDTO> ar = paidMovieService.movieList(map);
 		model.addAttribute("fileList", ar);
-		
+
 		// movieNum & movieTitle
 		model.addAttribute("movieNum", movieNum);
 		model.addAttribute("movieKind", paidMovieService.kindFind(movieTitle, movieNum));
-		
+
 	}
 	// movieUploadInsert
 	@RequestMapping(value="movieUpload", method=RequestMethod.POST)
@@ -145,10 +144,10 @@ public class AdminController {
 
 		// DB
 		paidMovieService.movieInsert(paidMovieDTO);
-		
+
 		// 만일, movieRequest를 타고 와서 upload를 했을 시에는 movieRequestTable에서 삭제해 주어야 함.
 		paidMovieService.movieRequestDelete(paidMovieDTO);
-		
+
 		return "redirect:/admin/movieUpload";
 	}
 	// delete
@@ -167,7 +166,7 @@ public class AdminController {
 	// scheduler
 	@RequestMapping(value="scheduler", method=RequestMethod.GET)
 	public void scheduler(){
-		
+
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -175,7 +174,7 @@ public class AdminController {
 	@RequestMapping(value="adminSeason",method=RequestMethod.GET)
 	public void adminSeason(Model model) throws Exception{
 		int perPage = 3;
-		
+
 		// user
 		PageMaker upageMaker = new PageMaker(1, perPage);
 		PageResult upageResult = upageMaker.paging(seasonService.seasonTotalCount("user"));
@@ -193,7 +192,7 @@ public class AdminController {
 		int perPage = 3;
 		model.addAttribute("userSeason", seasonService.adminOrderSelect2(curPage, perPage, "user"));
 	}
-	
+
 	@RequestMapping(value="actorSeasonList", method=RequestMethod.GET)
 	public void actorSeasonList(Integer curPage, Model model) throws Exception{
 		int perPage = 3;
@@ -301,17 +300,17 @@ public class AdminController {
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	//agencyRequest
-	
+
 	@RequestMapping(value="agencyDelete", method=RequestMethod.GET)
 	public void agencyDelete() throws Exception{
 
 	}
-	
+
 	@RequestMapping(value="agencyDelete", method=RequestMethod.POST)
 	public String agencyDelete(int num) throws Exception{
 		int result=0;
 		result=agencyService.agencyDelete(num);
-		
+
 		return "redirect:/admin/agencyList";
 	}
 
@@ -359,36 +358,36 @@ public class AdminController {
 		if(perPage==null){
 			perPage=5;
 		}
-		
+
 		map1.put("curPage1", curPage1);
 		map1.put("perPage", perPage);
-		
+
 		map2.put("curPage2", curPage2);
 		map2.put("perPage", perPage);
-		
+
 		RowMaker rowMaker1=new RowMaker();
 		rowMaker1.makeRow(curPage1, perPage);
-		
+
 		RowMaker rowMaker2=new RowMaker();
 		rowMaker2.makeRow(curPage2, perPage);
-		
+
 		map1.put("startRow1", rowMaker1.getStartRow());
 		map1.put("lastRow1", rowMaker1.getLastRow());
-		
+
 		map2.put("startRow2", rowMaker2.getStartRow());
 		map2.put("lastRow2", rowMaker2.getLastRow());
-		
+
 		PageMaker pageMaker1=new PageMaker(curPage1,perPage);
 		int totalCount1=agencyService.agencyCommitCount(map1); //승인된 게시물 수
 		PageResult pageResult1=pageMaker1.paging(totalCount1);
-		
+
 		PageMaker pageMaker2=new PageMaker(curPage2,perPage);
 		int totalCount2=agencyService.agencyUncommitCount(); //승인된 게시물 수
 		PageResult pageResult2=pageMaker2.paging(totalCount2);
-		
+
 		List<AgencyDTO> ar1=agencyService.agencyCommitList(map1);
 		List<AgencyDTO> ar2=agencyService.agencyUncommitList(map2);
-		
+
 		model.addAttribute("map1", map1);
 		model.addAttribute("map2", map2);
 		model.addAttribute("pageResult1", pageResult1);
@@ -398,11 +397,11 @@ public class AdminController {
 		model.addAttribute("totalCount1", totalCount1);
 		model.addAttribute("totalCount2", totalCount2);
 	}
-	
+
 	@RequestMapping(value="agencyCommitList", method=RequestMethod.GET)
 	public void agencyCommitList(Integer curPage, Integer perPage, Model model) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
-		
+
 		if(curPage==null){
 			curPage=1;
 		}
@@ -411,30 +410,30 @@ public class AdminController {
 		}
 		map.put("curPage", curPage);
 		map.put("perPage", perPage);
-		
+
 		RowMaker rowMaker=new RowMaker();
 		rowMaker.makeRow(curPage, perPage);
-		
+
 		map.put("startRow1", rowMaker.getStartRow());
 		map.put("lastRow1", rowMaker.getLastRow());
-		
+
 		PageMaker pageMaker=new PageMaker(curPage,perPage);
 		int totalCount=agencyService.agencyCommitCount(map); //승인된 게시물 수
 		PageResult pageResult=pageMaker.paging(totalCount);
-		
+
 		List<AgencyDTO> ar=agencyService.agencyCommitList(map);
-		
+
 		model.addAttribute("map", map);
 		model.addAttribute("pageResult1", pageResult);
 		model.addAttribute("list", ar);
 		model.addAttribute("totalCount1", totalCount);
 
 	}
-	
+
 	@RequestMapping(value="agencyUncommitList", method=RequestMethod.GET)
 	public void agencyUncommitList(Integer curPage, Integer perPage, Model model) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
-		
+
 		if(curPage==null){
 			curPage=1;
 		}
@@ -443,20 +442,20 @@ public class AdminController {
 		}
 		map.put("curPage", curPage);
 		map.put("perPage", perPage);
-		
+
 		RowMaker rowMaker=new RowMaker();
 		rowMaker.makeRow(curPage, perPage);
-		
+
 		map.put("startRow2", rowMaker.getStartRow());
 		map.put("lastRow2", rowMaker.getLastRow());
-	
-		
+
+
 		PageMaker pageMaker=new PageMaker(curPage,perPage);
 		int totalCount=agencyService.agencyUncommitCount(); //승인된 게시물 수
 		PageResult pageResult=pageMaker.paging(totalCount);
-		
+
 		List<AgencyDTO> ar=agencyService.agencyUncommitList(map);
-		
+
 		model.addAttribute("map", map);
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("list", ar);
@@ -574,12 +573,12 @@ public class AdminController {
 
 		return "/admin/memberList";
 	}
-	
+
 	//무비 스케쥴
 	@RequestMapping(value="movieScheduleList", method=RequestMethod.GET)
 	public String movieScheduleList(Integer curPage, @RequestParam(required=false)String search, Model model){
 		System.out.println("- movieScheduleController -> ListShow");
-		
+
 		try {
 			if(curPage == null){
 				curPage = 1;
@@ -587,7 +586,7 @@ public class AdminController {
 			if(search == null){
 				search="00000101";
 			}
-			
+
 			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
 			model.addAttribute("list", map.get("list"));
 			model.addAttribute("pageResult",map.get("pageResult"));
@@ -597,15 +596,15 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return "/admin/movieScheduleList";
 	}
-	
+
 	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.GET)
 	public void movieScheduleAdd() {
 		System.out.println("- movieScheduleController -> Add1");
 	}
-	
+
 	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.POST)
 	public String movieScheduleAdd(MovieScheduleDTO movieScheduleDTO, Integer curPage, @RequestParam(required=false)String search, Model model){
 		System.out.println("- movieScheduleController -> Add2");
@@ -632,44 +631,44 @@ public class AdminController {
 
 		return "redirect:/admin/movieScheduleList";
 	}
-	
+
 	@RequestMapping(value="paidMovieCheck1", method=RequestMethod.POST)
 	public String paidMovieCheck1(int pnum, Model model){
 		System.out.println("- movieScheduleController -> paidMovieCheck1");
-		
+
 		String title = null;
-		
+
 		try {
 			title = movieScheduleService.paidMovieCheck1(pnum);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(title == null){
 			model.addAttribute("message", null);
 		} else {
 			model.addAttribute("message", title);
 		}
-		
+
 		System.out.println("title : "+title);
 
 		return "/admin/action/movieSearchResult";
 	}
-	
+
 	@RequestMapping(value="paidMovieCheck2", method=RequestMethod.POST)
 	public String paidMovieCheck2(Date moviedate, Model model){
 		System.out.println("- movieScheduleController -> paidMovieCheck2");
-		
+
 		Date date = null;
-		
+
 		try {
 			date = movieScheduleService.paidMovieCheck2(moviedate);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(date == null){
 			System.out.println("날짜가 중복되지 않습니다.");
 		} else {
@@ -681,23 +680,23 @@ public class AdminController {
 
 		return "/admin/action/movieSearchResult";
 	}
-	
+
 	@RequestMapping(value="movieScheduleDelete", method=RequestMethod.POST)
 	public String movieScheduleDelete(int num, Integer curPage, @RequestParam(required=false)String search, Model model){
 		System.out.println("- movieScheduleController -> movieScheduleDeleteS");
 
 		int result = 0;
-		
+
 		try {
 			result = movieScheduleService.movieScheduleDelete(num);
-			
+
 			if(curPage == null){
 				curPage = 1;
 			}
 			if(search == null){
 				search="00000101";
 			}
-			
+
 			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
 			model.addAttribute("list", map.get("list"));
 			model.addAttribute("pageResult",map.get("pageResult"));
@@ -710,4 +709,25 @@ public class AdminController {
 
 		return "/admin/action/ScheduleListResult";
 	}
+
+	// 영화 정보 업로드 페이지
+	@RequestMapping(value="movieInfoWrite", method=RequestMethod.GET)
+	public void movieInfoWriteForm(){
+
+	}
+
+	// 영화 정보 업로드 
+	@RequestMapping(value="movieInfoWrite", method=RequestMethod.POST)
+	public void movieInfoWrite(BasicMovieDTO basicMovieDTO, MultipartFile trailer, MultipartFile thumnail, String kind, HttpSession session){
+		FileSaver fileSaver = new FileSaver();
+		String path = session.getServletContext().getRealPath("resources/upload/movieInfo");
+		
+		try {
+			basicMovieDTO.setTrailer(fileSaver.saver(trailer, path));
+			basicMovieDTO.setThumnail(fileSaver.saver(thumnail, path));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

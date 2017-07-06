@@ -22,6 +22,10 @@ public class BasicMovieService {
 	public int lowPriceInsert(BasicMovieDTO basicMovieDTO) throws Exception{
 		return basicMovieDAO.lowPriceInsert(basicMovieDTO);
 	}
+	// 영화 삭제
+	public int movieInfoDelete(Map<String, Object> map) throws Exception{
+		return basicMovieDAO.movieInfoDelete(map);
+	}
 	// 영화 리스트 뽑아오기
 	public List<BasicMovieDTO> list(Map<String, Object> map) throws Exception{
 		return basicMovieDAO.list(map);

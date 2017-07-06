@@ -24,6 +24,10 @@ public class BasicMovieDAO {
 	public int lowPriceInsert(BasicMovieDTO basicMovieDTO) throws Exception{
 		return sqlSession.insert(MAPPER_NAME+"lowPriceInsert", basicMovieDTO);
 	}
+	// 영화 삭제
+	public int movieInfoDelete(Map<String, Object> map) throws Exception{
+		return sqlSession.delete(MAPPER_NAME+"movieInfoDelete", map);
+	}
 	// 영화 리스트 뽑아오기
 	public List<BasicMovieDTO> list(Map<String, Object> map) throws Exception{
 		return sqlSession.selectList(MAPPER_NAME+"list", map);

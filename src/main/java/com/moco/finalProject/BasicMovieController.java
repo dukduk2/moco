@@ -227,9 +227,17 @@ public class BasicMovieController {
 		}
 	}
 	
-	/*@RequestMapping(value="../moviePlay", method=RequestMethod.GET)
-	public void moviePlay(){
-		
-	}*/
+	// 영화 삭제하기
+	@RequestMapping(value = "movieDelete", method = RequestMethod.GET)
+	public void movieDelete(int num){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", "basic");
+		map.put("num", num);
+		try {
+			basicMovieService.movieInfoDelete(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -263,6 +263,19 @@ public class LowPriceMovieController {
 		}
 	}
 
+	// 영화 삭제하기
+	@RequestMapping(value = "movieDelete", method = RequestMethod.GET)
+	public void movieDelete(int num){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", "low");
+		map.put("num", num);
+		try {
+			basicMovieService.movieInfoDelete(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	//MOVIE VIEW
 	@RequestMapping(value="lowpricemovieView", method=RequestMethod.GET)
 	public String view(int num, Model model) throws Exception {

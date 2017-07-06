@@ -6,7 +6,7 @@
 <mapper namespace="BasicMovieMapper">
 	<!-- 영화 INSERT -->
 	<insert id="insert" parameterType="basicMovieDTO">
-		insert into basicmovie(num,
+		insert into basicmovie(basicmovie_seq,
 		title, eng_title, genre, director, actor, year, nation, trailer,
 		pub_date, watching_rate, play_time, story, thumnail, keyword,
 		user_rating)
@@ -17,7 +17,7 @@
 	
 	<!-- 독립영화 INSERT -->
 	<insert id="lowPriceInsert" parameterType="basicMovieDTO">
-		insert into lowpricemovie(num,
+		insert into lowpricemovie(lowpricemovie_seq,
 		title, eng_title, genre, director, actor, year, nation, trailer,
 		pub_date, watching_rate, play_time, story, thumnail, keyword,
 		user_rating)
@@ -25,6 +25,17 @@
 		#{nation}, #{trailer}, #{pub_date}, #{watching_rate}, #{play_time},
 		#{story}, #{thumnail}, #{keyword}, 0)
 	</insert>
+	
+	<!-- 영화 DELETE -->
+	<delete id="movieInfoDelete" parameterType="java.util.Map">
+		<if test="kind eq 'basic'">
+			delete basicmovie 
+		</if>
+		<if test="kind eq 'low'">
+			delete lowpricemovie 
+		</if>
+		where num=#{num}
+	</delete>
 	
 	<!-- 검색 LIST뽑아오기 -->
 	<select id="list" parameterType="java.util.Map" resultType="basicMovieDTO">

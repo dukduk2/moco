@@ -119,6 +119,7 @@
 				</td>
 			</tr>
 		</table>
+		<a href="./movieInfoWrite">영화정보추가</a>
 	</section>
 	
 </body>
