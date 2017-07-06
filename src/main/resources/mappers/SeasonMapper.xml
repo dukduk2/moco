@@ -62,7 +62,7 @@
 	
 	<!-- season이 끝나면 member likes, avaliableLikes 업데이트 -->
 	<update id="memberLikesUpdate" parameterType="com.moco.member.MemberDTO">
-		update member set likes=#{likes}, avaliableLikes=#{avaliableLikes} where id=#{id}
+		update member set likes=likes+#{likes}, avaliableLikes=avaliableLikes+#{avaliableLikes} where id=#{id}
 	</update>
 	
 </mapper>

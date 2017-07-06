@@ -7,12 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
-
-import com.moco.member.MemberDTO;
 import com.moco.season.SeasonDTO;
 import com.moco.season.SeasonService;
-import com.moco.userBoard.UserBoardDTO;
 
 @Component
 @EnableScheduling
@@ -41,13 +37,25 @@ public class SeasonScheduller {
 			Date startDate = seasonDTO.getStartDate();
 			long startDatee = startDate.getTime(); 
 			Date endDate = seasonDTO.getEndDate();
-			long endDatee = endDate.getTime();
-			if(curDate>=startDatee && curDate<=endDatee){
-				seasonService.adminOrderStart(seasonDTO.getNum());
+			long endDatee = endDate.getTime();			
+			// 진행 중이지 않은 시즌 0 ->1
+			if(seasonDTO.getState() ==0){
+				//start
+				if(curDate>=startDatee && curDate<=endDatee){
+					seasonService.adminOrderStart(seasonDTO.getNum());
+					System.out.println("season Start");
+				}
+			// 진행중인 시즌 1 ->0
 			}else{
-				seasonService.adminOrderEnd(seasonDTO.getNum());
-				// 시즌이 끝나면 likes, avaliableLikes Update
-				seasonService.seasonEndLikesUpdate(seasonDTO.getSeason());
+				if(curDate>endDatee){
+					seasonService.adminOrderEnd(seasonDTO.getNum());
+					System.out.println("season End");
+					if(seasonDTO.getKind().equals("user")){ // kind가 user일 때
+						// 시즌이 끝나면 likes, avaliableLikes Update
+						seasonService.seasonEndLikesUpdate(seasonDTO.getSeason());
+						System.out.println("member likes 지급");
+					}
+				}
 			}
 		}
 	}
