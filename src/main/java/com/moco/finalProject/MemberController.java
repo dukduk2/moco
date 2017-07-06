@@ -60,7 +60,7 @@ public class MemberController {
 		}
 		
 		redirectAttributes.addFlashAttribute("message", message);
-		return "redirect:/";
+		return "/member/memberSuccess";
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
