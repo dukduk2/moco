@@ -11,10 +11,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.moco.jjim.JjimDAO;
 import com.moco.jjim.JjimDTO;
 import com.moco.multiplex.MultiplexDAO;
 import com.moco.multiplex.MultiplexDTO;
+import com.moco.reservation.ReservationDAO;
+import com.moco.reservation.ReservationDTO;
 import com.moco.screen.ScreenDAO;
 import com.moco.screen.ScreenDTO;
 import com.moco.theater.TheaterDAO;
@@ -34,6 +35,9 @@ public class LowPriceMovieService {
 	private MultiplexDAO multiplexDAO;
 	@Autowired
 	private ScreenDAO screenDAO;
+	@Autowired
+	private ReservationDAO reservationDAO;
+	
 	//영화 LIST
 	public Map<String, Object> list(int curPage, int perPage, String kind, String search) throws Exception{
 		PageMaker pageMaker = new PageMaker(curPage, perPage);
@@ -206,6 +210,11 @@ public class LowPriceMovieService {
 	}
 	public List<ScreenDTO> screenList(int multi_num) throws Exception{
 		return screenDAO.list(multi_num);
+	}
+	
+	//프로시저 사용.(reservation db insert & screen db update)
+	public int reservationInsert(ReservationDTO reservationDTO) throws Exception{
+		return reservationDAO.insert(reservationDTO);
 	}
 	
 	
