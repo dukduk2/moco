@@ -72,12 +72,8 @@
 	<context:component-scan base-package="com.moco.movieSchedule"/>
 	<context:component-scan base-package="com.moco.movieRequest"/>
 	<context:component-scan base-package="com.moco.notice"/>
-<<<<<<< HEAD
 	<context:component-scan base-package="com.moco.pay"/>
-
-=======
 	<context:component-scan base-package="com.moco.reservation" />
->>>>>>> kh_duk
 	
 	<!--  이메일 추가   --> 
  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
