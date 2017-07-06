@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.moco.lowpricemovie.LowPriceMovieDTO;
+import com.moco.member.MemberDTO;
 import com.moco.movieAPI.BasicMovieDTO;
 
 @Repository
@@ -16,6 +17,11 @@ public class ReviewDAO {
 	@Autowired
 	private SqlSession sqlSession; 
 	private static final String NAMESPACE = "ReviewMapper.";
+	
+	//reviewMemberLikesUpdate
+	public int reviewMemberLikesUpdate(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"reviewMemberLikesUpdate", memberDTO);
+	}
 	
 	//reviewCheck
 	public ReviewDTO reviewCheck(ReviewDTO reviewDTO) throws Exception{

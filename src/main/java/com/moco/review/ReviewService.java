@@ -169,6 +169,13 @@ public class ReviewService {
 		result = reviewDAO.reviewLikesInsert(reviewLikeDTO);
 		// review Table Update
 		result += reviewDAO.reviewLikesInsert2(reviewLikeDTO.getrNum());
+		// review 작성자에게 likes,avaliableLikes Update
+		ReviewDTO reviewDTO = reviewDAO.reviewSelectOne(reviewLikeDTO.getrNum());
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId(reviewDTO.getWriter());
+		memberDTO.setLikes(reviewDTO.getLikes());
+		memberDTO.setAvaliableLikes(reviewDTO.getLikes());
+		result += reviewDAO.reviewMemberLikesUpdate(memberDTO);
 		return result;
 	}
 

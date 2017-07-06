@@ -1,6 +1,7 @@
 package com.moco.pay;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,15 +19,7 @@ public class PayDAO {
 		return sqlSession.selectList(namespace+"paySelectList");
 	}
 	
-	public int payInsert(PayDTO payDTO) throws Exception{
-		return sqlSession.insert(namespace+"payInsert", payDTO);
-	}
-	
-	public PayDTO paySelectOne1(PayDTO payDTO) throws Exception{
-		return sqlSession.selectOne(namespace+"paySelectOne1", payDTO);
-	}
-	
-	public PayDTO paySelectOne2(PayDTO payDTO) throws Exception{
-		return sqlSession.selectOne(namespace+"paySelectOne2", payDTO);
+	public int payInsert(Map<String, Object> map) throws Exception{
+		return sqlSession.insert(namespace+"payInsert", map);
 	}
 }

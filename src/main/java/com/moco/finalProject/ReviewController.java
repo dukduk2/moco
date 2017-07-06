@@ -59,7 +59,8 @@ public class ReviewController {
 		// check
 		boolean check = reviewService.reviewLikesCheck(reviewLikeDTO);
 		// insert
-		if(check){
+		if(check == true){
+			// 좋아요 update 및 댓글 글쓴이에게 likes,avaliableLikes 지급
 			reviewService.reviewLikesInsert(reviewLikeDTO);
 			model.addAttribute("message", "'좋아요'");
 		}else{

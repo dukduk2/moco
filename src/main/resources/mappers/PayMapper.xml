@@ -4,21 +4,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="PayMapper">
-	<insert id="payInsert" parameterType="com.moco.pay.PayDTO">
-		insert into pay values(#{id}, #{bnum}, #{lnum}, #{rnum})
+	<insert id="payInsert" parameterType="java.util.Map">
+		insert into pay 
+		<if test="kind=='bNum'">
+		values(#{id}, #{num}, 0, 0)
+		</if>
+		<if test="kind=='lNum'">
+		values(#{id}, 0, #{num}, 0)
+		</if>
+		<if test="kind=='rNum'">
+		values(#{id}, 0, 0, #{num})
+		</if>
 	</insert>
 	
 	<select id="paySelectList" resultType="com.moco.pay.PayDTO">
 		select * from pay
-	</select>
-	
-	<!-- basicMovie -->
-	<select id="paySelectOne1" parameterType="com.moco.pay.PayDTO" resultType="com.moco.pay.PayDTO">
-		select * from pay where id=#{id} and bnum=#{bnum}
-	</select>
-	
-	<!-- lowMovie -->
-	<select id="paySelectOne2" parameterType="com.moco.pay.PayDTO" resultType="com.moco.pay.PayDTO">
-		select * from pay where id=#{id} and lnum=#{lnum}
 	</select>
 </mapper>
