@@ -1,5 +1,7 @@
 package com.moco.pay;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -11,6 +13,10 @@ public class PayDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private String namespace="PayMapper.";
+	
+	public List<PayDTO> paySelectList() throws Exception{
+		return sqlSession.selectList(namespace+"paySelectList");
+	}
 	
 	public int payInsert(PayDTO payDTO) throws Exception{
 		return sqlSession.insert(namespace+"payInsert", payDTO);

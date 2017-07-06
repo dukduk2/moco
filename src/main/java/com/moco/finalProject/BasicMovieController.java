@@ -22,6 +22,8 @@ import com.moco.movieRequest.MovieRequestDTO;
 import com.moco.movieRequest.MovieRequestService;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
+import com.moco.pay.PayDTO;
+import com.moco.pay.PayService;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
 import com.moco.util.RowMaker;
@@ -35,6 +37,8 @@ public class BasicMovieController {
 	MovieRequestService movieRequestService;
 	@Inject
 	PaidMovieService paidMovieService;
+	@Inject
+	PayService payService;
 
 	@RequestMapping(value = "movieSearchHome", method = RequestMethod.GET)
 	public void movieSearchHome(Model model){
@@ -118,6 +122,8 @@ public class BasicMovieController {
 		// 신청하기, 보러가기, 접수중
 		MovieRequestDTO movieRequestDTO = null;
 		PaidMovieDTO paidMovieDTO = null;
+		List<PayDTO> ar=new ArrayList<PayDTO>();
+		PayDTO payDTO = new PayDTO(); //결제여부 확인
 		try {
 			basicMovieDTO = basicMovieService.view(num);
 			JjimDTO testJjim = new JjimDTO();
@@ -125,7 +131,16 @@ public class BasicMovieController {
 			testJjim.setId(((MemberDTO)session.getAttribute("memberDTO")).getId());
 			jjimDTO = basicMovieService.jjimCheck(testJjim);
 			review_count = basicMovieService.reviewCount(num);
-
+			
+			ar=payService.paySelectList();
+			
+			for(int i=0;i<ar.size();i++){
+				if(ar.get(i).getId().equals(((MemberDTO)session.getAttribute("memberDTO")).getId()) && ar.get(i).getBnum()==num){
+					System.out.println("ok");
+					model.addAttribute("payCheck", "check");
+				}
+			}
+			
 			// 신청하기, 보러가기, 접수중
 			Map<String, Object> check_map = new HashMap<String, Object>();
 			check_map.put("kind", "bNum");
@@ -196,4 +211,10 @@ public class BasicMovieController {
 			e.printStackTrace();
 		}
 	}
+	
+	/*@RequestMapping(value="../moviePlay", method=RequestMethod.GET)
+	public void moviePlay(){
+		
+	}*/
+
 }
