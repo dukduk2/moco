@@ -136,7 +136,6 @@ public class BasicMovieController {
 			
 			for(int i=0;i<ar.size();i++){
 				if(ar.get(i).getId().equals(((MemberDTO)session.getAttribute("memberDTO")).getId()) && ar.get(i).getBnum()==num){
-					System.out.println("ok");
 					model.addAttribute("payCheck", "check");
 				}
 			}

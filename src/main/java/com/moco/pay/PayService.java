@@ -1,6 +1,7 @@
 package com.moco.pay;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,15 +17,7 @@ public class PayService {
 		return payDAO.paySelectList();
 	}
 	
-	public int payInsert(PayDTO payDTO) throws Exception{
-		return payDAO.payInsert(payDTO);
-	}
-	
-	public PayDTO paySelectOne1(PayDTO payDTO) throws Exception{
-		return payDAO.paySelectOne1(payDTO);
-	}
-	
-	public PayDTO paySelectOne2(PayDTO payDTO) throws Exception{
-		return payDAO.paySelectOne2(payDTO);
+	public int payInsert(Map<String, Object> map) throws Exception{
+		return payDAO.payInsert(map);
 	}
 }
