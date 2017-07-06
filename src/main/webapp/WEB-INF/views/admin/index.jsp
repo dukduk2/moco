@@ -59,12 +59,19 @@
 		<table class="menuTable">
 			<tr class="titleTR tableTR">
 				<!-- Member 관리 -->
-				<td colspan="2">
+				<td>
 					<a href="./memberList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/member_icon.png" class="iconIMG"></a>
 				</td>
-				<td colspan="2" class="titleTD contentsTD">
+				<td class="titleTD contentsTD">
 					<span class="titleSpan"><a href="./memberList">memberList</a></span>
 					<span class="badge">${memberStateCount}</span>
+				</td>
+				<!-- movieInfo -->
+				<td>
+					<a href="./movieInfoWrite"><img class="iconIMG" alt="" src="../resources/adminIndexIcon/member_icon.png"></a>
+				</td>
+				<td>
+					<a href="./movieInfoWrite"><span class="titleSpan">MovieInfoUpload</span></a>
 				</td>
 			</tr>
 			<tr class="tableTR">
@@ -119,7 +126,6 @@
 				</td>
 			</tr>
 		</table>
-		<a href="./movieInfoWrite">영화정보추가</a>
 	</section>
 	
 </body>

@@ -713,7 +713,7 @@ public class AdminController {
 	// 영화 정보 업로드 페이지
 	@RequestMapping(value="movieInfoWrite", method=RequestMethod.GET)
 	public void movieInfoWriteForm(){
-
+		
 	}
 
 	// 영화 정보 업로드 
