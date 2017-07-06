@@ -53,4 +53,10 @@
     <update id="reviewLikesInsert2" parameterType="java.lang.Integer">
     	update review set likes=likes+1 where num=#{num}
     </update>
+    
+    <!-- reviewLikes 받은 갯수 만큼 멤버에게 likes, avaliableLikes 지급 -->
+    <update id="reviewMemberLikesUpdate" parameterType="com.moco.member.MemberDTO">
+    	update member set likes=likes+#{likes}, avaliableLikes=avaliableLikes+#{avaliableLikes} where id=#{id}
+    </update>
+    
 </mapper>

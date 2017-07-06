@@ -25,16 +25,19 @@ public class SeasonService {
 		List<String> members = seasonDAO.seasonWriter(season);
 		// 2. 한명이 쓴 글의 likes 갯수 가져오기
 		for (String member : members) {
+			System.out.println("글쓴이들 : "+member);
 			UserBoardDTO userBoardDTO = new UserBoardDTO();
 			userBoardDTO.setWriter(member);
 			userBoardDTO.setSeason(season);
 			int likes = seasonDAO.seasonLikesCount(userBoardDTO);
+			System.out.println(member+" 의 likes 수 :"+likes);
 			// 3. 불러온 likes 수 만큼 memberTableUpdate 해주기
 			MemberDTO memberDTO = new MemberDTO();
 			memberDTO.setId(member);
 			memberDTO.setLikes(likes);
 			memberDTO.setAvaliableLikes(likes);
 			int result = seasonDAO.memberLikesUpdate(memberDTO);
+			System.out.println("결과 : "+result);
 			if(result>0){
 				System.out.println("member에게 likes, avaliableLikes가 적립되었습니다.");
 			}
