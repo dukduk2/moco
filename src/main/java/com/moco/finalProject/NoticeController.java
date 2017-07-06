@@ -26,6 +26,47 @@ public class NoticeController {
 	@Inject
 	private NoticeService noticeService;
 	
+	@RequestMapping(value="noticeDelete", method=RequestMethod.GET)
+	public String noticeDelete(int num) throws Exception{
+		noticeService.noticeDelete(num);
+		return "redirect:/notice/noticeList";
+	}
+	
+	@RequestMapping(value="noticeUpdate", method=RequestMethod.GET)
+	public String noticeUpdate(int num, Model model) throws Exception{
+		model.addAttribute("dto", noticeService.noticeView(num));
+		return "notice/noticeUpdate";
+	}
+	
+	@RequestMapping(value="noticeUpdate", method=RequestMethod.POST)
+	public String noticeUpdate(NoticeDTO noticeDTO, HttpSession session) throws Exception{
+		noticeService.noticeUpdate(noticeDTO);
+		
+		return "redirect:/notice/noticeList";
+	}
+	
+	@RequestMapping(value="noticeView", method=RequestMethod.GET)
+	public String noticeView(int num, Model model) throws Exception{
+		NoticeDTO noticeDTO=new NoticeDTO();
+		noticeDTO=noticeService.noticeView(num);
+		noticeService.hitUpdate(true, num);
+		model.addAttribute("dto", noticeDTO);
+		return "notice/noticeView";
+	}
+	
+	@RequestMapping(value="noticeWrite", method=RequestMethod.GET)
+	public void noticeWrite(){
+		
+	}
+	
+	@RequestMapping(value="noticeWrite", method=RequestMethod.POST)
+	public String noticeWrite(NoticeDTO noticeDTO, HttpSession session) throws Exception{
+		int result=0;
+		result=noticeService.noticeInsert(noticeDTO);
+		
+		return "redirect:/notice/noticeList";
+	}
+	
 	@RequestMapping(value="noticeList", method=RequestMethod.GET)
 	public void noticeList(Integer curPage, Integer perPage, Model model) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
