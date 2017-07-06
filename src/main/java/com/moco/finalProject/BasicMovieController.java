@@ -128,7 +128,6 @@ public class BasicMovieController {
 		List<PayDTO> ar=new ArrayList<PayDTO>();
 		PayDTO payDTO = new PayDTO(); //결제여부 확인
 		try {
-<<<<<<< HEAD
 			Map<String, Object> view_map = new HashMap<String, Object>();
 			view_map.put("num", num);
 			view_map.put("kind", "basic");
@@ -140,14 +139,6 @@ public class BasicMovieController {
 			jjim_map.put("num", num);
 			jjimDTO = basicMovieService.jjimCheck(jjim_map);
 			review_count = basicMovieService.reviewCount(jjim_map);
-
-=======
-			basicMovieDTO = basicMovieService.view(num);
-			JjimDTO testJjim = new JjimDTO();
-			testJjim.setbNum(num);
-			testJjim.setId(((MemberDTO)session.getAttribute("memberDTO")).getId());
-			jjimDTO = basicMovieService.jjimCheck(testJjim);
-			review_count = basicMovieService.reviewCount(num);
 			
 			ar=payService.paySelectList();
 			
@@ -158,7 +149,6 @@ public class BasicMovieController {
 				}
 			}
 			
->>>>>>> 2ba19372ce694e3cf86e941704dcd4997ed08211
 			// 신청하기, 보러가기, 접수중
 			Map<String, Object> check_map = new HashMap<String, Object>();
 			check_map.put("kind", "basic");
