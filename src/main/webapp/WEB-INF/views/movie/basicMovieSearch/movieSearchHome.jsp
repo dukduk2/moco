@@ -19,7 +19,7 @@
 		height: 220px;
 		margin: 10px auto;
 		cursor: pointer;
-		background-color: gray;
+		background-color: white;
 		border-radius: 10px;
 	}
 
@@ -44,12 +44,12 @@
 	}
 
 	#searchForm{
-		width: 580px;
+		width: 1000px;
 		margin: 20px auto;
 	}
 
 	.search_table {
-		width: 510px;
+		width: 1000px;
 		margin: 0 auto;
 	}
 
@@ -84,21 +84,26 @@
 		text-align: center;
 	}
 
-	td.top {
+	td.top_left {
 		border-top-left-radius: 10px;
+	}
+
+	td.bottom_left {
+		border-bottom-left-radius: 10px;
+	}
+	
+	td.top_right {
 		border-top-right-radius: 10px;
 	}
 
-	td.bottom {
-		border-bottom-left-radius: 10px;
+	td.bottom_right {
 		border-bottom-right-radius: 10px;
 	}
 
 	.input{
+		padding-left: 10px;
+		padding-right: 10px;
 		background-color: white;
-		padding-left: 3px;
-		padding-right: 3px;
-		border-bottom: 1px solid #cccccc;
 	}
 
 	#searchBtn{
@@ -106,7 +111,7 @@
 		height: 42px;
 		float: right;
 		margin-top: 10px;
-		background-color: gray;
+		background-color: black;
 		color: white;
 		border-radius: 5px;
 	}
@@ -212,15 +217,15 @@
 			    <li class="active"><a href="#">영화검색</a></li>
 			    <li><a href="./movieRecommend/recommendHome">영화추천</a></li>
 			</ul>
-			
+
 			<!-- SEARCH -->
 			<div id="searchForm">
 				<table class="search_table">
-					<tr class="top">
-						<td class="title top">제목</td>
-						<td class="input top"><input type="text" class="form-control" id="title" style="width :100%;"></td>
+					<tr>
+						<td class="title top_left">제목</td>
+						<td class="input top_right"><input type="text" class="form-control" id="title" style="width :100%;"></td>
 					</tr>
-
+	
 					<tr>
 						<td class="title">장르</td>
 
@@ -246,19 +251,19 @@
 							</select>
 						</td>
 					</tr>
-
+	
 					<tr>
 						<td class="title">제작년도</td>
-
+	
 						<td class="input">
 							<span class="form-inline" role="form">
 								<span class="form-group">
 									<label class="sr-only" for="yearMin">Start Year</label>
 									<input class="form-control" type="number" min="1950" id="yearMin" value="1950" style="width :100%;">
 								</span>
-								
+									
 								&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-
+	
 								<span class="form-group">
 									<label class="sr-only" for="yearMax">yearMax</label>
 									<input type="number" class="form-control" min="1950" max="2050" id="yearMax" value="2050" style="width :100%;">
@@ -266,20 +271,20 @@
 							</span>
 						</td>
 					</tr>
-
+	
 					<tr>
 						<td class="title">감독</td>
 						<td class="input"><input type="text" class="form-control" id="director" style="width :100%;"></td>
 					</tr>
-
+	
 					<tr>
 						<td class="title">배우</td>
 						<td class="input"><input type="text" class="form-control" id="actor" style="width :100%;"></td>
 					</tr>
-
+	
 					<tr>
-						<td class="title bottom">제작국가</td>
-						<td class="input bottom">
+						<td class="title bottom_left">제작국가</td>
+						<td class="input bottom_right">
 							<select class="form-control" id="nation" style="width :100%;">
 								<option value="all">전체국가</option>
 								<c:forEach var="list" items="${nationList }">
@@ -288,7 +293,7 @@
 							</select>
 						</td>
 					</tr>
-					
+						
 					<tr>
 						<td colspan="2"><input type="button" value="검색" id="searchBtn" class="btn"></td>
 					</tr>
