@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.moco.member.MemberDTO;
+import com.moco.userBoard.UserBoardDTO;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
 import com.moco.util.RowMaker;
@@ -17,6 +19,28 @@ public class SeasonService {
 	@Autowired
 	private SeasonDAO seasonDAO;
 
+	// seasonEndLikesUpdate
+	public void seasonEndLikesUpdate(String season) throws Exception{
+		// 1. 현재 시즌으로 글쓴이들 불러오기
+		List<String> members = seasonDAO.seasonWriter(season);
+		// 2. 한명이 쓴 글의 likes 갯수 가져오기
+		for (String member : members) {
+			UserBoardDTO userBoardDTO = new UserBoardDTO();
+			userBoardDTO.setWriter(member);
+			userBoardDTO.setSeason(season);
+			int likes = seasonDAO.seasonLikesCount(userBoardDTO);
+			// 3. 불러온 likes 수 만큼 memberTableUpdate 해주기
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setId(member);
+			memberDTO.setLikes(likes);
+			memberDTO.setAvaliableLikes(likes);
+			int result = seasonDAO.memberLikesUpdate(memberDTO);
+			if(result>0){
+				System.out.println("member에게 likes, avaliableLikes가 적립되었습니다.");
+			}
+		}
+	}
+	
 	// likesAbleCheck
 	public boolean likesAbleCheck(SeasonDTO seasonDTO) throws Exception{
 		boolean check = true;

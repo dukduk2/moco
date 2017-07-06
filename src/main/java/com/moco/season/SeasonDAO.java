@@ -7,12 +7,30 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moco.member.MemberDTO;
+import com.moco.userBoard.UserBoardDTO;
+
 @Repository
 public class SeasonDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "SeasonMapper.";
+	
+	//seasonWriter
+	public List<String> seasonWriter(String season) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"seasonWriter", season);
+	}
+	
+	// memberLikesUpdate
+	public int memberLikesUpdate(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"memberLikesUpdate", memberDTO);
+	}
+	
+	// seasonLikesCount
+	public int seasonLikesCount(UserBoardDTO userBoardDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"seasonLikesCount", userBoardDTO);
+	}
 	
 	// likesAbleCheck
 	public int likesAbleCheck(SeasonDTO seasonDTO) throws Exception{

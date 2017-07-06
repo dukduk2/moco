@@ -135,4 +135,6 @@
 		set videostate=1
 		where num=#{num}
 	</update>
+	
+	
 </mapper>
