@@ -5,8 +5,12 @@
 
 <mapper namespace="PayMapper">
 	<insert id="payInsert" parameterType="com.moco.pay.PayDTO">
-		insert into pay values(#{id}, #{bnum}, #{lnum})
+		insert into pay values(#{id}, #{bnum}, #{lnum}, #{rnum})
 	</insert>
+	
+	<select id="paySelectList" resultType="com.moco.pay.PayDTO">
+		select * from pay
+	</select>
 	
 	<!-- basicMovie -->
 	<select id="paySelectOne1" parameterType="com.moco.pay.PayDTO" resultType="com.moco.pay.PayDTO">

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.moco.board.BoardDAO;
 import com.moco.board.BoardDTO;
 import com.moco.likes.LikesDTO;
+import com.moco.member.MemberDTO;
 import com.moco.season.SeasonDTO;
 @Repository
 public class UserBoardDAO implements BoardDAO {
@@ -129,5 +130,5 @@ public class UserBoardDAO implements BoardDAO {
 			sqlSession.update(NAMESPACE+"hitMinus", num);
 		}
 	}
-
+	
 }

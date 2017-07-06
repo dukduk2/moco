@@ -275,8 +275,13 @@
 		$(".movieRequest").click(function(){
 			var request = $(this).attr("id");
 			var bNum = ${movieDTO.num };
+			var check='${payCheck}';
 			if(request == '영화보러가기'){
-				location.href="";
+				if(check == 'check'){
+					location.href="../moviePlay?num="+bNum;
+				}else{
+					location.href="";
+				}
 			}else if(request == '영화신청하기'){
 				$.ajax({
 					url : "./movieRequest",

@@ -13,18 +13,19 @@ import com.moco.board.BoardDTO;
 import com.moco.board.BoardService;
 import com.moco.fileTest.FileSaver;
 import com.moco.likes.LikesDTO;
+import com.moco.member.MemberDTO;
 import com.moco.reply.ReplyService;
 import com.moco.season.SeasonDTO;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
 @Service
 public class UserBoardService implements BoardService {
-	
+
 	@Autowired
 	private UserBoardDAO userBoardDAO;
 	@Autowired
 	private ReplyService replyService;
-	
+
 	// contents - parsingMethod
 	public String contentsParsing(String contents) {
 		String fname = "";
@@ -43,7 +44,7 @@ public class UserBoardService implements BoardService {
 		}
 		return fname;
 	}
-	
+
 	// 페이징
 	public PageResult pageing(Integer curPage, Map<String, Object> map) throws Exception{
 		PageMaker pageMaker = new PageMaker(curPage);
@@ -51,7 +52,7 @@ public class UserBoardService implements BoardService {
 		PageResult pageResult = pageMaker.paging(totalCount);
 		return pageResult;
 	}
-	
+
 	//////////////////////////////////////////////////// LIKES //////////////////////////////////////////////////
 	// boardLikesCount 
 	public int boardLikesCount(int num) throws Exception{
@@ -69,39 +70,39 @@ public class UserBoardService implements BoardService {
 	public int likesDelete(LikesDTO likesDTO) throws Exception{
 		return userBoardDAO.likesDelete(likesDTO);
 	}
-	
+
 	/////////////////////////////////////////////////USERBOARD COMMIT & VIDEO STATE ////////////////////////////////////////////
-	
+
 	// adminIndexCount
 	public int adminIndexCount() throws Exception{
 		return userBoardDAO.adminIndexCount();
 	}
-	
+
 	// Admin userBoardCommit Update
 	public void adminCommitUpdate(int num) throws Exception{
 		userBoardDAO.adminCommitUpdate(num);
 	}
-	
+
 	// Admin userBoardVideoState Update
 	public void adminVideoStateUpdate(int num) throws Exception{
 		userBoardDAO.adminVideoStateUpdate(num);
 	}
-	
+
 	// Admin adminCommitSelect
 	public List<UserBoardDTO> adminCommitSelect(Map<String, Object> map) throws Exception{
 		return userBoardDAO.adminCommitSelect(map);
 	}
-	
+
 	// Admin adminTotalCount
 	public int adminTotalCount(Map<String, Object> map) throws Exception{
 		return userBoardDAO.adminTotalCount(map);
 	}
-	
+
 	/////////////////////////////////////////////////USERBOARD /////////////////////////////////////////////////////////////////////
 	public String userBoardContents(int num) throws Exception{
 		return userBoardDAO.userBoardContents(num);
 	}
-	
+
 	@Override
 	public List<BoardDTO> list(Map<String, Object> map) throws Exception {
 		return userBoardDAO.list(map);
@@ -161,5 +162,6 @@ public class UserBoardService implements BoardService {
 	public void hitUpdate(int num, boolean flag) throws Exception {
 		userBoardDAO.hitUpdate(num, flag);
 	}
+
 
 }

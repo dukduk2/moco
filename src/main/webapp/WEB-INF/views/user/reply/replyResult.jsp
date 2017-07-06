@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<table class="table table-hover">
+<table class="table">
 	<tr>
 		<td><input type="text" readonly="readonly" value="${memberDTO.id}" id="replyWriter" style="width: 200px; height: 40px;"></td>
 		<td colspan="2"><textarea rows="" cols="" style="width: 400px; height: 50px;" id="replyContents"></textarea></td>

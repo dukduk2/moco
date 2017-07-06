@@ -7,19 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
+import com.moco.member.MemberDTO;
 import com.moco.season.SeasonDTO;
 import com.moco.season.SeasonService;
+import com.moco.userBoard.UserBoardDTO;
 
 @Component
 @EnableScheduling
 public class SeasonScheduller {
-	
+
 	@Autowired
 	private SeasonService seasonService;
 	private Date date = new Date();
 	private long curDate = date.getTime();
-	
+
 	/*@Scheduled(fixedDelay = 10000)*/
 	@Scheduled(cron="0 0 0 * * ?")
 	public void scTest() throws Exception{
@@ -32,7 +35,7 @@ public class SeasonScheduller {
 		List<SeasonDTO> actorList = seasonService.adminOrderSelect("actor");
 		this.seaonAuto(actorList);
 	}
-	
+
 	public void seaonAuto(List<SeasonDTO> ar) throws Exception{
 		for (SeasonDTO seasonDTO : ar) {
 			Date startDate = seasonDTO.getStartDate();
@@ -43,8 +46,10 @@ public class SeasonScheduller {
 				seasonService.adminOrderStart(seasonDTO.getNum());
 			}else{
 				seasonService.adminOrderEnd(seasonDTO.getNum());
+				// 시즌이 끝나면 likes, avaliableLikes Update
+				seasonService.seasonEndLikesUpdate(seasonDTO.getSeason());
 			}
 		}
 	}
-	
+
 }

@@ -44,8 +44,25 @@
 	<select id="seasonTotalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
 		select count(num) from season where kind=#{kind}
 	</select>
+	
 	<!-- 시즌이 진행 중일 때만 좋아요를 누를 수 있도록 check하는 db -->
 	<select id="likesAbleCheck" parameterType="com.moco.season.SeasonDTO" resultType="java.lang.Integer">
 		select state from season where season=#{season} and kind=#{kind}
 	</select>
+	
+	<!-- season동안 글쓴이들 불러오기 -->
+	<select id="seasonWriter" parameterType="java.lang.String" resultType="java.lang.String">
+		select writer from userBoard where season=#{season}
+	</select>
+	
+	<!-- id와 season으로 게시물의 좋아요 수 가지고 오기 -->
+	<select id="seasonLikesCount" parameterType="com.moco.userBoard.UserBoardDTO" resultType="java.lang.Integer">
+		select likes from userBoard where writer=#{writer} and season=#{season}
+	</select>
+	
+	<!-- season이 끝나면 member likes, avaliableLikes 업데이트 -->
+	<update id="memberLikesUpdate" parameterType="com.moco.member.MemberDTO">
+		update member set likes=#{likes}, avaliableLikes=#{avaliableLikes} where id=#{id}
+	</update>
+	
 </mapper>
