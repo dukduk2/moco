@@ -142,7 +142,6 @@
 		text-align: center;
 	}
 	#contentsWrap{
-		width: 1400px;
 		margin: 0 auto;
 	}
 	#recommendCriteria{
@@ -168,6 +167,7 @@
 			    <li><a href="../movieSearchHome">영화검색</a></li>
 			    <li class="active"><a href="#">영화추천</a></li>
 			</ul>
+
 			<div id="recommendCriteria">
 				<span id="genreRecommend" class="btn">장르별 추천영화</span> | 
 				<span id="yearRecommend" class="btn">년도별 추천영화</span> | 
@@ -179,6 +179,7 @@
 				<span id="jjimRecommend" class="btn">찜하기가 많은 영화</span> | 
 				<span id="recentRecommend" class="btn">개봉예정작</span>
 			</div>
+
 			<div id="recommendSubCriteria">
 				<div id="ageWrap">
 					<span class="age btn" id="10">10대</span>

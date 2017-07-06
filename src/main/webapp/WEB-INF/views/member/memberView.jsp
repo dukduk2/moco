@@ -11,12 +11,7 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
 <title>Insert title here</title>
-<style type="text/css">
-.profile{
-	width: 200px;
-	height: 200px;
-}
-</style>
+
 <script type="text/javascript">
 $(function(){
 	$("#update").click(function(){
@@ -46,11 +41,11 @@ $(function(){
 
 	<section>
 		<div class="container">
-			<h2 class="title">Member View</h2>
+			<h2 class="title"><img class="icon" src="../resources/images/icon/pop.png"> Member View</h2>
 
 			<table class="member_Table">
 				<tr>
-					<td class="name">IMG</td>
+					<td class="name">프로필 사진</td>
 					<td class="push">
 						<c:if test="${memberDTO.getFname() ne ' '}">
 							<p><img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}"></p>
@@ -63,20 +58,30 @@ $(function(){
 				</tr>
 
 				<tr>
-					<td class="name">ID :</td>
+					<td class="name">등급</td>
+					<td class="push">${memberDTO.grade}</td>
+				</tr>
+
+				<tr>
+					<td class="name">아이디</td>
 					<td class="push">${memberDTO.id}</td>
 				</tr>
 
 				<tr>
-					<td class="name">NAME :</td>
+					<td class="name">이름</td>
 					<td class="push">${memberDTO.name}</td>
 				</tr>
 
 				<tr>
-					<td class="name">PHONE :</td>
+					<td class="name">전화번호</td>
 					<td class="push">${memberDTO.phone}</td>
 				</tr>
-				
+
+				<tr>
+					<td class="name">가입날짜</td>
+					<td class="push">${memberDTO.joinDate}</td>
+				</tr>
+
 				<tr>
 					<td class="name" colspan="2">
 						<input type="button" class="btn btn-warning" value="UPDATE" id="update">
