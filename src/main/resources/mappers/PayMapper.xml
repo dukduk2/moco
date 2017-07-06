@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PayMapper">
+	<insert id="payInsert" parameterType="com.moco.pay.PayDTO">
+		insert into pay values(#{id}, #{bnum}, #{lnum})
+	</insert>
+	
+	<!-- basicMovie -->
+	<select id="paySelectOne1" parameterType="com.moco.pay.PayDTO" resultType="com.moco.pay.PayDTO">
+		select * from pay where id=#{id} and bnum=#{bnum}
+	</select>
+	
+	<!-- lowMovie -->
+	<select id="paySelectOne2" parameterType="com.moco.pay.PayDTO" resultType="com.moco.pay.PayDTO">
+		select * from pay where id=#{id} and lnum=#{lnum}
+	</select>
+</mapper>
