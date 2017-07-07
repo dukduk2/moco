@@ -43,7 +43,7 @@ $(function(){
 
 <style type="text/css">
 .title {
-	width: 80%;
+	width: 70%;
 	margin: 20px auto;
 	border: solid red 2px;
 	text-align: center;
@@ -54,7 +54,7 @@ $(function(){
 }
 
 .contents {
-	width: 80%;
+	width: 70%;
 	height: 500px;
 	margin: 50px auto;
 	border: solid red 2px;
@@ -162,6 +162,36 @@ body {
     top: 80px;
 }
 /* side-Menu */
+
+/* info-effect */
+.existent {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+	.appear {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	width: 100%
+}
+
+.container:hover .existent {
+  opacity: 0.3;
+}
+
+.container:hover .appear {
+  opacity: 1;
+}
+/* info-effect */
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -170,17 +200,23 @@ body {
 		<a href="#go" id="two">Go</a>
 	</div>
 
-	<div id="intro" class="container text-center">
-		<div class="title">
-			<p>asd</p>
-		</div>
+<!-- 수정 中 -->
+	<div id="intro" class="container">
+		<div class="existent">1234</div>
 		
-		<div class="contents">
-			<p>불라불라</p>
+		<div class="appear">
+			<div class="title">
+				<p>asd</p>
+			</div>
+			
+			<div class="contents">
+				<p>불라불라</p>
+			</div>
 		</div>
 	</div>
+<!--  -->
 	
-	<div id="go" class="container text-center">
+	<div id="go" class="container">
 		<div class="menu_wrap">
 			<c:if test="${memberDTO eq null }">
 				<center>

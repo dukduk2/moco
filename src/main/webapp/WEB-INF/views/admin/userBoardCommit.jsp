@@ -42,10 +42,6 @@
 				});
 		});
 		
-		$("#boardView").on("click","#modalClose", function(){
-			alert("ZZ");
-		});
-		
 		// confirm - commit=1
 		$("#boardView").on("click","#confirm",function(){
 			var num = $("#Vnum").val();

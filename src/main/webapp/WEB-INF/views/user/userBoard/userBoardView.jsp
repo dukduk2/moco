@@ -31,6 +31,12 @@
 			}
 		}); 
 		
+		// listLocation
+		$("#listLocation").click(function() {
+			var curPage = $("#curPage").val();
+			location.href="./userBoardList?curPage="+curPage;
+		});
+		
 		// Board Delete
 		$("#delete").click(function() {
 			var check = window.confirm("정말 삭제하시겠습니까?");
@@ -200,13 +206,29 @@
 	.videoView{
 		height: 330px;
 	}
+	.memberProfileIMG{
+		width: 110px;
+		height: 110px;
+		border-radius: 100%; 
+	}
+	.memberProfileID{
+		font-family: Montserrat, sans-serif;
+		font-size: 2em;
+		cursor: pointer;
+	}
+	.memberProfileID:hover{
+		color: skyblue;
+	}
+	.memberProfileSeason{
+		font-family: Montserrat, sans-serif;
+		font-size: 1.1em;
+	}
 </style>
 </head>
 <body>
 	
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
-		<div>
 		<table class="contentsTable">
 			<tr>
 				<td colspan="2" class="title">${UserBoardDTO.title}</td>
@@ -239,9 +261,21 @@
 				</tr>
 			</c:if>
 			<tr>
-				<td colspan="2" class="title2">
-					<i class="fa fa-bookmark" style="font-size:24px"></i>&nbsp;<span>${UserBoardDTO.season}&nbsp;&nbsp;</span>
-					<i class="fa fa-pencil" style="font-size:24px"></i>&nbsp;<span>${UserBoardDTO.writer}&nbsp;&nbsp;</span>
+				<td rowspan="2" style="width: 130px;">
+					<img class="memberProfileIMG" alt="" src="../../resources/upload/member/${writerInfo.fname}">
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+				<hr>
+					<span class="memberProfileID">
+						<i class="fa fa-pencil"></i> ${UserBoardDTO.writer}
+					</span>
+					<br>
+					<span class="memberProfileSeason">
+						<i class="fa fa-bookmark" style="font-size:24px"></i> ${UserBoardDTO.season}
+					</span>
 				</td>
 			</tr>
 			<tr>
@@ -263,6 +297,8 @@
 			<c:if test="${memberDTO.id == UserBoardDTO.writer}">
 				<input type="button" id="delete" value="delete" class="btn btn-danger">
 			</c:if>
+			<input type="button" id="listLocation" value="list" class="btn btn-default">
+			<input type="hidden" id="curPage" value="${curPage}">
 		</article>
 		
 		<article>
