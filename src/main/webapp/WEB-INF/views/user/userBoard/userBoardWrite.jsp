@@ -59,6 +59,27 @@
 	});
 </script>
 <style type="text/css">
+	table{
+		width : 100%;
+		max-width : 100%;
+		margin-bottom: 20px;
+		background-color: transparent;
+		border-spacing : 0;
+		border-collapse : collapse;
+		border-color: grey;
+		vertical-align: middle;	
+	}
+	tr{
+		display: table-row;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+	td{
+	 	padding: 8px;
+	 	line-height: 1.42857143;
+	 	vertical-align: middle;
+	 	border-top: 1px solid #ddd;
+	 }
 	#contents{
 		width: 920px;
 	}
@@ -71,6 +92,7 @@
 	.titleSpan{
 		font-size: 1.2em;
 		font-weight: bold;
+		font-family: Montserrat, sans-serif;
 	}
 	.genreSpan{
 		font-size : 1.1em;
@@ -86,7 +108,7 @@
 	<br>
 <div class="container">
 	<form action="./userBoardWrite" method="post" enctype="multipart/form-data" id="frm">
-		<table class="table">
+		<table>
 			<tr>
 				<td><span class="titleSpan">TITLE</span></td>
 				<td colspan="2"><input type="text" name="title" class="form-control"></td>
@@ -163,21 +185,17 @@
 				<td><span class="titleSpan">CONTENTS</span></td>
 				<td colspan="2"><textarea id="contents" name="contents"></textarea></td>
 			</tr>
-			<tr>
-				<td><span class="titleSpan">저예산 영화</span></td>
+			<tr style="height: 51px;">
+				<td><span class="titleSpan">MOVIE</span></td>
 				<td><input type="file" name="file" id="file"></td>
 				<td><span id="x" class="titleSpan">X</span></td>
 			</tr>
 		</table>
 		<div style="text-align: right;">
-			<input type="button" id="savebutton" value="WRITE" class="btn">		
+			<input type="button" id="savebutton" value="WRITE" class="btn btn-primary titleSpan">		
 		</div>
 	</form>
-	<br><br>
-	<div class="btnBox">
-		<a href="../../" role="button" class="btn"><button class="btn">HOME</button></a>
-		<a href="./userBoardList?season=all"><button class="btn">LIST</button></a>
-	</div>
+	<br>
 	
 </div>
 	</section>
