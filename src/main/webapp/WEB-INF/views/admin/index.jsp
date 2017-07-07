@@ -25,7 +25,6 @@
 	});
 </script>
 <style type="text/css">
-<<<<<<< HEAD
 	.titleCSS{
 		font-family: Montserrat, sans-serif;
 		text-align: center;
@@ -64,52 +63,6 @@
 		vertical-align: middle;
 		border-right: 2px ridge black;	
 	}
-=======
-.menuTable{
-	margin : 0 auto;
-	width: 1000px;
-	border: 2px ridge black;
-}
-
-tr{
-	border: 2px ridge black;	
-}
-
-.iconIMG{
-	width: 150px;
-	height: 150px;
-}
-
-.titleSpan{
-	font-size: 1.4em;
-	font-weight: bold;
-}
-
-.badge{
-	font-size: 1.4em;
-}
-
-.titleTR{
-	text-align: center;
-}
-
-.tableTR{
-	height: 180px;
-}
-
-.imgTD{
-	text-align: center;
-}
-
-.titleTD{
-	text-align: left;
-}
-
-.contentsTD{
-	vertical-align: middle;
-	border-right: 2px ridge black;	
-}
->>>>>>> eunji
 </style>
 </head>
 <body>
