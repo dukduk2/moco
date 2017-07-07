@@ -12,6 +12,34 @@
 		var chked_val="";
 		var submit_check = true;
 		
+		//trailerX
+		$("#trailerX").click(function() {
+			var trailer = $("#trailer_file").val();
+			if(trailer != ""){
+				var check = false;
+				check = window.confirm("현재 선택된 파일을 지우시겠습니까?");
+				if(check){
+					$("#trailer_file").val("");					
+				}
+			}else{
+				alert("현재 선택된 파일이 없습니다.");
+			}
+		
+		});
+		//thumnailX
+		$("#thumnailX").click(function() {
+			var thumnail = $("#thumnail_file").val();
+			if(thumnail != ""){
+				var check = false;
+				check = window.confirm("현재 선택된 파일을 지우시겠습니까?");
+				if(check){
+					$("#thumnail_file").val("");										
+				}
+			}else{
+				alert("현재 선택된 파일이 없습니다.");
+			}
+		});
+		
 		// 글 업로드
 		$("#submitBtn").click(function(){
 			// TITLE CHECK
@@ -114,15 +142,20 @@
 	.titleSpan{
 		font-size: 1.2em;
 		font-weight: bold;
+		font-family: Montserrat, sans-serif;
 	}
 	.contentsSpan{
 		font-size: 1.1em;
 	}
-	.genreTD{
-		font-size: 1.1em;
+	.genreSpan{
+		font-size : 1.15em;
+		font-weight: bold;
 	}
 	.lastTD{
 		text-align: right;
+	}
+	.btnTD{
+		width: 80px;
 	}
 </style>
 </head>
@@ -134,16 +167,16 @@
 					<td><span class="titleSpan">KIND</span></td>
 					<td colspan="2" class="genreTD">
 						<label class="radio-inline">
-      						<input type="radio" name="kind" value="basic" checked="checked">일반영화
+      						<input type="radio" name="kind" value="basic" checked="checked"><span class="genreSpan">일반영화</span>
     					</label>
     					<label class="radio-inline">
-      						<input type="radio" name="kind" value="low">독립영화
+      						<input type="radio" name="kind" value="low"><span class="genreSpan">독립영화</span>
     					</label>
 					</td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">GENRE</span></td>
-					<td colspan="2" class="genreTD">
+					<td colspan="2">
 						<label class="checkbox-inline">
 				      <input type="checkbox" value="가족" class="chx" name="genre"><span class="genreSpan">가족</span>
 				    </label>
@@ -203,32 +236,33 @@
 				</tr>
 				<tr>
 					<td><span class="titleSpan">DIRECTOR</span></td>
-					<td colspan="2"><input type="text" name="director" id="director"></td>
+					<td colspan="2"><input class="form-control" type="text" name="director" id="director"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">ACTOR</span></td>
-					<td colspan="2"><input type="text" name="actor" id="actor"></td>
+					<td colspan="2"><input class="form-control" type="text" name="actor" id="actor"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">YEAR</span></td>
-					<td colspan="2"><input type="number" name="year" id="year" min="1900" max="2050"></td>
+					<td colspan="2"><input class="form-control" type="number" name="year" id="year" min="1900" max="2050"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">NATION</span></td>
-					<td colspan="2"><input type="text" name="nation" id="nation"></td>
+					<td colspan="2"><input class="form-control" type="text" name="nation" id="nation"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">TRAILER</span></td>
-					<td colspan="2"><input type="file" name="trailer_file" id="trailer_file"></td>
+					<td><input class="form-control" type="file" name="trailer_file" id="trailer_file"></td>
+					<td class="btnTD"><input type="button" id="trailerX" class="btn" value="지우기"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">PUB_DATE</span></td>
-					<td colspan="2"><input type="date" name="pub_date" id="pub_date"></td>
+					<td colspan="2"><input class="form-control" type="date" name="pub_date" id="pub_date"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">WATCHING_RATE</span></td>
 					<td colspan="2">
-						<select name="watching_rate" id="watching_rate">
+						<select name="watching_rate" id="watching_rate" class="form-control">
 							<option value="default">관람등급선택</option>
 							<option value="전체관람가">전체관람가</option>
 							<option value="12세이상관람가">12세이상관람가</option>
@@ -239,19 +273,20 @@
 				</tr>
 				<tr>
 					<td><span class="titleSpan">PLAY_TIME</span></td>
-					<td colspan="2"><input type="number" name="play_time" id="play_time"></td>
+					<td colspan="2"><input class="form-control" type="number" name="play_time" id="play_time"></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">STORY</span></td>
-					<td colspan="2"><textarea name="story" id="story"></textarea></td>
+					<td colspan="2"><textarea style="height: 100px;" class="form-control" name="story" id="story"></textarea></td>
 				</tr>
 				<tr>
 					<td><span class="titleSpan">THUMNAIL</span></td>
-					<td colspan="2"><input type="file" name="thumnail_file" id="thumnail_file"></td>
+					<td><input class="form-control" type="file" name="thumnail_file" id="thumnail_file"></td>
+					<td class="btnTD"><input type="button" id="thumnailX" class="btn" value="지우기"></td>
 				</tr>
 				<tr>
 					<td class="lastTD" colspan="3">
-						<input type="button" value="글쓰기" id="submitBtn">				
+						<input class="btn btn-primary" type="button" value="글쓰기" id="submitBtn">				
 					</td>
 				</tr>
 			</table>
@@ -302,5 +337,6 @@
 		THUMNAIL <input type="file" name="thumnail_file" id="thumnail_file"><br>
 		<input type="button" value="글쓰기" id="submitBtn">
 	</form> -->
+	
 </body>
 </html>
