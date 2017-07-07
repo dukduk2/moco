@@ -10,6 +10,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
@@ -34,48 +35,7 @@
 		
 	});
 </script>
-<style type="text/css">
-.search_left {
-	width: 200px;
-	float: left;
-}
 
-.search_right {
-	width: 380px;
-	float: right;
-}
-
-table {
-	margin: 10px 0;
-}
-
-tr.head {
-	background-color: #ff6600;
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	border-top: solid black 2px;
-	border-bottom: solid black 2px;
-}
-
-td {
-	padding: 10px;
-}
-
-
-.paging{
-	text-align: center;	
-}
-
-.go{
-	font-size : 1.2em;
-	cursor: pointer;
-}
-
-.btnBox{
-	text-align: right;
-}
-</style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
@@ -157,15 +117,17 @@ td {
 			
 			<!-- 페이징 처리 -->
 			<div class="paging">
-				<c:if test="${pageResult.curBlock>1}">
-					<button class="btn"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
-				</c:if>
-				<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-					<button class="btn"><span class="go" id="${i}">${i}</span></button>
-				</c:forEach>
-				<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-					<button class="btn"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
-				</c:if>
+				<div class="btn-group">
+					<c:if test="${pageResult.curBlock>1}">
+						<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+					</c:if>
+					<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+						<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+					</c:forEach>
+					<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+					</c:if>
+				</div>
 			</div>
 			
 			<!-- BTN -->

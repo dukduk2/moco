@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+.search_left {
+	width: 200px;
+	float: left;
+}
+
+.search_right {
+	width: 380px;
+	float: right;
+}
+
+table {
+	margin: 10px 0;
+}
+
+tr.head {
+	background-color: #ff6600;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	border-top: solid black 2px;
+	border-bottom: solid black 2px;
+}
+
+tr.body {
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+td {
+	padding: 10px;
+}
+
+
+.paging{
+	text-align: center;
+	margin: 0 auto;
+}
+
+.go{
+	font-size : 1.2em;
+	cursor: pointer;
+}
+
+.btnBox{
+	text-align: right;
+}
