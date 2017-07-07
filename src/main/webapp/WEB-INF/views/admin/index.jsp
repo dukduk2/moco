@@ -77,7 +77,7 @@
 				</td>
 				<!-- movieInfo -->
 				<td>
-					<a href="./movieInfoWriteForm"><img class="iconIMG" alt="" src="../resources/adminIndexIcon/member_icon.png"></a>
+					<a href="./movieInfoWriteForm"><img class="iconIMG" alt="" src="../resources/adminIndexIcon/movieInfo_icon.png"></a>
 				</td>
 				<td>
 					<a href="./movieInfoWriteForm"><span class="titleSpan">MovieInfoUpload</span></a>
