@@ -206,7 +206,6 @@
 	
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
-		<div>
 		<table class="contentsTable">
 			<tr>
 				<td colspan="2" class="title">${UserBoardDTO.title}</td>

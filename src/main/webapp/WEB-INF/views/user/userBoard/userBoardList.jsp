@@ -61,8 +61,9 @@ tr.head {
 td {
 	padding: 10px;
 }
-
-
+.titleSpan{
+	font-family: Montserrat, sans-serif;
+}
 .paging{
 	text-align: center;	
 }
@@ -87,10 +88,10 @@ td {
 				<form class="form-horizontal" action="./userBoardList" id="seasonForm">
 					<table>
 						<tr>
-							<td>SEASON</td>
+							<td><span class="titleSpan">SEASON</span></td>
 							<td>
 								<select name="season" class="form-control" id="season">
-									<option value="all">ALL</option>
+									<option value="all" class="titleSpan">ALL</option>
 									<c:forEach items="${orderList}" var="order">
 										<option value="${order.season}">${order.season}</option>
 									</c:forEach>
@@ -108,9 +109,9 @@ td {
 						<tr>
 							<td>
 								<select name="kind" class="form-control col-sm-5">
-									<option value="title">TITLE</option>
-									<option value="writer">WRITER</option>
-									<option value="genre">GENRE</option>
+									<option value="title" class="titleSpan">TITLE</option>
+									<option value="writer" class="titleSpan">WRITER</option>
+									<option value="genre" class="titleSpan">GENRE</option>
 								</select>						
 							</td>
 							<td>
@@ -118,7 +119,7 @@ td {
 								<input type="hidden" name="curPage" value="1">
 							</td>
 							<td>
-								<input type="button" value="Search" id="search" class="btn">
+								<input type="button" value="Search" id="search" class="btn titleSpan">
 							</td>
 						</tr>
 					</table>				
@@ -128,14 +129,14 @@ td {
 			<table class="table table-hover">
 				<thead>
 					<tr class="head">
-						<td>NUM</td>
-						<td>TITLE</td>
-						<td>WRITER</td>
-						<td>GENRE</td>
-						<td>DATE</td>
-						<td>HIT</td>
-						<td>LIKES</td>
-						<td>SEASON</td>
+						<td><span class="titleSpan">NUM</span></td>
+						<td><span class="titleSpan">TITLE</span></td>
+						<td><span class="titleSpan">WRITER</span></td>
+						<td><span class="titleSpan">GENRE</span></td>
+						<td><span class="titleSpan">DATE</span></td>
+						<td><span class="titleSpan">HIT</span></td>
+						<td><span class="titleSpan">LIKES</span></td>
+						<td><span class="titleSpan">SEASON</span></td>
 					</tr>
 				</thead>
 				
@@ -171,7 +172,7 @@ td {
 			<!-- BTN -->
 			<div class="btnBox">
 				<c:if test="${seasonCheck && memberDTO != null}">
-					<a href="./userBoardWrite"><button class="btn">WRITE</button></a>
+					<a href="./userBoardWrite"><button class="btn"><span class="titleSpan">WRITE</span></button></a>
 				</c:if>
 			</div>
 		</div>
