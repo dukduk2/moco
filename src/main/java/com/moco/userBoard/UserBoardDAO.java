@@ -20,6 +20,14 @@ public class UserBoardDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="UserBoardMapper.";
 	
+	// memberInfo
+	public String memberInfo(int num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberInfo", num);
+	}
+	public MemberDTO memberInfo2(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberInfo2", id);
+	}
+	
 	////////////////////////////////////////////////////LIKES //////////////////////////////////////////////////
 	// board삭제에 따른 likes 삭제
 	public int likesDelete2(int num) throws Exception{

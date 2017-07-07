@@ -26,6 +26,12 @@ public class UserBoardService implements BoardService {
 	@Autowired
 	private ReplyService replyService;
 
+	// memberInfo
+	public MemberDTO memberInfo(int num) throws Exception{
+		String id = userBoardDAO.memberInfo(num);
+		return userBoardDAO.memberInfo2(id);
+	}
+
 	// contents - parsingMethod
 	public String contentsParsing(String contents) {
 		String fname = "";

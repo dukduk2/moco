@@ -82,7 +82,7 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping(value="userBoardView", method=RequestMethod.GET)
-	public void boardView(HttpSession session, int num, int commit, Model model) throws Exception{
+	public void boardView(HttpSession session, int num, Model model, Integer curPage) throws Exception{
 		// DTO 반환
 		UserBoardDTO userBoardDTO = (UserBoardDTO)userBoardService.view(num);
 		model.addAttribute("UserBoardDTO", userBoardDTO);
@@ -108,8 +108,13 @@ public class UserBoardController {
 		seasonDTO.setKind("user");
 		check = seasonService.likesAbleCheck(seasonDTO);
 		
+		// 글쓴이 정보
+		memberDTO = userBoardService.memberInfo(num);
+		model.addAttribute("writerInfo", memberDTO);
+		
 		model.addAttribute("likesAbleCheck", check);
 		model.addAttribute("likesResult", userBoardService.boardLikesCount(userBoardDTO.getNum()));
+		model.addAttribute("curPage", curPage);
 	}
 	
 	@RequestMapping(value="userBoardLikes", method=RequestMethod.POST)
