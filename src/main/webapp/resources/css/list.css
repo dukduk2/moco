@@ -33,7 +33,9 @@ tr.body {
 td {
 	padding: 10px;
 }
-
+.titleSpan{
+	font-family: Montserrat, sans-serif;
+}
 
 .paging{
 	text-align: center;

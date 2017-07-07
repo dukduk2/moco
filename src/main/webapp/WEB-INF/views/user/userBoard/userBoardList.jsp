@@ -35,47 +35,6 @@
 		
 	});
 </script>
-
-<<<<<<< HEAD
-=======
-.search_right {
-	width: 380px;
-	float: right;
-}
-
-table {
-	margin: 10px 0;
-}
-
-tr.head {
-	background-color: #ff6600;
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	border-top: solid black 2px;
-	border-bottom: solid black 2px;
-}
-
-td {
-	padding: 10px;
-}
-.titleSpan{
-	font-family: Montserrat, sans-serif;
-}
-.paging{
-	text-align: center;	
-}
-
-.go{
-	font-size : 1.2em;
-	cursor: pointer;
-}
-
-.btnBox{
-	text-align: right;
-}
-</style>
->>>>>>> chan
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
