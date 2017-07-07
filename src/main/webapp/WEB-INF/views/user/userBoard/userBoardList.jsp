@@ -66,7 +66,7 @@
 					<table>
 						<tr>
 							<td>
-								<select name="kind" class="form-control col-sm-5">
+								<select name="kind" class="form-control" style="width: 100px;">
 									<option value="title" class="titleSpan">TITLE</option>
 									<option value="writer" class="titleSpan">WRITER</option>
 									<option value="genre" class="titleSpan">GENRE</option>
