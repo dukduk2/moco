@@ -29,34 +29,22 @@
 				});
 		});
 		
-		$("#theaterView").on("click","#modalClose", function(){
-			alert("ZZ");
-		});
-		
-		// confirm - commit=1
-		$("#theaterView").on("click","#confirm",function(){
+		// 승인(commit=0 -> commit=1)
+		$("#theaterView").on("click", "#confirm",function(){
 			var num = $("#Tnum").val();
 			alert("승인");
-			$.post("./theaterCommit",
-				{
-					num : num
-				},
-				function(data){
+			$.post("./theaterCommit", {num:num}, function(data){
 					location.reload();
-				});
+			});
 		});
 		
 		// refuse - 삭제
-		$("#theaterView").on("click","#refuse",function(){
+		$("#theaterView").on("click", "#refuse",function(){
 			var num = $("#Tnum").val();
 			alert("승인 거절");
-			$.post("./userBoardRefuse",
-				{
-					num : num
-				},
-				function(data){
-					location.reload();
-				});
+			$.post("./theaterUnCommit", {num:num}, function(data){
+				location.reload();
+			});
 		});
 		
 	});
@@ -100,7 +88,7 @@
 					<td>${dto.num}	</td>
 					<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
 					<td>${dto.location}</td>
-					<td>${dto.openning_time }</td>
+					<td>${dto.opening_time }</td>
 					<td>${dto.price}</td>
 					<td>${dto.phone}</td>
 				</tr>
@@ -110,7 +98,7 @@
 		<!-- modal Ajax -->
 		<div class="container">
 			<div class="modal fade" id="myModal" role="dialog">
-		    	<div class="modal-dialog" style="width: 1000px;" >
+		    	<div class="modal-dialog modal-sm">
 		    		<div class="modal-content" id="theaterView">
 		    		</div>
 		    	</div>

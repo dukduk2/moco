@@ -19,4 +19,8 @@ public class ScreenDAO {
 	public List<ScreenDTO> list(int multi_num) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"list", multi_num);
 	}
+	
+	public int totalCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"commitTotalCount");
+	}
 }

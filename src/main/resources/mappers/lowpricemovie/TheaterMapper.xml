@@ -10,7 +10,7 @@
 		update theater set commit=1 where num=#{num}
 	</update>
 	
-	<select id="commitTotalCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+	<select id="commitTotalCount" resultType="java.lang.Integer">
  		select count(num) from theater where commit=0
 	</select>
 	<select id="totalCount" resultType="java.lang.Integer" parameterType="java.util.Map">
@@ -23,9 +23,9 @@
 	<select id="commitList" parameterType="com.moco.util.RowMaker" resultType="com.moco.theater.TheaterDTO">
 		select * from 
 		(select rownum R, T.* from 
-		(select * from theater 
+		(select * from theater where commit=0
 		order by num desc) T) 
-		where R between #{row.startRow} and #{row.lastRow}
+		where R between #{startRow} and #{lastRow}
 	</select>
 	
 	<select id="list" parameterType="java.util.Map" resultType="com.moco.theater.TheaterDTO">
@@ -56,6 +56,9 @@
 		select * from theater where num=#{num}
 	</select>
 	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete theater where num=#{num}
+	</delete>
 	
 	
 </mapper>

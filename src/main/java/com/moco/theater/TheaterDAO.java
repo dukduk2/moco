@@ -71,4 +71,8 @@ public class TheaterDAO {
 	public int commitUpdate(int num) throws Exception{
 		return sqlSession.update(NAMESPACE+"commitUpdate", num);
 	}
+	
+	public int delete(int num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", num);
+	}
 }

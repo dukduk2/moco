@@ -72,7 +72,8 @@ public class AdminController {
 		model.addAttribute("movieRequest", movieRequestService.movieRequestTotalCount());
 		//theaterRequest - 대기중
 		model.addAttribute("theaterUnCommitCount", lowPriceMovieService.theaterUncommitCount());
-		
+		// screenRequest - 대기중
+		model.addAttribute("screenUnCommitCount", lowPriceMovieService.screenUncommitCount());
 	}
 
 	// movieRequest
@@ -777,6 +778,13 @@ public class AdminController {
 
 		lowPriceMovieService.theaterCommitUpdate(num);
 
+		return "redirect:/admin/theaterCommit";
+	}
+	
+	@RequestMapping(value="theaterUnCommit", method=RequestMethod.POST)
+	public String theaterUnCommit(int num) throws Exception{
+		// DB에서 극장 삭제.
+		lowPriceMovieService.theaterDelete(num);
 		return "redirect:/admin/theaterCommit";
 	}
 	

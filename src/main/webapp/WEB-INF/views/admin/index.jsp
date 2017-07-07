@@ -97,19 +97,19 @@
 			<tr class="tableTR">
 				<!-- screen 관리 -->
 				<td class="imgTD">
-					<a href="#" class="imgATag"><img alt="" src="../resources/adminIndexIcon/screen_icon.png" class="iconIMG"></a>
+					<a href="./screenCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/screen_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="#">상영 관리</a></span>
-					<span class="badge">0</span>			
+					<span class="titleSpan"><a href="./screenCommit">상영 관리</a></span>
+					<span class="badge">${screenUnCommitCount}</span>			
 				</td>
 				<!-- theater 승인 -->
 				<td class="imgTD">
-					<a href="#" class="imgATag"><img alt="" src="../resources/adminIndexIcon/theater_icon.png" class="iconIMG"></a>
+					<a href="./theaterCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/theater_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="#">극장 승인</a></span>
-					<span class="badge">0</span>
+					<span class="titleSpan"><a href="./theaterCommit">극장 승인</a></span>
+					<span class="badge">${theaterUnCommitCount}</span>
 				</td>
 			</tr>
 			<tr class="tableTR">

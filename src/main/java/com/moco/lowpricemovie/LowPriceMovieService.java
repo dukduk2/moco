@@ -246,10 +246,16 @@ public class LowPriceMovieService {
 	public int jjimDelete(JjimDTO jjimDTO) throws Exception{
 		return lowPriceMovieDAO.jjimDelete(jjimDTO);
 	}
-	
+	//극장 승인.
 	public int theaterCommitUpdate(int num) throws Exception{
 		return theaterDAO.commitUpdate(num);
 	}
+	//극장 삭제
+	public int theaterDelete(int num) throws Exception{
+		return theaterDAO.delete(num);
+	}
 	
-	
+	public int screenUncommitCount() throws Exception{
+		return screenDAO.totalCount();
+	}
 }
