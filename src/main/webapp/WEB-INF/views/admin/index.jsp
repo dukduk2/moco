@@ -44,9 +44,6 @@
 	.badge{
 		font-size: 1.4em;
 	}
-	.titleTR{
-		text-align: center;
-	}
 	.tableTR{
 		height: 180px;
 	}
@@ -66,21 +63,39 @@
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<table class="menuTable">
-			<tr class="titleTR tableTR">
+			<tr class="tableTR">
 				<!-- Member 관리 -->
-				<td>
+				<td class="imgTD">
 					<a href="./memberList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/member_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="titleTD contentsTD">
-					<span class="titleSpan"><a href="./memberList">memberList</a></span>
+					<span class="titleSpan"><a href="./memberList">회원 관리</a></span>
 					<span class="badge">${memberStateCount}</span>
 				</td>
 				<!-- movieInfo -->
-				<td>
+				<td class="imgTD">
 					<a href="./movieInfoWriteForm"><img class="iconIMG" alt="" src="../resources/adminIndexIcon/movieInfo_icon.png"></a>
 				</td>
-				<td>
-					<a href="./movieInfoWriteForm"><span class="titleSpan">MovieInfoUpload</span></a>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./movieInfoWriteForm">영화 정보 업로드</a></span>
+				</td>
+			</tr>
+			<tr class="tableTR">
+				<!-- screen 관리 -->
+				<td class="imgTD">
+					<a href="#" class="imgATag"><img alt="" src="../resources/adminIndexIcon/screen_icon.png" class="iconIMG"></a>
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="#">상영 관리</a></span>
+					<span class="badge">0</span>			
+				</td>
+				<!-- theater 승인 -->
+				<td class="imgTD">
+					<a href="#" class="imgATag"><img alt="" src="../resources/adminIndexIcon/theater_icon.png" class="iconIMG"></a>
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="#">극장 승인</a></span>
+					<span class="badge">0</span>
 				</td>
 			</tr>
 			<tr class="tableTR">
@@ -89,7 +104,7 @@
 					<a href="./movieRequestList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/movieRequest_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./movieRequestList">MovieRequest</a></span>
+					<span class="titleSpan"><a href="./movieRequestList">영화 요청</a></span>
 					<span class="badge">${movieRequest}</span>
 				</td>
 				<!-- movieUpload -->
@@ -97,23 +112,7 @@
 					<a href="./movieUpload" class="imgATag"><img alt="" src="../resources/adminIndexIcon/upload_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./movieUpload">Movie Upload</a></span>
-				</td>
-			</tr>
-			<tr class="tableTR">
-				<!-- season -->
-				<td class="imgTD">
-					<a href="./adminSeason" class="imgATag"><img alt="" src="../resources/adminIndexIcon/season_icon.png" class="iconIMG"></a>
-				</td>
-				<td class="contentsTD">
-					<span class="titleSpan"><a href="./adminSeason">SEASON</a></span>
-				</td>
-				<!-- schedule  -->
-				<td class="imgTD">
-					<a href="./movieScheduleList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/schedule_icon.png" class="iconIMG"></a>
-				</td>
-				<td class="contentsTD">
-					<span class="titleSpan"><a href="./movieScheduleList">movieScheduleList</a></span>
+					<span class="titleSpan"><a href="./movieUpload">영화 업로드</a></span>
 				</td>
 			</tr>
 			<tr class="tableTR">
@@ -122,7 +121,7 @@
 					<a href="./userBoardCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/userBoardCommit_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./userBoardCommit">userBoard Commit</a></span>
+					<span class="titleSpan"><a href="./userBoardCommit">게시글 승인 관리</a></span>
 					<span class="badge">${userBoardCommitCount}</span>
 				</td>
 				<!-- agency -->
@@ -130,8 +129,24 @@
 					<a href="./agencyList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/agency_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./agencyList">Agency</a></span>
+					<span class="titleSpan"><a href="./agencyList">배급사 승인 관리</a></span>
 					<span class="badge">${agencyCommitCount}</span>			
+				</td>
+			</tr>
+			<tr class="tableTR">
+				<!-- season -->
+				<td class="imgTD">
+					<a href="./adminSeason" class="imgATag"><img alt="" src="../resources/adminIndexIcon/season_icon.png" class="iconIMG"></a>
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./adminSeason">시즌 관리</a></span>
+				</td>
+				<!-- schedule  -->
+				<td class="imgTD">
+					<a href="./movieScheduleList" class="imgATag"><img alt="" src="../resources/adminIndexIcon/schedule_icon.png" class="iconIMG"></a>
+				</td>
+				<td class="contentsTD">
+					<span class="titleSpan"><a href="./movieScheduleList">영화 편성표 관리</a></span>
 				</td>
 			</tr>
 		</table>

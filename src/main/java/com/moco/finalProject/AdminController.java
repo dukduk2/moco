@@ -722,8 +722,7 @@ public class AdminController {
 
 	// 영화 정보 업로드 
 	@RequestMapping(value="movieInfoWrite", method=RequestMethod.POST)
-	public String movieInfoWrite(BasicMovieDTO basicMovieDTO,MultipartFile trailer_file, 
-			MultipartFile thumnail_file, String kind, HttpSession session, RedirectAttributes attributes){
+	public String movieInfoWrite(BasicMovieDTO basicMovieDTO,MultipartFile trailer_file, MultipartFile thumnail_file, String kind, HttpSession session, RedirectAttributes attributes){
 		FileSaver fileSaver = new FileSaver();
 		String path = session.getServletContext().getRealPath("resources/upload/movieInfo");
 		int result = 0;

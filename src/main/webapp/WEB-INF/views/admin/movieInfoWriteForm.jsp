@@ -102,16 +102,164 @@
 			
 			if(submit_check== true){
 				if(confirm("영화 정보를 업로드 하시겠습니까?")){
-					frm.submit();
+					$("#frm").submit();
+					/* frm.submit(); */
 				}
 			}
 		});
 		
 	});
 </script>
+<style type="text/css">
+	.titleSpan{
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+	.contentsSpan{
+		font-size: 1.1em;
+	}
+	.genreTD{
+		font-size: 1.1em;
+	}
+	.lastTD{
+		text-align: right;
+	}
+</style>
 </head>
 <body>
-	<form name="frm" action="./movieInfoWrite" method="post" enctype="multipart/form-data">
+	<div class="container">
+		<form name="frm" id="frm" action="./movieInfoWrite" method="post" enctype="multipart/form-data">
+			<table class="table table-hover">
+				<tr>
+					<td><span class="titleSpan">KIND</span></td>
+					<td colspan="2" class="genreTD">
+						<label class="radio-inline">
+      						<input type="radio" name="kind" value="basic" checked="checked">일반영화
+    					</label>
+    					<label class="radio-inline">
+      						<input type="radio" name="kind" value="low">독립영화
+    					</label>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">GENRE</span></td>
+					<td colspan="2" class="genreTD">
+						<label class="checkbox-inline">
+				      <input type="checkbox" value="가족" class="chx" name="genre"><span class="genreSpan">가족</span>
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="공포" class="chx" name="genre"><span class="genreSpan">공포</span>
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="느와르" class="chx" name="genre"><span class="genreSpan">느와르</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="다큐멘터리" class="chx" name="genre"><span class="genreSpan">다큐멘터리</span>
+				    </label>
+				    <label class="checkbox-inline">
+				      <input type="checkbox" value="드라마" class="chx" name="genre"><span class="genreSpan">드라마</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="모험" class="chx" name="genre"><span class="genreSpan">모험</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="뮤지컬" class="chx" name="genre"><span class="genreSpan">뮤지컬</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="멜로" class="chx" name="genre"><span class="genreSpan">멜로</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="미스터리" class="chx" name="genre"><span class="genreSpan">미스터리</span>
+				    </label>
+					<br>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="범죄" class="chx" name="genre"><span class="genreSpan">범죄</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="서스펜스" class="chx" name="genre"><span class="genreSpan">서스펜스</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="스릴러" class="chx" name="genre"><span class="genreSpan">스릴러</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="애니메이션" class="chx" name="genre"><span class="genreSpan">애니메이션</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="액션" class="chx" name="genre"><span class="genreSpan">액션</span>
+				    </label> 
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="전쟁" class="chx" name="genre"><span class="genreSpan">전쟁</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="코미디" class="chx" name="genre"><span class="genreSpan">코미디</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="판타지" class="chx" name="genre"><span class="genreSpan">판타지</span>
+				    </label>
+					<label class="checkbox-inline">
+				      <input type="checkbox" value="SF" class="chx" name="genre"><span class="genreSpan">SF</span>
+				    </label>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">DIRECTOR</span></td>
+					<td colspan="2"><input type="text" name="director" id="director"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">ACTOR</span></td>
+					<td colspan="2"><input type="text" name="actor" id="actor"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">YEAR</span></td>
+					<td colspan="2"><input type="number" name="year" id="year" min="1900" max="2050"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">NATION</span></td>
+					<td colspan="2"><input type="text" name="nation" id="nation"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">TRAILER</span></td>
+					<td colspan="2"><input type="file" name="trailer_file" id="trailer_file"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">PUB_DATE</span></td>
+					<td colspan="2"><input type="date" name="pub_date" id="pub_date"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">WATCHING_RATE</span></td>
+					<td colspan="2">
+						<select name="watching_rate" id="watching_rate">
+							<option value="default">관람등급선택</option>
+							<option value="전체관람가">전체관람가</option>
+							<option value="12세이상관람가">12세이상관람가</option>
+							<option value="15세이상관람가">15세이상관람가</option>
+							<option value="청소년관람불가">청소년관람불가</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">PLAY_TIME</span></td>
+					<td colspan="2"><input type="number" name="play_time" id="play_time"></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">STORY</span></td>
+					<td colspan="2"><textarea name="story" id="story"></textarea></td>
+				</tr>
+				<tr>
+					<td><span class="titleSpan">THUMNAIL</span></td>
+					<td colspan="2"><input type="file" name="thumnail_file" id="thumnail_file"></td>
+				</tr>
+				<tr>
+					<td class="lastTD" colspan="3">
+						<input type="button" value="글쓰기" id="submitBtn">				
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<!-- 수지꺼  -->
+	<!-- <form name="frm" action="./movieInfoWrite" method="post" enctype="multipart/form-data">
 		KIND 
 		일반영화<input type="radio" name="kind" value="basic" checked="checked">
 		독립영화<input type="radio" name="kind" value="low"><br>
@@ -153,6 +301,6 @@
 		STORY <textarea name="story" id="story"></textarea><br>
 		THUMNAIL <input type="file" name="thumnail_file" id="thumnail_file"><br>
 		<input type="button" value="글쓰기" id="submitBtn">
-	</form>
+	</form> -->
 </body>
 </html>
