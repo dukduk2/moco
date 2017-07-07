@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
-		
+		var page = 1;
 		// 시즌
 		$("#season").change(function() {
 			var season = $("#season").val();
@@ -30,11 +30,23 @@
 		// page
 		$(".go").click(function(){
 			var curPage=$(this).attr("id");
+			page = curPage;
 			location.href="./userBoardList?curPage="+curPage+"&kind=${map.kind}&search=${map.search}&season=${map.season}";
 		});
 		
+		$(".boardView").click(function() {
+			var num = $(this).attr("id");
+			location.href="./userBoardView?num="+num+"&curPage="+page;
+		});
 	});
 </script>
+<style type="text/css">
+	.boardView{
+		font-family: Montserrat, sans-serif;
+		font-weight: bold;
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
@@ -102,7 +114,9 @@
 					<c:forEach items="${list}" var="dto">
 						<tr>
 							<td>${dto.num}</td>
-							<td><a href="./userBoardView?num=${dto.num}&commit=${dto.commit}">${dto.title}</a></td>
+							<td>
+								<span id="${dto.num}" class="boardView">${dto.title}</span>
+							</td>
 							<td>${dto.writer}</td>
 							<td>${dto.genre}</td>
 							<td>${dto.reg_date}</td>

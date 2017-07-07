@@ -34,6 +34,13 @@
 		#{contents},sysdate,0,#{genre},0,#{fname},#{oname},
 		#{season},0,0)
 	</insert>
+	<!-- memberInfo 가져오기 -->
+	<select id="memberInfo" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select writer from userBoard where num=#{num}
+	</select>
+	<select id="memberInfo2" parameterType="java.lang.String" resultType="com.moco.member.MemberDTO">
+		select * from member where id=#{id}
+	</select>
 	<!-- user 수정 -->
 	<update id="update" parameterType="com.moco.userBoard.UserBoardDTO">
 		update userboard
