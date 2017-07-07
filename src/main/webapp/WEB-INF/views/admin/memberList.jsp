@@ -77,6 +77,20 @@ $(function(){
 	<section>
 		<div class="container">
 			<div id="result">
+			
+			
+				<div class=search_right>
+					<form action="memberList">
+						<select name="kind" class="form-control">
+							<option value="id">ID 검색</option>
+							<option value="name">NAME 검색</option>
+						</select>
+						<input type="hidden" name="curPage" value="${curPage}">
+						<input type="text" class="form-control" name="search" placeholder="검색">
+						<button class="btn btn-info">검색</button>
+					</form>
+				</div>
+			
 				<table class="table table-hover">
 					<thead><tr class="head">
 						<td>아이디</td>
@@ -130,17 +144,6 @@ $(function(){
 				<input type="button" class="btn btn-success" id="back" value="BACK">
 				<input type="button" class="btn btn-warning" id="refreash" value="REFREASH">
 
-				<div class="search">
-					<form action="memberList">
-						<select name="kind" class="form-control">
-							<option value="id">ID 검색</option>
-							<option value="name">NAME 검색</option>
-						</select>
-						<input type="hidden" name="curPage" value="${curPage}">
-						<input type="text" class="form-control" name="search" placeholder="검색">
-						<button class="btn btn-info">검색</button>
-					</form>
-				</div>
 
 				<!-- 페이징 처리 -->
 				<div class="paging">
