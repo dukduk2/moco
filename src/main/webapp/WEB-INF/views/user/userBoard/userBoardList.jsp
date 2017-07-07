@@ -35,6 +35,7 @@
 		
 	});
 </script>
+
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
@@ -46,10 +47,10 @@
 				<form class="form-horizontal" action="./userBoardList" id="seasonForm">
 					<table>
 						<tr>
-							<td><span class="titleSpan">SEASON</span></td>
+							<td>SEASON</td>
 							<td>
 								<select name="season" class="form-control" id="season">
-									<option value="all" class="titleSpan">ALL</option>
+									<option value="all">ALL</option>
 									<c:forEach items="${orderList}" var="order">
 										<option value="${order.season}">${order.season}</option>
 									</c:forEach>
@@ -66,10 +67,10 @@
 					<table>
 						<tr>
 							<td>
-								<select name="kind" class="form-control col-sm-5">
-									<option value="title" class="titleSpan">TITLE</option>
-									<option value="writer" class="titleSpan">WRITER</option>
-									<option value="genre" class="titleSpan">GENRE</option>
+								<select name="kind" class="form-control" style="width: 100px;">
+									<option value="title">TITLE</option>
+									<option value="writer">WRITER</option>
+									<option value="genre">GENRE</option>
 								</select>						
 							</td>
 							<td>
@@ -77,7 +78,7 @@
 								<input type="hidden" name="curPage" value="1">
 							</td>
 							<td>
-								<input type="button" value="Search" id="search" class="btn titleSpan">
+								<input type="button" value="Search" id="search" class="btn">
 							</td>
 						</tr>
 					</table>				
@@ -87,14 +88,14 @@
 			<table class="table table-hover">
 				<thead>
 					<tr class="head">
-						<td><span class="titleSpan">NUM</span></td>
-						<td><span class="titleSpan">TITLE</span></td>
-						<td><span class="titleSpan">WRITER</span></td>
-						<td><span class="titleSpan">GENRE</span></td>
-						<td><span class="titleSpan">DATE</span></td>
-						<td><span class="titleSpan">HIT</span></td>
-						<td><span class="titleSpan">LIKES</span></td>
-						<td><span class="titleSpan">SEASON</span></td>
+						<td>NUM</td>
+						<td>TITLE</td>
+						<td>WRITER</td>
+						<td>GENRE</td>
+						<td>DATE</td>
+						<td>HIT</td>
+						<td>LIKES</td>
+						<td>SEASON</td>
 					</tr>
 				</thead>
 				
@@ -132,7 +133,7 @@
 			<!-- BTN -->
 			<div class="btnBox">
 				<c:if test="${seasonCheck && memberDTO != null}">
-					<a href="./userBoardWrite"><button class="btn"><span class="titleSpan">WRITE</span></button></a>
+					<a href="./userBoardWrite"><button class="btn">WRITE</button></a>
 				</c:if>
 			</div>
 		</div>
