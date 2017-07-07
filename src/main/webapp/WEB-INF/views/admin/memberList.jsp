@@ -77,20 +77,27 @@ $(function(){
 	<section>
 		<div class="container">
 			<div id="result">
-			
-			
+
 				<div class=search_right>
 					<form action="memberList">
-						<select name="kind" class="form-control">
-							<option value="id">ID 검색</option>
-							<option value="name">NAME 검색</option>
-						</select>
-						<input type="hidden" name="curPage" value="${curPage}">
-						<input type="text" class="form-control" name="search" placeholder="검색">
-						<button class="btn btn-info">검색</button>
+						<table>
+							<tr>
+								<td><select name="kind" class="form-control" style="width: 130px;">
+										<option value="id">ID 검색</option>
+										<option value="name">NAME 검색</option>
+								</select></td>
+
+								<td>
+									<input type="text" class="form-control" name="search" placeholder="검색">
+									<input type="hidden" name="curPage" value="${curPage}">
+								</td>
+								
+								<td><button class="btn btn-info">검색</button></td>
+							</tr>
+						</table>
 					</form>
 				</div>
-			
+
 				<table class="table table-hover">
 					<thead><tr class="head">
 						<td>아이디</td>
@@ -106,7 +113,7 @@ $(function(){
 						<td>수정</td>
 						<td>강퇴</td>
 					</tr></thead>
-		
+
 					<c:forEach items="${list}" var="man">
 						<tr class="body">
 							<td>${man.id}</td>
@@ -139,11 +146,6 @@ $(function(){
 						</tr>
 					</c:forEach>
 				</table>
-
-				<input type="button" class="btn" id="home" value="HOME">
-				<input type="button" class="btn btn-success" id="back" value="BACK">
-				<input type="button" class="btn btn-warning" id="refreash" value="REFREASH">
-
 
 				<!-- 페이징 처리 -->
 				<div class="paging">
