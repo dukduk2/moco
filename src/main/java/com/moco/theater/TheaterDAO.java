@@ -32,8 +32,12 @@ public class TheaterDAO {
 		
 		return total;
 	}
+	
+	public int totalCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"commitTotalCount");
+	}
+	
 	public List<TheaterDTO> list(RowMaker rowMaker, String kind, String search) throws Exception{
-		
 		List<TheaterDTO> ar = new ArrayList<TheaterDTO>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -44,6 +48,9 @@ public class TheaterDAO {
 		ar = sqlSession.selectList(NAMESPACE+"list", map);
 		
 		return ar;
+	}
+	public List<TheaterDTO> list(RowMaker rowMaker) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"commitList", rowMaker);
 	}
 	
 	public int insert(TheaterDTO theaterDTO, MultiplexDTO multiplexDTO) throws Exception{
@@ -59,5 +66,9 @@ public class TheaterDAO {
 
 	public TheaterDTO view(int num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"view", num);
+	}
+	
+	public int commitUpdate(int num) throws Exception{
+		return sqlSession.update(NAMESPACE+"commitUpdate", num);
 	}
 }
