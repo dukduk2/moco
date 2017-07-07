@@ -97,7 +97,7 @@
 						<td><span class="titleSpan">SEASON</span></td>
 					</tr>
 				</thead>
-				
+				<<test
 				<tbody>
 					<c:forEach items="${list}" var="dto">
 						<tr>
