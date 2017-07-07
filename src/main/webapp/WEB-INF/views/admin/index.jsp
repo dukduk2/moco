@@ -25,6 +25,12 @@
 	});
 </script>
 <style type="text/css">
+	.titleCSS{
+		font-family: Montserrat, sans-serif;
+		text-align: center;
+		font-weight: bold;
+		font-size: 2em;
+	}
 	.menuTable{
 		margin : 0 auto;
 		width: 1000px;
@@ -63,6 +69,14 @@
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<table class="menuTable">
+			<tr class="tableTR">
+				<td colspan="4" class="imgTD">
+					<div>
+						<img class="iconIMG" alt="" src="../resources/adminIndexIcon/menu_icon.png">
+						&nbsp;&nbsp;&nbsp;&nbsp;<span class="titleCSS">Admin Menu</span>
+					</div>
+				</td>
+			</tr>
 			<tr class="tableTR">
 				<!-- Member 관리 -->
 				<td class="imgTD">
