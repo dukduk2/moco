@@ -82,6 +82,22 @@ public class LowPriceMovieService {
 		
 		return map;
 	}
+	//commitList
+	public Map<String, Object> theaterList(int curPage, int perPage) throws Exception{
+		PageMaker pageMaker = new PageMaker(curPage, perPage);
+		RowMaker rowMaker = pageMaker.getRowMaker();
+		
+		PageResult pageResult = pageMaker.paging(theaterDAO.totalCount());
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", theaterDAO.list(rowMaker));
+		map.put("pageResult", pageResult);
+		
+		return map;
+	}
+	public int theaterUncommitCount() throws Exception{
+		return theaterDAO.totalCount();
+	}
 	//해당 극장의 상영관 LIST
 	public List<MultiplexDTO> multiplexList(int theater_num) throws Exception{
 		return multiplexDAO.list(theater_num);
@@ -231,7 +247,9 @@ public class LowPriceMovieService {
 		return lowPriceMovieDAO.jjimDelete(jjimDTO);
 	}
 	
-	
+	public int theaterCommitUpdate(int num) throws Exception{
+		return theaterDAO.commitUpdate(num);
+	}
 	
 	
 }

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.moco.agency.AgencyDTO;
 import com.moco.agency.AgencyService;
 import com.moco.fileTest.FileSaver;
+import com.moco.lowpricemovie.LowPriceMovieService;
 import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
@@ -56,7 +57,8 @@ public class AdminController {
 	private MovieScheduleService movieScheduleService;
 	@Inject
 	private BasicMovieService basicMovieService;
-
+	@Inject
+	private LowPriceMovieService lowPriceMovieService;
 	// index
 	@RequestMapping(value="index" , method=RequestMethod.GET)
 	public void index(Model model) throws Exception{
@@ -68,6 +70,9 @@ public class AdminController {
 		model.addAttribute("agencyCommitCount", agencyService.agencyUncommitCount());
 		// movieRequest - 요청 중
 		model.addAttribute("movieRequest", movieRequestService.movieRequestTotalCount());
+		//theaterRequest - 대기중
+		model.addAttribute("theaterUnCommitCount", lowPriceMovieService.theaterUncommitCount());
+		
 	}
 
 	// movieRequest
@@ -748,4 +753,32 @@ public class AdminController {
 		return "redirect:/admin/index";
 	}
 
+	@RequestMapping(value="theaterCommit", method=RequestMethod.GET)
+	public void theaterCommit(Integer curPage, Integer perPage, Model model) throws Exception{
+		if(curPage == null){
+			curPage = 1;
+		}
+		if(perPage == null){
+			perPage = 10;
+		}
+		
+		Map<String, Object> map = lowPriceMovieService.theaterList(curPage, perPage);
+
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("pageResult", map.get("pageResult"));
+	}
+	
+	@RequestMapping(value="theaterCommit_ajax", method=RequestMethod.POST)
+	public String theaterCommit_ajax(int num, Model model) throws Exception{
+		model.addAttribute("theaterDTO", lowPriceMovieService.theaterView(num));
+		return "admin/theaterCommit_ajax";
+	}
+	@RequestMapping(value="theaterCommit", method=RequestMethod.POST)
+	public String theaterCommit(int num) throws Exception{
+
+		lowPriceMovieService.theaterCommitUpdate(num);
+
+		return "redirect:/admin/theaterCommit";
+	}
+	
 }
