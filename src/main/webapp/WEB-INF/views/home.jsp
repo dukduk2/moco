@@ -43,8 +43,8 @@ $(function(){
 
 <style type="text/css">
 .title {
-	width: 70%;
-	margin: 20px auto;
+	width: 300px;
+	margin: 10px auto;
 	border: solid red 2px;
 	text-align: center;
 	font-family: 'Sofia';
@@ -54,9 +54,9 @@ $(function(){
 }
 
 .contents {
-	width: 70%;
-	height: 500px;
-	margin: 50px auto;
+	width: 300px;
+	height: 200px;
+	margin: 20px auto;
 	border: solid red 2px;
 	text-align: center;
 	font-family: 'Sofia';
@@ -95,6 +95,10 @@ video{
 	z-index: 2;
 }
 
+.menu:hover {
+	opacity : 1;
+}
+
 .center{
 	background-image: url("${pageContext.request.contextPath}/resources/img/start.jpg");
 	background-size: cover;
@@ -121,13 +125,15 @@ body {
 .container {
 	height: 100%;
 	width: 100%;
-	padding: 80px 120px;
+	padding: 50px 120px;
+	z-index: -2;
 }
 
 #intro{
 	/* background-image: url("${pageContext.request.contextPath}/resources/img/intro.jpg");
 	background-size: cover; */
-	background-color: pink;
+	background: none;
+	z-index: -2;
 }
 
 #go{
@@ -146,6 +152,7 @@ body {
     color: white;
     border-radius: 0 5px 5px 0;
     position: fixed;
+    z-index: 5;
 }
 
 #mySidenav a:hover {
@@ -164,34 +171,64 @@ body {
 /* side-Menu */
 
 /* info-effect */
-.existent {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
+.event {
+	text-align: center;
+	width: 500px;
+	height: 500px;
+	border-radius: 100%;
+	border: solid blue 2px;
+	overflow: visible;
+	float: right;
 }
 
-	.appear {
+.existent {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .5s ease;
+	line-height: 100px;
+	z-index: 8;
+}
+
+.appear {
+	margin: 60px auto;
 	transition: .5s ease;
 	opacity: 0;
+	position: relative;
+	height: auto;
+	width: auto;
+}
+
+.event:hover .existent {
+	display: none;
+}
+
+.event:hover .appear {
+	opacity: 1;
+}
+
+video {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	width: 100%
-}
-
-.container:hover .existent {
-  opacity: 0.3;
-}
-
-.container:hover .appear {
-  opacity: 1;
-}
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+}	
 /* info-effect */
+
+.info {
+	min-width: 100px;
+	min-height: 100px;
+	width: auto;
+	height: auto;
+	opacity : 0.6;
+	border-radius: 1000px;
+	cursor: pointer;
+	z-index: 2;
+}
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -201,17 +238,25 @@ body {
 	</div>
 
 <!-- 수정 中 -->
+	<video autoplay loop>
+		<source src="${pageContext.request.contextPath}/resources/moving/titanic.mp4">
+	</video>
+
 	<div id="intro" class="container">
-		<div class="existent">1234</div>
-		
-		<div class="appear">
-			<div class="title">
-				<p>asd</p>
+
+		<div class="event">
+			<div class="existent">마우스를 올려보려무나~</div>
+
+			<div class="appear">
+				<div class="title"><p>asd</p></div>
+				<div class="contents"><p>불라불라</p></div>
+				<a href="#go" id="two">이동하기</a>
 			</div>
-			
-			<div class="contents">
-				<p>불라불라</p>
-			</div>
+		</div>
+
+		<button class="info btn btn-info" data-toggle="collapse" data-target="#demo">Info</button>
+  		<div id="demo" class="collapse">
+			방구 영화 마을 뿡뿡~ (소개를 넣어주세요~)
 		</div>
 	</div>
 <!--  -->
