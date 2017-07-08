@@ -259,7 +259,7 @@ public class MemberController {
 
 	//아이디 찾기
 	@RequestMapping(value="memberSearchID", method=RequestMethod.POST)
-	public String memberSearchID(String name, String email, RedirectAttributes redirectAttributes){
+	public String memberSearchID(String name, String email, HttpSession session){
 		String message = "";
 		
 		try {
@@ -270,12 +270,12 @@ public class MemberController {
 		}
 		
 		if(message != null){
-			redirectAttributes.addFlashAttribute("message", "회원님의 ID 는 "+message+" 입니다.");
+			session.setAttribute("message", "회원님의 ID 는 "+message+" 입니다.");
 		} else {
-			redirectAttributes.addFlashAttribute("message", "회원 정보를 찾을 수 없습니다.");
+			session.setAttribute("message", "회원 정보를 찾을 수 없습니다.");
 		}
 
-		return "redirect:/";
+		return "member/action/memberSuccess";
 	}
 	
 	//질문 검색
@@ -294,8 +294,9 @@ public class MemberController {
 		return "member/action/memberCheckResult";
 	}
 	
+	//비밀번호 찾기
 	@RequestMapping(value="memberSearchPW", method=RequestMethod.POST)
-	public String memberSearchPW(String id, String email, String answer, RedirectAttributes redirectAttributes){
+	public String memberSearchPW(String id, String email, String answer, HttpSession session){
 		String message = "";
 		
 		try {
@@ -312,11 +313,11 @@ public class MemberController {
 			String subject = id+"님의 비밀번호입니다.";
 			String contents = "회원님의 PW 는 "+message+" 입니다.";
 			mailService.sendMail(from, to, subject, contents);
-			redirectAttributes.addFlashAttribute("message", "회원님의 비밀번호를 이메일로 전송해드렸습니다.");
+			session.setAttribute("message", "회원님의 비밀번호를 이메일로 전송해드렸습니다.");
 		} else if(message == null) {
-			redirectAttributes.addFlashAttribute("message", "회원 정보를 찾을 수 없습니다.");
+			session.setAttribute("message", "회원 정보를 찾을 수 없습니다.");
 		}
 
-		return "redirect:/";
+		return "member/action/memberSuccess";
 	}	
 }
