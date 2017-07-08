@@ -9,12 +9,12 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <title>Home</title>
 <script type="text/javascript">
-$(function(){	
-	var message = '${message}';
+$(function(){
+	/* var message = '${message}';
 
 	if(message != ""){
 		alert(message);
-	}
+	} */
 	
 	$(".menu").click(function(){
 		var go = $(this).attr("id");
@@ -189,6 +189,7 @@ body {
 	transition: .5s ease;
 	line-height: 100px;
 	z-index: 8;
+	border: solid black 2px;
 }
 
 .appear {
