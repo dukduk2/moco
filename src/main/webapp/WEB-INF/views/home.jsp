@@ -175,21 +175,12 @@ body {
 	text-align: center;
 	width: 500px;
 	height: 500px;
-	border-radius: 100%;
+	border-radius: 10%;
 	border: solid blue 2px;
 	overflow: visible;
 	float: right;
-}
-
-.existent {
-	opacity: 1;
-	display: block;
-	width: 100%;
-	height: auto;
-	transition: .5s ease;
-	line-height: 100px;
-	z-index: 8;
-	border: solid black 2px;
+	opacity: 0.4;
+	overflow: hidden;
 }
 
 .appear {
@@ -198,11 +189,13 @@ body {
 	opacity: 0;
 	position: relative;
 	height: auto;
-	width: auto;
+	width: 400px;
+	border-radius: 30px; 
+	border: solid yellow 2px;
 }
 
-.event:hover .existent {
-	display: none;
+.event:hover {
+	opacity: 1;
 }
 
 .event:hover .appear {
@@ -230,6 +223,10 @@ video {
 	cursor: pointer;
 	z-index: 2;
 }
+
+.collapse {
+	color: red;
+}
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -246,18 +243,20 @@ video {
 	<div id="intro" class="container">
 
 		<div class="event">
-			<div class="existent">마우스를 올려보려무나~</div>
+			<div>마우스를 올려보려무나~</div>
 
 			<div class="appear">
-				<div class="title"><p>asd</p></div>
-				<div class="contents"><p>불라불라</p></div>
+				<div class="title"><p>제목</p></div>
+				<div class="contents"><p>내용</p></div>
+				
 				<a href="#go" id="two">이동하기</a>
 			</div>
 		</div>
 
 		<button class="info btn btn-info" data-toggle="collapse" data-target="#demo">Info</button>
   		<div id="demo" class="collapse">
-			방구 영화 마을 뿡뿡~ (소개를 넣어주세요~)
+			방구 영화 마을 뿡뿡~ (소개를 넣어주세요~)<br>
+			<a href="#go" id="two">이동하기</a>
 		</div>
 	</div>
 <!--  -->
