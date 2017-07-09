@@ -259,7 +259,7 @@ public class MemberController {
 
 	//아이디 찾기
 	@RequestMapping(value="memberSearchID", method=RequestMethod.POST)
-	public String memberSearchID(String name, String email, HttpSession session){
+	public String memberSearchID(String name, String email,/* HttpSession session,*/ Model model){
 		String message = "";
 		
 		try {
@@ -270,9 +270,9 @@ public class MemberController {
 		}
 		
 		if(message != null){
-			session.setAttribute("message", "회원님의 ID 는 "+message+" 입니다.");
+			model.addAttribute("message", "회원님의 ID 는 "+message+" 입니다.");
 		} else {
-			session.setAttribute("message", "회원 정보를 찾을 수 없습니다.");
+			model.addAttribute("message", "회원 정보를 찾을 수 없습니다.");
 		}
 
 		return "member/action/memberSuccess";
@@ -296,7 +296,7 @@ public class MemberController {
 	
 	//비밀번호 찾기
 	@RequestMapping(value="memberSearchPW", method=RequestMethod.POST)
-	public String memberSearchPW(String id, String email, String answer, HttpSession session){
+	public String memberSearchPW(String id, String email, String answer, Model model){
 		String message = "";
 		
 		try {
@@ -313,9 +313,9 @@ public class MemberController {
 			String subject = id+"님의 비밀번호입니다.";
 			String contents = "회원님의 PW 는 "+message+" 입니다.";
 			mailService.sendMail(from, to, subject, contents);
-			session.setAttribute("message", "회원님의 비밀번호를 이메일로 전송해드렸습니다.");
+			model.addAttribute("message", "회원님의 비밀번호를 이메일로 전송해드렸습니다.");
 		} else if(message == null) {
-			session.setAttribute("message", "회원 정보를 찾을 수 없습니다.");
+			model.addAttribute("message", "회원 정보를 찾을 수 없습니다.");
 		}
 
 		return "member/action/memberSuccess";

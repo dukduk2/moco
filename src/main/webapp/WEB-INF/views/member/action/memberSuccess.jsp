@@ -18,6 +18,7 @@ $(function(){
 
 	$("#bye").click(function(){
 		window.close();
+		/* session.invalidate(); */
 	});
 });
 </script>

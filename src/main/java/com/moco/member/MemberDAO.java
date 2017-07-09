@@ -130,7 +130,7 @@ public class MemberDAO {
 		checkQuestion = sqlSession.selectOne(namespace+"memberQuestionCheck", id);
 		
 		if(checkQuestion == null){
-			System.out.println("DAO Question : "+checkQuestion);
+			checkQuestion = "ID를 확인하세요.";
 		}
 		
 		return checkQuestion;

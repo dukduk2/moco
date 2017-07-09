@@ -43,7 +43,7 @@ $(function(){
 
 <style type="text/css">
 .title {
-	width: 300px;
+	width: 400px;
 	margin: 10px auto;
 	border: solid red 2px;
 	text-align: center;
@@ -54,8 +54,8 @@ $(function(){
 }
 
 .contents {
-	width: 300px;
-	height: 200px;
+	width: 400px;
+	height: 500px;
 	margin: 20px auto;
 	border: solid red 2px;
 	text-align: center;
@@ -149,10 +149,10 @@ body {
     width: 100px;
     text-decoration: none;
     font-size: 20px;
-    color: white;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 10px 10px 0;
     position: fixed;
     z-index: 5;
+    border: double white 1px;
 }
 
 #mySidenav a:hover {
@@ -160,12 +160,14 @@ body {
 }
 
 #one {
-	background-color: red;
+	background-color: white;
+    color: black;
     top: 20px;
 }
 
 #two {
-	background-color: blue;
+	background-color: black;
+    color: white;
     top: 80px;
 }
 /* side-Menu */
@@ -173,12 +175,12 @@ body {
 /* info-effect */
 .event {
 	text-align: center;
-	width: 500px;
-	height: 500px;
-	border-radius: 10%;
+	width: 410px;
+	height: auto;
+	border-radius: 30px;
 	border: solid blue 2px;
 	overflow: visible;
-	float: right;
+	float: left;
 	opacity: 0.4;
 	overflow: hidden;
 }
@@ -189,8 +191,7 @@ body {
 	opacity: 0;
 	position: relative;
 	height: auto;
-	width: 400px;
-	border-radius: 30px; 
+	width: 405px;
 	border: solid yellow 2px;
 }
 
@@ -232,7 +233,7 @@ video {
 
 	<div id="mySidenav" class="sidenav">
 		<a href="#intro" id="one">Intro</a>
-		<a href="#go" id="two">Go</a>
+		<a href="#go" id="two">Login</a>
 	</div>
 
 <!-- 수정 中 -->
@@ -249,15 +250,16 @@ video {
 				<div class="title"><p>제목</p></div>
 				<div class="contents"><p>내용</p></div>
 				
-				<a href="#go" id="two">이동하기</a>
+				<a href="#go" id="two">Login</a>
 			</div>
 		</div>
 
-		<button class="info btn btn-info" data-toggle="collapse" data-target="#demo">Info</button>
+		<!-- 버튼 출력형 --> 
+		<!-- <button class="info btn btn-info" data-toggle="collapse" data-target="#demo">Info</button>
   		<div id="demo" class="collapse">
 			방구 영화 마을 뿡뿡~ (소개를 넣어주세요~)<br>
-			<a href="#go" id="two">이동하기</a>
-		</div>
+			<a href="#go" id="two">Login</a>
+		</div> -->
 	</div>
 <!--  -->
 	
