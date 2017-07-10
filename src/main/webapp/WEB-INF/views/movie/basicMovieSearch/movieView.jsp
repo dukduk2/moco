@@ -8,7 +8,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
-<title>Insert title here</title>
+<title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
 		

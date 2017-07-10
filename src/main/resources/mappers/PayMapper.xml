@@ -6,13 +6,13 @@
 <mapper namespace="PayMapper">
 	<insert id="payInsert" parameterType="java.util.Map">
 		insert into pay 
-		<if test="kind=='bNum'">
+		<if test="kind=='basic'">
 		values(#{id}, #{num}, 0, 0)
 		</if>
-		<if test="kind=='lNum'">
+		<if test="kind=='low'">
 		values(#{id}, 0, #{num}, 0)
 		</if>
-		<if test="kind=='rNum'">
+		<if test="kind=='reservation'">
 		values(#{id}, 0, 0, #{num})
 		</if>
 	</insert>
