@@ -82,7 +82,7 @@ video{
 	width: 10%;
 	height: 450px;
 	margin: 0 auto;
-	margin-top: 160px;
+	margin-top: 250px;
 	border: solid blue 2px;
 }
 
@@ -211,7 +211,7 @@ video {
 
 	<div id="go" class="container">
 		<div class="menu_wrap">
-			<c:if test="${memberDTO eq null }">
+			<c:if test="${memberDTO eq null}">
 				<center>
 					<!-- Trigger the modal with a button -->
 					<button class="menu center" data-toggle="modal" data-target="#myModal">
@@ -220,11 +220,12 @@ video {
 				</center>	
 			</c:if>
 	
-			<c:if test="${memberDTO ne null }">
+			<c:if test="${memberDTO ne null}">
 				<button class="menu left" id="left"></button>
 				<button class="menu right" id="right"></button>
 			</c:if>
 		</div>
+
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
@@ -290,7 +291,47 @@ video {
 				<c:forEach items="${list}" var="dto">
 					<tr class="body">
 						<td>${dto.num}</td>
-						<td><a href="./notice/noticeView?num=${dto.num}">${dto.title}</a></td>
+						<td><a href="./notice/noticeView?num=${dto.num}">${dto.title}</a>
+						
+<!-- notice View start -->
+							<!-- Trigger the modal with a button -->
+							<button data-toggle="modal" data-target="#myModal${dto.num}">${dto.title}</button>
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal${dto.num}" role="dialog">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<table style="margin: auto;">
+												<tr>
+													<td class="modal-title">TITLE : ${dto.title}</td>
+													<td>WRITER : ${dto.writer}</td>
+													<td>DATE : ${dto.reg_date}</td>
+													<td>HIT : ${dto.hit}</td><!-- hit가 안올라감 -->
+												</tr>
+											</table>
+										</div>
+						
+										<div class="modal-body">
+											${dto.contents}
+										</div>
+						
+										<div class="modal-footer">
+											<c:if test="${memberDTO.id eq 'admin'}">
+												<a class="btn btn-info" href="notice/noticeUpdate?num=${dto.num}">UPDATE</a>
+												<a class="btn btn-info" href="notice/noticeDelete?num=${dto.num}">DELETE</a>
+											</c:if>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+<!-- notice View end -->
+						</td>
+
 						<td>${dto.writer}</td>
 						<td>${dto.reg_date}</td>
 						<td>${dto.hit}</td>

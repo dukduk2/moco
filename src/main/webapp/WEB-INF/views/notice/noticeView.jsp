@@ -20,20 +20,19 @@
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<div class="contents-wrap">
-		<h2>NOTICE VIEW</h2>
-		<h2>TITLE : ${dto.title }</h2>
-		<h2>WRITER : ${dto.writer }</h2>
-		<h2>CONTENTS : ${dto.contents }</h2>
-		<h2>DATE : ${dto.reg_date }</h2>
-		<h2>HIT : ${dto.hit }</h2>
-		
-		<c:if test="${memberDTO.id eq 'admin'}">
-		<a class="btn btn-info" href="./noticeUpdate?num=${dto.num }">UPDATE</a>
-		<a class="btn btn-info" href="./noticeDelete?num=${dto.num }">DELETE</a>
-		</c:if>
-		
-		<a class="btn btn-info" href="../">LIST</a>
-		
+			<h2>NOTICE VIEW</h2>
+			<h2>TITLE : ${dto.title}</h2>
+			<h2>WRITER : ${dto.writer}</h2>
+			<h2>CONTENTS : ${dto.contents}</h2>
+			<h2>DATE : ${dto.reg_date}</h2>
+			<h2>HIT : ${dto.hit}</h2>
+
+			<c:if test="${memberDTO.id eq 'admin'}">
+				<a class="btn btn-info" href="./noticeUpdate?num=${dto.num}">UPDATE</a>
+				<a class="btn btn-info" href="./noticeDelete?num=${dto.num}">DELETE</a>
+			</c:if>
+
+			<a class="btn btn-info" href="../">LIST</a>
 		</div>
 	</section>
 </body>
