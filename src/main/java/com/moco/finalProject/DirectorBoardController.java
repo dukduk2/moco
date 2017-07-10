@@ -43,14 +43,7 @@ public class DirectorBoardController {
 	
 	@RequestMapping(value="directorBoardList", method=RequestMethod.GET)
 	public void listMain(HttpSession session){
-		// SESSION TEST //
-		MemberDTO memberDTO = new MemberDTO();
-		try {
-			memberDTO = investService.investorInfo("");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		session.setAttribute("memberDTO", memberDTO);
+		
 	}
 
 	@RequestMapping(value="directorBoardList_ajax", method=RequestMethod.GET)
@@ -127,6 +120,8 @@ public class DirectorBoardController {
 		
 		int result = 0;
 		try {
+			directorBoardDTO.setWriter(((MemberDTO)session.getAttribute("memberDTO")).getId());
+			directorBoardDTO.setName(((MemberDTO)session.getAttribute("memberDTO")).getName());
 			directorBoardDTO.setFname(fileSaver.saver(multipartFile, path));
 			directorBoardDTO.setOname(multipartFile.getOriginalFilename());
 			result = directorBoardService.write(directorBoardDTO);
@@ -150,7 +145,7 @@ public class DirectorBoardController {
 			map.put("pnum", num);
 			myInvestMoney = investService.myInvestMoney(map);
 		} catch (Exception e) {
-			System.out.println("[directorBoardView myInvestMoney exception]");
+			
 		}
 		model.addAttribute("boardDTO", directorBoardDTO)
 		.addAttribute("countInvestors", countInvestors)

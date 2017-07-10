@@ -69,5 +69,5 @@ public class DirectorBoardDAO implements BoardDAO{
 	public int stateUpdateFinish(int num) throws Exception{
 		return sqlSession.update(MAPPER_NAME+"stateUpdateFinish", num);
 	}
-
+	
 }

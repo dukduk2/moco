@@ -162,7 +162,6 @@
 	<section>
 	<a href="./download?fileName=planning_document.hwp">양식 다운로드</a><br>
 	<a href="./directorBoardWrite">펀딩 등록하기</a>
-	<p>----------------리스트---------------</p>
 	<!-- 장르 검색 -->
 	<p>-------------- genre(최대 3개까지 선택) ---------------</p> 
 			드라마<input type="checkbox" class="chx" name="genre" value="드라마">

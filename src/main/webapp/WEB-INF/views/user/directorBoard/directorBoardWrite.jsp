@@ -96,7 +96,6 @@
 	
 	<form action="./directorBoardWrite" method="post" enctype="multipart/form-data" name="frm">
 		<p>title <input type="text" name="title" id="title"></p>
-		<p>writer <input type="text" name="writer"></p>
 		<p>contents <input type="text" name="contents" id="contents"></p>
 		<p>target_date <input type="date" name="targetDate" id="targetDate"></p>
 		<p>genre(최대 3개까지 선택)</p> 

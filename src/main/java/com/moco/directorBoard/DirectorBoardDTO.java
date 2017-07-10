@@ -11,6 +11,7 @@ public class DirectorBoardDTO extends BoardDTO{
 	private int state;
 	private Date targetDate;
 	private Date openDate;
+	private String name;
 	public String getGenre() {
 		return genre;
 	}
@@ -46,5 +47,11 @@ public class DirectorBoardDTO extends BoardDTO{
 	}
 	public void setOpenDate(Date openDate) {
 		this.openDate = openDate;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

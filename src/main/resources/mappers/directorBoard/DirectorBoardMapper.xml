@@ -7,11 +7,11 @@
 	<!-- 글작성 -->
 	<insert id="write" parameterType="directorBoardDTO">
 		insert into directorboard
-		(num, title, writer, contents, reg_date, hit, genre, curPrice, 
-		targetPrice, state, targetDate, fname, oname, openDate) 
+		(num, title, writer, contents, reg_date, genre, curPrice, 
+		targetPrice, state, targetDate, fname, oname, openDate, name) 
 		values
 		(directorboard_seq.nextval, #{title}, #{writer}, #{contents}, sysdate,
-		0, #{genre}, 0, #{targetPrice}, 1, #{targetDate}, #{fname}, #{oname}, sysdate)
+		#{genre}, 0, #{targetPrice}, 1, #{targetDate}, #{fname}, #{oname}, sysdate, #{name})
 	</insert>
 	
 	<!-- delete -->
@@ -74,11 +74,11 @@
    		)
 	</select>
 	
-	<!-- targetDate가 오늘 날짜인 리스트 -->
+	<!-- targetDate가 오늘 날짜인 목표달성 실패 리스트 -->
 	<select id="compareDate" resultType="directorBoardDTO">
 		select * from 
 		(select * from DIRECTORBOARD, (select trunc(sysdate) from dual) F ) 
-		where targetdate=trunc(sysdate)
+		where targetdate+1=trunc(sysdate) and curprice<![CDATA[ < ]]>targetprice
 	</select>
 	
 </mapper>

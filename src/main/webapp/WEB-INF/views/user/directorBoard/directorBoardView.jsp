@@ -126,7 +126,7 @@
 		</tr>
 		<tr>
 			<td>감독</td>
-			<td>${boardDTO.writer }</td>
+			<td>${boardDTO.name }</td>
 			<td>장르</td>
 			<td>${boardDTO.genre }</td>
 		</tr>
@@ -168,7 +168,7 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="#myInvestModal" role="dialog">
+	<div class="modal fade" id="myInvestModal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
