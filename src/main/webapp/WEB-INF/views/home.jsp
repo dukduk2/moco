@@ -39,6 +39,13 @@ $(function(){
 	$("#search_pw").click(function(){
 		window.open("${pageContext.request.contextPath}/member/memberSearch?kind=password", "actity", "width=500, height=400, left=300, top=100");
 	});
+	
+
+	$(".go").click(function() {
+		curPage = $(this).attr("id");
+		location.href = "./?curPage=" + curPage;
+	});
+
 });
 </script>
 
