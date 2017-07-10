@@ -42,5 +42,22 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 시작 페이지 -->
+    <!-- <welcome-file-list>
+        <welcome-file>/WEB-INF/views/home.jsp</welcome-file>
+    </welcome-file-list> -->
 
+	<!-- error -->
+	<!-- 404 에러 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/error404.jsp</location>
+	</error-page>
+	<!-- 서버 에러 500 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/error500</location>
+	</error-page>
+	
 </web-app>
