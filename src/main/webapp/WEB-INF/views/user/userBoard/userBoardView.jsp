@@ -230,6 +230,17 @@
 		font-family: Montserrat, sans-serif;
 		font-size: 1.1em;
 	}
+	.memberInfoSpan{
+		font-family: Montserrat, sans-serif;
+		font-size: 1.1em;
+	}
+	.btnBox{
+		width : 1170px;
+		height : 50px;
+		margin: 0 auto;
+		text-align: right;
+		margin-top: 30px;
+	}
 </style>
 </head>
 <body>
@@ -288,10 +299,27 @@
 				      <div class="modal-content">
 				        <div class="modal-header">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">Modal Header</h4>
+				          <h4 class="modal-title">${writerInfo.id} 님의 정보</h4>
 				        </div>
 				        <div class="modal-body">
-				          <p>Some text in the modal.</p>
+				          <table class="table">
+				          	<tr>
+				          		<td><span class="memberInfoSpan">ID</span></td>
+				          		<td><span class="memberInfoSpan">${writerInfo.id}</span></td>
+				          	</tr>
+							<tr>
+								<td><span class="memberInfoSpan">EMAIL</span></td>
+								<td><span class="memberInfoSpan">${writerInfo.email}</span></td>
+							</tr>
+				          	<tr>
+				          		<td><span class="memberInfoSpan">회원 유형</span></td>
+				          		<td><span class="memberInfoSpan">${writerInfo.kind}</span></td>
+				          	</tr>
+				          	<tr>
+				          		<td><span class="memberInfoSpan">회원 등급</span></td>
+				          		<td><span class="memberInfoSpan">${writerInfo.grade}</span></td>
+				          	</tr>
+				          </table>
 				        </div>
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -320,19 +348,20 @@
 			</tr>
 		</table>
 		
-		<article>
-			<c:if test="${memberDTO.id == UserBoardDTO.writer}">
-				<input type="button" id="delete" value="delete" class="btn btn-danger">
-			</c:if>
-			<input type="button" id="listLocation" value="list" class="btn btn-default">
-			<input type="hidden" id="curPage" value="${curPage}">
-		</article>
 		
 		<article>
 			<!-- 댓글 -->
 			<input type="hidden" id="boardKind" value="userBoard">
 			<input type="hidden" id="boardNum" value="${UserBoardDTO.num}">
 			<div id="replyResult" class="container"></div>
+		</article>
+		
+		<article class="btnBox">
+			<c:if test="${memberDTO.id == UserBoardDTO.writer}">
+				<input type="button" id="delete" value="delete" class="btn btn-danger">
+			</c:if>
+			<input type="button" id="listLocation" value="list" class="btn btn-primary">
+			<input type="hidden" id="curPage" value="${curPage}">
 		</article>
 		
 	</section>
