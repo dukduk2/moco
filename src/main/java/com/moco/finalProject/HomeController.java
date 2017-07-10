@@ -47,6 +47,8 @@ public class HomeController {
 	BasicMovieService basicMovieService;
 	@Inject
 	NoticeService noticeService;
+	@Inject
+	MemberService memberService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -132,9 +134,6 @@ public class HomeController {
 		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
 		int price=paidMovieDTO.getPrice();
 		
-		System.out.println("myPoint"+myPoint);
-		System.out.println("price"+price);
-		
 		model.addAttribute("myPoint", myPoint);
 		model.addAttribute("price", price);
 		model.addAttribute("dto", basicMovieService.view(basic_map));
@@ -146,8 +145,8 @@ public class HomeController {
 		Map<String, Object> pay_map=new HashMap<String, Object>(); //pay
 		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
 		//String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+		MemberDTO memberDTO=(MemberDTO)session.getAttribute("memberDTO");
 		
-		System.out.println("paymovie num"+num);
 		basic_map.put("num", num);
 		basic_map.put("kind", "basic");
 
@@ -155,8 +154,6 @@ public class HomeController {
 		paidMovieDTO=paidMovieService.paidMovieSelectOne(basic_map);
 		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
 		int price=paidMovieDTO.getPrice();
-		
-		System.out.println(num);
 		
 		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
 	
@@ -166,9 +163,14 @@ public class HomeController {
 			pay_map.put("num", num);
 		
 			payService.payInsert(pay_map);
+			
+			myPoint=myPoint-price;
+			
+			memberDTO.setPoint(myPoint);
+			memberService.pointUpdate(memberDTO);
 		}
 		
-		return "redirect:basicMovieSearch/movieSearchHome";
+		return "redirect:moviePlay?num="+num;
 		
 	}
 }
