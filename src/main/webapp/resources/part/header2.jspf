@@ -100,3 +100,5 @@
 		</div>
 	</nav>
 </header>
+
+<%@ include file="/resources/part/sideMenu.jspf" %>

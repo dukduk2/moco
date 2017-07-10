@@ -102,7 +102,6 @@
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
-	<%@ include file="/resources/part/sideMenu.jspf" %>
 	<section>
 	
 		<div class="img">
