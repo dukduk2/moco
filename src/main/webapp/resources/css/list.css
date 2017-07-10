@@ -18,6 +18,7 @@ tr.head {
 	background-color: #ff6600;
 	color: white;
 	font-size: 16px;
+	font-family: Montserrat, sans-serif;
 	font-weight: bold;
 	text-align: center;
 	border-top: solid black 2px;
@@ -32,6 +33,7 @@ tr.body {
 
 td {
 	padding: 10px;
+	text-align: center;
 }
 .titleSpan{
 	font-family: Montserrat, sans-serif;
