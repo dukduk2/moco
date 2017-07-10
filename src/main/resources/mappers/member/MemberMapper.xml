@@ -5,7 +5,7 @@
 
 <mapper namespace="MemberMapper">
 	<!-- pointUpdate -->
-	<update id="pointUpdate" parameterType="java.lang.String">
+	<update id="pointUpdate" parameterType="com.moco.member.MemberDTO">
 		update member set point=#{point} where id=#{id}
 	</update>
 

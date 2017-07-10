@@ -4,9 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
 <title>MOVIE COMMUNICATION</title>
-=======
 <%@ include file="/resources/part/bootStrap.jspf"%>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css"
@@ -14,12 +12,24 @@
 <link rel="styleSheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/section.css">
 <title>Insert title here</title>
->>>>>>> 5660d7f723bd653c9e80fbf14bd1e68465abb8b1
 <script type="text/javascript">
 $(function(){
+	var price=${price };
+	var myPoint=${myPoint };
+	var point=$("#point").val();
 	$("#btn").click(function(){
-		$("#frm").submit();
+		if(price<=myPoint){
+			alert("결제가 완료되었습니다. 잔여 포인트는 "+(myPoint-price)+"점 입니다.");
+			$("#frm").submit();
+		}else{
+			alert("포인트가 부족합니다.");
+		}
 	});
+	
+	$("#point").keypress(function(){
+		$("span").html(myPoint-point);
+	})
+	
 });
 </script>
 </head>
@@ -33,9 +43,8 @@ $(function(){
 		<p>MOVIE : ${dto.title }</p>
 		<p>DIRECTOR : ${dto.director }</p>
 		<p>PUBDATE : ${dto.pub_date }</p>
-		<p>PRICE : ${price } / ${myPoint }</p>
-
-			<%-- <td>${price }</td> --%>
+		<p>PRICE : ${price }</p>
+		<p>MY POINT : ${myPoint }<button>충전하기</button></p>
 
 	<input type="button" value="결제하기" id="btn">
 	</form>
