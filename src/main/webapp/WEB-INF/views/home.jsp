@@ -292,7 +292,7 @@ video {
 				<c:forEach items="${list}" var="dto">
 					<tr class="body">
 						<td>${dto.num}</td>
-						<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
+						<td><a href="./notice/noticeView?num=${dto.num}">${dto.title}</a></td>
 						<td>${dto.writer}</td>
 						<td>${dto.reg_date}</td>
 						<td>${dto.hit}</td>
@@ -320,7 +320,7 @@ video {
 			</div>
 		
 			<c:if test="${memberDTO.id eq 'admin'}">
-				<p><a class="btn btn-info" href="./noticeWrite">WRITE</a></p>
+				<p><a class="btn btn-info" href="./notice/noticeWrite">WRITE</a></p>
 			</c:if>
 		</div>
 	</div>
