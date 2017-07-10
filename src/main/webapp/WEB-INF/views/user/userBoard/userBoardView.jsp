@@ -184,9 +184,11 @@
 	}
 	.likesTD{
 		text-align: center;
+		height: 110px;
+		vertical-align: middle;
 	}
 	.likes{
-		font-size: 2em;
+		font-size: 1.4em;
 		font-weight: bold;
 		cursor: pointer;
 		text-align: center;
@@ -282,10 +284,10 @@
 				<td colspan="2" class="likesTD">
 					<span id="likesResult" class="likes">
 						<c:if test="${message == true}">
-							좋아요 취소 <i class="fa fa-thumbs-up" style="font-size:36px;color:skyblue"></i>
+							좋아요 취소 <i class="fa fa-thumbs-up" style="font-size:24px;color:skyblue"></i>
 						</c:if>
 						<c:if test="${message == false }">
-							좋아요 <i class="fa fa-thumbs-o-up" style="font-size:36px"></i>
+							좋아요 <i class="fa fa-thumbs-o-up" style="font-size:24px"></i>
 						</c:if> 
 						${likesResult}
 					</span>
