@@ -205,7 +205,6 @@ video {
 
 	<%@ include file="/resources/part/sideMenu.jspf" %>
 
-<!-- 수정 中 -->
 	<video autoplay loop>
 		<source src="${pageContext.request.contextPath}/resources/moving/titanic.mp4">
 	</video>
@@ -262,7 +261,6 @@ video {
 			</div>
 		</div>
 	</div>
-<!--  -->
 	
 	<div id="intro" class="container">
 		<div class="event">
