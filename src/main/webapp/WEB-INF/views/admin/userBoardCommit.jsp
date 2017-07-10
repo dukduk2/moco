@@ -164,37 +164,32 @@
 				</table>
 			
 			<!-- modal Ajax -->
-			<div class="container">
-				<div class="modal fade" id="myModal" role="dialog">
-			    	<div class="modal-dialog" style="width: 1000px;" >
-			    		<div class="modal-content" id="boardView">
-			    		</div>
-			    	</div>
-			    </div>
+			<div class="modal fade" id="myModal" role="dialog">
+			   	<div class="modal-dialog" style="width: 1000px;" >
+			   		<div class="modal-content" id="boardView">
+			   		</div>
+			   	</div>
 			</div>
-				
-				
-				
-				<!-- 페이징 처리 -->
-				<div class="paging">
+
+			<!-- 페이징 처리 -->
+			<div class="paging">
+				<div class="btn-group">
 					<div class="btn-group">
-						<div class="btn-group">
-							<c:if test="${pageResult.curBlock>1}">
-								<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
-							</c:if>
+						<c:if test="${pageResult.curBlock>1}">
+							<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						</c:if>
 
-							<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-								<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
-							</c:forEach>
+						<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+							<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						</c:forEach>
 
-							<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-								<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
-							</c:if>
-						</div>
+						<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+							<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						</c:if>
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
-	
 </body>
 </html>
