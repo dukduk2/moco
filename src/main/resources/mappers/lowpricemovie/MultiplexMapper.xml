@@ -15,4 +15,8 @@
 	<select id="view2" parameterType="java.lang.Integer" resultType="com.moco.multiplex.MultiplexDTO">
 		select * from multiplex where theater_num=#{theater_num}
 	</select>
+	
+	<select id="unCommitList" parameterType="java.lang.Integer" resultType="com.moco.multiplex.MultiplexDTO">
+		select * from multiplex where num=#{multi_num}
+	</select>
 </mapper>

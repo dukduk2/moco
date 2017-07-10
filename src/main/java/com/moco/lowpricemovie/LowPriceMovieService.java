@@ -82,7 +82,7 @@ public class LowPriceMovieService {
 		
 		return map;
 	}
-	//commitList
+	//unCommitList
 	public Map<String, Object> theaterList(int curPage, int perPage) throws Exception{
 		PageMaker pageMaker = new PageMaker(curPage, perPage);
 		RowMaker rowMaker = pageMaker.getRowMaker();

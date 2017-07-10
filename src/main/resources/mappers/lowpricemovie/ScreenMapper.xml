@@ -12,7 +12,12 @@
 		select s.* from (select * from screen order by num asc) s where multi_num=#{multi_num} and commit=1
 	</select>
 	
-	<select id="commitTotalCount" resultType="java.lang.Integer">
+	<select id="unCommitTotalCount" resultType="java.lang.Integer">
 		select count(num) from screen where commit=0
 	</select>
+	
+	<select id="unCommitList" resultType="com.moco.screen.ScreenDTO">
+		select * from (select * from screen order by num asc) where commit=0
+	</select>
+	
 </mapper>

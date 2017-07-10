@@ -10,17 +10,17 @@
 		update theater set commit=1 where num=#{num}
 	</update>
 	
-	<select id="commitTotalCount" resultType="java.lang.Integer">
+	<select id="unCommitTotalCount" resultType="java.lang.Integer">
  		select count(num) from theater where commit=0
 	</select>
 	<select id="totalCount" resultType="java.lang.Integer" parameterType="java.util.Map">
- 		select count(num) from theater
- 		<if test="kind == 'title'">
- 			where title like '%'||#{search}||'%'
+ 		select count(num) from theater where commit=1
+ 		<if test="kind == 'name'">
+ 			and name like '%'||#{search}||'%'
  		</if>
 	</select>
 	
-	<select id="commitList" parameterType="com.moco.util.RowMaker" resultType="com.moco.theater.TheaterDTO">
+	<select id="unCommitList" parameterType="com.moco.util.RowMaker" resultType="com.moco.theater.TheaterDTO">
 		select * from 
 		(select rownum R, T.* from 
 		(select * from theater where commit=0
@@ -31,9 +31,9 @@
 	<select id="list" parameterType="java.util.Map" resultType="com.moco.theater.TheaterDTO">
 		select * from 
 		(select rownum R, T.* from 
-		(select * from theater 
-		<if test="kind == 'title'">
-			where title like '%'||#{search}||'%'
+		(select * from theater where commit=1
+		<if test="kind == 'name'">
+			and name like '%'||#{search}||'%'
 		</if>
 		order by num desc) T) 
 		where R between #{row.startRow} and #{row.lastRow}

@@ -361,9 +361,15 @@ public class LowPriceMovieController {
 
 
 	@RequestMapping(value="theaterInsert", method=RequestMethod.GET)
-	public void insert(int num, Model model) throws Exception{
+	public void insert(Integer curPage, Integer perPage, int num, Model model) throws Exception{
+		if(curPage == null){
+			curPage = 1;
+		}
+		if(perPage == null){
+			perPage = 10;
+		}
 		model.addAttribute("lowpricemovie", lowPriceMovieService.view(num));
-		Map<String, Object> map = lowPriceMovieService.theaterList(1, 10, "%", "%");
+		Map<String, Object> map = lowPriceMovieService.theaterList(curPage, perPage, "%", "%");
 		model.addAttribute("list", map.get("list"));
 	}
 	//영화 상영관 등록신청
