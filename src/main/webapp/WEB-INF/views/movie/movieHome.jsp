@@ -60,17 +60,43 @@
 }
 .review{
 	width: 100%;
-	height: 50%;
+	height: 48%;
 	border: solid green 1px;
+	margin-bottom: 10px;
 }
 .review_img{
 	width: 20%;
 	height: 100%;
 	border: solid green 1px;
+	float: left;
 }
 .review_img img{
 	width: 100%;
 	height: 100%;
+}
+.review_contents {
+	float: left;
+	margin-left: 15px;
+	width: 74%;
+	height: 100%;
+}
+/* 별점 */
+.star-rating{ 
+	width: 100px; 
+}
+.star-rating,.star-rating span{ 
+	display:inline-block; 
+	height:19px; 
+	overflow:hidden; 
+	background:url(../resources/images/movie/star.png)no-repeat; 
+}
+.star-rating span{ 
+	background-position:left bottom; 
+	line-height:0; 
+	vertical-align:top; 
+}
+.contents-top{
+	border-bottom: 1px solid black;
 }
 </style>
 </head>
@@ -212,7 +238,17 @@
 						<img src="${list.movieInfo.thumnail }">
 					</div>
 					<div class="review_contents">
-						
+						<div class="contents-top">
+							<p>${list.movieInfo.title }(${list.movieInfo.year })</p>
+							<p>${list.reviewInfo.writer }
+								<span class="star-rating">
+									<span style="width: ${list.reviewInfo.myRating*10}%"></span>
+								</span>(${list.reviewInfo.myRating}/10점) - 좋아요 ${list.reviewInfo.likes}
+							</p>
+						</div>
+						<div class="contents-bot">
+							${list.reviewInfo.contents}
+						</div>
 					</div>
 				</div>
 			</c:forEach>

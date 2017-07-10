@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moco.member.MemberDTO;
+import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
 import com.moco.notice.NoticeDTO;
@@ -47,11 +48,9 @@ public class HomeController {
 	@Inject
 	NoticeService noticeService;
 	@Inject
-<<<<<<< HEAD
 	ReviewService reviewService;
-=======
+	@Inject
 	MemberService memberService;
->>>>>>> 3f0f4275646294da95e81955ab5c485d52f547d5
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -131,6 +130,10 @@ public class HomeController {
 				basicMovieDTO = basicMovieService.view(map);
 				lowInfoList.add(basicMovieDTO);
 			}
+		}catch(Exception e){
+			System.out.println("유료 영화 리스트 예외발생");
+		}
+		try{
 			// 후기 리스트
 			List<ReviewDTO> list = reviewService.orderByLikeReview();
 			for(ReviewDTO dto:list){
@@ -157,7 +160,6 @@ public class HomeController {
 		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList)
 		.addAttribute("reviewList", reviewList);
 	}
-<<<<<<< HEAD
 	
 	@RequestMapping(value="/movie/moviePlay", method=RequestMethod.GET)
 	public void moviePlay(int num, Model model) throws Exception{
@@ -220,10 +222,6 @@ public class HomeController {
 		
 			payService.payInsert(pay_map);
 		}
-		
 		return "redirect:basicMovieSearch/movieSearchHome";
-		
 	}
-=======
->>>>>>> 3f0f4275646294da95e81955ab5c485d52f547d5
 }
