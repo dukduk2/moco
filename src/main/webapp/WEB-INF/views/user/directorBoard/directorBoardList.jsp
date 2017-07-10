@@ -159,6 +159,7 @@
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
+	<%@ include file="/resources/part/sideMenu.jspf" %>
 	<section>
 	<a href="./download?fileName=planning_document.hwp">양식 다운로드</a><br>
 	<a href="./directorBoardWrite">펀딩 등록하기</a>

@@ -83,7 +83,7 @@ public class DirectorBoardController {
 			lastRow = startRow+2;
 		}catch(Exception e){
 			startRow = 1;
-			lastRow = 3;
+			lastRow = 12;
 		}
 		
 		map.put("genreCheck", genreCheck);
@@ -103,7 +103,7 @@ public class DirectorBoardController {
 			model.addAttribute("searchMessage", "NO LIST");
 		}
 		
-		model.addAttribute("list", ar).addAttribute("lastRow", startRow+2)
+		model.addAttribute("list", ar).addAttribute("lastRow", lastRow)
 		.addAttribute("totalCount", totalCount);
 	}
 	
