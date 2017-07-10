@@ -9,34 +9,61 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<<<<<<< HEAD
 <title>MOVIE COMMUNICATION</title>
+=======
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
+<title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+		$('.boardView').click(function(){
+			var num = $(this).attr('id');
+			location.href='./theaterView?num='+num;
+		});
+	});
+</script>
+>>>>>>> 5660d7f723bd653c9e80fbf14bd1e68465abb8b1
 <style type="text/css">
-.tb_wrap{
-	width : 700px;
-	height : 700px;
-	margin: 0 auto;
-	font-size: 17px;
+.titleSpan{
+	font-family: Montserrat, sans-serif;
 }
-.tb_wrap > table{
-	font-size: 20px;
-}
+.boardView{
+		font-family: Montserrat, sans-serif;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
-		<div class="tb_wrap">
-			<table>
-				<tr>
-					<td>글번호</td><td>극장명</td><td>주소</td><td>문의전화</td>
-				</tr>
-				<c:forEach items="${list }" var="list">
-					<c:if test="${list.commit eq 1}">
-						<tr>
-							<td>${list.num }</td><td><a href="theaterView?num=${list.num }">${list.name}</a></td><td>${list.location}</td><td>${list.phone}</td>
+	<section>
+		<div class="container">
+			<h2 style="text-align: center;">Theater List</h2>
+			
+			<div class="tb_wrap">
+				<table class="table table-hover">
+					<thead>
+						<tr class="head">
+							<td><span class="titleSpan">NUM</span></td>
+							<td><span class="titleSpan">THEATER NAME</span></td>
+							<td><span class="titleSpan">LOCATION</span></td>
+							<td><span class="titleSpan">PHONE NUMBER</span></td>
 						</tr>
-					</c:if>
-				</c:forEach>
-			</table>
+						<c:forEach items="${list }" var="list">
+							<c:if test="${list.commit eq 1}">
+								<tr>
+									<td>${list.num }</td>
+									<td><span id="${list.num }" class="boardView">${list.name}</span></td>
+									<td>${list.location}</td>
+									<td>${list.phone}</td>
+								</tr>
+							</c:if>
+						</c:forEach>
+					</thead>
+				</table>
+			</div>
 		</div>
+	</section>
 </body>
 </html>
