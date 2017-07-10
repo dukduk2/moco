@@ -94,14 +94,14 @@
 					<div class="item">
 						<a href="#"><img src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
 						<div class="carousel-caption">
-							<h3>사진 2</h3>
+							<h3>사진 3</h3>
 						</div>
 					</div>
 					
 					<div class="item">
 						<a href="#"><img src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
 						<div class="carousel-caption">
-							<h3>사진 2</h3>
+							<h3>사진 4</h3>
 						</div>
 					</div>
 				</div>
@@ -118,6 +118,7 @@
 		</div>
 		<!-- banner end -->
 		
+<<<<<<< HEAD
 		<div class="sub sub_left">sub1</div>
 		<div class="sub sub_right">
 			<div id="paidLowList">
@@ -141,6 +142,60 @@
 				</table>
 			</div>
 		</div>
+=======
+		<div class="sub sub_left">
+			<div id="myCarousel2" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel2" data-slide-to="1"></li>
+					<li data-target="#myCarousel2" data-slide-to="2"></li>
+					<li data-target="#myCarousel2" data-slide-to="3"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox" style="height: 300px;">
+					<div class="item active">
+						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<div class="carousel-caption">
+							<h3>방구 1</h3>
+						</div>
+					</div>
+
+					<div class="item">
+						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<div class="carousel-caption">
+							<h3>방구 2</h3>
+						</div>
+					</div>
+					
+					<div class="item">
+						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<div class="carousel-caption">
+							<h3>방구 3</h3>
+						</div>
+					</div>
+					
+					<div class="item">
+						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<div class="carousel-caption">
+							<h3>방구 4</h3>
+						</div>
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#myCarousel2" role="button"	data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+		<div class="sub sub_right">sub2</div>
+>>>>>>> cd281a5479571d284b281f3d68b57bae22c3ba0d
 		<div class="sub sub_left">sub3</div>
 		<div class="sub sub_right">sub4</div>
 	</section>

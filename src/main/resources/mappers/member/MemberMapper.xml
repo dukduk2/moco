@@ -4,6 +4,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="MemberMapper">
+	<!-- pointUpdate -->
+	<update id="pointUpdate" parameterType="java.lang.String">
+		update member set point=#{point} where id=#{id}
+	</update>
+
 	<insert id="memberJoin" parameterType="com.moco.member.MemberDTO">
 		insert into member values(#{id},#{password},#{name},#{birth},#{address},#{phone},#{email},#{kind},#{grade},#{likes},#{point},#{avaliableLikes},#{joinState},#{fname},#{oname},sysdate,#{question},#{answer})
 	</insert>

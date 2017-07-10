@@ -22,10 +22,15 @@ import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
+import com.moco.notice.NoticeDTO;
+import com.moco.notice.NoticeService;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
 import com.moco.pay.PayDTO;
 import com.moco.pay.PayService;
+import com.moco.util.PageMaker;
+import com.moco.util.PageResult;
+import com.moco.util.RowMaker;
 
 /**
  * Handles requests for the application home page.
@@ -41,13 +46,44 @@ public class HomeController {
 	PayService payService;
 	@Inject
 	BasicMovieService basicMovieService;
+	@Inject
+	NoticeService noticeService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(Integer curPage, Integer perPage, Locale locale, Model model, HttpSession session) throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		//String name=((MemberDTO)session.getAttribute("memberDTO")).getName();
+		
+		if(curPage==null){
+			curPage=1;
+		}
+		if(perPage==null){
+			perPage=10;
+		}
+		map.put("curPage", curPage);
+		map.put("perPage", perPage);
+		
+		RowMaker rowMaker=new RowMaker();
+		rowMaker.makeRow(curPage, perPage);
+		
+		map.put("startRow", rowMaker.getStartRow());
+		map.put("lastRow", rowMaker.getLastRow());
+		
+		PageMaker pageMaker=new PageMaker(curPage, perPage);
+		int totalCount=noticeService.totalCount();
+		PageResult pageResult=pageMaker.paging(totalCount);
+		List<NoticeDTO> ar=noticeService.noticeList(map);
+		
+		model.addAttribute("map", map);
+		model.addAttribute("pageResult", pageResult);
+		model.addAttribute("list", ar);
+		
+		return "home";
+		//model.addAttribute("totalCount", totalCount);
+		/*logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -56,7 +92,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "home";*/
 	}
 	
 	@RequestMapping(value = "/user/userHome", method = RequestMethod.GET)
