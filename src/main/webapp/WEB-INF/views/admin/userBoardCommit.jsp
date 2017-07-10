@@ -106,33 +106,53 @@
 		<section>
 			<div class="container">
 	
-			<h3 class="title">USERBOARD COMMIT</h3>
-				<div class="form">
-					<form action="./userBoardCommit" id="searchForm">
-						<select name="kind">
-							<option value="title">TITLE</option>
-							<option value="writer">WRITER</option>
-							<option value="genre">GENRE</option>
-						</select>
-						<input type="text" name="search">
-						<input type="hidden" name="curPage" value="1">
-						<input type="button" value="Search" id="search">
-					</form>
-					<br>
-					<form action="./userBoardCommit" id="seasonForm">
-						SEASON 
-						<select name="season" id="season">
-							<option value="all">ALL</option>
-							<c:forEach items="${orderList}" var="order">
-								<option value="${order.season}">${order.season}</option>
-							</c:forEach>
-						</select>
-						<input type="hidden" name="curPage" value="1">
-					</form>
-				</div>
-				<br>
-				<table class="table table-hover">
-					<thead><tr class="head">
+			<h2 style="text-align: center;">USERBOARD COMMIT</h2>
+
+			<div class="search_left">
+				<form class="form-horizontal" action="./userBoardList" id="seasonForm">
+					<table>
+						<tr>
+							<td><span class="titleSpan">SEASON</span></td>
+							<td>
+								<select name="season" class="form-control" id="season">
+									<option value="all" class="titleSpan">ALL</option>
+									<c:forEach items="${orderList}" var="order">
+										<option value="${order.season}">${order.season}</option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" name="curPage" value="1">
+				</form>
+			</div>
+		
+			<div class="search_right">
+				<form action="./userBoardList" id="searchForm">
+					<table>
+						<tr>
+							<td>
+								<select name="kind" class="form-control" style="width: 100px;">
+									<option value="title" class="titleSpan">TITLE</option>
+									<option value="writer" class="titleSpan">WRITER</option>
+									<option value="genre" class="titleSpan">GENRE</option>
+								</select>						
+							</td>
+							<td>
+								<input type="text" name="search" class="form-control col-sm-5">
+								<input type="hidden" name="curPage" value="1">
+							</td>
+							<td>
+								<input type="button" value="Search" id="search" class="btn titleSpan">
+							</td>
+						</tr>
+					</table>				
+				</form>
+			</div>
+
+			<table class="table table-hover">
+				<thead>
+					<tr class="head">
 						<td>NUM</td>
 						<td>TITLE</td>
 						<td>WRITER</td>
@@ -142,27 +162,27 @@
 						<td>LIKES</td>
 						<td>SEASON</td>
 						<td>STATE</td>
-					</tr></thead>
+					</tr>
+				</thead>
 
-					<c:forEach items="${list}" var="dto">
-							<tr>
-								<td>${dto.num}	</td>
-								<td><span id="${dto.num}" class="boardTitle" data-toggle="modal" data-target="#myModal">${dto.title}</span></td>
-								<td>${dto.writer}</td>
-								<td>${dto.genre}</td>
-								<td>${dto.reg_date}</td>
-								<td>${dto.hit}</td>
-								<td>${dto.likes}</td>
-								<td>${dto.season}</td>
-								<td>
-									<c:if test="${dto.commit == 0}">
-										<span>승인 대기 중</span>
-									</c:if>
-								</td>
-							</tr>
-					</c:forEach>
-				</table>
-			
+				<c:forEach items="${list}" var="dto">
+					<tr class="body">
+						<td>${dto.num}</td>
+						<td><span id="${dto.num}" class="boardTitle"
+							data-toggle="modal" data-target="#myModal">${dto.title}</span></td>
+						<td>${dto.writer}</td>
+						<td>${dto.genre}</td>
+						<td>${dto.reg_date}</td>
+						<td>${dto.hit}</td>
+						<td>${dto.likes}</td>
+						<td>${dto.season}</td>
+						<td><c:if test="${dto.commit == 0}">
+								<span>승인 대기 중</span>
+							</c:if></td>
+					</tr>
+				</c:forEach>
+			</table>
+
 			<!-- modal Ajax -->
 			<div class="modal fade" id="myModal" role="dialog">
 			   	<div class="modal-dialog" style="width: 1000px;" >
