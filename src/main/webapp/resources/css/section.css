@@ -12,8 +12,9 @@ section{
 	padding-top: 50px;
 	padding-bottom: 50px;
 	height: auto;
-	min-height: 1000px;
+	min-height: 1100px;
 	background-color: #ffd699;
+	overflow: visible;
 }
 
 .container {
