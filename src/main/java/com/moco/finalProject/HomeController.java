@@ -70,7 +70,7 @@ public class HomeController {
 	public void moviePlay(int num, Model model) throws Exception{
 		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("kind", "bNum");
+		map.put("kind", "basic");
 		map.put("num", num);
 		
 		paidMovieDTO=paidMovieService.paidMovieSelectOne(map);
@@ -81,68 +81,56 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="/movie/payMovie", method=RequestMethod.GET)
-	public String payMovie(int num, Model model, HttpSession session) throws Exception{
-		Map<String, Object> map1=new HashMap<String, Object>(); //pay
-		Map<String, Object> map2=new HashMap<String, Object>(); //paidMovie
-		Map<String, Object> map3=new HashMap<String, Object>(); //basicMovie
-		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+	public void payMovie(int num, Model model, HttpSession session) throws Exception{
+		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
+		//String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
 		
-		map3.put("num", num);
-		map3.put("kind", "basic");
-		
-		map2.put("kind", "bNum");
-		map2.put("num", num);
-		
-		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
-		paidMovieDTO=paidMovieService.paidMovieSelectOne(map2);
-		
-		map1.put("id", id);
-		map1.put("kind", "bNum");
-		map1.put("num", num);
-		
-		PayDTO payDTO=new PayDTO();
+		System.out.println("paymovie num"+num);
+		basic_map.put("num", num);
+		basic_map.put("kind", "basic");
 
+		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
+		paidMovieDTO=paidMovieService.paidMovieSelectOne(basic_map);
 		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
 		int price=paidMovieDTO.getPrice();
 		
-		/*model.addAttribute("myPoint", myPoint);
-		model.addAttribute("price", price);*/
-		model.addAttribute("dto", basicMovieService.view(map3));
+		System.out.println("myPoint"+myPoint);
+		System.out.println("price"+price);
 		
-		return "redirect:/movie/payMovie";
+		model.addAttribute("myPoint", myPoint);
+		model.addAttribute("price", price);
+		model.addAttribute("dto", basicMovieService.view(basic_map));
+		
 	}
 	
 	@RequestMapping(value="/movie/payMovie", method=RequestMethod.POST)
-	public void payMovie(BasicMovieDTO basicMovieDTO, int num, HttpSession session) throws Exception{		
-		Map<String, Object> map1=new HashMap<String, Object>(); //pay
-		Map<String, Object> map2=new HashMap<String, Object>(); //paidMovie
+	public String payMovie(BasicMovieDTO basicMovieDTO, int num, HttpSession session) throws Exception{		
+		Map<String, Object> pay_map=new HashMap<String, Object>(); //pay
+		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
+		//String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
 		
-		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
-		
-		map2.put("kind", "bNum");
-		map2.put("num", num);
-		
-		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
-		paidMovieDTO=paidMovieService.paidMovieSelectOne(map2);
-		
-		map1.put("id", id);
-		map1.put("kind", "bNum");
-		map1.put("num", num);
-		
-		PayDTO payDTO=new PayDTO();
+		System.out.println("paymovie num"+num);
+		basic_map.put("num", num);
+		basic_map.put("kind", "basic");
 
+		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
+		paidMovieDTO=paidMovieService.paidMovieSelectOne(basic_map);
 		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
 		int price=paidMovieDTO.getPrice();
 		
-		/*System.out.println("myPoint"+myPoint);
-		System.out.println("price"+price);
+		System.out.println(num);
 		
+		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+	
 		if(price<=myPoint){
-			map1.put("id", id);
-			map1.put("kind", "bNum");
-			map1.put("bnum", num);
+			pay_map.put("id", id);
+			pay_map.put("kind", "basic");
+			pay_map.put("num", num);
 		
-			payService.payInsert(map1);
-		}*/
+			payService.payInsert(pay_map);
+		}
+		
+		return "redirect:basicMovieSearch/movieSearchHome";
+		
 	}
 }
