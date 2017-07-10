@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moco.jjim.JjimDTO;
 import com.moco.member.MemberDTO;
+import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
 import com.moco.movieAPI.movieSearch.SearchDTO;
@@ -39,7 +40,7 @@ public class BasicMovieController {
 	PaidMovieService paidMovieService;
 	@Inject
 	PayService payService;
-
+	
 	@RequestMapping(value = "movieSearchHome", method = RequestMethod.GET)
 	public void movieSearchHome(Model model){
 		List<String> nationList = new ArrayList<String>();
