@@ -11,7 +11,7 @@
 <title>Home</title>
 <script type="text/javascript">
 $(function(){
-	/* var message = '${message}';
+/* 	var message = '${message}';
 
 	if(message != ""){
 		alert(message);
