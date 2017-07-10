@@ -1,8 +1,6 @@
 package com.moco.finalProject;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -19,15 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.moco.member.MemberDTO;
-import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
 import com.moco.notice.NoticeDTO;
 import com.moco.notice.NoticeService;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
-import com.moco.pay.PayDTO;
 import com.moco.pay.PayService;
+import com.moco.review.ReviewDTO;
+import com.moco.review.ReviewService;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
 import com.moco.util.RowMaker;
@@ -48,6 +46,8 @@ public class HomeController {
 	BasicMovieService basicMovieService;
 	@Inject
 	NoticeService noticeService;
+	@Inject
+	ReviewService reviewService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -106,7 +106,9 @@ public class HomeController {
 		List<PaidMovieDTO> lowPaidList = new ArrayList<PaidMovieDTO>();
 		List<BasicMovieDTO> basicInfoList = new ArrayList<BasicMovieDTO>();
 		List<BasicMovieDTO> lowInfoList = new ArrayList<BasicMovieDTO>();
+		List<Map<String, Object>> reviewList = new ArrayList<Map<String,Object>>();
 		try {
+			// 유료 영화 리스트
 			basicPaidList = paidMovieService.basicMovieList();
 			lowPaidList = paidMovieService.lowMovieList();
 			for(PaidMovieDTO dto:basicPaidList){
@@ -125,10 +127,31 @@ public class HomeController {
 				basicMovieDTO = basicMovieService.view(map);
 				lowInfoList.add(basicMovieDTO);
 			}
+			// 후기 리스트
+			List<ReviewDTO> list = reviewService.orderByLikeReview();
+			for(ReviewDTO dto:list){
+				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> view_map = new HashMap<String, Object>();
+				BasicMovieDTO bMovieDTO = new BasicMovieDTO();
+				if(dto.getlNum()==0){
+					view_map.put("kind", "basic");
+					view_map.put("num", dto.getbNum());
+				}else{
+					view_map.put("kind", "low");
+					view_map.put("num", dto.getlNum());
+				}
+				bMovieDTO = basicMovieService.view(view_map);
+				System.out.println(bMovieDTO.getTitle());
+				
+				map.put("movieInfo", bMovieDTO);
+				map.put("reviewInfo", dto);
+				reviewList.add(map);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList);
+		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList)
+		.addAttribute("reviewList", reviewList);
 	}
 	
 	@RequestMapping(value="/movie/moviePlay", method=RequestMethod.GET)
@@ -142,8 +165,6 @@ public class HomeController {
 
 		model.addAttribute("dto", paidMovieDTO);
 	}
-	
-	
 	
 	@RequestMapping(value="/movie/payMovie", method=RequestMethod.GET)
 	public void payMovie(int num, Model model, HttpSession session) throws Exception{

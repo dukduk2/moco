@@ -178,5 +178,9 @@ public class ReviewService {
 		result += reviewDAO.reviewMemberLikesUpdate(memberDTO);
 		return result;
 	}
+	// 좋아요 순 리뷰 리스트
+	public List<ReviewDTO> orderByLikeReview() throws Exception{
+		return reviewDAO.orderByLikeReview();
+	}
 
 }

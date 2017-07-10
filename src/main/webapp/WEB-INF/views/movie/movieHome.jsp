@@ -58,6 +58,20 @@
 	float: right;
 	border: solid green 1px;
 }
+.review{
+	width: 100%;
+	height: 50%;
+	border: solid green 1px;
+}
+.review_img{
+	width: 20%;
+	height: 100%;
+	border: solid green 1px;
+}
+.review_img img{
+	width: 100%;
+	height: 100%;
+}
 </style>
 </head>
 <body>
@@ -117,32 +131,6 @@
 			</div>
 		</div>
 		<!-- banner end -->
-		
-<<<<<<< HEAD
-		<div class="sub sub_left">sub1</div>
-		<div class="sub sub_right">
-			<div id="paidLowList">
-			<p>유료 영화 업로드(일반영화)</p>
-				<table>
-					<c:forEach begin="1" end="5" items="${basicInfoList }" var="list" step="1">
-						<tr>
-							<td id="${list.num }">${list.title }</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<div id="paidBasicList">
-			<p>유료 영화 업로드(독립영화)</p>
-				<table>
-					<c:forEach begin="1" end="5" items="${lowInfoList }" var="list" step="1">
-						<tr>
-							<td id="${list.num }">${list.title }</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</div>
-=======
 		<div class="sub sub_left">
 			<div id="myCarousel2" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -194,10 +182,41 @@
 				</a>
 			</div>
 		</div>
-		<div class="sub sub_right">sub2</div>
->>>>>>> cd281a5479571d284b281f3d68b57bae22c3ba0d
+		<div class="sub sub_right">
+			<div id="paidLowList">
+			<p>유료 영화 업로드(일반영화)</p>
+				<table>
+					<c:forEach begin="1" end="5" items="${basicInfoList }" var="list" step="1">
+						<tr>
+							<td id="${list.num }">${list.title }</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div id="paidBasicList">
+			<p>유료 영화 업로드(독립영화)</p>
+				<table>
+					<c:forEach begin="1" end="5" items="${lowInfoList }" var="list" step="1">
+						<tr>
+							<td id="${list.num }">${list.title }</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
 		<div class="sub sub_left">sub3</div>
-		<div class="sub sub_right">sub4</div>
+		<div class="sub sub_right">
+			<c:forEach items="${reviewList }" var="list">
+				<div class="review">
+					<div class="review_img">
+						<img src="${list.movieInfo.thumnail }">
+					</div>
+					<div class="review_contents">
+						
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</section>
 </body>
 </html>

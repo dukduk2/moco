@@ -209,7 +209,6 @@
 					<button id="ageRecommend" class="btn btn-primary">나이별 추천영화</button> | 
 					<button id="weatherRecommend" class="btn btn-primary">오늘날씨 추천영화</button> | 
 					<button id="groupRecommend" class="btn btn-primary">커플끼리,가족끼리,혼자</button> | 
-					<button id="myRecommend" class="btn btn-primary">내가 본 영화와 비슷한 영화</button> | 
 					<button id="reviewRecommend" class="btn btn-primary">리뷰가 많은 영화</button> | 
 					<button id="jjimRecommend" class="btn btn-primary">찜하기가 많은 영화</button> | 
 					<button id="recentRecommend" class="btn btn-primary">개봉예정작</button>

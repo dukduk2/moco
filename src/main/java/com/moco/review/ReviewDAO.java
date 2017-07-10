@@ -85,5 +85,8 @@ public class ReviewDAO {
 	public int reviewLikesInsert2(int num) throws Exception{
 		return sqlSession.update(NAMESPACE+"reviewLikesInsert2", num);
 	}
-
+	// 좋아요 순 리뷰 리스트
+	public List<ReviewDTO> orderByLikeReview() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"orderByLikeReview");
+	}
 }
