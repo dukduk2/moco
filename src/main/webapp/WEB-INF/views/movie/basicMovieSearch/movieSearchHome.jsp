@@ -9,7 +9,7 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/movieSearchHome.css">
-<title>Insert title here</title>
+<title>MOVIE COMMUNICATION</title>
 
 <script type="text/javascript">
 	$(function(){
