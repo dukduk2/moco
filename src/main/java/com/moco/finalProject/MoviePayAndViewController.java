@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.moco.lowpricemovie.LowPriceMovieDTO;
+import com.moco.lowpricemovie.LowPriceMovieService;
 import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
@@ -30,15 +32,21 @@ public class MoviePayAndViewController {
 	@Inject
 	BasicMovieService basicMovieService;
 	@Inject
+	LowPriceMovieService lowPriceMovieService;
+	@Inject
 	PayService payService;
 	
 	@RequestMapping(value="/movie/moviePlay", method=RequestMethod.GET)
 	public void moviePlay(int num, Model model) throws Exception{
 		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("kind", "basic");
-		map.put("num", num);
-		
+		if(paidMovieDTO.getlNum()==0){
+			map.put("kind", "basic");
+			map.put("num", num);
+		}else{
+			map.put("kind", "low");
+			map.put("num", num);
+		}
 		paidMovieDTO=paidMovieService.paidMovieSelectOne(map);
 
 		model.addAttribute("dto", paidMovieDTO);
@@ -48,39 +56,85 @@ public class MoviePayAndViewController {
 	@RequestMapping(value="/movie/payMovie", method=RequestMethod.GET)
 	public void payMovie(int num, Model model, HttpSession session) throws Exception{
 		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
-		//String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
-		
-		System.out.println("paymovie num"+num);
+		Map<String, Object> low_map=new HashMap<String, Object>(); //lowMovie
+
 		basic_map.put("num", num);
 		basic_map.put("kind", "basic");
+		
+		low_map.put("num", num);
+		low_map.put("kind", "low");
 
 		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
 		paidMovieDTO=paidMovieService.paidMovieSelectOne(basic_map);
+		if(paidMovieDTO.getlNum()==0){
+			model.addAttribute("dto", basicMovieService.view(basic_map));
+		}else{
+			paidMovieDTO=paidMovieService.paidMovieSelectOne(low_map);
+			model.addAttribute("dto", lowPriceMovieService.view(num));
+		}
 		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
 		int price=paidMovieDTO.getPrice();
 		
 		model.addAttribute("myPoint", myPoint);
 		model.addAttribute("price", price);
-		model.addAttribute("dto", basicMovieService.view(basic_map));
+		
 		
 	}
 	
 	@RequestMapping(value="/movie/payMovie", method=RequestMethod.POST)
-	public String payMovie(BasicMovieDTO basicMovieDTO, int num, HttpSession session) throws Exception{		
+	public String payMovie(BasicMovieDTO basicMovieDTO, LowPriceMovieDTO lowPriceMovieDTO, int num, HttpSession session) throws Exception{		
 		Map<String, Object> pay_map=new HashMap<String, Object>(); //pay
 		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
+		Map<String, Object> low_map=new HashMap<String, Object>();
 		//String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
 		MemberDTO memberDTO=(MemberDTO)session.getAttribute("memberDTO");
+		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
+		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
 		
 		basic_map.put("num", num);
 		basic_map.put("kind", "basic");
+		
+		low_map.put("num", num);
+		low_map.put("kind", "low");
 
 		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
 		paidMovieDTO=paidMovieService.paidMovieSelectOne(basic_map);
-		int myPoint=((MemberDTO)session.getAttribute("memberDTO")).getPoint();
-		int price=paidMovieDTO.getPrice();
-		
-		String id=((MemberDTO)session.getAttribute("memberDTO")).getId();
+		int price=0;
+		if(paidMovieDTO.getlNum()==0){
+			price=paidMovieDTO.getPrice();
+			
+			if(price<=myPoint){
+				pay_map.put("id", id);
+				pay_map.put("kind", "basic");
+				pay_map.put("num", num);
+			
+				payService.payInsert(pay_map);
+				
+				myPoint=myPoint-price;
+				
+				memberDTO.setPoint(myPoint);
+				memberService.pointUpdate(memberDTO);
+			}
+		}else{
+			paidMovieDTO=paidMovieService.paidMovieSelectOne(low_map);
+			price=paidMovieDTO.getPrice();
+			
+			if(price<=myPoint){
+				pay_map.put("id", id);
+				pay_map.put("kind", "low");
+				pay_map.put("num", num);
+			
+				payService.payInsert(pay_map);
+				
+				myPoint=myPoint-price;
+				
+				memberDTO.setPoint(myPoint);
+				memberService.pointUpdate(memberDTO);
+			}
+			
+		}
+
+		/*
 	
 		if(price<=myPoint){
 			pay_map.put("id", id);
@@ -93,7 +147,7 @@ public class MoviePayAndViewController {
 			
 			memberDTO.setPoint(myPoint);
 			memberService.pointUpdate(memberDTO);
-		}
+		}*/
 		
 		return "redirect:moviePlay?num="+num;
 		
