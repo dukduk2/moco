@@ -13,11 +13,11 @@ import com.moco.movieRequest.MovieRequestDTO;
 
 @Repository
 public class PaidMovieDAO {
-	
+
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "PaidMovieMapper.";
-	
+
 	// movieList
 	public List<PaidMovieDTO> movieList(Map<String, Object> map) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieList" , map);
@@ -47,7 +47,7 @@ public class PaidMovieDAO {
 	public PaidMovieDTO paidMovieSelectOne(Map<String, Object> map) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"paidMovieSelectOne", map);
 	}
-	
+
 
 	// basicSearch
 	public BasicMovieDTO basicSearch(BasicMovieDTO basicMovieDTO) throws Exception{
@@ -57,5 +57,12 @@ public class PaidMovieDAO {
 	public int movieRequestDelete(MovieRequestDTO movieRequestDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"movieRequestDelete", movieRequestDTO);
 	}
-
+	// basicMovieList
+	public List<PaidMovieDTO> basicMovieList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"basicMovieList");
+	}
+	// lowMovieList
+	public List<PaidMovieDTO> lowMovieList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"lowMovieList");
+	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
 import com.moco.movieAPI.BasicMovieDTO;
@@ -22,7 +23,7 @@ public class PaidMovieService {
 		movieRequestDTO.setlNum(paidMovieDTO.getlNum());
 		return paidMovieDAO.movieRequestDelete(movieRequestDTO);
 	}
-	
+
 	// Kind, num으로 어떤 영화인지 알아오기
 	public String kindFind(String movieTitle, int movieNum) throws Exception{
 		String movieKind = "basicMovie";
@@ -35,7 +36,7 @@ public class PaidMovieService {
 		}
 		return movieKind;
 	}
-	
+
 	// movieKind별로 DTO 셋팅
 	public PaidMovieDTO DTOSet(PaidMovieDTO paidMovieDTO, String movieKind, int movieNum) throws Exception{
 		if(movieKind.equals("basicMovie")){
@@ -75,6 +76,14 @@ public class PaidMovieService {
 	// movieSelectOne(basic, low)
 	public PaidMovieDTO paidMovieSelectOne(Map<String, Object> map) throws Exception{
 		return paidMovieDAO.paidMovieSelectOne(map);
+	}
+	// basicMovieList
+	public List<PaidMovieDTO> basicMovieList() throws Exception{
+		return paidMovieDAO.basicMovieList();
+	}
+	// lowMovieList
+	public List<PaidMovieDTO> lowMovieList() throws Exception{
+		return paidMovieDAO.lowMovieList();
 	}
 
 }

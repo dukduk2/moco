@@ -1,8 +1,10 @@
 package com.moco.finalProject;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -63,8 +65,34 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)
-	public void movieHome(){
-		
+	public void movieHome(Model model){
+		List<PaidMovieDTO> basicPaidList = new ArrayList<PaidMovieDTO>();
+		List<PaidMovieDTO> lowPaidList = new ArrayList<PaidMovieDTO>();
+		List<BasicMovieDTO> basicInfoList = new ArrayList<BasicMovieDTO>();
+		List<BasicMovieDTO> lowInfoList = new ArrayList<BasicMovieDTO>();
+		try {
+			basicPaidList = paidMovieService.basicMovieList();
+			lowPaidList = paidMovieService.lowMovieList();
+			for(PaidMovieDTO dto:basicPaidList){
+				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("kind", "basic");
+				map.put("num", dto.getbNum());
+				basicMovieDTO = basicMovieService.view(map);
+				basicInfoList.add(basicMovieDTO);
+			}
+			for(PaidMovieDTO dto:lowPaidList){
+				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("kind", "low");
+				map.put("num", dto.getlNum());
+				basicMovieDTO = basicMovieService.view(map);
+				lowInfoList.add(basicMovieDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList);
 	}
 	
 	@RequestMapping(value="/movie/moviePlay", method=RequestMethod.GET)

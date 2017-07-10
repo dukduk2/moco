@@ -45,6 +45,19 @@
 	border: solid green 2px;
 	float: right;
 }
+#paidLowList{
+	width: 48%;
+	height: 100%;
+	float: left;
+	border: solid green 1px;
+}
+
+#paidBasicList{
+	width: 48%;
+	height: 100%;
+	float: right;
+	border: solid green 1px;
+}
 </style>
 </head>
 <body>
@@ -106,7 +119,28 @@
 		<!-- banner end -->
 		
 		<div class="sub sub_left">sub1</div>
-		<div class="sub sub_right">sub2</div>
+		<div class="sub sub_right">
+			<div id="paidLowList">
+			<p>유료 영화 업로드(일반영화)</p>
+				<table>
+					<c:forEach begin="1" end="5" items="${basicInfoList }" var="list" step="1">
+						<tr>
+							<td id="${list.num }">${list.title }</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div id="paidBasicList">
+			<p>유료 영화 업로드(독립영화)</p>
+				<table>
+					<c:forEach begin="1" end="5" items="${lowInfoList }" var="list" step="1">
+						<tr>
+							<td id="${list.num }">${list.title }</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
 		<div class="sub sub_left">sub3</div>
 		<div class="sub sub_right">sub4</div>
 	</section>

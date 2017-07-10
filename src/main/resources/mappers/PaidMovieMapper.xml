@@ -7,6 +7,14 @@
 		(select * from paidMovie where oname like '%'||#{search}||'%' order by num desc) P)
 		where R between #{row.startRow} and #{row.lastRow}
 	</select>
+	<!-- Basic List -->
+	<select id="basicMovieList" resultType="com.moco.paidMovie.PaidMovieDTO">
+		select * from paidMovie where bnum > 0 order by num desc
+	</select>
+	<!-- Low List -->
+	<select id="lowMovieList" resultType="com.moco.paidMovie.PaidMovieDTO">
+		select * from paidMovie where lnum > 0 order by num desc
+	</select>
 	<select id="movieOne" parameterType="java.lang.Integer" resultType="com.moco.paidMovie.PaidMovieDTO">
 		select * from paidMovie where num=#{num}
 	</select>
