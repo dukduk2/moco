@@ -9,9 +9,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
-<<<<<<< HEAD
 <title>MOVIE COMMUNICATION</title>
-=======
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -22,7 +20,6 @@
 		});
 	});
 </script>
->>>>>>> 5660d7f723bd653c9e80fbf14bd1e68465abb8b1
 <style type="text/css">
 .titleSpan{
 	font-family: Montserrat, sans-serif;

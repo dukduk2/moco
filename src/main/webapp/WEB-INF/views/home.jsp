@@ -268,11 +268,10 @@ video {
 			<div>마우스를 올려보려무나~</div>
 
 			<div class="appear">
-				<div class="title"><p>제목</p></div>
-				<div class="contents"><p>내용</p></div>
-				
-				<p><a href="./notice/noticeList">NOTICE</a></p>
-				<p><a href="#go" id="login">Login</a></p>
+				<div class="title">MOVIE COMMUNICATION</div>
+				<div class="contents"><p>내용을 넣어주세요~</p></div>
+				<!-- <p><a href="./notice/noticeList">NOTICE</a></p>
+				<p><a href="#go" id="login">Login</a></p> -->
 			</div>
 		</div>
 	
