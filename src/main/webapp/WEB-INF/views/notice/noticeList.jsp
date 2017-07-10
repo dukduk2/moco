@@ -9,60 +9,52 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
-<style type="text/css">
-.contents-wrap {
-	width: 1000px;
-	margin: 0 auto;
-}
-</style>
 </head>
 <body>
-	<%@ include file="/resources/part/header2.jspf" %>
-	<div class="contents-wrap">
-	<h2>NOTICE</h2>
+	<h2 style="text-align: center;">NOTICE</h2>
 	<table class="table table-hover">
-	<tr>
-		<th>NUM</th>
-		<th>TITLE</th>
-		<th>WRITER</th>
-		<th>DATE</th>
-		<th>HIT</th>
-	</tr>
-	<c:forEach items="${list }" var="dto">
-		<tr>
-			<td>${dto.num }</td>
-			<td><a href="./noticeView?num=${dto.num }">${dto.title }</a></td>
-			<td>${dto.writer }</td>
-			<td>${dto.reg_date }</td>
-			<td>${dto.hit }</td>
+		<thead><tr class="head">
+			<th>NUM</th>
+			<th>TITLE</th>
+			<th>WRITER</th>
+			<th>DATE</th>
+			<th>HIT</th>
 		</tr>
-	</c:forEach>
-	</table>
-	
-	<div class="paging">
-		<c:if test="${pageResult.curBlock>1 }">
-			<button class="btn">
-				<span class="go" id="${pageResult.startNum-1}">[이전]</span>
-			</button>
-		</c:if>
-		<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}"
-			var="i">
-			<button class="btn">
-				<span class="go" id="${i}">${i}</span>
-			</button>
+
+		<c:forEach items="${list}" var="dto">
+			<tr class="body">
+				<td>${dto.num}</td>
+				<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
+				<td>${dto.writer}</td>
+				<td>${dto.reg_date}</td>
+				<td>${dto.hit}</td>
+			</tr>
 		</c:forEach>
-		<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-			<button class="btn">
-				<span class="go" id="${pageResult.lastNum+1}">[다음]</span>
-			</button>
-		</c:if>
+	</table>
+
+	<!-- 페이징 처리 -->
+	<div class="paging">
+		<div class="btn-group">
+			<div class="btn-group">
+				<c:if test="${pageResult.curBlock>1}">
+					<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+				</c:if>
+
+				<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+					<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+				</c:forEach>
+
+				<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+					<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+				</c:if>
+			</div>
+		</div>
 	</div>
-	
-		<p><a class="btn btn-info" href="../">HOME</a></p>
-		<c:if test="${memberDTO.id eq 'admin'}">
+
+	<c:if test="${memberDTO.id eq 'admin'}">
 		<p><a class="btn btn-info" href="./noticeWrite">WRITE</a></p>
-		</c:if>
-	</div>
+	</c:if>
 </body>
 </html>
