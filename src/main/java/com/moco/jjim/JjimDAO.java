@@ -58,5 +58,9 @@ public class JjimDAO {
 	public LowPriceMovieDTO jjimLowOne(int num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"jjimLowOne", num);
 	}
+	// jjimMovieList
+	public List<JjimDTO> jjimMovieList(String id) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"jjimMovieList", id);
+	}
 	
 }

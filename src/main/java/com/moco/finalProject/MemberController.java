@@ -1,5 +1,11 @@
 package com.moco.finalProject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.moco.file.FileManager;
 import com.moco.fileTest.FileSaver;
+import com.moco.jjim.JjimDTO;
+import com.moco.jjim.JjimService;
 import com.moco.member.MailService;
 import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
+import com.moco.movieAPI.BasicMovieDTO;
+import com.moco.movieAPI.BasicMovieService;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -24,6 +34,10 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MailService mailService;
+	@Inject
+	private JjimService jjimService;
+	@Inject
+	private BasicMovieService basicMovieService;
 	
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public void memberJoin(){
@@ -125,6 +139,31 @@ public class MemberController {
 		}
 		
 		model.addAttribute("memberDTO", memberDTO);
+	}
+	
+	@RequestMapping(value="viewJjimList", method=RequestMethod.GET)
+	public void viewJjimList(HttpSession session, Model model){
+		List<JjimDTO> jjimList = new ArrayList<JjimDTO>();
+		List<BasicMovieDTO> jjimMovieList = new ArrayList<BasicMovieDTO>();
+		try {
+			jjimList = jjimService.jjimMovieList(((MemberDTO)session.getAttribute("memberDTO")).getId());
+			for(JjimDTO jjimDTO:jjimList){
+				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+				Map<String, Object> map = new HashMap<String, Object>();
+				if(jjimDTO.getlNum()==0){
+					map.put("kind", "basic");
+					map.put("num", jjimDTO.getbNum());
+				}else{
+					map.put("kind", "low");
+					map.put("num", jjimDTO.getlNum());
+				}
+				basicMovieDTO = basicMovieService.view(map);
+				jjimMovieList.add(basicMovieDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("jjimMovieList", jjimMovieList);
 	}
 	
 	//회원이 delete

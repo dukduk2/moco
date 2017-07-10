@@ -15,19 +15,19 @@ public class JjimService {
 
 	@Autowired
 	private JjimDAO jjimDAO;
-	
+
 	public List<BasicMovieDTO> jjimList() throws Exception{
 		return jjimDAO.jjimList();
 	}
-	
+
 	public List<JjimDTO> jjimListId(int bnum) throws Exception{
 		return jjimDAO.jjimListId(bnum);
 	}
-	
+
 	public List<MemberDTO> jjimListMember(String id) throws Exception{
 		return jjimDAO.jjimListMember(id);
 	}
-	
+
 	// insert
 	public int jjimInsert(JjimDTO jjimDTO) throws Exception{
 		return jjimDAO.jjimInsert(jjimDTO);
@@ -60,5 +60,9 @@ public class JjimService {
 			ar.add(jjimDAO.jjimLowOne(num));
 		}
 		return ar;
+	}
+	// jjimMovieList
+	public List<JjimDTO> jjimMovieList(String id) throws Exception{
+		return jjimDAO.jjimMovieList(id);
 	}
 }

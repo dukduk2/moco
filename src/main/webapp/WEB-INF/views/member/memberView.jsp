@@ -87,6 +87,7 @@ $(function(){
 						<input type="button" class="btn btn-warning" value="UPDATE" id="update">
 						<input type="button" class="btn btn-danger" value="DELETE" id="delete">
 						<input type="button" class="btn btn-success" value="HOME" id="home">
+						<a href="./viewJjimList">내찜리스트</a>
 					</td>
 				</tr>
 			</table>

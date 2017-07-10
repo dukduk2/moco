@@ -35,10 +35,12 @@
 	<select id="jjimLnum" parameterType="java.lang.String" resultType="com.moco.jjim.JjimDTO">
 		select lnum from jjim where id=#{id}
 	</select>
-	<!-- <select id="jjimLowOne" parameterType="java.lang.Integer" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
-		select * from lowpriceMovie where num=#{num}
-	</select> -->
 	<select id="jjimCount" parameterType="int" resultType="int">
 		select count(id) from jjim where bnum=#{bnum}
+	</select>
+	
+	<!-- myPage 찜리스트 -->
+	<select id="jjimMovieList" parameterType="String" resultType="com.moco.jjim.JjimDTO">
+		select * from jjim where id=#{id}
 	</select>
 </mapper>
