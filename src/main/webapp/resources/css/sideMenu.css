@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+/* side-Menu */
+#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.5s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 0 10px 10px 0;
+    position: fixed;
+    z-index: 5;
+    border: double white 1px;v
+}
+
+#mySidenav a:hover {
+    left: 0;
+}
+
+#notice {
+	background-color: pink;
+    color: black;
+    top: 20px;
+}
+
+#intro{
+	background-color: skyblue;
+}
+
+#login {
+	background-color: black;
+    color: white;
+    top: 80px;
+}
+
+#logout {
+	background-color: red;
+    color: white;
+    top: 80px;
+    cursor: pointer;
+}
+
+
+#movie {
+	background-color: blue;
+    color: white;
+    top: 140px;
+    cursor: pointer;
+}
+
+#user {
+	background-color: gray;
+    color: white;
+    top: 200px;
+    cursor: pointer;
+}

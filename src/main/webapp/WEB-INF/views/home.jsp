@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/resources/part/bootStrap.jspf" %>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Home</title>
 <script type="text/javascript">
 $(function(){
@@ -77,20 +78,21 @@ video{
 }
 
 .menu_wrap {
-	width: 70%;
-	height: 500px;
+	min-width: 1400px;
+	width: 10%;
+	height: 450px;
 	margin: 0 auto;
 	margin-top: 160px;
 	border: solid blue 2px;
 }
 
 .menu{
-	min-width: 500px;
-	min-height: 500px;
+	min-width: 450px;
+	min-height: 450px;
 	width: auto;
 	height: auto;
-	opacity : 0.6;
-	border-radius: 1000px;
+	opacity : 0.4;
+	border-radius: 100%;
 	cursor: pointer;
 	z-index: 2;
 }
@@ -129,48 +131,12 @@ body {
 	z-index: -2;
 }
 
-#intro{
+#go{
 	/* background-image: url("${pageContext.request.contextPath}/resources/img/intro.jpg");
 	background-size: cover; */
 	background: none;
 	z-index: -2;
 }
-
-#go{
-	background-color: skyblue;
-}
-
-/* side-Menu */
-#mySidenav a {
-    position: absolute;
-    left: -80px;
-    transition: 0.3s;
-    padding: 15px;
-    width: 100px;
-    text-decoration: none;
-    font-size: 20px;
-    border-radius: 0 10px 10px 0;
-    position: fixed;
-    z-index: 5;
-    border: double white 1px;
-}
-
-#mySidenav a:hover {
-    left: 0;
-}
-
-#one {
-	background-color: white;
-    color: black;
-    top: 20px;
-}
-
-#two {
-	background-color: black;
-    color: white;
-    top: 80px;
-}
-/* side-Menu */
 
 /* info-effect */
 .event {
@@ -228,41 +194,22 @@ video {
 .collapse {
 	color: red;
 }
+
+.notice {
+	width: 70%;
+	float: left;
+	border: solid red 2px;
+}
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-	<div id="mySidenav" class="sidenav">
-		<a href="#intro" id="one">Intro</a>
-		<a href="#go" id="two">Login</a>
-	</div>
+	<%@ include file="/resources/part/sideMenu.jspf" %>
 
 <!-- 수정 中 -->
 	<video autoplay loop>
 		<source src="${pageContext.request.contextPath}/resources/moving/titanic.mp4">
 	</video>
 
-	<div id="intro" class="container">
-
-		<div class="event">
-			<div>마우스를 올려보려무나~</div>
-
-			<div class="appear">
-				<div class="title"><p>제목</p></div>
-				<div class="contents"><p>내용</p></div>
-				
-				<a href="#go" id="two">Login</a>
-			</div>
-		</div>
-
-		<!-- 버튼 출력형 --> 
-		<!-- <button class="info btn btn-info" data-toggle="collapse" data-target="#demo">Info</button>
-  		<div id="demo" class="collapse">
-			방구 영화 마을 뿡뿡~ (소개를 넣어주세요~)<br>
-			<a href="#go" id="two">Login</a>
-		</div> -->
-	</div>
-<!--  -->
-	
 	<div id="go" class="container">
 		<div class="menu_wrap">
 			<c:if test="${memberDTO eq null }">
@@ -279,7 +226,6 @@ video {
 				<button class="menu right" id="right"></button>
 			</c:if>
 		</div>
-		<a href="./notice/noticeList">NOTICE</a>
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
@@ -314,6 +260,68 @@ video {
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+<!--  -->
+	
+	<div id="intro" class="container">
+		<div class="event">
+			<div>마우스를 올려보려무나~</div>
+
+			<div class="appear">
+				<div class="title"><p>제목</p></div>
+				<div class="contents"><p>내용</p></div>
+				
+				<p><a href="./notice/noticeList">NOTICE</a></p>
+				<p><a href="#go" id="login">Login</a></p>
+			</div>
+		</div>
+	
+		<div class="notice">
+			<h2 style="text-align: center;">NOTICE</h2>
+	
+			<table class="table table-hover">
+				<thead><tr class="head">
+					<th>NUM</th>
+					<th>TITLE</th>
+					<th>WRITER</th>
+					<th>DATE</th>
+					<th>HIT</th>
+				</tr>
+		
+				<c:forEach items="${list}" var="dto">
+					<tr class="body">
+						<td>${dto.num}</td>
+						<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
+						<td>${dto.writer}</td>
+						<td>${dto.reg_date}</td>
+						<td>${dto.hit}</td>
+					</tr>
+				</c:forEach>
+			</table>
+	
+			<!-- 페이징 처리 -->
+			<div class="paging">
+				<div class="btn-group">
+					<div class="btn-group">
+						<c:if test="${pageResult.curBlock>1}">
+							<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						</c:if>
+		
+						<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+							<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						</c:forEach>
+		
+						<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+							<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						</c:if>
+					</div>
+				</div>
+			</div>
+		
+			<c:if test="${memberDTO.id eq 'admin'}">
+				<p><a class="btn btn-info" href="./noticeWrite">WRITE</a></p>
+			</c:if>
 		</div>
 	</div>
 </body>
