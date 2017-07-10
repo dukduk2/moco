@@ -32,6 +32,26 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	
+	<!-- 인터셉터 -->
+	<interceptors>
+	    <!-- loginCheck 인터셉터  -->
+	    <interceptor>
+	        <mapping path="/**/*"/>
+	        <!-- login-->
+	        <exclude-mapping path="/member/memberLogin"/>
+	        <!-- notice list -->
+	        <exclude-mapping path="/notice/noticeList"/>
+	        <!-- notice View -->
+	        <exclude-mapping path="/notice/noticeView"/>
+	        <beans:bean class="com.moco.interceptor.LoginInterCeptor"/>
+	    </interceptor>
+	    <!-- admin 인터셉터 -->
+	    <interceptor>
+	    	<mapping path="/admin/**"/>
+	        <!-- <exclude-mapping path="/member/memberLogin"/> -->
+	        <beans:bean class="com.moco.interceptor.AdminInterCeptor"/>
+	    </interceptor>
+	</interceptors>
+
 	
 </beans:beans>
