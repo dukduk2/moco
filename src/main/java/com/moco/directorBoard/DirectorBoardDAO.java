@@ -56,6 +56,8 @@ public class DirectorBoardDAO implements BoardDAO{
 		sqlSession.update(MAPPER_NAME+"hitUpdate", map);
 	}
 	
+	// invest
+	
 	public int stateUpdate() throws Exception{
 		return sqlSession.update(MAPPER_NAME+"stateUpdate");
 	}

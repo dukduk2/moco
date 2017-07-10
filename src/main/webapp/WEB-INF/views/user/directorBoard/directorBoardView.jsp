@@ -144,7 +144,7 @@
 				<c:if test="${boardDTO.state==1 }">
 					<td colspan="2">${myMoney}원</td>
 					<td>
-						<button type="button" class="btn" data-toggle="modal" data-target="#myModal">투자하기</button>
+						<button type="button" class="btn" data-toggle="modal" data-target="#myInvestModal">투자하기</button>
 					</td>
 				</c:if>
 				<c:if test="${boardDTO.state==0 }">
@@ -168,7 +168,7 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal fade" id="#myInvestModal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
