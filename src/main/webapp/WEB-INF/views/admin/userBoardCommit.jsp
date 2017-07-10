@@ -92,6 +92,11 @@
 		cursor: pointer;
 		font-weight: bold;
 	}
+	.memberIMG{
+		border-radius: 100%;
+		width: 110px;
+		height: 110px;
+	}
 </style>
 </head>
 <body>

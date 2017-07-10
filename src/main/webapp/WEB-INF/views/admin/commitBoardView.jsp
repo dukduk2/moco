@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">${UserBoardDTO.writer} 님의 게시물</h4>
+          <h4 class="modal-title"><img class="memberIMG" alt="" src="../resources/upload/member/${memberInfo.fname}">&nbsp; ${UserBoardDTO.writer} 님의 게시물</h4>
         </div>
         <div class="modal-body">
           <table>

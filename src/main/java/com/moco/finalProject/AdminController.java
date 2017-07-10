@@ -290,6 +290,10 @@ public class AdminController {
 	public String userBoardView(int num, Model model) throws Exception{
 		// Ajax - View
 		model.addAttribute("UserBoardDTO", userBoardService.view(num));
+		// member IMG
+		MemberDTO memberDTO = userBoardService.memberInfo(num);
+		model.addAttribute("memberInfo", memberDTO);
+		
 		return "admin/commitBoardView";
 	}
 
