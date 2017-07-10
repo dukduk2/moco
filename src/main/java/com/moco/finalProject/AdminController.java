@@ -765,7 +765,7 @@ public class AdminController {
 		if(perPage == null){
 			perPage = 10;
 		}
-		
+		//unCommitList
 		Map<String, Object> map = lowPriceMovieService.theaterList(curPage, perPage);
 
 		model.addAttribute("list", map.get("list"));
@@ -790,6 +790,18 @@ public class AdminController {
 		// DB에서 극장 삭제.
 		lowPriceMovieService.theaterDelete(num);
 		return "redirect:/admin/theaterCommit";
+	}
+	
+	@RequestMapping(value="screenCommit", method=RequestMethod.GET)
+	public void screenCommit(Integer curPage, Integer perPage, Model model) throws Exception{
+		if(curPage == null){
+			curPage = 1;
+		}
+		if(perPage == null){
+			perPage = 10;
+		}
+		Map<String, Object> map = lowPriceMovieService.theaterList(curPage, perPage, "%", "%");
+		model.addAttribute("theaterList", map.get("list"));
 	}
 	
 }

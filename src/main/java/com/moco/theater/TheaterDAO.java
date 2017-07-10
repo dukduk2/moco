@@ -34,7 +34,7 @@ public class TheaterDAO {
 	}
 	
 	public int totalCount() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"commitTotalCount");
+		return sqlSession.selectOne(NAMESPACE+"unCommitTotalCount");
 	}
 	
 	public List<TheaterDTO> list(RowMaker rowMaker, String kind, String search) throws Exception{
@@ -49,8 +49,9 @@ public class TheaterDAO {
 		
 		return ar;
 	}
+	//uncommit
 	public List<TheaterDTO> list(RowMaker rowMaker) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"commitList", rowMaker);
+		return sqlSession.selectList(NAMESPACE+"unCommitList", rowMaker);
 	}
 	
 	public int insert(TheaterDTO theaterDTO, MultiplexDTO multiplexDTO) throws Exception{

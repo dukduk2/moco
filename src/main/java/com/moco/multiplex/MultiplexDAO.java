@@ -25,5 +25,8 @@ public class MultiplexDAO {
 		return sqlSession.selectOne(NAMESPACE+"view", num);
 	}
 	
+	public MultiplexDTO unCommitList(int multi_num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"unCommitList", multi_num);
+	}
 	
 }

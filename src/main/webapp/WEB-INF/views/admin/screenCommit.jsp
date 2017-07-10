@@ -83,7 +83,7 @@
 				<td>PRICE</td>
 				<td>PHONE</td>
 			</tr>
-			<c:forEach items="${list}" var="dto">
+			<c:forEach items="${theaterList}" var="dto">
 				<tr>
 					<td>${dto.num}	</td>
 					<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
@@ -99,7 +99,7 @@
 		<div class="container">
 			<div class="modal fade" id="myModal" role="dialog">
 		    	<div class="modal-dialog modal-sm">
-		    		<div class="modal-content" id="theaterView">
+		    		<div class="modal-content" id="screenView">
 		    		</div>
 		    	</div>
 		    </div>
