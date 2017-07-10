@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="/resources/part/bootStrap.jspf" %>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		
@@ -100,96 +102,114 @@
 </style>
 </head>
 <body>
+	<%@ include file="/resources/part/header3.jspf" %>
+		<section>
+			<div class="container">
+	
+			<h2 style="text-align: center;">USERBOARD COMMIT</h2>
 
-	<h3 class="title">USERBOARD COMMIT</h3>
-	<div class="container">	
-	<br>
-	<div class="form">
-		<form action="./userBoardCommit" id="searchForm">
-			<select name="kind">
-				<option value="title">TITLE</option>
-				<option value="writer">WRITER</option>
-				<option value="genre">GENRE</option>
-			</select>
-			<input type="text" name="search">
-			<input type="hidden" name="curPage" value="1">
-			<input type="button" value="Search" id="search">
-		</form>
-		<br>
-		<form action="./userBoardCommit" id="seasonForm">
-			SEASON 
-			<select name="season" id="season">
-				<option value="all">ALL</option>
-				<c:forEach items="${orderList}" var="order">
-					<option value="${order.season}">${order.season}</option>
+			<div class="search_left">
+				<form class="form-horizontal" action="./userBoardList" id="seasonForm">
+					<table>
+						<tr>
+							<td><span class="titleSpan">SEASON</span></td>
+							<td>
+								<select name="season" class="form-control" id="season">
+									<option value="all" class="titleSpan">ALL</option>
+									<c:forEach items="${orderList}" var="order">
+										<option value="${order.season}">${order.season}</option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<input type="hidden" name="curPage" value="1">
+				</form>
+			</div>
+		
+			<div class="search_right">
+				<form action="./userBoardList" id="searchForm">
+					<table>
+						<tr>
+							<td>
+								<select name="kind" class="form-control" style="width: 100px;">
+									<option value="title" class="titleSpan">TITLE</option>
+									<option value="writer" class="titleSpan">WRITER</option>
+									<option value="genre" class="titleSpan">GENRE</option>
+								</select>						
+							</td>
+							<td>
+								<input type="text" name="search" class="form-control col-sm-5">
+								<input type="hidden" name="curPage" value="1">
+							</td>
+							<td>
+								<input type="button" value="Search" id="search" class="btn titleSpan">
+							</td>
+						</tr>
+					</table>				
+				</form>
+			</div>
+
+			<table class="table table-hover">
+				<thead>
+					<tr class="head">
+						<td>NUM</td>
+						<td>TITLE</td>
+						<td>WRITER</td>
+						<td>GENRE</td>
+						<td>DATE</td>
+						<td>HIT</td>
+						<td>LIKES</td>
+						<td>SEASON</td>
+						<td>STATE</td>
+					</tr>
+				</thead>
+
+				<c:forEach items="${list}" var="dto">
+					<tr class="body">
+						<td>${dto.num}</td>
+						<td><span id="${dto.num}" class="boardTitle"
+							data-toggle="modal" data-target="#myModal">${dto.title}</span></td>
+						<td>${dto.writer}</td>
+						<td>${dto.genre}</td>
+						<td>${dto.reg_date}</td>
+						<td>${dto.hit}</td>
+						<td>${dto.likes}</td>
+						<td>${dto.season}</td>
+						<td><c:if test="${dto.commit == 0}">
+								<span>승인 대기 중</span>
+							</c:if></td>
+					</tr>
 				</c:forEach>
-			</select>
-			<input type="hidden" name="curPage" value="1">
-		</form>
-	</div>
-	<br>
-	<table class="table table-hover">
-		<tr>
-			<td>NUM</td>
-			<td>TITLE</td>
-			<td>WRITER</td>
-			<td>GENRE</td>
-			<td>DATE</td>
-			<td>HIT</td>
-			<td>LIKES</td>
-			<td>SEASON</td>
-			<td>STATE</td>
-		</tr>
-		<c:forEach items="${list}" var="dto">
-				<tr>
-					<td>${dto.num}	</td>
-					<td><span id="${dto.num}" class="boardTitle" data-toggle="modal" data-target="#myModal">${dto.title}</span></td>
-					<td>${dto.writer}</td>
-					<td>${dto.genre}</td>
-					<td>${dto.reg_date}</td>
-					<td>${dto.hit}</td>
-					<td>${dto.likes}</td>
-					<td>${dto.season}</td>
-					<td>
-						<c:if test="${dto.commit == 0}">
-							<span>승인 대기 중</span>
-						</c:if>
-					</td>
-				</tr>
-		</c:forEach>
-	</table>
+			</table>
 
-<!-- modal Ajax -->
-<div class="container">
-	<div class="modal fade" id="myModal" role="dialog">
-    	<div class="modal-dialog" style="width: 1000px;" >
-    		<div class="modal-content" id="boardView">
-    		</div>
-    	</div>
-    </div>
-</div>
-	
-	
-	
-	<!-- 페이징 처리 -->
-	<div class="paging">
-		<c:if test="${pageResult.curBlock>1}">
-			<button class="btn"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
-		</c:if>
-		<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-			<button class="btn"><span class="go" id="${i}">${i}</span></button>
-		</c:forEach>
-		<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-			<button class="btn"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
-		</c:if>
-	</div>
-	
-	<!-- BTN -->
-	<div class="btnBox">
-		<a href="./index"><button class="btn">Admin Index</button></a>
-		<a href="../"><button class="btn">HOME</button></a>
-	</div>
-</div>
-	
+			<!-- modal Ajax -->
+			<div class="modal fade" id="myModal" role="dialog">
+			   	<div class="modal-dialog" style="width: 1000px;" >
+			   		<div class="modal-content" id="boardView">
+			   		</div>
+			   	</div>
+			</div>
+
+			<!-- 페이징 처리 -->
+			<div class="paging">
+				<div class="btn-group">
+					<div class="btn-group">
+						<c:if test="${pageResult.curBlock>1}">
+							<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						</c:if>
+
+						<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+							<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						</c:forEach>
+
+						<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+							<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
