@@ -32,7 +32,7 @@
 		<a class="btn btn-info" href="./noticeDelete?num=${dto.num }">DELETE</a>
 		</c:if>
 		
-		<a class="btn btn-info" href="./noticeList">LIST</a>
+		<a class="btn btn-info" href="../">LIST</a>
 		
 		</div>
 	</section>
