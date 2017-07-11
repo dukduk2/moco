@@ -392,7 +392,7 @@
 		</div>
 		<div id="movieInfo" title="${movieDTO.num }">
 			<span style="font-size: 25px;">${movieDTO.title }
-				<button class="btn movieRequest" id="${requestMessage }" title="${kind }">${requestMessage }</button>
+				<button class="btn movieRequest" id="${requestMessage }" title="${movieKind }">${requestMessage }</button>
 			</span>
 			
 			<p>${movieDTO.eng_title }</p>
