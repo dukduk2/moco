@@ -11,13 +11,13 @@ public class LoginInterCeptor extends HandlerInterceptorAdapter{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		//HTTP 요청 처리 전 수행할 로직 작성
+		// HTTP 요청 처리 전 수행할 로직 작성
 		System.out.println("===================== START LOGIN INTERCEPTOR =====================");
 		boolean loginCheck = false;
 		if(request.getSession().getAttribute("memberDTO") == null){
 			System.out.println("Login False");
 			loginCheck = false;
-			response.sendRedirect("/finalProject");
+			response.sendRedirect("/finalProject/#go");
 		}else{
 			System.out.println("Login True");
 			loginCheck = !loginCheck;

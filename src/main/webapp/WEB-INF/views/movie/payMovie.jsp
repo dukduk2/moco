@@ -11,7 +11,6 @@
 	href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/section.css">
-<title>Insert title here</title>
 <script type="text/javascript">
 $(function(){
 	var price=${price };

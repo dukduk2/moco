@@ -30,6 +30,8 @@ import com.moco.movieRequest.MovieRequestService;
 import com.moco.multiplex.MultiplexDTO;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
+import com.moco.pay.PayDTO;
+import com.moco.pay.PayService;
 import com.moco.reservation.ReservationDTO;
 import com.moco.screen.ScreenDTO;
 import com.moco.theater.TheaterDTO;
@@ -49,6 +51,8 @@ public class LowPriceMovieController {
 	MovieRequestService movieRequestService;
 	@Inject
 	PaidMovieService paidMovieService;
+	@Inject
+	PayService payService;
 
 	// SEARCH HOME
 	@RequestMapping(value = "movieSearchHome", method = RequestMethod.GET)
@@ -165,6 +169,8 @@ public class LowPriceMovieController {
 		// 신청하기, 보러가기, 접수중
 		MovieRequestDTO movieRequestDTO = null;
 		PaidMovieDTO paidMovieDTO = null;
+		List<PayDTO> ar=new ArrayList<PayDTO>();
+		PayDTO payDTO = new PayDTO(); //결제여부 확인
 		try {
 			Map<String, Object> view_map = new HashMap<String, Object>();
 			view_map.put("num", num);
@@ -177,7 +183,15 @@ public class LowPriceMovieController {
 			jjim_map.put("num", num);
 			jjimDTO = basicMovieService.jjimCheck(jjim_map);
 			review_count = basicMovieService.reviewCount(jjim_map);
-
+			
+			ar=payService.paySelectList();
+			
+			for(int i=0;i<ar.size();i++){
+				if(ar.get(i).getId().equals(((MemberDTO)session.getAttribute("memberDTO")).getId()) && ar.get(i).getLnum()==num){
+					model.addAttribute("payCheck", "check");
+				}
+			}
+			
 			// 신청하기, 보러가기, 접수중
 			Map<String, Object> check_map = new HashMap<String, Object>();
 			check_map.put("kind", "low");

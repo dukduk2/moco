@@ -25,7 +25,7 @@ public class AdminInterCeptor extends HandlerInterceptorAdapter{
 		}else{
 			System.out.println("Admin False");
 			adminCheck = false;
-			response.sendRedirect("/finalProject");
+			response.sendRedirect("/finalProject/#go");
 		}
 		
 		return adminCheck;
