@@ -54,10 +54,21 @@ $(function(){
 	$(".noticeView").click(function() {
 		var id = $(this).attr("id");
 		$("#"+id+"View").show();
-		$.get("./notice/noticeView?num="+id,
-			function(data){
+		$.get("./notice/noticeView?num="+id, function(data){
 			
 		});
+	});
+	
+	// videoCancel
+	$(".noticeCancel").click(function() {
+		var id = $(this).attr("id");
+		$("#"+id+"View").hide();
+	});
+	
+	// videoUpdate
+	$(".noticeUpdate").click(function() {
+		var id = $(this).attr("id");
+		window.open("${pageContext.request.contextPath}/notice/noticeUpdate", "actity", "width=1200, height=800, left=300, top=100");
 	});
 });
 </script>
@@ -217,7 +228,9 @@ video {
 	border: solid red 2px;
 }
 
-.noticeView {
+.noticeView:hover {
+	color: blue;
+	font-weight: bold;
 	cursor: pointer;
 }
 </style>
@@ -282,7 +295,8 @@ video {
 			</div>
 		</div>
 	</div>
-	
+
+<!-- info -->
 	<div id="intro" class="container">
 		<div class="event">
 			<div>마우스를 올려보려무나~</div>
@@ -294,35 +308,34 @@ video {
 				<p><a href="#go" id="login">Login</a></p> -->
 			</div>
 		</div>
-	
+
+
+<!-- notice -->
 		<div class="notice">
 			<h2 style="text-align: center;">NOTICE</h2>
 	
 			<table class="table table-hover">
 				<thead><tr class="head">
-					<th>NUM</th>
-					<th>TITLE</th>
-					<th>WRITER</th>
-					<th>DATE</th>
-					<th>HIT</th>
+					<td>NUM</td>
+					<td>TITLE</td>
+					<td>WRITER</td>
+					<td>DATE</td>
+					<td>HIT</td>
 				</tr>
 		
 				<c:forEach items="${list}" var="dto">
 					<tr class="body">
 						<td>${dto.num}</td>
-						<td><a href="./notice/noticeView?num=${dto.num}">${dto.title}</a>
-						
-<!-- notice View start -->
-							/<span class="noticeView" id="${dto.num}">${dto.title}</span>
-<!-- notice View end -->
-						</td>
-
+						<td><span class="noticeView" id="${dto.num}">${dto.title}</span></td>
 						<td>${dto.writer}</td>
 						<td>${dto.reg_date}</td>
 						<td>${dto.hit}</td>
 					</tr>
 					<tr class="noticeShowHide" id="${dto.num}View">
-						<td colspan="5">${dto.contents}</td>
+						<td colspan="5">${dto.contents}<br>
+							<input type="button" value="닫기" id="${dto.num}" class="btn noticeCancel">
+							<input type="button" value="수정" id="${dto.num}" class="btn noticeUpdate">
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
