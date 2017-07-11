@@ -231,7 +231,6 @@ public class MemberController {
 		
 		try {
 			if(f1 != null){
-				System.out.println("이미지가 없을 때 / 이미지를 지웠을 때 / 이미지 넣을 때");
 				if(!f1.getOriginalFilename().equals("")){
 					//oname 세팅
 					memberDTO.setOname(f1.getOriginalFilename());
@@ -250,11 +249,8 @@ public class MemberController {
 					result = memberService.memberUpdate(memberDTO);
 				}
 			} else {
-				System.out.println("이미지가 있을 때");
-				System.out.println("memberDTO.getId() : "+memberDTO.getId());
-				System.out.println("memberDTO.getFname() : "+memberDTO.getFname());
-				memberDTO.setFname(memberDTO.getFname());
-				memberDTO.setOname(memberDTO.getOname());
+				memberDTO.setFname(((MemberDTO)session.getAttribute("memberDTO")).getFname());
+				memberDTO.setOname(((MemberDTO)session.getAttribute("memberDTO")).getOname());
 
 				result = memberService.memberUpdate(memberDTO);
 			}
