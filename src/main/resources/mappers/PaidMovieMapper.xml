@@ -18,6 +18,13 @@
 	<select id="movieOne" parameterType="java.lang.Integer" resultType="com.moco.paidMovie.PaidMovieDTO">
 		select * from paidMovie where num=#{num}
 	</select>
+	<!-- 무비번호로 title 얻어오기 -->
+	<select id="basicTitle" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select title from basicMovie where num=#{num} 
+	</select>
+	<select id="lowTitle" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select title from lowPriceMovie where num=#{num} 
+	</select>
 	<insert id="movieInsert" parameterType="com.moco.paidMovie.PaidMovieDTO">
 		insert into paidMovie values(NVL((select max(num) from paidMovie),0)+1, #{price}, #{fname}, #{oname}, #{bNum},#{lNum})
 	</insert>
