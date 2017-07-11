@@ -6,10 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="/resources/part/bootStrap.jspf" %>
+<style type="text/css">
+	.logoIMG{
+		width: 130px;
+		height: 130px;
+	}
+</style>
 </head>
 <body>
 	<div class="container">
-		<a href="#"><img alt="" src="../resources/logo/logo.png"></a>
+		<a href="#"><img alt="" src="../resources/logo/logo.png" class="logoIMG"></a>
 		<h2>페이지를 찾을 수 없습니다.</h2>
 		<h4>이용에 불편을 드려 죄송합니다.</h4>
 		<a href="/finalProject/#go">HOME 으로 가기</a>
