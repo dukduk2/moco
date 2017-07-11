@@ -105,7 +105,7 @@ public class BasicMovieRecommendController {
 				List<JjimRankDTO> jjimList = recommendService.jjimRankList(criteria_map);
 				movie_map.put("jjimList", jjimList);
 			}
-			// 최근 영화
+			// 개봉예정작
 			else if(criteria.equals("recent")){
 				List<BasicMovieDTO> recentList = recommendService.recentList(criteria_map);
 				movie_map.put("recentList", recentList);

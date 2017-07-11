@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -400,7 +401,11 @@
 				<span style="width: ${movieDTO.user_rating*10}%"></span>
 			</span>
 			<span>${movieDTO.user_rating }/10 (${review_count }명 참여)</span>
-			<p style="margin-top: 10px;"><strong>개요</strong> ${movieDTO.genre } | ${movieDTO.nation } | ${movieDTO.play_time } | ${movieDTO.pub_date }개봉</p>
+			<p style="margin-top: 10px;"><strong>개요</strong> ${movieDTO.genre } | ${movieDTO.nation } | ${movieDTO.play_time }  
+				<c:if test="${movieDTO.pub_date ne '1970-01-01' }">
+					| ${movieDTO.pub_date }개봉
+				</c:if>
+			</p>
 			<p><strong>감독</strong> ${movieDTO.director }</p>
 			<p><strong>주연</strong> ${movieDTO.actor }</p>
 			<p><strong>등급</strong> ${movieDTO.watching_rate }</p>

@@ -15,9 +15,18 @@
 			var kind = $(this).attr("title");
 			var num = $(this).attr("id");
 			if(kind == 'basic'){
-				location.href="./basicMovieSearch/movieView?num="+num+"&kind=basic";
+				location.href="./basicMovieSearch/movieView?num="+num;
 			}else{
-				location.href="./lowpricemovie/movieView?num="+num+"&kind=low";
+				location.href="./lowpricemovie/movieView?num="+num;
+			}
+		});
+		$(".review").click(function(){
+			var kind = $(this).attr("title");
+			var num = $(this).attr("id");
+			if(kind == 'basic'){
+				location.href="./basicMovieSearch/movieView?num="+num;
+			}else{
+				location.href="./lowpricemovie/movieView?num="+num;
 			}
 		});
 	});
@@ -245,7 +254,7 @@
 		<div class="sub sub_left">sub3</div>
 		<div class="sub sub_right">
 			<c:forEach items="${reviewList }" var="list">
-				<div class="review">
+				<div class="review" id="${list.movieInfo.num }" title="${list.kind }">
 					<div class="review_img">
 						<img src="${list.movieInfo.thumnail }">
 					</div>

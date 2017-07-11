@@ -1,5 +1,7 @@
 package com.moco.finalProject;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.moco.member.MemberDTO;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
+import com.moco.movieAPI.movieRecommend.RecommendService;
+import com.moco.movieAPI.movieRecommend.weather.Getweather;
 import com.moco.notice.NoticeDTO;
 import com.moco.notice.NoticeService;
 import com.moco.paidMovie.PaidMovieDTO;
@@ -36,9 +39,9 @@ import com.moco.util.RowMaker;
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Inject
 	PaidMovieService paidMovieService;
 	@Inject
@@ -51,7 +54,9 @@ public class HomeController {
 	ReviewService reviewService;
 	@Inject
 	MemberService memberService;
-	
+	@Inject
+	RecommendService recommendService;
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -59,7 +64,7 @@ public class HomeController {
 	public String home(Integer curPage, Integer perPage, Locale locale, Model model, HttpSession session) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
 		//String name=((MemberDTO)session.getAttribute("memberDTO")).getName();
-		
+
 		if(curPage==null){
 			curPage=1;
 		}
@@ -68,95 +73,113 @@ public class HomeController {
 		}
 		map.put("curPage", curPage);
 		map.put("perPage", perPage);
-		
+
 		RowMaker rowMaker=new RowMaker();
 		rowMaker.makeRow(curPage, perPage);
-		
+
 		map.put("startRow", rowMaker.getStartRow());
 		map.put("lastRow", rowMaker.getLastRow());
-		
+
 		PageMaker pageMaker=new PageMaker(curPage, perPage);
 		int totalCount=noticeService.totalCount();
 		PageResult pageResult=pageMaker.paging(totalCount);
 		List<NoticeDTO> ar=noticeService.noticeList(map);
-		
+
 		model.addAttribute("map", map);
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("list", ar);
-		
+
 		return "home";
 		//model.addAttribute("totalCount", totalCount);
 		/*logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
+
 		model.addAttribute("serverTime", formattedDate );
-		
+
 		return "home";*/
 	}
-	
+
 	@RequestMapping(value = "/user/userHome", method = RequestMethod.GET)
-	public void userHome(){
-		
+	public void userHome() throws Exception{
+
 	}
-	
+
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)
-	public void movieHome(Model model){
+	public void movieHome(Model model) throws Exception{
 		List<PaidMovieDTO> basicPaidList = new ArrayList<PaidMovieDTO>();
 		List<PaidMovieDTO> lowPaidList = new ArrayList<PaidMovieDTO>();
 		List<BasicMovieDTO> basicInfoList = new ArrayList<BasicMovieDTO>();
 		List<BasicMovieDTO> lowInfoList = new ArrayList<BasicMovieDTO>();
 		List<Map<String, Object>> reviewList = new ArrayList<Map<String,Object>>();
-		try {
-			// 유료 영화 리스트
-			basicPaidList = paidMovieService.basicMovieList();
-			lowPaidList = paidMovieService.lowMovieList();
-			for(PaidMovieDTO dto:basicPaidList){
-				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
-				Map<String, Object> map = new HashMap<String, Object>();
+		// 유료 영화 리스트
+		basicPaidList = paidMovieService.basicMovieList();
+		lowPaidList = paidMovieService.lowMovieList();
+		for(PaidMovieDTO dto:basicPaidList){
+			BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("kind", "basic");
+			map.put("num", dto.getbNum());
+			basicMovieDTO = basicMovieService.view(map);
+			basicInfoList.add(basicMovieDTO);
+		}
+		for(PaidMovieDTO dto:lowPaidList){
+			BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("kind", "low");
+			map.put("num", dto.getlNum());
+			basicMovieDTO = basicMovieService.view(map);
+			lowInfoList.add(basicMovieDTO);
+		}
+		// 후기 리스트
+		List<ReviewDTO> list = reviewService.orderByLikeReview();
+		for(ReviewDTO dto:list){
+			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> view_map = new HashMap<String, Object>();
+			if(dto.getlNum()==0){
+				view_map.put("kind", "basic");
+				view_map.put("num", dto.getbNum());
 				map.put("kind", "basic");
-				map.put("num", dto.getbNum());
-				basicMovieDTO = basicMovieService.view(map);
-				basicInfoList.add(basicMovieDTO);
-			}
-			for(PaidMovieDTO dto:lowPaidList){
-				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
-				Map<String, Object> map = new HashMap<String, Object>();
+			}else{
+				view_map.put("kind", "low");
+				view_map.put("num", dto.getlNum());
 				map.put("kind", "low");
-				map.put("num", dto.getlNum());
-				basicMovieDTO = basicMovieService.view(map);
-				lowInfoList.add(basicMovieDTO);
 			}
-		}catch(Exception e){
-			System.out.println("유료 영화 리스트 예외발생");
+			BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+			basicMovieDTO = basicMovieService.view(view_map);
+
+			map.put("movieInfo", basicMovieDTO);
+			map.put("reviewInfo", dto);
+			reviewList.add(map);
 		}
-		try{
-			// 후기 리스트
-			List<ReviewDTO> list = reviewService.orderByLikeReview();
-			for(ReviewDTO dto:list){
-				Map<String, Object> map = new HashMap<String, Object>();
-				Map<String, Object> view_map = new HashMap<String, Object>();
-				BasicMovieDTO bMovieDTO = new BasicMovieDTO();
-				if(dto.getlNum()==0){
-					view_map.put("kind", "basic");
-					view_map.put("num", dto.getbNum());
-				}else{
-					view_map.put("kind", "low");
-					view_map.put("num", dto.getlNum());
-				}
-				bMovieDTO = basicMovieService.view(view_map);
-				System.out.println(bMovieDTO.getTitle());
-				
-				map.put("movieInfo", bMovieDTO);
-				map.put("reviewInfo", dto);
-				reviewList.add(map);
+		// 영화 추천
+		List<BasicMovieDTO> basicMovieRecommendList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
+		// 날씨별
+		List<BasicMovieDTO> weatherMovie = new ArrayList<BasicMovieDTO>(); 
+		Getweather getweather = new Getweather();
+		String sky_code = getweather.getWeather();
+		if(sky_code!=null){
+			Map<String, Object> weather_map = new HashMap<String, Object>();
+			weather_map.put("kind", "basic");
+			if(sky_code.equalsIgnoreCase("SKY_D01") ||sky_code.equalsIgnoreCase("SKY_D02")){
+				weather_map.put("weather", 0);
+			}else if(sky_code.equalsIgnoreCase("SKY_D03") ||sky_code.equalsIgnoreCase("SKY_D04")){
+				weather_map.put("weather", 1);
+			}else{
+				weather_map.put("weather", 2);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			weatherMovie = recommendService.genreList(weather_map);
+			basicMovieRecommendList.add(weatherMovie.get(0));
 		}
+		// 개봉예정작
+		List<BasicMovieDTO> pubMovie = new ArrayList<BasicMovieDTO>(); 
+		
+		
+		
+		
 		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList)
 		.addAttribute("reviewList", reviewList);
 	}
