@@ -191,30 +191,30 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox" style="height: 300px;">
 					<div class="item active">
-						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<a href="#"><img style="height: 300px;" src="${lowMovieRecommendList[0].thumnail}"></a>
 						<div class="carousel-caption">
-							<h3>방구 1</h3>
+							<h3>${lowMovieRecommendList[0].pub_date}개봉</h3>
 						</div>
 					</div>
 
 					<div class="item">
-						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<a href="#"><img style="height: 300px;" src="${lowMovieRecommendList[1].thumnail}"></a>
 						<div class="carousel-caption">
-							<h3>방구 2</h3>
+							<h3>${lowMovieRecommendList[1].pub_date}개봉</h3>
 						</div>
 					</div>
 					
 					<div class="item">
-						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<a href="#"><img style="height: 300px;" src="${lowMovieRecommendList[2].thumnail}"></a>
 						<div class="carousel-caption">
-							<h3>방구 3</h3>
+							<h3>${lowMovieRecommendList[2].pub_date}개봉</h3>
 						</div>
 					</div>
 					
 					<div class="item">
-						<a href="#"><img style="height: 300px;" src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
+						<a href="#"><img style="height: 300px;" src="${lowMovieRecommendList[3].thumnail}"></a>
 						<div class="carousel-caption">
-							<h3>방구 4</h3>
+							<h3>${lowMovieRecommendList[3].pub_date}개봉</h3>
 						</div>
 					</div>
 				</div>
@@ -251,7 +251,57 @@
 				</table>
 			</div>
 		</div>
-		<div class="sub sub_left">sub3</div>
+		<div class="sub sub_left">
+			<div id="myCarousel3" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel2" data-slide-to="1"></li>
+					<li data-target="#myCarousel2" data-slide-to="2"></li>
+					<li data-target="#myCarousel2" data-slide-to="3"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox" style="height: 300px;">
+					<div class="item active">
+						<a href="#"><img style="height: 300px;" src="${basicMovieRecommendList[0].thumnail}"></a>
+						<div class="carousel-caption">
+							<h3>${basicMovieRecommendList[0].pub_date}개봉</h3>
+						</div>
+					</div>
+
+					<div class="item">
+						<a href="#"><img style="height: 300px;" src="${basicMovieRecommendList[1].thumnail}"></a>
+						<div class="carousel-caption">
+							<h3>${basicMovieRecommendList[1].pub_date}개봉</h3>
+						</div>
+					</div>
+					
+					<div class="item">
+						<a href="#"><img style="height: 300px;" src="${basicMovieRecommendList[2].thumnail}"></a>
+						<div class="carousel-caption">
+							<h3>${basicMovieRecommendList[2].pub_date}개봉</h3>
+						</div>
+					</div>
+					
+					<div class="item">
+						<a href="#"><img style="height: 300px;" src="${basicMovieRecommendList[3].thumnail}"></a>
+						<div class="carousel-caption">
+							<h3>${basicMovieRecommendList[3].pub_date}개봉</h3>
+						</div>
+					</div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#myCarousel2" role="button"	data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
 		<div class="sub sub_right">
 			<c:forEach items="${reviewList }" var="list">
 				<div class="review" id="${list.movieInfo.num }" title="${list.kind }">
