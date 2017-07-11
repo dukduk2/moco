@@ -62,5 +62,8 @@ public class JjimDAO {
 	public List<JjimDTO> jjimMovieList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"jjimMovieList", id);
 	}
-	
+	// jjimDeleteNum
+	public int jjimDeleteNum(int num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"jjimDeleteNum", num);
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,26 +145,41 @@ public class MemberController {
 	@RequestMapping(value="viewJjimList", method=RequestMethod.GET)
 	public void viewJjimList(HttpSession session, Model model){
 		List<JjimDTO> jjimList = new ArrayList<JjimDTO>();
-		List<BasicMovieDTO> jjimMovieList = new ArrayList<BasicMovieDTO>();
+		List<Map<String, Object>> jjimMovieList = new ArrayList<Map<String, Object>>();
 		try {
 			jjimList = jjimService.jjimMovieList(((MemberDTO)session.getAttribute("memberDTO")).getId());
 			for(JjimDTO jjimDTO:jjimList){
 				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
 				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> movieList = new HashMap<String, Object>();
 				if(jjimDTO.getlNum()==0){
 					map.put("kind", "basic");
 					map.put("num", jjimDTO.getbNum());
+					movieList.put("kind", "basic");
 				}else{
 					map.put("kind", "low");
 					map.put("num", jjimDTO.getlNum());
+					movieList.put("kind", "low");
 				}
 				basicMovieDTO = basicMovieService.view(map);
-				jjimMovieList.add(basicMovieDTO);
+				movieList.put("movieDTO", basicMovieDTO);
+				jjimMovieList.add(movieList);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("jjimMovieList", jjimMovieList);
+	}
+	
+	@RequestMapping(value="jjimDelete", method=RequestMethod.GET)
+	public String jjimDelete(int num, String kind, HttpSession session) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("num", num);
+		map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
+		basicMovieService.jjimDelete(map);
+		
+		return "redirect:viewJjimList";
 	}
 	
 	//회원이 delete

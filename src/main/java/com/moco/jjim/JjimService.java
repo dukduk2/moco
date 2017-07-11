@@ -65,4 +65,8 @@ public class JjimService {
 	public List<JjimDTO> jjimMovieList(String id) throws Exception{
 		return jjimDAO.jjimMovieList(id);
 	}
+	// jjimDeleteNum
+	public int jjimDeleteNum(int num) throws Exception{
+		return jjimDAO.jjimDeleteNum(num);
+	}
 }

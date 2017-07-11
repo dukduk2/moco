@@ -43,4 +43,9 @@
 	<select id="jjimMovieList" parameterType="String" resultType="com.moco.jjim.JjimDTO">
 		select * from jjim where id=#{id}
 	</select>
+	
+	<!-- 번호로 찜하기 삭제 -->
+	<delete id="jjimDeleteNum" parameterType="int">
+		delete jjim where num=#{num}
+	</delete>
 </mapper>
