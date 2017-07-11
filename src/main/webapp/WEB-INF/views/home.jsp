@@ -49,7 +49,7 @@ $(function(){
 	//notice -------------------------------------------------
 	
 	$(".noticeShowHide").hide();
-	var hideCheck= false;
+	var hideCheck= true;
 	
 	// noticeView
 	$(".noticeView").click(function() {

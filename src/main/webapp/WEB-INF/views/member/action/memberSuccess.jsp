@@ -23,11 +23,18 @@ $(function(){
 });
 </script>
 
+<style type="text/css">
+.button {
+	width: 100px;
+	margin: 0 auto;
+}
+</style>
+
 </head>
 <body>
 	<div class="container">
 		<h2 class="title">${message}</h2>
-		<input type="button" id="bye" class="btn btn-primary" value="확인">
+		<div class="button"><input type="button" id="bye" class="btn btn-primary" value="확인"></div>
 	</div>
 </body>
 </html>
