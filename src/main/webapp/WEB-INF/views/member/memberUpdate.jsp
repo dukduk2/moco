@@ -50,7 +50,7 @@ $(function(){
 		<div class="container">
 			<h2 class="title"><img class="icon" src="../resources/images/icon/pop.png"> Member Update</h2>
 			<form action="memberUpdate" method="POST" enctype="multipart/form-data">
-				<table class="member_Table">
+				<table class ="member_Table">
 					<tr>
 						<td class="name">IMG</td>
 							<c:if test="${memberDTO.getFname() ne ' '}">

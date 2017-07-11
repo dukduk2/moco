@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -223,36 +224,44 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberUpdate", method=RequestMethod.POST)
-	public String memberUpdate(MemberDTO memberDTO, MultipartFile f1, HttpSession session, RedirectAttributes redirectAttributes){
+	public String memberUpdate(MemberDTO memberDTO, @RequestParam(required=false)MultipartFile f1, HttpSession session, RedirectAttributes redirectAttributes){
 		String message = "Member Update Fail";
 		int result = 0;
 		FileSaver fileSaver = new FileSaver();
 		
-		if(!f1.getOriginalFilename().equals("")){
-			//oname 세팅
-			memberDTO.setOname(f1.getOriginalFilename());
-		
-			try {
-				String path = session.getServletContext().getRealPath("resources/upload/member");
-				// 파일 업로드
-				memberDTO.setFname(fileSaver.saver(f1, path));
-				
-				// 정보 업데이트
+		try {
+			if(f1 != null){
+				System.out.println("이미지가 없을 때 / 이미지를 지웠을 때 / 이미지 넣을 때");
+				if(!f1.getOriginalFilename().equals("")){
+					//oname 세팅
+					memberDTO.setOname(f1.getOriginalFilename());
+
+					String path = session.getServletContext().getRealPath("resources/upload/member");
+					// 파일 업로드
+					memberDTO.setFname(fileSaver.saver(f1, path));
+
+					// 정보 업데이트
+					result = memberService.memberUpdate(memberDTO);
+						
+				} else {
+					memberDTO.setFname(" ");
+					memberDTO.setOname(" ");
+					
+					result = memberService.memberUpdate(memberDTO);
+				}
+			} else {
+				System.out.println("이미지가 있을 때");
+				System.out.println("memberDTO.getId() : "+memberDTO.getId());
+				System.out.println("memberDTO.getFname() : "+memberDTO.getFname());
+				memberDTO.setFname(memberDTO.getFname());
+				memberDTO.setOname(memberDTO.getOname());
+
 				result = memberService.memberUpdate(memberDTO);
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-		} else {
-			memberDTO.setFname(" ");
-			memberDTO.setOname(" ");
-			try {
-				result = memberService.memberUpdate(memberDTO);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		if(result>0){
@@ -314,7 +323,7 @@ public class MemberController {
 
 	//아이디 찾기
 	@RequestMapping(value="memberSearchID", method=RequestMethod.POST)
-	public String memberSearchID(String name, String email,/* HttpSession session,*/ Model model){
+	public String memberSearchID(String name, String email, Model model){
 		String message = "";
 		
 		try {
