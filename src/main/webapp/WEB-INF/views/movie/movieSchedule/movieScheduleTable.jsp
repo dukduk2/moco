@@ -58,6 +58,7 @@
 #calendar table .title {
    color: black;
    font-weight: bold;
+   font-size: 20px;
 }
 </style>
 <script type="text/javascript">

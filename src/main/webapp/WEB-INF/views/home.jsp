@@ -59,7 +59,7 @@ $(function(){
 			hideCheck = !hideCheck;
 			$.get("./notice/noticeView?num="+id, function(data){
 				
-			});			
+			});
 		}else{
 			$("#"+id+"View").hide();
 			hideCheck = !hideCheck;	
@@ -76,6 +76,14 @@ $(function(){
 	$(".noticeUpdate").click(function() {
 		var id = $(this).attr("id");
 		window.open("${pageContext.request.contextPath}/notice/noticeUpdate?num="+id, "actity", "width=1200, height=800, left=300, top=100");
+	});
+	
+	// videoDelete
+	$(".noticeDelete").click(function() {
+		var id = $(this).attr("id");
+		$.get("./notice/noticeDelete?num="+id, function(data){
+			
+		});
 	});
 	
 	// videoWrite
@@ -334,10 +342,10 @@ video {
 					<td>WRITER</td>
 					<td>DATE</td>
 					<td>HIT</td>
-				</tr>
+				</tr></thead>
 		
 				<c:forEach items="${list}" var="dto">
-					<tr class="body">
+					<tbody><tr class="body">
 						<td>${dto.num}</td>
 						<td><span class="noticeView" id="${dto.num}">${dto.title}</span></td>
 						<td>${dto.writer}</td>
@@ -348,9 +356,10 @@ video {
 						<td colspan="5">${dto.contents}<br>
 							<c:if test="${memberDTO.id eq 'admin'}">
 								<input type="button" value="수정" id="${dto.num}" class="btn btn-warning noticeUpdate">
+								<input type="button" value="삭제" id="${dto.num}" class="btn btn-danger noticeDelete">
 							</c:if>
 						</td>
-					</tr>
+					</tr></tbody>
 				</c:forEach>
 			</table>
 	

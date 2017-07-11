@@ -10,6 +10,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
@@ -71,6 +72,7 @@
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
+			<h2 class="title"><img class="icon" src="../resources/images/icon/pop.png"> JJim List</h2>
 			<table class="table table-hover">
 				<colgroup>
 					<col width="30%">
