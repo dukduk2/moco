@@ -52,12 +52,8 @@
 	<!-- 404 에러 -->
 	<error-page>
 		<error-code>404</error-code>
+		<!-- <location>/error/error404</location> -->
 		<location>/WEB-INF/views/error/error404.jsp</location>
-	</error-page>
-	<!-- 서버 에러 500 -->
-	<error-page>
-		<error-code>500</error-code>
-		<location>/error/error500</location>
 	</error-page>
 	
 </web-app>

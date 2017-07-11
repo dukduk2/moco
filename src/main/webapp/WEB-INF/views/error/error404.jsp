@@ -9,8 +9,9 @@
 </head>
 <body>
 	<div class="container">
-		<a></a><h2>페이지를 찾을 수 없습니다.</h2>
-		<h4>이용에 불편을 드려 죄송하다</h4>
+		<a href="#"><img alt="" src="../resources/logo/logo.png"></a>
+		<h2>페이지를 찾을 수 없습니다.</h2>
+		<h4>이용에 불편을 드려 죄송합니다.</h4>
 		<a href="/finalProject/#go">HOME 으로 가기</a>
 	</div>
 </body>
