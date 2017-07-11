@@ -24,14 +24,12 @@ public class MovieScheduleController {
 	
 	@RequestMapping(value="movieScheduleTable", method=RequestMethod.GET)
 	public void movieScheduleTable(){
-		System.out.println("- movieScheduleController -> Table");
+		
 	}
 	
 	@RequestMapping(value="movieScheduleTableShow", method=RequestMethod.GET)
 	@ResponseBody
-	public List<MovieScheduleDTO> movieScheduleTableShow(Model model){
-		System.out.println("- movieScheduleController -> TableShow");
-		
+	public List<MovieScheduleDTO> movieScheduleTableShow(Model model){		
 		List<MovieScheduleDTO> ar = null;
 		
 		try {
@@ -46,8 +44,6 @@ public class MovieScheduleController {
 	
 	@RequestMapping(value="movieScheduleList", method=RequestMethod.GET)
 	public void movieScheduleList(Integer curPage, @RequestParam(required=false)String search, Model model){
-		System.out.println("- movieScheduleController -> ListShow");
-		
 		try {
 			if(curPage == null){
 				curPage = 1;
@@ -69,13 +65,11 @@ public class MovieScheduleController {
 
 	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.GET)
 	public void movieScheduleAdd() {
-		System.out.println("- movieScheduleController -> Add1");
+		
 	}
 	
 	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.POST)
 	public String movieScheduleAdd(MovieScheduleDTO movieScheduleDTO, Integer curPage, @RequestParam(required=false)String search, Model model){
-		System.out.println("- movieScheduleController -> Add2");
-
 		try {
 			movieScheduleService.movieScheduleAdd(movieScheduleDTO);
 
@@ -101,8 +95,6 @@ public class MovieScheduleController {
 	
 	@RequestMapping(value="paidMovieCheck1", method=RequestMethod.POST)
 	public String paidMovieCheck1(int pnum, Model model){
-		System.out.println("- movieScheduleController -> paidMovieCheck1");
-		
 		String title = null;
 		
 		try {
@@ -125,8 +117,6 @@ public class MovieScheduleController {
 	
 	@RequestMapping(value="paidMovieCheck2", method=RequestMethod.POST)
 	public String paidMovieCheck2(Date moviedate, Model model){
-		System.out.println("- movieScheduleController -> paidMovieCheck2");
-		
 		Date date = null;
 		
 		try {
@@ -150,8 +140,6 @@ public class MovieScheduleController {
 	
 	@RequestMapping(value="movieScheduleDelete", method=RequestMethod.POST)
 	public String movieScheduleDelete(int num, Integer curPage, @RequestParam(required=false)String search, Model model){
-		System.out.println("- movieScheduleController -> movieScheduleDeleteS");
-
 		int result = 0;
 		
 		try {
