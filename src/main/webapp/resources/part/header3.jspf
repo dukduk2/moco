@@ -7,7 +7,7 @@
 
 <header>
 	<div class="container-fluid switch3">
-		<h1>관리자 페이지</h1>
+		<h1>관리자 & 회원 페이지</h1>
 	</div>
 	
 	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">

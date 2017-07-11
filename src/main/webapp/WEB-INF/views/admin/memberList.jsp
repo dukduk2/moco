@@ -10,7 +10,7 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
-<title>Insert title here</title>
+<title>MOVIE COMMUNICATION</title>
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/list.js"></script> --%>
 
