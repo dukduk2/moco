@@ -17,6 +17,17 @@ public class PaidMovieService {
 	@Autowired
 	private PaidMovieDAO paidMovieDAO;
 
+	public String movieGetTitle(PaidMovieDTO paidMovieDTO) throws Exception{
+		// basicMovie
+		String title = "";
+		if(paidMovieDTO.getlNum() == 0){
+			title = paidMovieDAO.basicTitle(paidMovieDTO.getbNum());
+		}else{
+			title = paidMovieDAO.lowTitle(paidMovieDTO.getlNum());
+		}
+		return title;
+	}
+	
 	// movieRequest에 있는 영화가 upload 된다면, movieReqeustTable에서 삭제하기
 	public int movieRequestDelete(PaidMovieDTO paidMovieDTO) throws Exception{
 		MovieRequestDTO movieRequestDTO = new MovieRequestDTO();

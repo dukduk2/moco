@@ -141,8 +141,8 @@ public class AdminController {
 		String path = session.getServletContext().getRealPath("resources/upload/adminMovieUpload");
 		// DTO 셋팅
 		paidMovieDTO = paidMovieService.DTOSet(paidMovieDTO, movieKind, movieNum);
-		// oname Set
-		paidMovieDTO.setOname(multipartFile.getOriginalFilename());
+		// oname Set - 영화 정보 조회해서 넣어주기
+		paidMovieDTO.setOname(paidMovieService.movieGetTitle(paidMovieDTO));
 		File f = new File(path);
 		if(!f.exists()){
 			f.mkdirs();

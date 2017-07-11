@@ -18,15 +18,25 @@ public class MovieScheduleDAO {
 	private SqlSession sqlSession;
 	private final String namespace = "MovieScheduleMapper.";
 	
+	// sysdateMovie
+	public MovieScheduleDTO sysdateMovie() throws Exception{
+		return sqlSession.selectOne(namespace+"sysdateMovie");
+	}
+	
+	// one1
+	public String one1(int num) throws Exception{
+		return sqlSession.selectOne(namespace+"one1", num);
+	}
+	// one2
+	public String one2(int num) throws Exception{
+		return sqlSession.selectOne(namespace+"one2", num);
+	}
+	
 	public List<MovieScheduleDTO> movieScheduleShow(){
-		System.out.println("--- movieScheduleDAO -> Show");
-		
 		return sqlSession.selectList(namespace+"movieScheduleShow");
 	}
 
 	public List<MovieScheduleDTO> movieScheduleList(RowMaker rowMaker, String search){
-		System.out.println("--- movieScheduleDAO -> List");
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		String a = search.replace("-", "");
@@ -38,8 +48,6 @@ public class MovieScheduleDAO {
 	}
 	
 	public int movieScheduleCount(String search) throws Exception {
-		System.out.println("--- movieScheduleDAO -> Count");
-		
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("search", search);
@@ -48,30 +56,22 @@ public class MovieScheduleDAO {
 	}
 	
 	public int movieScheduleAdd(MovieScheduleDTO movieScheduleDTO){
-		System.out.println("--- MovieScheduleDAO -> movieManagementAdd");
-		
 		int result = sqlSession.insert(namespace+"movieScheduleAdd", movieScheduleDTO);
 		
 		return result;
 	}
 	
 	public int movieScheduleDelete(int num){
-		System.out.println("--- MovieScheduleDAO -> movieScheduleDelete");
-		
 		int result = sqlSession.delete(namespace+"movieScheduleDelete", num);
 		
 		return result;
 	}
 	
 	public String paidMovieCheck1(int pnum){
-		System.out.println("--- MovieScheduleDAO -> paidMovieCheck1");
-		
 		return sqlSession.selectOne(namespace+"paidMovieCheck1", pnum);
 	}
 	
 	public Date paidMovieCheck2(Date moviedate){
-		System.out.println("--- MovieScheduleDAO -> paidMovieCheck2");
-		
 		return sqlSession.selectOne(namespace+"paidMovieCheck2", moviedate);
 	}
 }

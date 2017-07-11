@@ -19,6 +19,15 @@ public class PaidMovieDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "PaidMovieMapper.";
 
+	// basicTitle
+	public String basicTitle(int num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"basicTitle", num);
+	}
+	// lowTitle
+	public String lowTitle(int num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"lowTitle", num);
+	}
+	
 	// movieList
 	public List<PaidMovieDTO> movieList(Map<String, Object> map) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieList" , map);

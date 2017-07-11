@@ -27,6 +27,19 @@ public class MovieScheduleController {
 		
 	}
 	
+	// 스트리밍
+	@RequestMapping(value="movieStreaming", method=RequestMethod.GET)
+	public void movieStreaming(Model model) throws Exception{
+		MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
+		if(movieScheduleDTO != null){
+			String fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
+			String title = movieScheduleService.one2(movieScheduleDTO.getPnum());
+			model.addAttribute("fname", fname);
+			model.addAttribute("title", title);			
+		}
+	}
+	
+	
 	@RequestMapping(value="movieScheduleTableShow", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MovieScheduleDTO> movieScheduleTableShow(Model model){		
@@ -164,4 +177,5 @@ public class MovieScheduleController {
 
 		return "/movie/movieSchedule/movieScheduleList";
 	}
+	
 }
