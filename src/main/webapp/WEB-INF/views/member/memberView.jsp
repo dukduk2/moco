@@ -10,7 +10,7 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
-<title>Insert title here</title>
+<title>MOVIE COMMUNICATION</title>
 
 <script type="text/javascript">
 $(function(){
@@ -25,19 +25,15 @@ $(function(){
 	$("#home").click(function(){
 		location.href="../";
 	});
-
-	/* $("#Member_management").click(function(){
-		location.href="memberList?curPage=1&kind=&search=";
+	
+	$("#jjim").click(function(){
+		location.href="./viewJjimList";
 	});
-
-	$("#Movie_management").click(function(){
-		location.href="../movie/movieSchedule/movieScheduleList";
-	}); */
 });
 </script>
 </head>
 <body>
-	<%@ include file="/resources/part/header1.jspf" %>
+	<%@ include file="/resources/part/header3.jspf" %>
 
 	<section>
 		<div class="container">
@@ -66,6 +62,11 @@ $(function(){
 					<td class="name">아이디</td>
 					<td class="push">${memberDTO.id}</td>
 				</tr>
+				
+				<tr>
+					<td class="name">mail</td>
+					<td class="push">${memberDTO.email}</td>
+				</tr>
 
 				<tr>
 					<td class="name">이름</td>
@@ -81,13 +82,18 @@ $(function(){
 					<td class="name">가입날짜</td>
 					<td class="push">${memberDTO.joinDate}</td>
 				</tr>
+				
+				<tr>
+					<td class="name">포인트</td>
+					<td class="push">${memberDTO.point} P</td>
+				</tr>
 
 				<tr>
 					<td class="name" colspan="2">
 						<input type="button" class="btn btn-warning" value="UPDATE" id="update">
 						<input type="button" class="btn btn-danger" value="DELETE" id="delete">
 						<input type="button" class="btn btn-success" value="HOME" id="home">
-						<a href="./viewJjimList">내찜리스트</a>
+						<input type="button" class="btn btn-info" value="내찜리스트" id="jjim">
 					</td>
 				</tr>
 			</table>
