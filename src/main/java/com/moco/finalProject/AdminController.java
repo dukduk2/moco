@@ -800,8 +800,21 @@ public class AdminController {
 		if(perPage == null){
 			perPage = 10;
 		}
-		Map<String, Object> map = lowPriceMovieService.theaterList(curPage, perPage, "%", "%");
-		model.addAttribute("theaterList", map.get("list"));
+		Map<String, Object> map = lowPriceMovieService.unCommitScreenTheater(curPage, perPage);
+		
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("pageResult", map.get("pageResult"));
+	}
+	@RequestMapping(value="screenCommit_ajax", method=RequestMethod.POST)
+	public String screenCommit_ajax(int num, Model model) throws Exception{
+		//영화 사진, 이름, 시간 등등 영화정보랑
+		//상영시작날짜, 상영종료날짜, 상영시작시간, 상영종료시간.
+		Map<String, Object> map = lowPriceMovieService.screenInfo(num);
+		
+		
+		
+		return "";
+		
 	}
 	
 }

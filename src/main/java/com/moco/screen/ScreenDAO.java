@@ -1,6 +1,8 @@
 package com.moco.screen;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +28,10 @@ public class ScreenDAO {
 	public List<ScreenDTO> unCommitList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"unCommitList");
 	}
+	//commit=0 & multi_num
+	public List<ScreenDTO> unCommitListMultiNum(int multi_num) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"unCommitListMultiNum", multi_num);
+	}
+	
+	
 }

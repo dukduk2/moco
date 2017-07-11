@@ -71,7 +71,7 @@
 </style>
 <body>
 
-	<h3 class="title">THEATER COMMIT</h3>
+	<h3 class="title">SCREEN COMMIT</h3>
 	<div class="container">	
 		<br>
 		<table class="table table-hover">
@@ -83,7 +83,7 @@
 				<td>PRICE</td>
 				<td>PHONE</td>
 			</tr>
-			<c:forEach items="${theaterList}" var="dto">
+			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td>${dto.num}	</td>
 					<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
