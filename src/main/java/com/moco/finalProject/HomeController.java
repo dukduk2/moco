@@ -1,7 +1,5 @@
 package com.moco.finalProject;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,7 +107,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)
-	public void movieHome(Model model){
+	public void movieHome(Model model) throws Exception{
 		List<PaidMovieDTO> basicPaidList = new ArrayList<PaidMovieDTO>();
 		List<PaidMovieDTO> lowPaidList = new ArrayList<PaidMovieDTO>();
 		List<BasicMovieDTO> basicInfoList = new ArrayList<BasicMovieDTO>();
