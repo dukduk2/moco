@@ -276,11 +276,12 @@
 			var request = $(this).attr("id");
 			var bNum = ${movieDTO.num };
 			var check='${payCheck}';
+			var kind = $(this).attr("title");
 			if(request == '영화보러가기'){
 				if(check == 'check'){
-					location.href="../moviePlay?num="+bNum;
+					location.href="../moviePlay?num="+bNum+"&kind="+kind;
 				}else{
-					location.href="../payMovie?num="+bNum;
+					location.href="../payMovie?num="+bNum+"&kind="+kind;
 				}
 			}else if(request == '영화신청하기'){
 				$.ajax({
@@ -383,7 +384,7 @@
 		</div>
 		<div id="movieInfo" title="${movieDTO.num }">
 			<span style="font-size: 25px;">${movieDTO.title }
-				<button class="btn movieRequest" id="${requestMessage }">${requestMessage }</button>
+				<button class="btn movieRequest" id="${requestMessage }" title="${kind }">${requestMessage }</button>
 			</span>
 			
 			<p>${movieDTO.eng_title }</p>
