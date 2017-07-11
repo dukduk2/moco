@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 <%@ include file="/resources/part/bootStrap.jspf" %>
 <style type="text/css">
-	/* body{
-		background-image: url("${pageContext.request.contextPath}/resources/logo/back.jpg");
-		background-size: cover;
-		background-repeat: no-repeat;
-	} */
 	.container{
 		background-image: url("${pageContext.request.contextPath}/resources/logo/back.jpg");
 		background-size: cover;
