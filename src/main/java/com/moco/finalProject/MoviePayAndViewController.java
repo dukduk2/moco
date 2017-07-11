@@ -1,6 +1,8 @@
 package com.moco.finalProject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -20,6 +22,9 @@ import com.moco.movieAPI.BasicMovieService;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
 import com.moco.pay.PayService;
+import com.moco.util.PageMaker;
+import com.moco.util.PageResult;
+import com.moco.util.RowMaker;
 
 @Controller
 @RequestMapping(value="/movie")
@@ -35,6 +40,67 @@ public class MoviePayAndViewController {
 	LowPriceMovieService lowPriceMovieService;
 	@Inject
 	PayService payService;
+	
+	@RequestMapping(value="/payMovieList/payMovieBasic", method=RequestMethod.GET)
+	public void payMovieBasic(String title, Integer curPage, Model model) throws Exception{		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(curPage==null){
+			curPage=1;
+		}
+		if(title==""){
+			title=null;
+		}
+		map.put("curPage", curPage);
+		int totalCount=0;
+		
+		totalCount=paidMovieService.payMovieBasicCount();
+		
+		PageMaker pageMaker = new PageMaker(curPage);
+		RowMaker rowMaker = pageMaker.getRowMaker();
+		PageResult pageResult = pageMaker.paging(totalCount);
+		map.put("rowMaker", rowMaker);
+		map.put("title", title);
+		List<BasicMovieDTO> ar = paidMovieService.payMovieBasic(map);
+		for(int i=0;i<ar.size();i++){
+			System.out.println(ar.get(i).getTitle());
+		}
+		model.addAttribute("list", ar);
+		model.addAttribute("pageResult", pageResult);
+		model.addAttribute("title", title);
+		model.addAttribute("curPage", curPage);
+
+	}
+	
+	@RequestMapping(value="/payMovieList/payMovieLow", method=RequestMethod.GET)
+	public void payMovieLow(String title, Integer curPage, Model model) throws Exception{		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(curPage==null){
+			curPage=1;
+		}
+		if(title==""){
+			title=null;
+		}
+		map.put("curPage", curPage);
+		int totalCount=0;
+		
+		totalCount=paidMovieService.payMovieLowCount();
+		
+		PageMaker pageMaker = new PageMaker(curPage);
+		RowMaker rowMaker = pageMaker.getRowMaker();
+		PageResult pageResult = pageMaker.paging(totalCount);
+		map.put("rowMaker", rowMaker);
+		map.put("title", title);
+		
+		List<LowPriceMovieDTO> ar = paidMovieService.payMovieLow(map);
+		for(int i=0;i<ar.size();i++){
+			System.out.println(ar.get(i).getTitle());
+		}
+		model.addAttribute("list", ar);
+		model.addAttribute("pageResult", pageResult);
+		model.addAttribute("curPage", curPage);
+	}
 	
 	@RequestMapping(value="/moviePlay", method=RequestMethod.GET)
 	public void moviePlay(int num, Model model, String kind) throws Exception{
