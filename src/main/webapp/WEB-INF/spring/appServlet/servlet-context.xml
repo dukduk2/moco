@@ -49,7 +49,9 @@
 	    <!-- admin 인터셉터 -->
 	    <interceptor>
 	    	<mapping path="/admin/**"/>
-	        <!-- <exclude-mapping path="/member/memberLogin"/> -->
+	        <mapping path="/notice/noticeWrite"/>
+	        <mapping path="/notice/noticeUpdate"/>
+	        <mapping path="/notice/noticeDelete"/>
 	        <beans:bean class="com.moco.interceptor.AdminInterCeptor"/>
 	    </interceptor>
 	</interceptors>
