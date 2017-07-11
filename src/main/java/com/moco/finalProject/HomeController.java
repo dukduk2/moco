@@ -109,79 +109,97 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)
-	public void movieHome(Model model) throws Exception{
+	public void movieHome(Model model){
 		List<PaidMovieDTO> basicPaidList = new ArrayList<PaidMovieDTO>();
 		List<PaidMovieDTO> lowPaidList = new ArrayList<PaidMovieDTO>();
 		List<BasicMovieDTO> basicInfoList = new ArrayList<BasicMovieDTO>();
 		List<BasicMovieDTO> lowInfoList = new ArrayList<BasicMovieDTO>();
 		List<Map<String, Object>> reviewList = new ArrayList<Map<String,Object>>();
-		// 유료 영화 리스트
-		basicPaidList = paidMovieService.basicMovieList();
-		lowPaidList = paidMovieService.lowMovieList();
-		for(PaidMovieDTO dto:basicPaidList){
-			BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("kind", "basic");
-			map.put("num", dto.getbNum());
-			basicMovieDTO = basicMovieService.view(map);
-			basicInfoList.add(basicMovieDTO);
-		}
-		for(PaidMovieDTO dto:lowPaidList){
-			BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("kind", "low");
-			map.put("num", dto.getlNum());
-			basicMovieDTO = basicMovieService.view(map);
-			lowInfoList.add(basicMovieDTO);
-		}
-		// 후기 리스트
-		List<ReviewDTO> list = reviewService.orderByLikeReview();
-		for(ReviewDTO dto:list){
-			Map<String, Object> map = new HashMap<String, Object>();
-			Map<String, Object> view_map = new HashMap<String, Object>();
-			if(dto.getlNum()==0){
-				view_map.put("kind", "basic");
-				view_map.put("num", dto.getbNum());
-				map.put("kind", "basic");
-			}else{
-				view_map.put("kind", "low");
-				view_map.put("num", dto.getlNum());
-				map.put("kind", "low");
-			}
-			BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
-			basicMovieDTO = basicMovieService.view(view_map);
-
-			map.put("movieInfo", basicMovieDTO);
-			map.put("reviewInfo", dto);
-			reviewList.add(map);
-		}
-		// 영화 추천
 		List<BasicMovieDTO> basicMovieRecommendList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
-		// 날씨별
-		List<BasicMovieDTO> weatherMovie = new ArrayList<BasicMovieDTO>(); 
-		Getweather getweather = new Getweather();
-		String sky_code = getweather.getWeather();
-		if(sky_code!=null){
-			Map<String, Object> weather_map = new HashMap<String, Object>();
-			weather_map.put("kind", "basic");
-			if(sky_code.equalsIgnoreCase("SKY_D01") ||sky_code.equalsIgnoreCase("SKY_D02")){
-				weather_map.put("weather", 0);
-			}else if(sky_code.equalsIgnoreCase("SKY_D03") ||sky_code.equalsIgnoreCase("SKY_D04")){
-				weather_map.put("weather", 1);
-			}else{
-				weather_map.put("weather", 2);
+		List<BasicMovieDTO> lowMovieRecommendList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
+		// 유료 영화 리스트
+		try{
+			basicPaidList = paidMovieService.basicMovieList();
+			lowPaidList = paidMovieService.lowMovieList();
+			for(PaidMovieDTO dto:basicPaidList){
+				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("kind", "basic");
+				map.put("num", dto.getbNum());
+				basicMovieDTO = basicMovieService.view(map);
+				basicInfoList.add(basicMovieDTO);
 			}
-			weatherMovie = recommendService.genreList(weather_map);
-			basicMovieRecommendList.add(weatherMovie.get(0));
+			for(PaidMovieDTO dto:lowPaidList){
+				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("kind", "low");
+				map.put("num", dto.getlNum());
+				basicMovieDTO = basicMovieService.view(map);
+				lowInfoList.add(basicMovieDTO);
+			}
+			// 후기 리스트
+			List<ReviewDTO> list = reviewService.orderByLikeReview();
+			for(ReviewDTO dto:list){
+				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> view_map = new HashMap<String, Object>();
+				if(dto.getlNum()==0){
+					view_map.put("kind", "basic");
+					view_map.put("num", dto.getbNum());
+					map.put("kind", "basic");
+				}else{
+					view_map.put("kind", "low");
+					view_map.put("num", dto.getlNum());
+					map.put("kind", "low");
+				}
+				BasicMovieDTO basicMovieDTO = new BasicMovieDTO();
+				basicMovieDTO = basicMovieService.view(view_map);
+
+				map.put("movieInfo", basicMovieDTO);
+				map.put("reviewInfo", dto);
+				reviewList.add(map);
+			}
+			// 영화 추천
+			// 날씨별
+			List<BasicMovieDTO> weatherMovie = new ArrayList<BasicMovieDTO>(); 
+			Getweather getweather = new Getweather();
+			String sky_code = getweather.getWeather();
+			if(sky_code!=null){
+				Map<String, Object> weather_map = new HashMap<String, Object>();
+				weather_map.put("kind", "low");
+				if(sky_code.equalsIgnoreCase("SKY_D01") ||sky_code.equalsIgnoreCase("SKY_D02")){
+					weather_map.put("weather", 0);
+				}else if(sky_code.equalsIgnoreCase("SKY_D03") ||sky_code.equalsIgnoreCase("SKY_D04")){
+					weather_map.put("weather", 1);
+				}else{
+					weather_map.put("weather", 2);
+				}
+				weatherMovie = recommendService.genreList(weather_map);
+				// basicMovieRecommendList.add(weatherMovie.get(0));
+			}
+			// 개봉예정작(low)
+			List<BasicMovieDTO> pubMovie = new ArrayList<BasicMovieDTO>(); 
+			Map<String, Object> pub_map = new HashMap<String, Object>();
+			pub_map.put("kind", "low");
+			pubMovie = recommendService.recentList(pub_map);
+			lowMovieRecommendList.add(pubMovie.get(0));
+			lowMovieRecommendList.add(pubMovie.get(1));
+			lowMovieRecommendList.add(pubMovie.get(2));
+			lowMovieRecommendList.add(pubMovie.get(3));
+			// 개봉예정작(basic)
+			List<BasicMovieDTO> pubMovie2 = new ArrayList<BasicMovieDTO>(); 
+			pub_map.put("kind", "basic");
+			pubMovie2 = recommendService.recentList(pub_map);
+			basicMovieRecommendList.add(pubMovie2.get(0));
+			basicMovieRecommendList.add(pubMovie2.get(1));
+			basicMovieRecommendList.add(pubMovie2.get(2));
+			basicMovieRecommendList.add(pubMovie2.get(3));
+
+		} catch(Exception e){
+			e.printStackTrace();
 		}
-		// 개봉예정작
-		List<BasicMovieDTO> pubMovie = new ArrayList<BasicMovieDTO>(); 
-		
-		
-		
-		
 		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList)
-		.addAttribute("reviewList", reviewList);
+		.addAttribute("reviewList", reviewList).addAttribute("basicMovieRecommendList", basicMovieRecommendList)
+		.addAttribute("lowMovieRecommendList", lowMovieRecommendList);
 	}
 
 }
