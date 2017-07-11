@@ -38,6 +38,7 @@ $(function(){
 	<h2>PAY MOVIE</h2>
 	<form action="./payMovie" method="post" id="frm">
 		<input type="hidden" value="${dto.num }" name="num">
+		<input type="hidden" value="${kind }" name="kind">
 
 		<p>MOVIE : ${dto.title }</p>
 		<p>DIRECTOR : ${dto.director }</p>

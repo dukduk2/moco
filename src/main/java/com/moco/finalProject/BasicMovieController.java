@@ -166,7 +166,7 @@ public class BasicMovieController {
 			e.printStackTrace();
 		}
 		model.addAttribute("movieDTO", basicMovieDTO).addAttribute("kind", kind).addAttribute("jjimDTO", jjimDTO)
-		.addAttribute("review_count", review_count);
+		.addAttribute("review_count", review_count).addAttribute("movieKind", "basic");
 	}
 	// view_story
 	@RequestMapping(value = "movieView_story", method = RequestMethod.GET)
