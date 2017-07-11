@@ -26,4 +26,13 @@
     	<select id="viewCheckLowpriceMovieOne" parameterType="java.lang.Integer" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
     		select * from lowpriceMovie where num=#{num}
     	</select>
+    	<!-- 내가 본 영화 리스트 -->
+    	<select id="viewCheckList" parameterType="java.util.Map" resultType="com.moco.movieAPI.BasicMovieDTO">
+    		<if test="kind eq 'basic'">
+	    		select basicmovie.* from basicmovie, viewcheck where viewcheck.bnum=basicmovie.num and viewcheck.id=#{id}
+    		</if>
+    		<if test="kind eq 'low'">
+    			select lowpricemovie.* from lowpricemovie, viewcheck where viewcheck.lnum=lowpricemovie.num and viewcheck.id=#{id}
+    		</if>
+    	</select>
     </mapper>

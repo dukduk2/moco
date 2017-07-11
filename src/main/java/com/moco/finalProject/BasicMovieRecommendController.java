@@ -1,17 +1,20 @@
 package com.moco.finalProject;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.moco.member.MemberDTO;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.movieRecommend.RecommendService;
 import com.moco.movieAPI.movieRecommend.subDTO.AgeViewDTO;
@@ -19,6 +22,7 @@ import com.moco.movieAPI.movieRecommend.subDTO.DirectorDTO;
 import com.moco.movieAPI.movieRecommend.subDTO.JjimRankDTO;
 import com.moco.movieAPI.movieRecommend.subDTO.ReviewRankDTO;
 import com.moco.movieAPI.movieRecommend.weather.Getweather;
+import com.moco.viewCheck.ViewCheckService;
 
 @Controller
 @RequestMapping(value="/movie/basicMovieSearch/movieRecommend/")
@@ -26,6 +30,8 @@ public class BasicMovieRecommendController {
 	
 	@Inject
 	RecommendService recommendService;
+	@Inject
+	ViewCheckService viewCheckService;
 	
 	@RequestMapping(value="recommendHome", method=RequestMethod.GET)
 	public void recommendHome(){
@@ -33,7 +39,7 @@ public class BasicMovieRecommendController {
 	}
 	
 	@RequestMapping(value="recommendList", method=RequestMethod.GET)
-	public void recommendList(String criteria, String subCriteria, Model model){
+	public void recommendList(String criteria, String subCriteria, Model model, HttpSession session){
 		List<BasicMovieDTO> movieList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
 		Map<String, Object> criteria_map = new HashMap<String, Object>(); // 조건 map
 		criteria_map.put("kind", "basic");
@@ -93,7 +99,17 @@ public class BasicMovieRecommendController {
 			}
 			// 내가 본 영화와 비슷한 영화
 			else if(criteria.equals("my")){
-				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("kind", "basic");
+				map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
+				try {
+					List<BasicMovieDTO> myViewList = viewCheckService.viewCheckList(map);
+					for(BasicMovieDTO basicMovieDTO: myViewList){
+						System.out.println(basicMovieDTO.getGenre());
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			// 리뷰 순위
 			else if(criteria.equals("review")){

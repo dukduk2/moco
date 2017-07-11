@@ -1,6 +1,7 @@
 package com.moco.viewCheck;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -50,5 +51,8 @@ public class ViewCheckDAO {
 	public LowPriceMovieDTO viewCheckLowpriceMovieList(int num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"viewCheckLowpriceMovieOne", num);
 	}
-	
+	// viewCheckList
+	public List<BasicMovieDTO> viewCheckList(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"viewCheckList", map);
+	}
 }

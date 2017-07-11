@@ -2,6 +2,7 @@ package com.moco.viewCheck;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +62,7 @@ public class ViewCheckService {
 			// num을 하나 꺼내서, basicMovieList를 꺼내온다.
 			int num = viewCheckDTO.getbNum();
 			System.out.println(num);
-			 ar.add(viewCheckDAO.viewCheckBasicMovieList(num));
+			ar.add(viewCheckDAO.viewCheckBasicMovieList(num));
 		}
 		return ar;
 	}
@@ -75,6 +76,10 @@ public class ViewCheckService {
 			ar.add(viewCheckDAO.viewCheckLowpriceMovieList(num));
 		}
 		return ar;
+	}
+	// viewCheckList
+	public List<BasicMovieDTO> viewCheckList(Map<String, Object> map) throws Exception{
+		return viewCheckDAO.viewCheckList(map);
 	}
 
 }

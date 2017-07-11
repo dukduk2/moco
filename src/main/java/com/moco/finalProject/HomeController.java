@@ -38,8 +38,6 @@ import com.moco.util.RowMaker;
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 	@Inject
 	PaidMovieService paidMovieService;
 	@Inject
@@ -86,24 +84,13 @@ public class HomeController {
 		model.addAttribute("map", map);
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("list", ar);
-
+		
 		return "home";
-		//model.addAttribute("totalCount", totalCount);
-		/*logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate );
-
-		return "home";*/
 	}
 
 	@RequestMapping(value = "/user/userHome", method = RequestMethod.GET)
 	public void userHome() throws Exception{
-
+		
 	}
 
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)
