@@ -1,6 +1,5 @@
 package com.moco.finalProject;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +39,6 @@ public class BasicMovieRecommendController {
 
 	@RequestMapping(value="recommendList", method=RequestMethod.GET)
 	public void recommendList(String criteria, String subCriteria, Model model, HttpSession session){
-		System.out.println("enter");
 		List<BasicMovieDTO> movieList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
 		Map<String, Object> criteria_map = new HashMap<String, Object>(); // 조건 map
 		criteria_map.put("kind", "basic");
@@ -100,11 +98,13 @@ public class BasicMovieRecommendController {
 			}
 			// 내가 본 영화와 비슷한 영화
 			else if(criteria.equals("my")){
+				System.out.println(viewCheckService);
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("kind", "basic");
 				map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
 				
 				List<BasicMovieDTO> myViewList = viewCheckService.viewCheckList(map);
+				// no List Message
 				for(BasicMovieDTO basicMovieDTO: myViewList){
 					System.out.println(basicMovieDTO.getGenre());
 				}

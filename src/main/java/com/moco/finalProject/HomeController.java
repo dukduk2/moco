@@ -212,7 +212,7 @@ public class HomeController {
 			basicMovieRecommendList.add(pubMovie2.get(3));
 
 		} catch(Exception e){
-			e.printStackTrace();
+			
 		}
 		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList)
 		.addAttribute("reviewList", reviewList).addAttribute("basicMovieRecommendList", basicMovieRecommendList)

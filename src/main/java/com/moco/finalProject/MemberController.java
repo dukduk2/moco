@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,6 +180,12 @@ public class MemberController {
 		basicMovieService.jjimDelete(map);
 		
 		return "redirect:viewJjimList";
+	}
+	
+	// ViewCheck
+	@RequestMapping(value="myMovieList", method=RequestMethod.GET)
+	public void myMovieList(Model model, HttpSession session) throws Exception{
+		
 	}
 	
 	//회원이 delete

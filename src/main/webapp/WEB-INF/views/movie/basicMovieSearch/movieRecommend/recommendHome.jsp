@@ -212,7 +212,7 @@
 					<button id="reviewRecommend" class="btn btn-primary">리뷰가 많은 영화</button> | 
 					<button id="jjimRecommend" class="btn btn-primary">찜하기가 많은 영화</button> | 
 					<button id="recentRecommend" class="btn btn-primary">개봉예정작</button> |
-					<button id="my" class="btn btn-primary">★맞춤형추천</button>
+					<button id="myRecommend" class="btn btn-primary">★맞춤형추천</button>
 				</div>
 			</div>
 

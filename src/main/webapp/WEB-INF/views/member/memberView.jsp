@@ -34,6 +34,11 @@ $(function(){
 	$("#jjim").click(function(){
 		location.href="./viewJjimList";
 	});
+	
+	$("#myMovie").click(function(){
+		location.href="./myMovieList";
+	});
+	
 });
 </script>
 </head>
