@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.moco.lowpricemovie.LowPriceMovieDTO;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieRequest.MovieRequestDTO;
 
@@ -65,4 +66,22 @@ public class PaidMovieDAO {
 	public List<PaidMovieDTO> lowMovieList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"lowMovieList");
 	}
+	
+	//eunji
+	public List<BasicMovieDTO> payMovieBasic(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"payMovieBasic", map);
+	}
+	
+	public List<LowPriceMovieDTO> payMovieLow(Map<String, Object> map) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"payMovieLow", map);
+	}
+	
+	public int payMovieBasicCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"payMovieBasicCount");
+	}
+	
+	public int payMovieLowCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"payMovieLowCount");
+	}
+
 }

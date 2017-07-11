@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
+import com.moco.lowpricemovie.LowPriceMovieDTO;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieRequest.MovieRequestDTO;
 
@@ -84,6 +85,23 @@ public class PaidMovieService {
 	// lowMovieList
 	public List<PaidMovieDTO> lowMovieList() throws Exception{
 		return paidMovieDAO.lowMovieList();
+	}
+	
+	//eunji
+	public List<BasicMovieDTO> payMovieBasic(Map<String, Object> map) throws Exception{
+		return paidMovieDAO.payMovieBasic(map);
+	}
+	
+	public List<LowPriceMovieDTO> payMovieLow(Map<String, Object> map) throws Exception{
+		return paidMovieDAO.payMovieLow(map);
+	}
+	
+	public int payMovieBasicCount() throws Exception{
+		return paidMovieDAO.payMovieBasicCount();
+	}
+	
+	public int payMovieLowCount() throws Exception{
+		return paidMovieDAO.payMovieLowCount();
 	}
 
 }

@@ -9,7 +9,7 @@
 	</insert>
 	
 	<select id="list" parameterType="java.lang.Integer" resultType="com.moco.screen.ScreenDTO">
-		select s.* from (select * from screen order by num asc) s where multi_num=#{multi_num} and commit=1
+		select * from screen where multi_num=1 and commit=1 order by num asc
 	</select>
 	
 	<select id="unCommitTotalCount" resultType="java.lang.Integer">
@@ -17,7 +17,11 @@
 	</select>
 	
 	<select id="unCommitList" resultType="com.moco.screen.ScreenDTO">
-		select * from (select * from screen order by num asc) where commit=0
+		select * from screen where commit=0 order by num asc
+	</select>
+	
+	<select id="unCommitListMultiNum" resultType="com.moco.screen.ScreenDTO">
+		select * from screen where multi_num=#{multi_num} and commit=0 order by num asc
 	</select>
 	
 </mapper>
