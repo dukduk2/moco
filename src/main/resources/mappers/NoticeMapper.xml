@@ -7,7 +7,7 @@
 	<select id="noticeList" parameterType="java.util.Map" resultType="com.moco.notice.NoticeDTO">
 		select * from 
 		(select rownum R, N.* from 
-		(select * from notice order by num asc) N) 
+		(select * from notice order by num desc) N) 
 		where R between #{startRow} and #{lastRow}
 	</select>
 	

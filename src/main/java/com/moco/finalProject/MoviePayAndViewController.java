@@ -36,7 +36,7 @@ public class MoviePayAndViewController {
 	@Inject
 	PayService payService;
 	
-	@RequestMapping(value="/movie/moviePlay", method=RequestMethod.GET)
+	@RequestMapping(value="/moviePlay", method=RequestMethod.GET)
 	public void moviePlay(int num, Model model) throws Exception{
 		PaidMovieDTO paidMovieDTO=new PaidMovieDTO();
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -53,7 +53,7 @@ public class MoviePayAndViewController {
 	}
 
 	
-	@RequestMapping(value="/movie/payMovie", method=RequestMethod.GET)
+	@RequestMapping(value="/payMovie", method=RequestMethod.GET)
 	public void payMovie(int num, Model model, HttpSession session) throws Exception{
 		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
 		Map<String, Object> low_map=new HashMap<String, Object>(); //lowMovie
@@ -81,7 +81,7 @@ public class MoviePayAndViewController {
 		
 	}
 	
-	@RequestMapping(value="/movie/payMovie", method=RequestMethod.POST)
+	@RequestMapping(value="/payMovie", method=RequestMethod.POST)
 	public String payMovie(BasicMovieDTO basicMovieDTO, LowPriceMovieDTO lowPriceMovieDTO, int num, HttpSession session) throws Exception{		
 		Map<String, Object> pay_map=new HashMap<String, Object>(); //pay
 		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie

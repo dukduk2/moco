@@ -7,7 +7,7 @@
     	<select id="agencyList" parameterType="java.util.Map" resultType="com.moco.agency.AgencyDTO">
     		select * from
     		(select rownum R, A.* from 
-    		(select * from agencyrequest where director=#{director} order by num asc) A) 
+    		(select * from agencyrequest where director=#{director} order by num desc) A) 
     		where R between #{startRow} and #{lastRow}
     	</select> 
     	
