@@ -19,14 +19,14 @@
     left: 0;
 }
 
-#notice {
-	background-color: pink;
-    color: black;
-    top: 20px;
+#intro{
+	background-color: black;
 }
 
-#intro{
-	background-color: skyblue;
+#notice {
+	background-color: pink;
+    color: white;
+    top: 20px;
 }
 
 #login {

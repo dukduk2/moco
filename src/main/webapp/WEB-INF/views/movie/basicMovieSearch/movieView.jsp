@@ -301,10 +301,6 @@
 	});
 </script>
 <style type="text/css">
-	#wrap{
-		width:1000px;
-		margin:0 auto;
-	}
 	#topWrap{
 		width: 900px;
 		height: 300px;
@@ -378,22 +374,18 @@
     	font-size: 8px;
     	margin-left: 5px;
     }
-    .star-rating{
-    	color:red;
-    }
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
-	<div id="wrap">
 	<div id="topWrap">
 		<div id="thumnailImg">
 			<img src="${movieDTO.thumnail }">
 		</div>
 		<div id="movieInfo" title="${movieDTO.num }">
 			<span style="font-size: 25px;">${movieDTO.title }
-				<button class="btn movieRequest" id="${requestMessage }" title="${kind }">${requestMessage }</button>
+				<button class="btn movieRequest" id="${requestMessage }" title="${movieKind }">${requestMessage }</button>
 			</span>
 			
 			<p>${movieDTO.eng_title }</p>
@@ -426,7 +418,6 @@
 	<c:if test="${memberDTO.id eq 'admin' }">
 		<a href="./movieDelete?num=${movieDTO.num }">영화정보삭제</a>
 	</c:if>
-	</div>
 	</section>
 </body>
 </html>

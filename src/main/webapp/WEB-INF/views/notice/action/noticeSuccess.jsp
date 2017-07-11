@@ -10,18 +10,17 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(function(){
-	var message = '${message}';
-
-	if(message != ""){
-		alert(message);
-	}
-
 	$("#bye").click(function(){
 		window.close();
-		/* session.invalidate(); */
 	});
 });
 </script>
+
+<style type="text/css">
+body {
+	padding-top: 30%;
+}
+</style>
 
 <style type="text/css">
 .button {
@@ -33,7 +32,7 @@ $(function(){
 </head>
 <body>
 	<div class="container">
-		<h2 class="title">${message}</h2>
+		<h2 class="title">작업을 성공하였습니다.</h2>
 		<div class="button"><input type="button" id="bye" class="btn btn-primary" value="확인"></div>
 	</div>
 </body>

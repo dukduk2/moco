@@ -41,7 +41,7 @@ public class NoticeController {
 	public String noticeUpdate(NoticeDTO noticeDTO, HttpSession session) throws Exception{
 		noticeService.noticeUpdate(noticeDTO);
 		
-		return "redirect:../";
+		return "notice/action/noticeSuccess";
 	}
 	
 	@RequestMapping(value="/notice/noticeView", method=RequestMethod.GET)
@@ -62,7 +62,7 @@ public class NoticeController {
 	public String noticeWrite(NoticeDTO noticeDTO, HttpSession session) throws Exception{
 		noticeService.noticeInsert(noticeDTO);
 		
-		return "redirect:../";
+		return "notice/action/noticeSuccess";
 	}
 
 }

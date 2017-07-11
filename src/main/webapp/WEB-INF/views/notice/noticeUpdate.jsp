@@ -7,10 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/resources/part/bootStrap.jspf"%>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
-<link rel="styleSheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/header.css">
-<link rel="styleSheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <title>Insert title here</title>
 <script src="../resources/SE2/js/HuskyEZCreator.js"></script>
 <script type="text/javascript">
@@ -46,8 +44,6 @@
 </style>
 </head>
 <body>
-	<%@ include file="/resources/part/header2.jspf"%>
-	<section>
 		<div class="contents-wrap">
 			<h2>ActorPR UPDATE</h2>
 			<form action="./noticeUpdate" method="post" id="frm">
@@ -71,6 +67,5 @@
 				<input type="button" value="UPDATE" id="update">
 			</form>
 		</div>
-	</section>
 </body>
 </html>

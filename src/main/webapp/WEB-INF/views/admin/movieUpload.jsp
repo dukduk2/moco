@@ -13,20 +13,27 @@
 	$(function() {
 		$("#insertForm_div").hide();
 		$(".videoTR").hide();
+		var check = false;
 		
 		// videoView
 		$(".videoView").click(function() {
 			var id = $(this).attr("id");
 			var iid = id+"TR";
-			$("#"+iid+"").show();
+			if(!check){
+				$("#"+iid+"").show();
+				check = !check;
+			}else{
+				$("#"+iid+"").hide();
+				check = !check;
+			}
 		});
 		
-		// videoCancel
+		/* // videoCancel
 		$(".videoCancel").click(function() {
 			var id = $(this).attr("id");
 			var iid = id+"TR";
 			$("#"+iid+"").hide();
-		});
+		}); */
 		
 		// upload
 		$("#upload").click(function(){
@@ -136,8 +143,8 @@
 					<video width="500" controls="controls" id="video">
 						<source src="../resources/upload/adminMovieUpload/${movie.fname}" type="video/mp4">
 					</video>
-					<br>
-					<input type="button" value="닫기" id="${i.current.num}" class="btn videoCancel">
+					<%-- <br>
+					<input type="button" value="닫기" id="${i.current.num}" class="btn videoCancel"> --%>
 				</td>
 			</tr>
 		</c:forEach>
