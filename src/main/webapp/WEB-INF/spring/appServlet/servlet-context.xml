@@ -39,6 +39,7 @@
 	        <!-- login-->
 	        <mapping path="/**/*"/>
 	        <!-- 에러404 -->
+	        <exclude-mapping path="/resources/**/"/>
 	        <exclude-mapping path="/error/error404"/>
 	        <exclude-mapping path="/member/memberLogin"/>
 	        <!-- notice View -->
@@ -52,6 +53,5 @@
 	        <beans:bean class="com.moco.interceptor.AdminInterCeptor"/>
 	    </interceptor>
 	</interceptors>
-
 	
 </beans:beans>
