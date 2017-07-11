@@ -10,7 +10,7 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
-<title>Insert title here</title>
+<title>MOVIE COMMUNICATION</title>
 
 <script type="text/javascript">
 $(function(){
@@ -40,7 +40,7 @@ $(function(){
 
 </head>
 <body>
-	<%@ include file="/resources/part/header1.jspf" %>
+	<%@ include file="/resources/part/header3.jspf" %>
 
 	<section>
 		<div class="container">
