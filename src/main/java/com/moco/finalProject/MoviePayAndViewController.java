@@ -37,33 +37,18 @@ public class MoviePayAndViewController {
 	PayService payService;
 	
 	@RequestMapping(value="/moviePlay", method=RequestMethod.GET)
-	public void moviePlay(int num, Model model) throws Exception{
-		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
-		Map<String, Object> low_map=new HashMap<String, Object>(); //lowMovie
-
-		basic_map.put("num", num);
-		basic_map.put("kind", "basic");
-		
-		low_map.put("num", num);
-		low_map.put("kind", "low");
-
-		PaidMovieDTO basicDTO=new PaidMovieDTO();
-		basicDTO=paidMovieService.paidMovieSelectOne(basic_map);
-		
-		PaidMovieDTO lowDTO=new PaidMovieDTO();
-		lowDTO=paidMovieService.paidMovieSelectOne(low_map);
-		
-		if(basicDTO!=null){
-			model.addAttribute("dto", basicDTO);
-		}else if(lowDTO!=null){
-			model.addAttribute("dto", lowDTO);
-		}
-
+	public void moviePlay(int num, Model model, String kind) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("num", num);
+		PaidMovieDTO paidMovieDTO = new PaidMovieDTO();
+		paidMovieDTO = paidMovieService.paidMovieSelectOne(map);
+		model.addAttribute("dto", paidMovieDTO);
 	}
 
 	
 	@RequestMapping(value="/payMovie", method=RequestMethod.GET)
-	public void payMovie(int num, Model model, HttpSession session) throws Exception{
+	public void payMovie(int num, Model model, HttpSession session, String kind) throws Exception{
 		Map<String, Object> basic_map=new HashMap<String, Object>(); //basicMovie
 		Map<String, Object> low_map=new HashMap<String, Object>(); //lowMovie
 
@@ -92,8 +77,6 @@ public class MoviePayAndViewController {
 		
 		model.addAttribute("myPoint", myPoint);
 		model.addAttribute("price", price);
-		
-		
 	}
 	
 	@RequestMapping(value="/payMovie", method=RequestMethod.POST)
