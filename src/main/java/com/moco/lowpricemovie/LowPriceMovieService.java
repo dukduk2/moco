@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -257,5 +258,55 @@ public class LowPriceMovieService {
 	
 	public int screenUncommitCount() throws Exception{
 		return screenDAO.totalCount();
+	}
+	
+	public Map<String, Object> unCommitScreenTheater(int curPage, int perPage) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//commit=0인 screenDTO
+		List<ScreenDTO> screens = screenDAO.unCommitList();
+		
+		//screens의 multiplex num들
+		List<Integer> mnums = new ArrayList<Integer>();
+		for(int i=0; i<screens.size(); i++){
+			mnums.add(screens.get(i).getMulti_num());
+		}
+		
+		//중복된 multiplex num 제거
+		List<Integer> mnum = new ArrayList<Integer>(new HashSet<Integer>(mnums));
+		
+		//theater num들
+		List<Integer> tnums = new ArrayList<Integer>();
+		for(int i=0 ; i<mnum.size() ; i++){
+			MultiplexDTO multiplexDTO = multiplexDAO.unCommitList(mnum.get(i));
+			TheaterDTO theaterDTO = theaterDAO.view(multiplexDTO.getTheater_num());
+			tnums.add(theaterDTO.getNum());
+		}
+		
+		//중복된 theater num 제거
+		List<Integer> tnum = new ArrayList<Integer>(new HashSet<Integer>(tnums));
+		
+		//theater List
+		List<TheaterDTO> list = new ArrayList<TheaterDTO>();
+		for(int i=0; i<tnum.size(); i++){
+			list.add(theaterDAO.view(tnum.get(i)));
+		}
+		
+		//paging
+		int totalCount = tnum.size();
+		PageMaker pageMaker = new PageMaker(curPage, perPage);
+		RowMaker rowMaker = pageMaker.getRowMaker();
+		PageResult pageResult = pageMaker.paging(totalCount);
+		
+		map.put("list", list);
+		map.put("pageResult", pageResult);
+		
+		return map;
+	}
+	
+	
+	public void screenInfo(int theater_num) throws Exception{
+		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
+		
 	}
 }
