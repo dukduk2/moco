@@ -55,6 +55,5 @@
 	        <beans:bean class="com.moco.interceptor.AdminInterCeptor"/>
 	    </interceptor>
 	</interceptors>
-
 	
 </beans:beans>
