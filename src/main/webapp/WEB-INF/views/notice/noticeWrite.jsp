@@ -39,31 +39,30 @@
 </script>
 <style type="text/css">
 .contents-wrap{
-	width:700px;
+	width:1000px;
 	margin:0 auto;
 }
 </style>
 </head>
 <body>
-	<%@ include file="/resources/part/header2.jspf" %>
 	<div class="contents-wrap">
-	<h2>Notice Write</h2>
-	<form action="noticeWrite" method="post" id="frm" enctype="multipart/form-data">
-	<div class="form-group">
-			<label>TITLE :</label>
-			<input type="text" name="title" class="form-control" placeholder="Enter Title">
-		</div>
-		<div class="form-group">
-			<label>WRITER :</label>
-			<input type="text" name="writer" value="관리자" readonly="readonly" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>CONTENTS :</label>
-			<textarea id="contents" name="contents" class="form-control" style="height: 300px; width: 995px;" placeholder="Enter Contents"></textarea>
-		</div>
-		
-		<input type="button" value="WRITE" id="write">
-	</form>
+		<h2>Notice Write</h2>
+		<form action="noticeWrite" method="post" id="frm" enctype="multipart/form-data">
+			<div class="form-group">
+					<label>TITLE :</label>
+					<input type="text" name="title" class="form-control" placeholder="Enter Title">
+				</div>
+				<div class="form-group">
+					<label>WRITER :</label>
+					<input type="text" name="writer" value="관리자" readonly="readonly" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>CONTENTS :</label>
+					<textarea id="contents" name="contents" class="form-control" style="height: 300px; width: 995px;" placeholder="Enter Contents"></textarea>
+				</div>
+			
+			<input type="button" value="WRITE" id="write">
+		</form>
 	</div>
 </body>
 </html>
