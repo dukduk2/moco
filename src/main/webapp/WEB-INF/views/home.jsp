@@ -45,7 +45,20 @@ $(function(){
 		curPage = $(this).attr("id");
 		location.href = "./?curPage=" + curPage;
 	});
-
+	
+	//notice -------------------------------------------------
+	
+	$(".noticeShowHide").hide();
+	
+	// noticeView
+	$(".noticeView").click(function() {
+		var id = $(this).attr("id");
+		$("#"+id+"View").show();
+		$.get("./notice/noticeView?num="+id,
+			function(data){
+			
+		});
+	});
 });
 </script>
 
@@ -198,14 +211,14 @@ video {
 	z-index: 2;
 }
 
-.collapse {
-	color: red;
-}
-
 .notice {
 	width: 70%;
 	float: left;
 	border: solid red 2px;
+}
+
+.noticeView {
+	cursor: pointer;
 }
 </style>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -300,47 +313,16 @@ video {
 						<td><a href="./notice/noticeView?num=${dto.num}">${dto.title}</a>
 						
 <!-- notice View start -->
-							<!-- Trigger the modal with a button -->
-							<button data-toggle="modal" data-target="#myModal${dto.num}">${dto.title}</button>
-
-
-							<!-- Modal -->
-							<div class="modal fade" id="myModal${dto.num}" role="dialog">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<table style="margin: auto;">
-												<tr>
-													<td class="modal-title">TITLE : ${dto.title}</td>
-													<td>WRITER : ${dto.writer}</td>
-													<td>DATE : ${dto.reg_date}</td>
-													<td>HIT : ${dto.hit}</td><!-- hit가 안올라감 -->
-												</tr>
-											</table>
-										</div>
-						
-										<div class="modal-body">
-											${dto.contents}
-										</div>
-						
-										<div class="modal-footer">
-											<c:if test="${memberDTO.id eq 'admin'}">
-												<a class="btn btn-info" href="notice/noticeUpdate?num=${dto.num}">UPDATE</a>
-												<a class="btn btn-info" href="notice/noticeDelete?num=${dto.num}">DELETE</a>
-											</c:if>
-										</div>
-										
-									</div>
-								</div>
-							</div>
+							/<span class="noticeView" id="${dto.num}">${dto.title}</span>
 <!-- notice View end -->
 						</td>
 
 						<td>${dto.writer}</td>
 						<td>${dto.reg_date}</td>
 						<td>${dto.hit}</td>
+					</tr>
+					<tr class="noticeShowHide" id="${dto.num}View">
+						<td colspan="5">${dto.contents}</td>
 					</tr>
 				</c:forEach>
 			</table>
