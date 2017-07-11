@@ -31,7 +31,7 @@ public class UserBoardController {
 	private SeasonService seasonService;
 	
 	@RequestMapping(value="userBoardList", method=RequestMethod.GET)
-	public void list(String season, Integer curPage, Integer perPage, String kind, String search, Model model, int exception) throws Exception{
+	public void list(String season, Integer curPage, Integer perPage, String kind, String search, Model model) throws Exception{
 		if(season == null){
 			season = "%";
 		}
