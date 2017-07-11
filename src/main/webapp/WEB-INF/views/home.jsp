@@ -49,26 +49,39 @@ $(function(){
 	//notice -------------------------------------------------
 	
 	$(".noticeShowHide").hide();
+	var hideCheck= false;
 	
 	// noticeView
 	$(".noticeView").click(function() {
 		var id = $(this).attr("id");
-		$("#"+id+"View").show();
-		$.get("./notice/noticeView?num="+id, function(data){
-			
-		});
+		if(hideCheck){
+			$("#"+id+"View").show();
+			hideCheck = !hideCheck;
+			$.get("./notice/noticeView?num="+id, function(data){
+				
+			});			
+		}else{
+			$("#"+id+"View").hide();
+			hideCheck = !hideCheck;	
+		}
 	});
 	
-	// videoCancel
+	/* // videoCancel
 	$(".noticeCancel").click(function() {
 		var id = $(this).attr("id");
 		$("#"+id+"View").hide();
-	});
+	}); */
 	
 	// videoUpdate
 	$(".noticeUpdate").click(function() {
 		var id = $(this).attr("id");
-		window.open("${pageContext.request.contextPath}/notice/noticeUpdate", "actity", "width=1200, height=800, left=300, top=100");
+		window.open("${pageContext.request.contextPath}/notice/noticeUpdate?num="+id, "actity", "width=1200, height=800, left=300, top=100");
+	});
+	
+	// videoWrite
+	$(".noticeWrite").click(function() {
+		var id = $(this).attr("id");
+		window.open("${pageContext.request.contextPath}/notice/noticeWrite", "actity", "width=1200, height=800, left=300, top=100");
 	});
 });
 </script>
@@ -333,8 +346,9 @@ video {
 					</tr>
 					<tr class="noticeShowHide" id="${dto.num}View">
 						<td colspan="5">${dto.contents}<br>
-							<input type="button" value="닫기" id="${dto.num}" class="btn noticeCancel">
-							<input type="button" value="수정" id="${dto.num}" class="btn noticeUpdate">
+							<c:if test="${memberDTO.id eq 'admin'}">
+								<input type="button" value="수정" id="${dto.num}" class="btn btn-warning noticeUpdate">
+							</c:if>
 						</td>
 					</tr>
 				</c:forEach>
@@ -360,7 +374,7 @@ video {
 			</div>
 		
 			<c:if test="${memberDTO.id eq 'admin'}">
-				<p><a class="btn btn-info" href="./notice/noticeWrite">WRITE</a></p>
+				<p><input value="WRITE" type="button" class="btn btn-success noticeWrite"></p>
 			</c:if>
 		</div>
 	</div>
