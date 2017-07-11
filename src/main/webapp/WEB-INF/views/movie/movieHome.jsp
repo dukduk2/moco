@@ -9,6 +9,19 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <title>MOVIE COMMUNICATION</title>
+<script type="text/javascript">
+	$(function(){
+		$(".viewMovieInfo").click(function(){
+			var kind = $(this).attr("title");
+			var num = $(this).attr("id");
+			if(kind == 'basic'){
+				location.href="./basicMovieSearch/movieView?num="+num+"&kind=basic";
+			}else{
+				location.href="./lowpricemovie/movieView?num="+num+"&kind=low";
+			}
+		});
+	});
+</script>
 <style type="text/css">
 .img {
 	width: 100%;
@@ -213,7 +226,7 @@
 				<table>
 					<c:forEach begin="1" end="5" items="${basicInfoList }" var="list" step="1">
 						<tr>
-							<td id="${list.num }">${list.title }</td>
+							<td id="${list.num }" class="viewMovieInfo" title="basic">${list.title }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -223,7 +236,7 @@
 				<table>
 					<c:forEach begin="1" end="5" items="${lowInfoList }" var="list" step="1">
 						<tr>
-							<td id="${list.num }">${list.title }</td>
+							<td id="${list.num }" class="viewMovieInfo" title="low">${list.title }</td>
 						</tr>
 					</c:forEach>
 				</table>
