@@ -36,6 +36,10 @@ $(function(){
  	width: 600px;
  	margin: 20px auto;
 }
+
+.hidden {
+	display: none;
+}
 </style>
 
 </head>
@@ -53,6 +57,7 @@ $(function(){
 								<td>
 									<span id="filedelete">
 										<img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}">
+										<!-- <input type="file" name="f1" class="hidden"> -->
 									</span>
 									<input type="button" id="delete" class="btn btn-warning" value="삭제">
 								</td>

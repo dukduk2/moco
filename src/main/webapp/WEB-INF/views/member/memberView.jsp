@@ -19,7 +19,12 @@ $(function(){
 	});
 
 	$("#delete").click(function(){
-		location.href="memberDelete";
+		var check = confirm("정말 삭제 하시겠습니까?");
+		if(check){
+			location.href="memberDelete";
+		} else {
+			
+		}
 	});
 	
 	$("#home").click(function(){
