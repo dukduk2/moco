@@ -9,13 +9,12 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.moco.directorBoard.invest.InvestService;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
@@ -52,6 +51,8 @@ public class HomeController {
 	MemberService memberService;
 	@Inject
 	RecommendService recommendService;
+	@Inject
+	InvestService investService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -84,13 +85,44 @@ public class HomeController {
 		model.addAttribute("map", map);
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("list", ar);
-		
+
 		return "home";
 	}
 
 	@RequestMapping(value = "/user/userHome", method = RequestMethod.GET)
-	public void userHome() throws Exception{
+	public void userHome(Model model) throws Exception{
+		int totalInvestor = 0;
+		int avgInvestMoney = 0;
+		int totalCount = 0;
+		int successCount = 0;
+		int totalInvestMoney = 0;
+		double chart = 0.0;
+
+		try{
+			totalInvestor = investService.totalInvestor();
+		}catch(Exception e){
+			totalInvestor = 0;
+		}
+		try{
+			avgInvestMoney = investService.avgInvestMoney();
+		}catch(Exception e){
+			avgInvestMoney = 0;
+		}
+		try{
+			totalCount = investService.totalCount();
+			successCount = investService.successCount();
+			chart = (successCount*1.0/totalCount*1.0)*100;
+		}catch(Exception e){
+			chart = 0.0;
+		}
+		try {
+			totalInvestMoney = investService.totalInvestMoney()/10000;
+		} catch (Exception e) {
+			totalInvestMoney = 0;
+		}
 		
+		model.addAttribute("totalInvestor", totalInvestor).addAttribute("avgInvestMoney", avgInvestMoney)
+		.addAttribute("chart", chart).addAttribute("totalInvestMoney", totalInvestMoney);
 	}
 
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)

@@ -27,19 +27,20 @@ import com.moco.viewCheck.ViewCheckService;
 @Controller
 @RequestMapping(value="/movie/basicMovieSearch/movieRecommend/")
 public class BasicMovieRecommendController {
-	
+
 	@Inject
 	RecommendService recommendService;
 	@Inject
 	ViewCheckService viewCheckService;
-	
+
 	@RequestMapping(value="recommendHome", method=RequestMethod.GET)
 	public void recommendHome(){
-		
+
 	}
-	
+
 	@RequestMapping(value="recommendList", method=RequestMethod.GET)
 	public void recommendList(String criteria, String subCriteria, Model model, HttpSession session){
+		System.out.println("enter");
 		List<BasicMovieDTO> movieList = new ArrayList<BasicMovieDTO>(); // 영화 리스트
 		Map<String, Object> criteria_map = new HashMap<String, Object>(); // 조건 map
 		criteria_map.put("kind", "basic");
@@ -63,16 +64,16 @@ public class BasicMovieRecommendController {
 			else if(criteria.equals("age")){
 				List<String> memberList = new ArrayList<String>();
 				List<AgeViewDTO> ageViewList = new ArrayList<AgeViewDTO>();
-				
+
 				criteria_map.put("age", subCriteria);
 				memberList = recommendService.ageGroupList(criteria_map);
-				
+
 				if(memberList.size()>0){
 					criteria_map.put("ageListCheck", "check");
 					criteria_map.put("ageList", memberList);
 					ageViewList = recommendService.ageGroupViewList(criteria_map);
 				}
-				
+
 				if(ageViewList.size()>0){
 					movie_map.put("ageViewList", ageViewList);
 				}else{
@@ -102,13 +103,10 @@ public class BasicMovieRecommendController {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("kind", "basic");
 				map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
-				try {
-					List<BasicMovieDTO> myViewList = viewCheckService.viewCheckList(map);
-					for(BasicMovieDTO basicMovieDTO: myViewList){
-						System.out.println(basicMovieDTO.getGenre());
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+				
+				List<BasicMovieDTO> myViewList = viewCheckService.viewCheckList(map);
+				for(BasicMovieDTO basicMovieDTO: myViewList){
+					System.out.println(basicMovieDTO.getGenre());
 				}
 			}
 			// 리뷰 순위

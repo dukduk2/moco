@@ -76,4 +76,28 @@
 	<select id="totalMoney" parameterType="int" resultType="int">
 		select sum(money) from invest where pnum=#{pnum}
 	</select>
+	
+	<!-- 누적투자자 수 -->
+	<select id="totalInvestor" resultType="int">
+		select count(F.id) from((select id from invest group by id) F)
+	</select>
+	
+	<!-- 인당 평균 누적 투자액 -->
+	<select id="avgInvestMoney" resultType="int">
+		select AVG(money) from (select id,sum(money) money from invest group by id)
+	</select>
+	
+	<!-- 달성률 -->
+	<!-- total count -->
+	<select id="totalCount" resultType="int">
+		select count(num) from directorboard where state=0 
+	</select>
+	<!-- success count -->
+	<select id="successCount" resultType="int">
+		select count(num) from directorboard where state=0 and curprice=targetprice
+	</select>
+	<!-- 누적 투자액 -->
+	<select id="totalInvestMoney" resultType="int">
+		select sum(curprice) from directorboard
+	</select>
 </mapper>

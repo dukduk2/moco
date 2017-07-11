@@ -69,4 +69,24 @@ public class InvestService {
 	public InvestDTO reInvestCheck(InvestDTO investDTO) throws Exception{
 		return investDAO.reInvestCheck(investDTO);
 	}
+	
+	public int totalInvestor() throws Exception{
+		return investDAO.totalInvestor();
+	}
+	
+	public int avgInvestMoney() throws Exception{
+		return investDAO.avgInvestMoney();
+	}
+	
+	public int totalCount() throws Exception{
+		return investDAO.totalCount();
+	}
+	
+	public int successCount() throws Exception{
+		return investDAO.successCount();
+	}
+	
+	public int totalInvestMoney() throws Exception{
+		return investDAO.totalInvestMoney();
+	}
 }

@@ -72,4 +72,24 @@ public class InvestDAO {
 	public InvestDTO reInvestCheck(InvestDTO investDTO) throws Exception{
 		return sqlSession.selectOne(MAPPER_NAME+"reInvestCheck", investDTO);
 	}
+	
+	public int totalInvestor() throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"totalInvestor");
+	}
+	
+	public int avgInvestMoney() throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"avgInvestMoney");
+	}
+	
+	public int totalCount() throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"totalCount");
+	}
+	
+	public int successCount() throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"successCount");
+	}
+	
+	public int totalInvestMoney() throws Exception{
+		return sqlSession.selectOne(MAPPER_NAME+"totalInvestMoney");
+	}
 }

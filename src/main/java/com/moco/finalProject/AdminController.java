@@ -809,7 +809,7 @@ public class AdminController {
 	public String screenCommit_ajax(int num, Model model) throws Exception{
 		//영화 사진, 이름, 시간 등등 영화정보랑
 		//상영시작날짜, 상영종료날짜, 상영시작시간, 상영종료시간.
-		Map<String, Object> map = lowPriceMovieService.screenInfo(num);
+		// Map<String, Object> map = lowPriceMovieService.screenInfo(num);
 		
 		
 		
