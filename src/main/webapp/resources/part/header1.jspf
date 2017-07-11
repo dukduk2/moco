@@ -36,6 +36,14 @@
 					<a href="#">Link 3</a>
 	  			</div>
 			</li>
+			
+			<li class="dropdown">
+				<a class="topButton" href="">유료상영관</a>
+				<div class="dropdown-content">
+					<a href="${pageContext.request.contextPath}/movie/payMovieList/payMovieBasic">일반영화</a>
+					<a href="${pageContext.request.contextPath}/movie/payMovieList/payMovieLow">독립영화</a>
+	  			</div>
+			</li>
 		</ul>
 	
 		<div class="log">
@@ -46,7 +54,9 @@
 	
 			<c:if test="${memberDTO ne null }">
 				<span>${memberDTO.name} 님</span>
-				<span><a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/index">Admin Page</a></span>
+				<c:if test="${memberDTO.kind eq '관리자' }">
+					<span><a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/index">Admin Page</a></span>
+				</c:if>
 				<span><a class="btn btn-info" href="${pageContext.request.contextPath}/member/memberView">View</a></span>
 				<span><a class="btn btn-warning" href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></span>
 			</c:if>
