@@ -27,8 +27,8 @@
 		<div class="container">
 			<div>
 				<p>
-					<a href="/finalProject/#go"><img alt="" src="${pageContext.request.contextPath}/resources/logo/logo.png" class="logoIMG"></a>
-					&nbsp;&nbsp;&nbsp;<a href="/finalProject/#go" style="text-decoration: underline; color: teal;">모코 홈으로 가기</a>
+					<a href="${pageContext.request.contextPath}/#go"><img alt="" src="${pageContext.request.contextPath}/resources/logo/logo.png" class="logoIMG"></a>
+					&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/#go" style="text-decoration: underline; color: teal;">모코 홈으로 가기</a>
 				</p>
 				<br><br>
 		            <p>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br />페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.</p>

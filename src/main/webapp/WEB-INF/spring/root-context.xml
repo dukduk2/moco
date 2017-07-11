@@ -7,6 +7,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
+	<!-- exception -->
+	<bean id="exceptionController" class="com.moco.finalProject.ExceptionController"/>
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="propertyPlaceholderConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
