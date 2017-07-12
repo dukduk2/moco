@@ -6,7 +6,8 @@
 
 .searchResultWrap{
 	width: 1000px;
-	height: 220px;
+	min-height: 220px;
+	height: auto;
 	margin: 10px auto;
 	cursor: pointer;
 	background-color: white;

@@ -9,6 +9,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/movieSearchHome.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
@@ -301,16 +302,21 @@
 	});
 </script>
 <style type="text/css">
+	.searchResultWrap{
+		cursor: auto;
+	}
 	#topWrap{
 		width: 900px;
 		height: 300px;
 		border-top: 1px solid #cccccc;
 		border-bottom: 1px solid #cccccc;
+		margin: 0 auto;
 		margin-bottom: 20px;
 	}
 	#middleWrap{
 		width: 900px;
 		height: 520px;
+		margin: 0 auto;
 		border-bottom: 1px solid #cccccc;
 	}
 	#thumnailImg{
@@ -333,10 +339,12 @@
 	}
 	.middle{
 		height: 100%;
+		padding-bottom: 100px;
 	}
 	.middle video{
 		width: 100%;
 		height: 100%;
+		margin-bottom: 10px;
 	}
 	/* 별점 */
 	.star-rating{ 
@@ -374,50 +382,74 @@
     	font-size: 8px;
     	margin-left: 5px;
     }
+    #reviewResult {
+    	width: 1000px;
+    	margin: 0 auto;
+		background-color: white;
+		border-radius: 10px;
+    }
+    .button {
+    	text-align: center;
+    	width: 300px;
+    	margin: 0 auto;
+		background-color: white;
+		border-radius: 10px;
+		margin-top: 50px;
+    }
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
-	<div id="topWrap">
-		<div id="thumnailImg">
-			<img src="${movieDTO.thumnail }">
-		</div>
-		<div id="movieInfo" title="${movieDTO.num }">
-			<span style="font-size: 25px;">${movieDTO.title }
-				<button class="btn movieRequest" id="${requestMessage }" title="${movieKind }">${requestMessage }</button>
-			</span>
-			
-			<p>${movieDTO.eng_title }</p>
-			<span class="star-rating">
-				<span style="width: ${movieDTO.user_rating*10}%"></span>
-			</span>
-			<span>${movieDTO.user_rating }/10 (${review_count }명 참여)</span>
-			<p style="margin-top: 10px;"><strong>개요</strong> ${movieDTO.genre } | ${movieDTO.nation } | ${movieDTO.play_time }  
-				<c:if test="${movieDTO.pub_date ne '1970-01-01' }">
-					| ${movieDTO.pub_date }개봉
+		<div class="container">
+			<div class="searchResultWrap">
+				<div id="topWrap">
+					<div id="thumnailImg">
+						<img src="${movieDTO.thumnail }">
+					</div>
+
+					<div id="movieInfo" title="${movieDTO.num }">
+						<span style="font-size: 25px;">${movieDTO.title }
+							<button class="btn movieRequest" id="${requestMessage }" title="${movieKind }">${requestMessage }</button>
+						</span>
+
+						<p>${movieDTO.eng_title }</p>
+						<span class="star-rating">
+							<span style="width: ${movieDTO.user_rating*10}%"></span>
+						</span>
+						<span>${movieDTO.user_rating }/10 (${review_count }명 참여)</span>
+						<p style="margin-top: 10px;"><strong>개요</strong> ${movieDTO.genre } | ${movieDTO.nation } | ${movieDTO.play_time }  
+							<c:if test="${movieDTO.pub_date ne '1970-01-01' }">
+								| ${movieDTO.pub_date }개봉
+							</c:if>
+						</p>
+						<p><strong>감독</strong> ${movieDTO.director }</p>
+						<p><strong>주연</strong> ${movieDTO.actor }</p>
+						<p><strong>등급</strong> ${movieDTO.watching_rate }</p>
+						<p class="jjim jjimInsert" id="${movieDTO.num }">♡ 찜하기</p>
+						<p class="jjim jjimDelete" id="${movieDTO.num }">♥ 찜하기취소</p>
+					</div>
+				</div>
+
+				<div id="middleWrap"></div>
+			</div>
+	
+			<!-- 댓글 -->
+			<input type="hidden" value="basicMovie" id="boardKind">
+			<input type="hidden" value="${movieDTO.num}" id="boardNum">
+	
+			<div id="reviewResult" class=""></div>
+
+			<div class="button">
+				<c:if test="${movieKind eq 'low'}">
+					<a class="btn btn-primary" href="theaterInsert?num=${movieDTO.num }">상영관 신청하기</a>
 				</c:if>
-			</p>
-			<p><strong>감독</strong> ${movieDTO.director }</p>
-			<p><strong>주연</strong> ${movieDTO.actor }</p>
-			<p><strong>등급</strong> ${movieDTO.watching_rate }</p>
-			<p class="jjim jjimInsert" id="${movieDTO.num }">♡ 찜하기</p>
-			<p class="jjim jjimDelete" id="${movieDTO.num }">♥ 찜하기취소</p>
+	
+				<c:if test="${memberDTO.id eq 'admin' }">
+					<a class="btn btn-danger" href="./movieDelete?num=${movieDTO.num }">영화정보삭제</a>
+				</c:if>
+			</div>
 		</div>
-	</div>
-	<div id="middleWrap"></div>
-	<!-- 댓글 -->
-	<input type="hidden" value="basicMovie" id="boardKind">
-	<input type="hidden" value="${movieDTO.num}" id="boardNum">
-	<div id="reviewResult" class="container"></div>
-	<c:if test="${movieKind eq 'low'}">
-	<div>
-		<a href="theaterInsert?num=${movieDTO.num }">상영관 신청하기</a>
-	</div>
-	</c:if>
-	<c:if test="${memberDTO.id eq 'admin' }">
-		<a href="./movieDelete?num=${movieDTO.num }">영화정보삭제</a>
-	</c:if>
 	</section>
 </body>
 </html>

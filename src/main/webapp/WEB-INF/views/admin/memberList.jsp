@@ -73,10 +73,10 @@ $(function(){
 
 </head>
 <body>
+	<div id="result">
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
-			<div id="result">
 
 				<div class=search_right>
 					<form action="memberList">
@@ -165,9 +165,9 @@ $(function(){
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 
 	</section>
+	</div>
 </body>
 </html>
