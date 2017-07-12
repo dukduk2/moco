@@ -79,4 +79,8 @@ public class ActorPRDAO {
 		actorPRDTO=sqlSession.selectOne(namespace+"actorPRView", num);
 		return actorPRDTO;
 	}
+	
+	public List<ActorPRDTO> homeList() throws Exception{
+		return sqlSession.selectList(namespace+"homeList");
+	}
 }

@@ -10,11 +10,11 @@
 	
 	<!-- eunji -->
 	<select id="payMovieBasic" parameterType="java.util.Map" resultType="com.moco.movieAPI.BasicMovieDTO">
-		select * from
-		(select rownum r, b.* from
+		select * from 
+		(select rownum r, b.* from 
 		(select basicmovie.* from basicmovie,paidmovie 
 		where basicmovie.num=paidmovie.bnum and basicmovie.title like '%'||#{title}||'%' 
-		and basicmovie.eng_title like '%'||#{title}||'%' order by basicmovie.num desc) b)
+		and basicmovie.eng_title like '%'||#{title}||'%' order by basicmovie.num desc) b) 
 		where r between #{rowMaker.startRow} and #{rowMaker.lastRow}
 		
 		<!-- select * from (select rownum r, b.* from 

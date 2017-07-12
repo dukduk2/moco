@@ -90,5 +90,12 @@
 	<update id="voteCountUpdate" parameterType="java.lang.String">
 		update actorprboard set votecount=votecount+1 where writer=#{writer}
 	</update>
+	
+	
+	<select id="homeList" resultType="com.moco.actorPR.ActorPRDTO">
+		<![CDATA[ 
+		select * from (select * from actorprboard order by votecount desc) where rownum<=11
+		]]> 
+	</select>
 
 </mapper>
