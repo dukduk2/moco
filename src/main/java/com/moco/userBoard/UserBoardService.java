@@ -1,5 +1,6 @@
 package com.moco.userBoard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,20 @@ public class UserBoardService implements BoardService {
 	@Autowired
 	private ReplyService replyService;
 
+	// rank3 memberInfo
+	public List<MemberDTO> rank3MemberInfo() throws Exception{
+		List<UserBoardDTO> userBoardDTOs = userBoardDAO.userBoardRank();
+		List<MemberDTO> memberDTOs = new ArrayList<MemberDTO>();
+		for (UserBoardDTO userBoardDTO : userBoardDTOs) {
+			memberDTOs.add(userBoardDAO.memberInfo2(userBoardDTO.getWriter()));
+		}
+		return memberDTOs;
+	}
+	// rank3 likes 수
+	public List<UserBoardDTO> userBoardRank() throws Exception{
+		return userBoardDAO.userBoardRank();
+	}
+	
 	// memberInfo
 	public MemberDTO memberInfo(int num) throws Exception{
 		String id = userBoardDAO.memberInfo(num);
