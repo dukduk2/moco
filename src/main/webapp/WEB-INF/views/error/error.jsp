@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <%@ include file="/resources/part/bootStrap.jspf" %>
 <style type="text/css">
-	.container{
+	.error{
 		background-image: url("${pageContext.request.contextPath}/resources/logo/back.jpg");
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -24,7 +24,7 @@
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="container error">
 		<div>
 			<p>
 				<a href="${pageContext.request.contextPath}/#go"><img alt="" src="${pageContext.request.contextPath}/resources/logo/logo.png" class="logoIMG"></a>
