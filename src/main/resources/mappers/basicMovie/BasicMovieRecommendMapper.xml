@@ -75,6 +75,17 @@
 			</if>
 			order by DBMS_RANDOM.RANDOM 
 		</if>
+		<if test="favorite neq null">
+			<where>
+				<foreach collection="favorite" item="item">
+	    			or genre like '%'||#{item}||'%'
+	    		</foreach>
+	    		<foreach collection="viewNum" item="item">
+	    			and num!=#{item}
+	    		</foreach>
+			</where>
+			order by DBMS_RANDOM.RANDOM 
+		</if>
 	</select>
 	<!-- director list -->
 	<select id="directorList" resultType="com.moco.movieAPI.movieRecommend.subDTO.DirectorDTO">
@@ -167,4 +178,5 @@
 			where lowpricemovie.num=F.lnum
 		</if>
 	</select>
+	<!-- 상위3개 장르 추천영화 -->
 </mapper>

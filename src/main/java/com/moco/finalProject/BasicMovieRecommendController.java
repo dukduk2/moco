@@ -98,16 +98,103 @@ public class BasicMovieRecommendController {
 			}
 			// 내가 본 영화와 비슷한 영화
 			else if(criteria.equals("my")){
-				System.out.println(viewCheckService);
+				int genreList[] = new int[15];
+				String genre[] = new String[15];
+				ArrayList<Integer> viewNum = new ArrayList<Integer>();
+				
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("kind", "basic");
 				map.put("id", ((MemberDTO)session.getAttribute("memberDTO")).getId());
-				
+
 				List<BasicMovieDTO> myViewList = viewCheckService.viewCheckList(map);
 				// no List Message
-				for(BasicMovieDTO basicMovieDTO: myViewList){
-					System.out.println(basicMovieDTO.getGenre());
+				if(myViewList.size()==0){
+					model.addAttribute("noListMessage", "추천 리스트가 없습니다. 더 많은 영화에 '봤어요'를 눌러주세요!");
+				}else{
+					for(BasicMovieDTO dto : myViewList){
+						viewNum.add(dto.getNum());
+					}
 				}
+				for(BasicMovieDTO basicMovieDTO: myViewList){
+					String[] sub = (basicMovieDTO.getGenre()).split(",");
+					for(int i=0; i<sub.length; i++){
+						if(sub[i].equalsIgnoreCase("판타지")){
+							genre[0] = "판타지";
+							genreList[0]++;
+						}else if(sub[i].equalsIgnoreCase("공포")){
+							genre[1] = "공포";
+							genreList[1]++;
+						}else if(sub[i].equalsIgnoreCase("로맨스/멜로")){
+							genre[2] = "로맨스/멜로";
+							genreList[2]++;
+						}else if(sub[i].equalsIgnoreCase("어드벤처")){
+							genre[3] = "어드벤처";
+							genreList[3]++;
+						}else if(sub[i].equalsIgnoreCase("스릴러")){
+							genre[4] = "스릴러";
+							genreList[4]++;
+						}else if(sub[i].equalsIgnoreCase("다큐멘터리")){
+							genre[5] = "다큐멘터리";
+							genreList[5]++;
+						}else if(sub[i].equalsIgnoreCase("코미디")){
+							genre[6] = "코미디";
+							genreList[6]++;
+						}else if(sub[i].equalsIgnoreCase("가족")){
+							genre[7] = "가족";
+							genreList[7]++;
+						}else if(sub[i].equalsIgnoreCase("미스터리")){
+							genre[8] = "미스터리";
+							genreList[8]++;
+						}else if(sub[i].equalsIgnoreCase("전쟁")){
+							genre[9] = "전쟁";
+							genreList[9]++;
+						}else if(sub[i].equalsIgnoreCase("애니메이션")){
+							genre[10] = "애니메이션";
+							genreList[10]++;
+						}else if(sub[i].equalsIgnoreCase("범죄")){
+							genre[11] = "범죄";
+							genreList[11]++;
+						}else if(sub[i].equalsIgnoreCase("뮤지컬")){
+							genre[12] = "뮤지컬";
+							genreList[12]++;
+						}else if(sub[i].equalsIgnoreCase("SF")){
+							genre[13] = "SF";
+							genreList[13]++;
+						}else if(sub[i].equalsIgnoreCase("액션")){
+							genre[14] = "액션";
+							genreList[14]++;
+						}else{
+
+						}
+					}
+				}
+				for(int i=0; i<genre.length; i++){
+					for(int j=0; j<genre.length; j++){
+						int temp_value = 0;
+						String temp_genre = "";
+						if(genreList[i]<genreList[j]){
+							temp_value = genreList[i];
+							temp_genre = genre[i];
+							
+							genreList[i] = genreList[j];
+							genre[i] = genre[j];
+							
+							genreList[j] = temp_value;
+							genre[j] = temp_genre;
+						}
+					}
+				}
+				int count = 0;
+				ArrayList<String> favorite = new ArrayList<String>();
+				for(int i=0; i<genre.length; i++){
+					if(genre[i] != null && count <3){
+						count++;
+						favorite.add(genre[i]);
+					}
+				}
+				criteria_map.put("kind", "basic");
+				criteria_map.put("favorite", favorite);
+				criteria_map.put("viewNum", viewNum);
 			}
 			// 리뷰 순위
 			else if(criteria.equals("review")){
