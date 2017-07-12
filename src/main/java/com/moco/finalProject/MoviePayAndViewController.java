@@ -42,26 +42,29 @@ public class MoviePayAndViewController {
 	PayService payService;
 	
 	@RequestMapping(value="/payMovieList/payMovieBasic", method=RequestMethod.GET)
-	public void payMovieBasic(String title, Integer curPage, Model model) throws Exception{		
+	public String payMovieBasic(String title, Integer curPage, Model model) throws Exception{		
+		List<BasicMovieDTO> ar=new ArrayList<BasicMovieDTO>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(curPage==null){
 			curPage=1;
 		}
 		if(title==""){
-			title=null;
+			title="%";
 		}
+		map.put("title", title);
 		map.put("curPage", curPage);
 		int totalCount=0;
 		
 		totalCount=paidMovieService.payMovieBasicCount();
-		
+
 		PageMaker pageMaker = new PageMaker(curPage);
 		RowMaker rowMaker = pageMaker.getRowMaker();
 		PageResult pageResult = pageMaker.paging(totalCount);
 		map.put("rowMaker", rowMaker);
-		map.put("title", title);
-		List<BasicMovieDTO> ar = paidMovieService.payMovieBasic(map);
+		
+		ar = paidMovieService.payMovieBasic(map);
+		System.out.println(ar.get(0).getTitle());
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i).getTitle());
 		}
@@ -69,7 +72,7 @@ public class MoviePayAndViewController {
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("title", title);
 		model.addAttribute("curPage", curPage);
-
+		return "redirect:movie/payMovieList/payMovieBasic";
 	}
 	
 	@RequestMapping(value="/payMovieList/payMovieLow", method=RequestMethod.GET)

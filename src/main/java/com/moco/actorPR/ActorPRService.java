@@ -80,5 +80,9 @@ public class ActorPRService {
 		return result;
 	}
 	
+	public List<ActorPRDTO> homeList() throws Exception{
+		return actorPRDAO.homeList();
+	}
+	
 	
 }
