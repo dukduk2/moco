@@ -5,7 +5,7 @@
 
 ${lowpricemovie.title }
 <br>
-<img src="${lowpricemovie.thumnail}" style="width:200px;">
+<img id="${lowpricemovie.num}" class="movieGo" src="${lowpricemovie.thumnail}" style="width:200px;">
 <br>
 
 <!-- 현재시간 -->

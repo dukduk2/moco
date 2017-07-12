@@ -6,9 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ include file="/resources/part/bootStrap.jspf" %>
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <script type="text/javascript">
 	$(function() {
 		// page
@@ -70,61 +71,63 @@
 	}
 </style>
 <body>
-
-	<h3 class="title">SCREEN COMMIT</h3>
-	<div class="container">	
-		<br>
-		<table class="table table-hover">
-			<tr>
-				<td>NUM</td>
-				<td>NAME</td>
-				<td>LOCATION</td>
-				<td>OPENNING TIME</td>
-				<td>PRICE</td>
-				<td>PHONE</td>
-			</tr>
-			<c:forEach items="${list}" var="dto">
-				<tr>
-					<td>${dto.num}	</td>
-					<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
-					<td>${dto.location}</td>
-					<td>${dto.opening_time }</td>
-					<td>${dto.price}</td>
-					<td>${dto.phone}</td>
-				</tr>
-			</c:forEach>
-		</table>
-
-		<!-- modal Ajax -->
+	<%@ include file="/resources/part/header3.jspf" %>
+	<section>
 		<div class="container">
+			<h3 class="title">SCREEN COMMIT</h3>
+			<br>
+			<table class="table table-hover">
+				<tr>
+					<td>NUM</td>
+					<td>NAME</td>
+					<td>LOCATION</td>
+					<td>OPENNING TIME</td>
+					<td>PRICE</td>
+					<td>PHONE</td>
+				</tr>
+				<c:forEach items="${list}" var="dto">
+					<tr>
+						<td>${dto.num}	</td>
+						<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
+						<td>${dto.location}</td>
+						<td>${dto.opening_time }</td>
+						<td>${dto.price}</td>
+						<td>${dto.phone}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			
+			<!-- modal Ajax -->
 			<div class="modal fade" id="myModal" role="dialog">
-		    	<div class="modal-dialog modal-sm">
-		    		<div class="modal-content" id="screenView">
-		    		</div>
-		    	</div>
-		    </div>
+			   	<div class="modal-dialog modal-sm">
+			   		<div class="modal-content" id="screenView">
+			   		</div>
+			   	</div>
+			</div>
+			
+				
+				
+				
+			<!-- 페이징 처리 -->
+			<div class="paging">
+				<c:if test="${pageResult.curBlock>1}">
+					<button class="btn"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
+				</c:if>
+				<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+					<button class="btn"><span class="go" id="${i}">${i}</span></button>
+				</c:forEach>
+				<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+					<button class="btn"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
+				</c:if>
+			</div>
+			
+			<!-- BTN -->
+			<div class="btnBox">
+				<a href="./index"><button class="btn">Admin Index</button></a>
+				<a href="../"><button class="btn">HOME</button></a>
+			</div>
 		</div>
 		
-		
-		
-		<!-- 페이징 처리 -->
-		<div class="paging">
-			<c:if test="${pageResult.curBlock>1}">
-				<button class="btn"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
-			</c:if>
-			<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-				<button class="btn"><span class="go" id="${i}">${i}</span></button>
-			</c:forEach>
-			<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-				<button class="btn"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
-			</c:if>
-		</div>
-		
-		<!-- BTN -->
-		<div class="btnBox">
-			<a href="./index"><button class="btn">Admin Index</button></a>
-			<a href="../"><button class="btn">HOME</button></a>
-		</div>
-	</div>
+	</section>
 </body>
 </html>

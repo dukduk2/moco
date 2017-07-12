@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
-		$('.boardView').click(function(){
+		$('.theaterView').click(function(){
 			var num = $(this).attr('id');
 			location.href='./theaterView?num='+num;
 		});
@@ -24,7 +24,7 @@
 .titleSpan{
 	font-family: Montserrat, sans-serif;
 }
-.boardView{
+.theaterView{
 		font-family: Montserrat, sans-serif;
 		font-weight: bold;
 		cursor: pointer;
@@ -51,7 +51,7 @@
 							<c:if test="${list.commit eq 1}">
 								<tr>
 									<td>${list.num }</td>
-									<td><span id="${list.num }" class="boardView">${list.name}</span></td>
+									<td><span id="${list.num }" class="theaterView">${list.name}</span></td>
 									<td>${list.location}</td>
 									<td>${list.phone}</td>
 								</tr>
