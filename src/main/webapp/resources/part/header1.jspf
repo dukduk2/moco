@@ -59,7 +59,7 @@
 				</c:if>
 				<span><a class="btn btn-info" href="${pageContext.request.contextPath}/member/memberView">View</a></span>
 				<span><a class="btn btn-warning" href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></span>
-				<span><a class="btn btn-success" href="${pageContext.request.contextPath}/">충전소</a></span>
+				<span><a class="btn btn-success" href="${pageContext.request.contextPath}/point/pointList">충전소</a></span>
 			</c:if>
 		</div>
 	

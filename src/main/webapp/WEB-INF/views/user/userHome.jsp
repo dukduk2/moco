@@ -118,6 +118,15 @@
 	margin-left: 10px;
 	display: inline-block;
 }
+#userboard-intro{
+	font-size: 0.6em;
+	color: #737373;
+}
+.userboardTitle{
+	text-align: center;
+	width: 675px;
+	font-size: 0.6em;
+}
 </style>
 </head>
 <body>
@@ -175,20 +184,21 @@
 		</div>
 		<div class="sub right">
 			<p>유저 프로젝트란?</p>
-			<p id="funding-intro">
+			<p id="userboard-intro">
 				저희 사이트에서는 1년에 2회 '유저 프로젝트'를 실행합니다. 시즌기간 동안 
 				유저들이 직접 팀을 꾸려 저예산 영화를 만들고, 그 만든 것을 공유하는 것이 '유저 프로젝트' 인대요.
 				글쓴이가 먼저 글을 등록하고 관리자 승인을 거치게 됩니다. 그 후 허가가 되면 다른 유저들도 볼 수 있게 됩니다.
 				시즌동안 등록된 글에 달린 '좋아요' 수 만큼 글쓴이에게 적립이 되고, 적립된 만큼 포인트로 환산 할 수 있습니다.
 				많은 참여 부탁드립니다.
 			</p>
+			<div class="userboardTitle">실시간 RANK</div>
 			<div class="rank3">
 				<c:forEach items="${rank3Member}" var="memberDTO" varStatus="i">
 					<div class="rank3Info">
 						<a href="./userBoard/userBoardView?num=${rank3Likes[i.index].num}">
 							<img id="${rank3Likes[i.index].likes}" class="memberIMG" alt="" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}">
 						</a>
-						<br><br>
+						<br>
 						좋아요 ${rank3Likes[i.index].likes}
 					</div>
 				</c:forEach>
