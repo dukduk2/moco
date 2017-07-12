@@ -64,13 +64,6 @@ $(function(){
 });
 </script>
 
-<style type="text/css">
-.down{
-	width: 300px;
-	height: 300px;
-}
-</style>
-
 </head>
 <body>
 	<div id="result">

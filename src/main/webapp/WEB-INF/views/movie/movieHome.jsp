@@ -8,6 +8,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
@@ -35,7 +36,6 @@
 .img {
 	width: 100%;
 	height: 400px;
-	border: solid blue 2px;
 	margin: 0 auto;
 	margin-top: -50px;
 	font-size: 30px;
@@ -52,44 +52,45 @@
 	width: 45%;
 	height: 300px;
 	margin-top: 20px;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
 .sub_left{
 	margin-left: 4%;
-	border: solid red 2px;
 	float: left;
 }
 
 .sub_right {
 	margin-right: 4%;
-	border: solid green 2px;
 	float: right;
 }
 #paidLowList{
 	width: 48%;
 	height: 100%;
 	float: left;
-	border: solid green 1px;
 }
 
 #paidBasicList{
 	width: 48%;
 	height: 100%;
 	float: right;
-	border: solid green 1px;
 }
 .review{
 	width: 100%;
 	height: 48%;
-	border: solid green 1px;
+	border: solid black 1px;
 	margin-bottom: 10px;
 }
+
+.review:hover {
+	cursor: pointer;
+	background-color: #e6e6e6;
+}
+
 .review_img{
 	width: 20%;
 	height: 100%;
-	border: solid green 1px;
 	float: left;
 }
 .review_img img{
@@ -119,6 +120,10 @@
 }
 .contents-top{
 	border-bottom: 1px solid black;
+}
+.viewMovieInfo:hover {
+	cursor: pointer;
+	color: blue;
 }
 </style>
 </head>
@@ -231,10 +236,13 @@
 		</div>
 		<div class="sub sub_right">
 			<div id="paidLowList">
-				<p>유료 영화 업로드(일반영화)</p>
-				<table>
+				
+				<table class="table table-hover">
+					<thead><tr class="head">
+						<td>유료 영화 업로드(일반영화)</td>
+					</tr></thead>
 					<c:forEach begin="1" end="5" items="${basicInfoList }" var="list" step="1">
-						<tr>
+						<tr class="body">
 							<td id="${list.num }" class="viewMovieInfo" title="basic">${list.title }</td>
 						</tr>
 					</c:forEach>
@@ -242,10 +250,12 @@
 			</div>
 
 			<div id="paidBasicList">
-				<p>유료 영화 업로드(독립영화)</p>
-				<table>
+				<table class="table table-hover">
+					<thead><tr class="head">
+						<td>유료 영화 업로드(독립영화)</td>
+					</tr></thead>
 					<c:forEach begin="1" end="5" items="${lowInfoList }" var="list" step="1">
-						<tr>
+						<tr class="body">
 							<td id="${list.num }" class="viewMovieInfo" title="low">${list.title }</td>
 						</tr>
 					</c:forEach>
