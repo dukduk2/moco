@@ -231,7 +231,7 @@
 		</div>
 		<div class="sub sub_right">
 			<div id="paidLowList">
-			<p>유료 영화 업로드(일반영화)</p>
+				<p>유료 영화 업로드(일반영화)</p>
 				<table>
 					<c:forEach begin="1" end="5" items="${basicInfoList }" var="list" step="1">
 						<tr>
@@ -240,8 +240,9 @@
 					</c:forEach>
 				</table>
 			</div>
+
 			<div id="paidBasicList">
-			<p>유료 영화 업로드(독립영화)</p>
+				<p>유료 영화 업로드(독립영화)</p>
 				<table>
 					<c:forEach begin="1" end="5" items="${lowInfoList }" var="list" step="1">
 						<tr>
