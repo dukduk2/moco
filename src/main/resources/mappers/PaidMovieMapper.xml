@@ -11,11 +11,17 @@
 	<!-- eunji -->
 	<select id="payMovieBasic" parameterType="java.util.Map" resultType="com.moco.movieAPI.BasicMovieDTO">
 		select * from 
+		(select * from 
 		(select rownum r, b.* from 
-		(select basicmovie.* from basicmovie,paidmovie 
+		(select basicmovie.* from basicmovie, paidmovie where basicmovie.num=paidmovie.bnum) b) 
+		where title like '%'||#{title}||'%' or eng_title like '%'||#{title}||'%') where r between #{rowMaker.startRow} and #{rowMaker.lastRow} 
+		
+		<!-- select * from 
+		(select rownum r, b.* from 
+		(select basicmovie.* from basicmovie, paidmovie 
 		where basicmovie.num=paidmovie.bnum and basicmovie.title like '%'||#{title}||'%' 
 		and basicmovie.eng_title like '%'||#{title}||'%' order by basicmovie.num desc) b) 
-		where r between #{rowMaker.startRow} and #{rowMaker.lastRow}
+		where r between #{rowMaker.startRow} and #{rowMaker.lastRow} -->
 		
 		<!-- select * from (select rownum r, b.* from 
 		(select basicmovie.* from basicmovie, paidmovie where basicmovie.num=paidmovie.bnum 
@@ -34,8 +40,8 @@
 		where r between #{rowMaker.startRow} and #{rowMaker.lastRow} -->
 	</select>
 	
-	<select id="payMovieBasicCount" resultType="java.lang.Integer">
-		select count(num) from paidmovie where bnum>0
+	<select id="payMovieBasicCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(num) from (select paidmovie.* from paidmovie, basicmovie where basicmovie.title like '%'||#{title}||'%' and paidmovie.bnum>0 and paidmovie.bnum=basicmovie.num)
 	</select>
 	
 	<select id="payMovieLowCount" resultType="java.lang.Integer">

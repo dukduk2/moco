@@ -134,9 +134,8 @@ img {
 
 		<div class="search">
 			<form action="./actorPRList" id="searchForm">
-				<input type="text" name="search" placeholder="이름 검색"> <input
-					type="hidden" name="curPage" value="1"> <input
-					type="button" class="btn" value="Search" id="search">
+				<input type="text" name="search" placeholder="이름 검색">
+				<input type="button" class="btn" value="Search" id="search">
 			</form>
 		</div>
 		
