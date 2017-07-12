@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,12 +109,34 @@
 #bronze{
 	border: 4px solid rgb(205, 127, 50); 
 }
+.profile {
+	border-bottom: 1px solid RGB(157, 157, 157);
+	width: 200px;
+	height: 200px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-left: 10px;
+	display: inline-block;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
-		<div class="rank">랭크</div>
+		<div class="rank">
+			<c:forEach items="${list }" var="list">
+				<div class="profile">
+
+						<a href="./actorPR/actorPRView?num=${list.num}">
+							<button type="button" class="btn btn-info">${list.writer }
+								<span class="badge">${list.voteCount }</span>
+							</button>
+							<img src="../resources/upload/member/${fnames[i.index]}" class="img-responsive" style="width: 100%; height: 70%;"
+							alt="Image">
+						</a>
+					</div>
+			</c:forEach>
+		</div>
 		
 		<div class="sub left">
 			<div id="funding-top">
