@@ -147,7 +147,7 @@
 	<select id="userBoardRank" resultType="com.moco.userBoard.UserBoardDTO">
 		select * from 
 		(select rownum R, U.* from
-		(select * from userBoard order by likes desc) U)
+		(select * from userBoard order by likes desc, hit desc) U)
 		where R between 1 and 3
 	</select>
 	
