@@ -491,7 +491,7 @@ public class LowPriceMovieController {
 		//프로시저 사용.(reservation db insert & screen db update)
 		result = lowPriceMovieService.reservationInsert(reservationDTO);
 		
-		return "movie/lowpricemovie/theaterView?num=2";
+		return "";
 		
 	}
 	/*
