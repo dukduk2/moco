@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.moco.actorPR.ActorPRDTO;
+import com.moco.actorPR.ActorPRService;
 import com.moco.directorBoard.invest.InvestService;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
@@ -27,6 +29,7 @@ import com.moco.paidMovie.PaidMovieService;
 import com.moco.pay.PayService;
 import com.moco.review.ReviewDTO;
 import com.moco.review.ReviewService;
+import com.moco.season.SeasonService;
 import com.moco.userBoard.UserBoardService;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
@@ -55,8 +58,11 @@ public class HomeController {
 	@Inject
 	InvestService investService;
 	@Inject
+	ActorPRService actorPRService;
+	@Inject
+	SeasonService seasonService;
+	@Inject
 	UserBoardService userBoardService;
-
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -93,7 +99,17 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/user/userHome", method = RequestMethod.GET)
-	public void userHome(Model model) throws Exception{
+	public void userHome(String season, String search, Model model) throws Exception{
+		List<ActorPRDTO> ar=new ArrayList<ActorPRDTO>();
+		ar=actorPRService.homeList();
+		List<String> onames = new ArrayList<String>();
+		String oname = "";
+		
+		for(int i=0; i<ar.size();i++){
+			oname = actorPRService.onameSelect(ar.get(i).getWriter());
+			onames.add(oname);
+		}
+
 		// 수지
 		int totalInvestor = 0;
 		int avgInvestMoney = 0;
@@ -126,6 +142,7 @@ public class HomeController {
 		}
 		
 		model.addAttribute("totalInvestor", totalInvestor).addAttribute("avgInvestMoney", avgInvestMoney)
+		.addAttribute("chart", chart).addAttribute("totalInvestMoney", totalInvestMoney).addAttribute("list", ar).addAttribute("fnames", onames)
 		.addAttribute("chart", chart).addAttribute("totalInvestMoney", totalInvestMoney);
 		
 		// 찬양
