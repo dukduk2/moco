@@ -123,6 +123,7 @@ img {
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
+<<<<<<< HEAD
 		<div class="container">
 			<h2 style="text-align: center;">ActorPR LIST</h2>
 
@@ -139,6 +140,38 @@ img {
 					</tr>
 				</table>
 			</div>
+=======
+	<div class="contents-wrap">
+
+		<h2>ActorPR LIST</h2>
+
+		<div id="buttonList">
+		<c:if
+			test="${totalCount <= 101 && memberDTO ne null && memberDTO.kind eq '배우'}">
+			<a href="./actorPRWrite"><button class="btn">Actor Apply</button></a>
+		</c:if>
+		<a href="../../"><button class="btn">HOME</button></a> 
+
+		<div class="search">
+			<form action="./actorPRList" id="searchForm">
+				<input type="text" name="search" placeholder="이름 검색">
+				<input type="button" class="btn" value="Search" id="search">
+			</form>
+		</div>
+		
+		 <select id="sort">
+			<c:if test="${sort eq 1 }">
+				<option id="nameSort" value="이름순" selected="selected">이름순</option>
+				<option id="popularitySort" value="인기순">인기순</option>
+			</c:if>
+			<c:if test="${sort ne 1 }">
+				<option id="nameSort" value="이름순">이름순</option>
+				<option id="popularitySort" value="인기순" selected="selected">인기순</option>
+			</c:if>
+		</select>
+		
+		</div>
+>>>>>>> ec34c30d810eed83262a99fd27d2444c406a3ad4
 
 			<div class="search_right">
 				<form action="./actorPRList" id="searchForm">

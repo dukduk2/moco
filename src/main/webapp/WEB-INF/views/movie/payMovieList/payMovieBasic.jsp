@@ -15,16 +15,20 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/movieSearchHome.css">	
 <script type="text/javascript">
 	$(function(){
-		var title="";
 		var curPage=${curPage };
 		
 		$("#search").click(function(){
-			$("#searchForm").submit();
+			$("#frm").submit();
 		});
 		
 		$(".go").click(function() {
 			curPage = $(this).attr("id");
-			location.href = "./payMovieBasic?curPage=" + curPage+"&title="+title;
+			location.href = "./payMovieBasic?curPage=" + curPage;
+		});
+		
+		$("#searchResult").on('click','.searchResultWrap',function(){
+			var num = $(this).attr("id");
+			location.href="../basicMovieSearch/movieView?num="+num;
 		});
 		
 	});
@@ -36,7 +40,7 @@
 	
 	<!-- SEARCH -->
 	<div id="searchForm">
-		<form action="./payMovieBasic">
+		<form action="./payMovieBasic" id="frm">
 			<input type="text" name="title" placeholder="영화 제목 검색">
 			<input type="hidden" name="curPage" value="1">
 			<input type="button" class="btn" value="Search" id="search">

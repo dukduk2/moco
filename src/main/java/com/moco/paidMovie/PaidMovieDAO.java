@@ -85,8 +85,8 @@ public class PaidMovieDAO {
 		return sqlSession.selectList(NAMESPACE+"payMovieLow", map);
 	}
 	
-	public int payMovieBasicCount() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"payMovieBasicCount");
+	public int payMovieBasicCount(Map<String, Object> map) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"payMovieBasicCount", map);
 	}
 	
 	public int payMovieLowCount() throws Exception{

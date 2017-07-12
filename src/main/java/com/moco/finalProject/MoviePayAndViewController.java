@@ -42,37 +42,46 @@ public class MoviePayAndViewController {
 	PayService payService;
 	
 	@RequestMapping(value="/payMovieList/payMovieBasic", method=RequestMethod.GET)
-	public String payMovieBasic(String title, Integer curPage, Model model) throws Exception{		
+	public String payMovieBasic(Integer curPage, String title, Model model){		
 		List<BasicMovieDTO> ar=new ArrayList<BasicMovieDTO>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(curPage==null){
 			curPage=1;
 		}
-		if(title==""){
+		if(title==null){
 			title="%";
 		}
 		map.put("title", title);
-		map.put("curPage", curPage);
+		System.out.println("title"+title);
+		//map.put("curPage", curPage);
+		PageResult pageResult = null;
+		try{
 		int totalCount=0;
+		totalCount=paidMovieService.payMovieBasicCount(map);
+		System.out.println("totalCount"+totalCount);
 		
-		totalCount=paidMovieService.payMovieBasicCount();
-
 		PageMaker pageMaker = new PageMaker(curPage);
 		RowMaker rowMaker = pageMaker.getRowMaker();
-		PageResult pageResult = pageMaker.paging(totalCount);
+		pageResult = pageMaker.paging(totalCount);
+		System.out.println("StartRow"+rowMaker.getStartRow());
+		System.out.println("LastRow"+rowMaker.getLastRow());
 		map.put("rowMaker", rowMaker);
-		
+
 		ar = paidMovieService.payMovieBasic(map);
-		System.out.println(ar.get(0).getTitle());
+		
+		System.out.println("ar size"+ar.size());
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i).getTitle());
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		model.addAttribute("list", ar);
 		model.addAttribute("pageResult", pageResult);
 		model.addAttribute("title", title);
 		model.addAttribute("curPage", curPage);
-		return "redirect:movie/payMovieList/payMovieBasic";
+		return "movie/payMovieList/payMovieBasic";
 	}
 	
 	@RequestMapping(value="/payMovieList/payMovieLow", method=RequestMethod.GET)
