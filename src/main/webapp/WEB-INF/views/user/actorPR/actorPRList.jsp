@@ -9,6 +9,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
@@ -81,28 +82,22 @@
 
 .profile {
 	border-bottom: 1px solid RGB(157, 157, 157);
-	width: 250px;
+	width: 230px;
 	height: 250px;
 	margin-right: 20px;
 	margin-top: 10px;
 	margin-left: 20px;
 	display: inline-block;
+	padding: 2px;
+	background-color: black;
+	border-radius: 10px;
 }
 
 #frm{
 	float: left;
-	width: 1200px;
+	width: 1150px;
 	border:1px solid gray;
 }
-
-#btn {
-	display: block;
-}
-
-#buttonList{
-	width:1200px;
-}
-
 
 .chk {
 	float: right;
@@ -112,74 +107,93 @@ img {
 	margin-top: 15px;
 }
 
-#listAjax {
-	height: 770px;
-	overflow:scroll
+.pr_wrap{
+	width: 1100px;
+	min-height: 220px;
+	height: auto;
+	margin: 10px auto;
+	cursor: pointer;
+	background-color: white;
+	border-radius: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
-	<div class="contents-wrap">
+		<div class="container">
+			<h2 style="text-align: center;">ActorPR LIST</h2>
 
-		<h2>ActorPR LIST</h2>
-
-		<div id="buttonList">
-		<c:if
-			test="${totalCount <= 101 && memberDTO ne null && memberDTO.kind eq '배우'}">
-			<a href="./actorPRWrite"><button class="btn">Actor Apply</button></a>
-		</c:if>
-		<a href="../../"><button class="btn">HOME</button></a> 
-
-		<div class="search">
-			<form action="./actorPRList" id="searchForm">
-				<input type="text" name="search" placeholder="이름 검색"> <input
-					type="hidden" name="curPage" value="1"> <input
-					type="button" class="btn" value="Search" id="search">
-			</form>
-		</div>
-		
-		 <select id="sort">
-			<c:if test="${sort eq 1 }">
-				<option id="nameSort" value="이름순" selected="selected">이름순</option>
-				<option id="popularitySort" value="인기순">인기순</option>
-			</c:if>
-			<c:if test="${sort ne 1 }">
-				<option id="nameSort" value="이름순">이름순</option>
-				<option id="popularitySort" value="인기순" selected="selected">인기순</option>
-			</c:if>
-		</select>
-		
-		</div>
-
-	<form action="voteCountUpdate" method="POST" id="frm">
-			<div id="listAjax">
-				<c:forEach items="${list}" var="list" varStatus="i">
-					<input type="hidden" name="num" value="${list.num }">
-					<div class="profile">
-
-						<a href="./actorPRView?num=${list.num}">
-							<button type="button" class="btn btn-info">${list.writer }
-								<span class="badge">${list.voteCount }</span>
-							</button>
-						</a> <input type="checkbox" name="vote" class="chk" value="${list.writer }" id="chk${list.num }">
-								<a href="./actorPRView?num=${list.num}"> 
-									<img src="../../resources/upload/member/${fnames[i.index]}" class="img-responsive" style="width: 100%; height: 70%;"
-							alt="Image">
-						</a>
-					</div>
-				</c:forEach>
+			<div class="search_left">
+				<table>
+					<tr>
+						<c:if test="${totalCount <= 101 && memberDTO ne null && memberDTO.kind eq '배우'}"><td>
+							<a href="./actorPRWrite"><button class="btn">Actor Apply</button></a>
+						</td></c:if>
+						
+						<c:if test="${memberDTO ne null }"><td>
+							<input class="btn btn-info" type="button" id="vote" value="vote">
+						</td></c:if>
+					</tr>
+				</table>
 			</div>
-			<c:if test="${memberDTO ne null }">
-			<input class="btn btn-info" type="button" id="vote" value="vote">
-			</c:if>
-		</form>
-		<!-- <div id="voteList">
-			<p id="voteList2" name="member"></p>
-		</div> -->
 
-	</div>
+			<div class="search_right">
+				<form action="./actorPRList" id="searchForm">
+					<table>
+						<tr>
+							<td>
+								<select id="sort" class="form-control" style="width: 100px;">
+									<c:if test="${sort eq 1 }">
+										<option id="nameSort" value="이름순" selected="selected">이름순</option>
+										<option id="popularitySort" value="인기순">인기순</option>
+									</c:if>
+						
+									<c:if test="${sort ne 1 }">
+										<option id="nameSort" value="이름순">이름순</option>
+										<option id="popularitySort" value="인기순" selected="selected">인기순</option>
+									</c:if>
+								</select>
+							</td>
+
+							<td>
+								<input type="text" class="form-control" name="search" placeholder="이름 검색">
+								<input type="hidden" name="curPage" value="1">
+							</td>
+
+							<td>
+								<input type="button" class="btn" value="Search" id="search">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+
+			<form action="voteCountUpdate" method="POST" id="frm">
+				<div class="pr_wrap">
+					<c:forEach items="${list}" var="list" varStatus="i">
+						<input type="hidden" name="num" value="${list.num }">
+						<div class="profile">
+							<a href="./actorPRView?num=${list.num}">
+								<button type="button" class="btn btn-info">${list.writer }
+									<span class="badge">${list.voteCount }</span>
+								</button>
+							</a> <input type="checkbox" name="vote" class="chk" value="${list.writer }" id="chk${list.num }">
+									<a href="./actorPRView?num=${list.num}"> 
+										<img src="../../resources/upload/member/${fnames[i.index]}" class="img-responsive" style="width: 100%; height: 70%;" alt="Image">
+							</a>
+						</div>
+					</c:forEach>
+				</div>
+				
+			</form>
+			<!-- <div id="voteList">
+				<p id="voteList2" name="member"></p>
+			</div> -->
+
+		</div>
 	
 	</section>
 </body>
