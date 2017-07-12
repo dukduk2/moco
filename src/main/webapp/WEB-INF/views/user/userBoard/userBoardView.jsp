@@ -241,6 +241,11 @@
 		text-align: right;
 		margin-top: 30px;
 	}
+	.titleTD{
+		background-color: rgb(230,230,230);
+		width: 100px;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -280,7 +285,7 @@
 			</c:if>
 			<tr>
 				<td rowspan="2" style="width: 130px;">
-					<img class="memberProfileIMG" alt="" src="../../resources/upload/member/${writerInfo.fname}">
+					<img class="memberProfileIMG" alt="이미지를 불러 올 수 없습니다." src="${pageContext.request.contextPath}/resources/upload/member/${writerInfo.fname}">
 				</td>
 				<td></td>
 			</tr>
@@ -304,19 +309,19 @@
 				        <div class="modal-body">
 				          <table class="table">
 				          	<tr>
-				          		<td><span class="memberInfoSpan">ID</span></td>
+				          		<td class="titleTD"><span class="memberInfoSpan">ID</span></td>
 				          		<td><span class="memberInfoSpan">${writerInfo.id}</span></td>
 				          	</tr>
 							<tr>
-								<td><span class="memberInfoSpan">EMAIL</span></td>
+								<td class="titleTD"><span class="memberInfoSpan">EMAIL</span></td>
 								<td><span class="memberInfoSpan">${writerInfo.email}</span></td>
 							</tr>
 				          	<tr>
-				          		<td><span class="memberInfoSpan">회원 유형</span></td>
+				          		<td class="titleTD"><span class="memberInfoSpan">회원 유형</span></td>
 				          		<td><span class="memberInfoSpan">${writerInfo.kind}</span></td>
 				          	</tr>
 				          	<tr>
-				          		<td><span class="memberInfoSpan">회원 등급</span></td>
+				          		<td class="titleTD"><span class="memberInfoSpan">회원 등급</span></td>
 				          		<td><span class="memberInfoSpan">${writerInfo.grade}</span></td>
 				          	</tr>
 				          </table>

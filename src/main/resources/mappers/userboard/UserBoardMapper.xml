@@ -143,5 +143,12 @@
 		where num=#{num}
 	</update>
 	
+	<!-- 랭킹 3위 -->
+	<select id="userBoardRank" resultType="com.moco.userBoard.UserBoardDTO">
+		select * from 
+		(select rownum R, U.* from
+		(select * from userBoard order by likes desc) U)
+		where R between 1 and 3
+	</select>
 	
 </mapper>
