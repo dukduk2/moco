@@ -74,18 +74,18 @@
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
-			<h3 class="title">THEATER COMMIT</h3>
-			<br>
+			<h2 style="text-align: center;">THEATER COMMIT</h2>
 			<table class="table table-hover">
-				<tr>
+				<thead><tr class="head">
 					<td>NUM</td>
 					<td>NAME</td>
 					<td>LOCATION</td>
 					<td>OPENNING TIME</td>
 					<td>PRICE</td>
 					<td>PHONE</td>
-				</tr>
-				<c:forEach items="${list}" var="dto">
+				</tr></thead>
+				
+				<tbody><c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.num}	</td>
 						<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
@@ -94,7 +94,7 @@
 						<td>${dto.price}</td>
 						<td>${dto.phone}</td>
 					</tr>
-				</c:forEach>
+				</c:forEach></tbody>
 			</table>
 		
 			<!-- modal Ajax -->
@@ -104,20 +104,20 @@
 			  		</div>
 			  	</div>
 			</div>
-				
-				
-				
+
 			<!-- 페이징 처리 -->
 			<div class="paging">
-				<c:if test="${pageResult.curBlock>1}">
-					<button class="btn"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
-				</c:if>
-				<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-					<button class="btn"><span class="go" id="${i}">${i}</span></button>
-				</c:forEach>
-				<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-					<button class="btn"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
-				</c:if>
+				<div class="btn-group">
+					<c:if test="${pageResult.curBlock>1}">
+						<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+					</c:if>
+					<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
+						<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+					</c:forEach>
+					<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
+						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+					</c:if>
+				</div>
 			</div>
 			
 			<!-- BTN -->
