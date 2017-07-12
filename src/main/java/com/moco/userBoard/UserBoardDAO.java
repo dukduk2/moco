@@ -20,6 +20,11 @@ public class UserBoardDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="UserBoardMapper.";
 	
+	// userBoardRank
+	public List<UserBoardDTO> userBoardRank() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"userBoardRank");
+	}
+	
 	// memberInfo
 	public String memberInfo(int num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"memberInfo", num);

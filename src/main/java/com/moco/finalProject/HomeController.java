@@ -30,6 +30,7 @@ import com.moco.pay.PayService;
 import com.moco.review.ReviewDTO;
 import com.moco.review.ReviewService;
 import com.moco.season.SeasonService;
+import com.moco.userBoard.UserBoardService;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
 import com.moco.util.RowMaker;
@@ -60,6 +61,8 @@ public class HomeController {
 	ActorPRService actorPRService;
 	@Inject
 	SeasonService seasonService;
+	@Inject
+	UserBoardService userBoardService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -106,7 +109,8 @@ public class HomeController {
 			oname = actorPRService.onameSelect(ar.get(i).getWriter());
 			onames.add(oname);
 		}
-		
+
+		// 수지
 		int totalInvestor = 0;
 		int avgInvestMoney = 0;
 		int totalCount = 0;
@@ -138,7 +142,13 @@ public class HomeController {
 		}
 		
 		model.addAttribute("totalInvestor", totalInvestor).addAttribute("avgInvestMoney", avgInvestMoney)
-		.addAttribute("chart", chart).addAttribute("totalInvestMoney", totalInvestMoney).addAttribute("list", ar).addAttribute("fnames", onames);
+		.addAttribute("chart", chart).addAttribute("totalInvestMoney", totalInvestMoney).addAttribute("list", ar).addAttribute("fnames", onames)
+		.addAttribute("chart", chart).addAttribute("totalInvestMoney", totalInvestMoney);
+		
+		// 찬양
+		model.addAttribute("rank3Member", userBoardService.rank3MemberInfo());
+		model.addAttribute("rank3Likes", userBoardService.userBoardRank());
+		// 은지
 	}
 
 	@RequestMapping(value = "/movie/movieHome", method = RequestMethod.GET)
