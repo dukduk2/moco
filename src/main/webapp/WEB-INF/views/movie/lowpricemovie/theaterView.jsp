@@ -24,11 +24,13 @@
 			}); 
 		});
 		
+		//영화정보 보기~
 		$("body").on("click", ".movieGo", function(){
 			var num = $(this).attr('id');
 			location.href="movieView?num="+num;
 		});
 		
+		//영화시간 클릭시 예매 이벤트 발생.
 		$("body").on("click", ".reservationAdd", function(){
 			var num = $(this).attr('id');
 			//screen_num setting
@@ -46,6 +48,8 @@
 			});
 		});
 		
+		
+		//결제하기 누르면 결제 고고싱
 		$('#reservation').click(function(){
 			$('#insertForm').submit();
 		});
@@ -95,48 +99,48 @@
 				<div id="result${list.num}"></div>
 			</c:forEach>
 			
-			<div class="container">
-			  	<!-- Modal -->
-			  	<div class="modal fade" id="myModal" role="dialog">
-					<div class="modal-dialog">
-				    	<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">영화좌석 예매</h4>
-							</div>
-				        	<div class="modal-body">
-				        		<table>
-				        			<tr><td></td></tr>
-				        			<tr><td>극장  ${theater.name }</td></tr>
-				        			<tr><td>상영관  </td></tr>
-				        			<tr><td>상영시간  </td></tr>
-				        			<tr><td>영화금액  ${theater.price }</td></tr>
-				        		</table>
-				        		<hr>
-				        		<form action="reservationInsert" id="insertForm" method="post">
-				        			<!-- num은 자동생성 -->
-				        			ID : <input type="text" name="id" value="${memberDTO.id}" readonly="readonly">
-					        		<input type="hidden" name="screen_num" id="s_num">
-				        			<table>
-					        			<tr><td>예매할 좌석수 : <input type="number" name="seat" id="seat"></td></tr>
-					        			<tr><td>결제할 금액 : <input type="number" name="rprice" readonly="readonly" id="rprice"></td></tr>
-				        			</table>        		
-				        		
-				        		
-				        		
-				        		
-				        		</form>
-				        	</div>
-				        	<div class="modal-footer">
-								<input type="button" id="reservation" class="btn btn-default" data-dismiss="modal" value="예매하기">
-				        	</div>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+			    	<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">영화좌석 예매</h4>
 						</div>
+			        	<div class="modal-body">
+			        		<table>
+			        			<tr><td></td></tr>
+			        			<tr><td>극장  ${theater.name }</td></tr>
+			        			<tr><td>상영관  </td></tr>
+			        			<tr><td>상영시간  </td></tr>
+			        			<tr><td>영화금액  ${theater.price }</td></tr>
+			        		</table>
+			        		<hr>
+			        		<form action="reservationInsert" id="insertForm" method="post">
+			        			<!-- num은 자동생성 -->
+			        			ID : <input type="text" name="id" value="${memberDTO.id}" readonly="readonly">
+				        		<input type="hidden" name="screen_num" id="s_num">
+			        			<table>
+				        			<tr><td>예매할 좌석수 : <input type="number" name="seat" id="seat"></td></tr>
+				        			<tr><td>결제할 금액 : <input type="number" name="rprice" readonly="readonly" id="rprice"></td></tr>
+			        			</table>        		
+			        		
+			        		
+				        		
+				        		
+			        		</form>
+			        	</div>
+			        	<div class="modal-footer">
+							<input type="button" id="reservation" class="btn btn-default" data-dismiss="modal" value="결제하기">
+			        	</div>
 					</div>
 				</div>
-		  
 			</div>
+		  
 		</div>
+		
 	</section>
 	
 	
