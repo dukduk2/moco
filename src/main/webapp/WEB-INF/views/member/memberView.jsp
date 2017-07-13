@@ -9,7 +9,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
-<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>MOVIE COMMUNICATION</title>
 
 <script type="text/javascript">
@@ -41,18 +41,31 @@ $(function(){
 	
 });
 </script>
+
+<style type="text/css">
+.member_Table {
+ 	width: 600px;
+ 	margin: 20px auto;
+}
+
+.profile{
+	width: 200px;
+	height: 200px;
+}
+</style>
+
 </head>
 <body>
 	<%@ include file="/resources/part/header3.jspf" %>
 
 	<section>
 		<div class="container">
-			<h2 class="title"><img class="icon" src="../resources/images/icon/pop.png"> Member View</h2>
+			<h2 style="text-align: center;">Member View</h2>
 
 			<table class="member_Table">
 				<tr>
-					<td class="name">프로필 사진</td>
-					<td class="push">
+					<td class="write-tdName">프로필 사진</td>
+					<td class="write-tdWrite">
 						<c:if test="${memberDTO.getFname() ne ' '}">
 							<p><img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}"></p>
 						</c:if>
@@ -64,42 +77,42 @@ $(function(){
 				</tr>
 
 				<tr>
-					<td class="name">등급</td>
-					<td class="push">${memberDTO.grade}</td>
+					<td class="write-tdName">등급</td>
+					<td class="write-tdWrite">${memberDTO.grade}</td>
 				</tr>
 
 				<tr>
-					<td class="name">아이디</td>
-					<td class="push">${memberDTO.id}</td>
+					<td class="write-tdName">아이디</td>
+					<td class="write-tdWrite">${memberDTO.id}</td>
 				</tr>
 				
 				<tr>
-					<td class="name">mail</td>
-					<td class="push">${memberDTO.email}</td>
+					<td class="write-tdName">mail</td>
+					<td class="write-tdWrite">${memberDTO.email}</td>
 				</tr>
 
 				<tr>
-					<td class="name">이름</td>
-					<td class="push">${memberDTO.name}</td>
+					<td class="write-tdName">이름</td>
+					<td class="write-tdWrite">${memberDTO.name}</td>
 				</tr>
 
 				<tr>
-					<td class="name">전화번호</td>
-					<td class="push">${memberDTO.phone}</td>
+					<td class="write-tdName">전화번호</td>
+					<td class="write-tdWrite">${memberDTO.phone}</td>
 				</tr>
 
 				<tr>
-					<td class="name">가입날짜</td>
-					<td class="push">${memberDTO.joinDate}</td>
+					<td class="write-tdName">가입날짜</td>
+					<td class="write-tdWrite">${memberDTO.joinDate}</td>
 				</tr>
 				
 				<tr>
-					<td class="name">포인트</td>
-					<td class="push">${memberDTO.point} P</td>
+					<td class="write-tdName">포인트</td>
+					<td class="write-tdWrite">${memberDTO.point} P</td>
 				</tr>
 
 				<tr>
-					<td class="name" colspan="2">
+					<td colspan="2">
 						<input type="button" class="btn btn-warning" value="UPDATE" id="update">
 						<input type="button" class="btn btn-danger" value="DELETE" id="delete">
 						<input type="button" class="btn btn-success" value="HOME" id="home">
