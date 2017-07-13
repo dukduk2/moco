@@ -48,7 +48,6 @@
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 	<div class="contents-wrap">
-	<h2>ActorPR APPLY</h2>
 	<form action="actorPRWrite" method="post" id="frm" enctype="multipart/form-data">
 		<div class="form-group">
 			<label>TITLE :</label>
@@ -75,7 +74,7 @@
 			<input type="text" name="season" value="${season }" readonly="readonly" class="form-control">
 		</div>
 		
-		<input type="button" value="go" id="write">
+		<input type="button" value="go" id="지원하기" class="btn btn-default">
 		
 	</form>
 	</div>

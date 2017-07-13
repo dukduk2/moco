@@ -143,28 +143,69 @@
 	width:700px;
 	margin:0 auto;
 }
+.replyViewDisp{
+	border: none;
+}
+
+th{
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	height: 50px;
+	width: 150px;
+	text-align: center;
+}
+td{
+	padding-left: 30px;
+	border-bottom: 1px solid #ccc;
+}
+.lastline{
+	border-bottom: none;
+}
+table{
+	margin-bottom: 20px;
+}
+#replyResult{
+	margin-top: 20px;
+}
+#list{
+	float: right;
+	margin-bottom: 10px;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<div class="contents-wrap">
-		<h2>ActorPR VIEW</h2>
-		<h2>TITLE : ${dto.title }</h2>
-		<h2>WRITER : ${dto.writer }</h2>
-		<h2>CONTENTS : ${dto.contents }</h2>
-		<h2>DATE : ${dto.reg_date }</h2>
-		<h2>HIT : ${dto.hit }</h2>
-		<h2>VIDEO : </h2>
-		<p><video width="500" controls>
+		<table class="table-responsive">
+			<tr>
+				<th>TITLE</th><td>${dto.title }</td>
+			</tr>
+			<tr>
+				<th>WRITER</th><td>${dto.writer }</td>
+			</tr>			
+			<tr>
+				<th>DATE</th><td>${dto.reg_date }</td>
+			</tr>
+			<tr>
+				<th>HIT</th><td>${dto.hit }</td>
+			</tr>
+			<tr>
+				<th>CONTENTS</th><td>${dto.contents }</td>
+			</tr>
+			<tr>
+				<th class="lastline">VIDEO</th><td class="lastline"><video width="500" controls>
 			<source src="../../resources/upload/actorPR/${dto.oname }" type="video/mp4">
-		</video></p>
+		</video></td>
+			</tr>
+		</table>
+
 		
 		<c:if test="${memberDTO.name eq dto.writer}">
-			<a href="./actorPRUpdate?num=${dto.num }"><button>UPDATE</button></a>
-			<a href="./actorPRDelete?num=${dto.num }"><button>DELETE</button></a>
+			<a href="./actorPRUpdate?num=${dto.num }"><button class="btn btn-default">UPDATE</button></a>
+			<a href="./actorPRDelete?num=${dto.num }"><button class="btn btn-default">DELETE</button></a>
 		</c:if>
-		<a href="./actorPRList"><button>LIST</button></a>
+		<a href="./actorPRList"><button class="btn btn-default" id="list">LIST</button></a>
 	
 		<!-- 댓글 -->
 		<input type="hidden" id="boardKind" value="actorPR">

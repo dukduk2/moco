@@ -5,7 +5,7 @@
 	<tr>
 		<td><input type="text" readonly="readonly" value="${memberDTO.id}" id="replyWriter" style="width: 200px; height: 40px;"></td>
 		<td colspan="2"><textarea rows="" cols="" style="width: 400px; height: 50px;" id="replyContents"></textarea></td>
-		<td><input type="button" id="replyInsert" value="등록" class="btn"></td>
+		<td><input type="button" id="replyInsert" value="등록" class="btn btn-default"></td>
 	</tr>
 	<c:forEach items="${ReplyList}" var="reply">
 		<tr>
@@ -33,7 +33,7 @@
 			</c:if>
 			<c:if test="${memberDTO.id == reply.writer && replyDTO.num != reply.num}">
 				<td>	
-					<input type="button" class="replyUpdate btn" id="${reply.num}" value="수정">
+					<input type="button" class="replyUpdate btn btn-default" id="${reply.num}" value="수정">
 				</td>
 				<td>
 					<span class="replyDelete" id="${reply.num}" style="cursor: pointer;">X</span>

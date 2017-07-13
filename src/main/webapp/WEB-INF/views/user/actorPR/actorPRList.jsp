@@ -116,18 +116,25 @@ img {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
+.badge{
+	background-color: red;
+}
+#vote{
+	color: red;
+	border: 1px solid red;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<div class="container">
-			<h2 style="text-align: center;">ActorPR LIST</h2>
+			<h2 style="text-align: center;">11명의 배우에게 투표해주세요!</h2>
 
 			<div class="search_left">
 				<table>
 					<tr>
-						<c:if test="${totalCount <= 101 && memberDTO ne null && memberDTO.kind eq '배우'}"><td>
+						<c:if test="${totalCount < 101 && memberDTO ne null && memberDTO.kind eq '배우'}"><td>
 							<a href="./actorPRWrite"><button class="btn btn-default">Actor Apply</button></a>
 						</td></c:if>
 						
