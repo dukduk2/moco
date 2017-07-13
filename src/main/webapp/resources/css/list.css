@@ -31,6 +31,12 @@ tr.body {
 	vertical-align: middle;
 }
 
+.boardView{
+	font-family: Montserrat, sans-serif;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 td {
 	padding: 10px;
 	text-align: center;

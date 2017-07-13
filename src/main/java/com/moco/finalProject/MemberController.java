@@ -46,7 +46,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
-	public String memberJoin(MemberDTO memberDTO, MultipartFile f1, HttpSession session, RedirectAttributes redirectAttributes){
+	public String memberJoin(MemberDTO memberDTO, MultipartFile f1, HttpSession session, Model model){
 		String message = "회원가입 실패";
 		int result = 0;
 		
@@ -74,7 +74,7 @@ public class MemberController {
 			message = "회원가입 성공";
 		}
 		
-		redirectAttributes.addFlashAttribute("message", message);
+		model.addAttribute("message", message);
 		return "/member/action/memberSuccess";
 	}
 	

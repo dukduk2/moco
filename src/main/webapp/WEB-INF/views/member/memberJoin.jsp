@@ -7,7 +7,7 @@
 <%@ include file="/resources/part/bootStrap.jspf" %>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
-<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/member.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/join.js"></script> --%>
@@ -17,6 +17,7 @@ $(function() {
 	var pwCheck = false;
 	var answerCheck = false;
 	var nameCheck = false;
+	var birthCheck = false;
 	var emailCheck = false;
 
 	$("#id").keyup(function(){
@@ -87,7 +88,7 @@ $(function() {
 	
 	$("#name").keyup(function(){
 		var name = document.frm.name.value;
-		
+
 		if(name == "") {
 			nameCheck = false;
 		} else {
@@ -95,11 +96,34 @@ $(function() {
 		}
 	});
 	
+	var today = new Date();
+	var y = today.getFullYear();
+	var m = today.getMonth() + 1;
+	if (m < 10) {
+		m = "0" + m;
+	}
+	var d = today.getDate();
+	if (d < 10) {
+		d = "0" + d;
+	}
+
+	$("#birth").attr("max", y+"-"+m+"-"+d);
+
+	$("#birth").change(function(){
+		var birth = document.frm.birth.value;
+
+		if(birth == "") {
+			birthCheck = false;
+		} else {
+			birthCheck = true;
+		}
+	});
+
 	$("#email").keyup(function(){
 		var pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
 		var email = document.frm.email.value;
 		
-		if(email == "") {
+		if(pattern.test(email) == false || email == ""){
 			emailCheck = false;
 		} else {
 			emailCheck = true;
@@ -125,6 +149,8 @@ $(function() {
 			alert("대답을 다시 확인해주세요");
 		} else if(nameCheck == false){
 			alert("이름을 다시 확인해주세요");
+		} else if(birthCheck == false){
+			alert("생일을 다시 확인해주세요");
 		} else if(emailCheck == false){
 			alert("이메일을 다시 확인해주세요");
 		} else {
@@ -134,34 +160,66 @@ $(function() {
 });
 </script>
 
+<style type="text/css">
+.member_Table {
+ 	width: 600px;
+ 	margin: 20px auto;
+}
+
+.write-tdName {
+	width: 200px;
+}
+
+.write-tdWrite {
+	width: 350px;
+}
+
+.result {
+	background-color: #ffffff;
+	width: 400px;
+	font-size: 0.9em;
+	vertical-align: middle;
+}
+
+.button {
+	width: 100%;
+	height: 42px;
+	float: right;
+	margin-top: 10px;
+	background-color: black;
+	color: white;
+	border-radius: 5px;
+}
+</style>
+
 </head>
 <body>
 		<div class="container">
-			<h2 class="title">Member Join</h2>
+			<h2 style="text-align: center;">Member Join</h2>
 
 			<form action="memberJoin" name="frm" id="frm" method="POST" enctype="multipart/form-data">
 				<table class="member_Table">
 					<tr>
-						<td class="name">*ID:</td>
-						<td class="push"><input type="text" class="form-control" name="id" id="id" required="required"></td>
+						<td class="write-tdName">*ID:</td>
+						<td class="write-tdWrite"><input type="text" class="form-control" name="id" id="id" required="required"></td>
 						<td class="result"><p id="id_result"></p></td>
 					</tr>
 					
 					<tr>
-						<td class="name">*PW:</td>
-						<td class="push"><input type="password" class="form-control" name="password" id="pw1"></td>
+						<td class="write-tdName">*PW:</td>
+						<td class="write-tdWrite"><input type="password" class="form-control" name="password" id="pw1"></td>
 						<td class="result"><p id="pw_result1"></p></td>
 					</tr>
 					
 					<tr>
-						<td class="name">*PW Check:</td>
-						<td class="push"><input type="password" class="form-control" id="pw2"></td>
+						<td class="write-tdName">*PW Check:</td>
+						<td class="write-tdWrite"><input type="password" class="form-control" id="pw2"></td>
 						<td class="result"><p id="pw_result2"></p></td>
 					</tr>
 					
 					<tr>
-						<td class="name">*Password Find Question</td>
-						<td class="push">
+						<td class="write-tdName">*Password Find Question</td>
+						<td colspan="2" class="write-tdWrite">
 							<select class="form-control" name="question">
 							<option value="초등학교">초등학교는?</option>
 							<option value="배우자">배우자는?</option>
@@ -170,38 +228,38 @@ $(function() {
 					</tr>
 					
 					<tr>
-						<td class="name">*ANSWER:</td>
-						<td class="push"><input type="text" class="form-control" name="answer" id="answer"></td>
+						<td class="write-tdName">*ANSWER:</td>
+						<td colspan="2" class="write-tdWrite"><input type="text" class="form-control" name="answer" id="answer"></td>
 					</tr>
 					
 					<tr>
-						<td class="name">*NAME:</td>
-						<td class="push"><input type="text" class="form-control" name="name" id="name"></td>
+						<td class="write-tdName">*NAME:</td>
+						<td colspan="2" class="write-tdWrite"><input type="text" class="form-control" name="name" id="name"></td>
 					</tr>
 					
 					<tr>
-						<td class="name">DATE</td>
-						<td class="push"><input type="date" class="form-control" name="birth"></td>
+						<td class="write-tdName">*DATE</td>
+						<td colspan="2" class="write-tdWrite"><input type="date" class="form-control" name="birth" id="birth"></td>
 					</tr>
 					
 					<tr>
-						<td class="name">ADDRESS</td>
-						<td class="push"><input type="text" class="form-control" name="address"></td>
+						<td class="write-tdName">ADDRESS</td>
+						<td colspan="2" class="write-tdWrite"><input type="text" class="form-control" name="address"></td>
 					</tr>
 					
 					<tr>
-						<td class="name">PHONE</td>
-						<td class="push"><input type="text" class="form-control" name="phone"></td>
+						<td class="write-tdName">PHONE</td>
+						<td colspan="2" class="write-tdWrite"><input type="text" class="form-control" name="phone"></td>
 					</tr>
 					
 					<tr>
-						<td class="name">*EMAIL</td>
-						<td class="push"><input type="email" class="form-control" name="email" id="email"></td>
+						<td class="write-tdName">*EMAIL</td>
+						<td colspan="2" class="write-tdWrite"><input type="email" class="form-control" name="email" id="email"></td>
 					</tr>
 					
 					<tr>
-						<td class="name">*KIND</td>
-						<td class="push"><select class="form-control" name="kind" id="kind">
+						<td class="write-tdName">*KIND</td>
+						<td colspan="2" class="write-tdWrite"><select class="form-control" name="kind" id="kind">
 							<option value="일반" selected="selected">일반</option>
 							<option value="배우">배우</option>
 							<option value="감독">감독</option>
@@ -210,12 +268,12 @@ $(function() {
 					</tr>
 					
 					<tr>
-						<td class="name">IMG</td>
-						<td class="push"><input type="file" class="form-control" name="f1"></td>
+						<td class="write-tdName">IMG</td>
+						<td colspan="2" class="write-tdWrite"><input type="file" class="form-control" name="f1"></td>
 					</tr>
 					
 					<tr>
-						<td class="name" colspan="2"><input type="button" id="btn" class="btn btn-success" style="width: 100%;" value="가입"></td>
+						<td colspan="3"><input type="button" id="btn" class="button btn btn-success" style="width: 100%;" value="가입"></td>
 					</tr>
 				</table>
 		

@@ -11,7 +11,8 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
-<title>Insert title here</title>
+<title>MOVIE COMMUNICATION</title>
+
 <script type="text/javascript">
 	$(function() {
 		var page = 1;
@@ -40,13 +41,7 @@
 		});
 	});
 </script>
-<style type="text/css">
-	.boardView{
-		font-family: Montserrat, sans-serif;
-		font-weight: bold;
-		cursor: pointer;
-	}
-</style>
+
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
