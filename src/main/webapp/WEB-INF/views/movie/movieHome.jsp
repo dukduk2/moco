@@ -37,7 +37,7 @@
 	width: 100%;
 	height: 400px;
 	margin: 0 auto;
-	margin-top: -50px;
+	margin-top: 10px;
 	font-size: 30px;
 	font-weight: bold;
 }
@@ -275,7 +275,7 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox" style="height: 300px;">
 					<div class="item active">
-						<a href="#"><img style="height: 300px;" src="${basicMovieRecommendList[0].thumnail}"></a>
+						<a href="#"><img style="height: 300px; " src="${basicMovieRecommendList[0].thumnail}"></a>
 						<div class="carousel-caption">
 							<h3>${basicMovieRecommendList[0].pub_date}개봉</h3>
 						</div>

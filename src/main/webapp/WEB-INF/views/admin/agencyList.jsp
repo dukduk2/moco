@@ -42,121 +42,92 @@
 		
 	});
 </script>
-<style type="text/css">
-.contents-wrap {
-	width: 1000px;
-	margin: 0 auto;
-}
-</style>
 </head>
 <body>
-	<div class="contents-wrap">
-		<h2>AGENCY LIST</h2>
-
-		<h3>승인되지 않은 배급사</h3>
-		<!-- <button id="uncommitBtn">UNCOMMIT LIST</button> -->
-		<div id="uncommitAjax">
-		<table class="table table-hover">
-		<tr>
-			<th style="height: 100px; vertical-align: middle;">num</th>
-			<th>title</th>
-			<th>director</th>
-			<th>pubdate</th>
-		</tr>
-		<c:forEach items="${list2 }" var="dto">
-			<tr>
-			<td>${dto.num }</td>
-			<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
-			<td>${dto.director }</td>
-			<td>${dto.pubdate }</td>	
-			</tr>
-		</c:forEach>
-		</table>
-		</div>
-		
-		<div class="paging">
-			<c:if test="${pageResult2.curBlock>1 }">
-				<button class="btn">
-					<span class="go2" id="${pageResult2.startNum-1}">[이전]</span>
-				</button>
-			</c:if>
-			<c:forEach begin="${pageResult2.startNum}" end="${pageResult2.lastNum}"
-				var="i">
-				<button class="btn">
-					<span class="go2" id="${i}">${i}</span>
-				</button>
-			</c:forEach>
-			<c:if test="${pageResult2.curBlock<pageResult2.totalBlock}">
-				<button class="btn">
-					<span class="go2" id="${pageResult2.lastNum+1}">[다음]</span>
-				</button>
-			</c:if>
-		</div>
-
-		<h3>승인된 배급사</h3>
-		<!-- <button id="commitBtn">COMMIT LIST</button> -->
-		<div id="commitAjax">
-		<table class="table table-hover">
-			<tr>
-				<th>num</th>
-				<th>title</th>
-				<th>director</th>
-				<th>pubdate</th>
-			</tr>
-			<c:forEach items="${list1 }" var="dto">
-			<tr>
-				<td>${dto.num }</td>
-				<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
-				<td>${dto.director }</td>
-				<td>${dto.pubdate }</td>
-			</tr>
-	</c:forEach>
+	<%@ include file="/resources/part/header3.jspf" %>
+	<section>
+		<div class="container">
+			<h2 style="text-align: center;">AGENCY LIST</h2>
+	
+			<h2 style="text-align: center;">승인되지 않은 배급사</h2>
 			
-		</table>
-</div>
-		<div class="paging">
-			<c:if test="${pageResult1.curBlock>1 }">
-				<button class="btn">
-					<span class="go1" id="${pageResult1.startNum-1}">[이전]</span>
-				</button>
-			</c:if>
-			<c:forEach begin="${pageResult1.startNum}" end="${pageResult1.lastNum}"
-				var="i">
-				<button class="btn">
-					<span class="go1" id="${i}">${i}</span>
-				</button>
-			</c:forEach>
-			<c:if test="${pageResult1.curBlock<pageResult1.totalBlock}">
-				<button class="btn">
-					<span class="go1" id="${pageResult1.lastNum+1}">[다음]</span>
-				</button>
-			</c:if>
+			<div id="uncommitAjax">
+				<table class="table table-hover">
+					<thead><tr class="head">
+						<td>NUM</td>
+						<td>TITLE</td>
+						<td>DIRECTOR</td>
+						<td>PUBDATE</td>
+					</tr></thead>
+	
+					<tbody>
+						<c:forEach items="${list2 }" var="dto">
+							<tr>
+								<td>${dto.num }</td>
+								<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
+								<td>${dto.director }</td>
+								<td>${dto.pubdate }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			
+			<!-- 페이징 처리 -->
+			<div class="paging">
+				<div class="btn-group">
+					<c:if test="${pageResult2.curBlock>1}">
+						<input type="button" class="go2 btn btn-primary" id="${pageResult2.startNum-1}" value="[이전]">
+					</c:if>
+					<c:forEach begin="${pageResult2.startNum}" end="${pageResult2.lastNum}" var="i">
+						<input type="button" class="go2 btn btn-primary" id="${i}" value="${i}">
+					</c:forEach>
+					<c:if test="${pageResult2.curBlock<pageResult2.totalBlock}">
+						<input type="button" class="go2 btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+					</c:if>
+				</div>
+			</div>
+	
+			<h2 style="text-align: center;">승인된 배급사</h2>
+	
+			<div id="commitAjax">
+				<table class="table table-hover">
+					<thead><tr class="head">
+						<td>NUM</td>
+						<td>TITLE</td>
+						<td>DIRECTOR</td>
+						<td>PUBDATE</td>
+					</tr></thead>
+	
+					<tbody>
+						<c:forEach items="${list1 }" var="dto">
+							<tr>
+								<td>${dto.num }</td>
+								<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
+								<td>${dto.director }</td>
+								<td>${dto.pubdate }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+					
+				</table>
+			</div>
+			
+			<!-- 페이징 처리 -->
+			<div class="paging">
+				<div class="btn-group">
+					<c:if test="${pageResult1.curBlock>1}">
+						<input type="button" class="go1 btn btn-primary" id="${pageResult1.startNum-1}" value="[이전]">
+					</c:if>
+					<c:forEach begin="${pageResult1.startNum}" end="${pageResult1.lastNum}" var="i">
+						<input type="button" class="go1 btn btn-primary" id="${i}" value="${i}">
+					</c:forEach>
+					<c:if test="${pageResult1.curBlock<pageResult1.totalBlock}">
+						<input type="button" class="go1 btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+					</c:if>
+				</div>
+			</div>
 		</div>
-		<%-- <table class="table table-hover">
-		<th>num</th>
-		<th>title</th>
-		<th>director</th>
-		<th>pubdate</th>
-		<c:forEach items="${list }" var="dto">
-		<c:if test="${dto.commit eq 1 }">
-			<tr>
-			<td>${dto.num }</td>
-			<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
-			<td>${dto.director }</td>
-			<td>${dto.pubdate }</td>
-			
-			
-			</tr>
-			</c:if>
-		</c:forEach>
-		</table> --%>
-
-
-
-		<p>
-			<a class="btn btn-info" href="../">HOME</a>
-		</p>
-
-	</div>
+	</section>
 </body>
 </html>

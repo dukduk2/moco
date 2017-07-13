@@ -16,22 +16,26 @@ header {
 .navbar {
 	width: 1500px; /* header width 같게하기 */
 	margin-bottom: 0;
-	background-color: #f4511e;
+	background-color: white;
 	z-index: 9999;
 	border: 0;
-	font-size: 12px !important;
+	font-size: 16px !important;
 	line-height: 1.42857143 !important;
 	letter-spacing: 4px;
 	border-radius: 0;
 	font-family: Montserrat, sans-serif;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 .navbar li a, .navbar .navbar-brand {
-	color: #fff !important;
+	color: #333 !important;
+	font-weight: bold;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-	color: white !important;
+	color: red !important;
+	
 }
 
 .log {
@@ -40,6 +44,8 @@ header {
 	margin-right: 10px;
 	float: right;
 	text-align: right;
+	color: #333;
+	font-weight: bold;
 }
 
 .modal-title, .table{
@@ -65,6 +71,10 @@ header {
 	cursor: default;
 }
 
+.topButton>a:hover{
+	color:red;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -73,25 +83,25 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f4511e;
+    background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
 .switch1 {
-	background-color: black;
-	color: white !important;
+	background-color: white;
+	color: #333 !important;
 }
 
 .switch2 {
 	background-color: white;
-	color: black !important;
+	color: red !important;
 }
 
 .switch3 {
-	background-color: skyblue;
-	color: black !important;
+	background-color: white;
+	color: red !important;
 }
 
 .dropdown-content a {
@@ -109,6 +119,17 @@ header {
 .dropdown:hover .dropbtn {
     background-color: #f4511e;
 	color: white;
+}
+
+.point{
+	color:red;
+	border: 1px solid red;
+	
+}
+
+.adminpage{
+	color:red;
+	border: 1px solid red;
 }
 /* ---------------- */
 

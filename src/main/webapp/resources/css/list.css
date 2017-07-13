@@ -15,14 +15,22 @@ table {
 }
 
 tr.head {
-	background-color: #ff6600;
+	background-color: #808080;
+	color: white;
+	font-size: 16px;
+	font-family: Montserrat, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	border-top: solid #808080 2px;
+	border-bottom: solid #808080 2px;
+	/* background-color: #ff6600;
 	color: white;
 	font-size: 16px;
 	font-family: Montserrat, sans-serif;
 	font-weight: bold;
 	text-align: center;
 	border-top: solid black 2px;
-	border-bottom: solid black 2px;
+	border-bottom: solid black 2px; */
 }
 
 tr.body {

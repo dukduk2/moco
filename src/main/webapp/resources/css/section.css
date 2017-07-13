@@ -13,14 +13,13 @@ section{
 	padding-bottom: 50px;
 	height: auto;
 	min-height: 1100px;
-	background-color: #ffd699;
+	background-color: white;
 	overflow: visible;
 }
 
 .container {
 	padding: 10px;
 	border-radius: 10px;
-	background-color: gray;
 }
 
 .title {
