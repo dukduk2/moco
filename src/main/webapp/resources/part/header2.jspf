@@ -7,7 +7,7 @@
 
 <header>
 	<div class="container-fluid switch2">
-		<h1>Right Side</h1>
+		<h1>User</h1>
 	</div>
 	
 	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">

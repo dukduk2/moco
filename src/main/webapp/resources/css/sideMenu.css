@@ -12,7 +12,7 @@
     border-radius: 0 10px 10px 0;
     position: fixed;
     z-index: 5;
-    border: double white 1px;v
+    border: double white 1px;
 }
 
 #mySidenav a:hover {
@@ -24,7 +24,7 @@
 }
 
 #notice {
-	background-color: pink;
+	background-color: black;
     color: white;
     top: 20px;
 }
@@ -36,7 +36,7 @@
 }
 
 #logout {
-	background-color: red;
+	background-color: black;
     color: white;
     top: 80px;
     cursor: pointer;
@@ -44,14 +44,14 @@
 
 
 #movie {
-	background-color: blue;
+	background-color: black;
     color: white;
     top: 140px;
     cursor: pointer;
 }
 
 #user {
-	background-color: gray;
+	background-color: black;
     color: white;
     top: 200px;
     cursor: pointer;

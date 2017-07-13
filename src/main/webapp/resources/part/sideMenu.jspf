@@ -11,7 +11,7 @@
 	</c:if>
 
 	<c:if test="${memberDTO ne null }">
-		<a href="${pageContext.request.contextPath}/member/memberLogout" id="logout">LogOut</a>
+		<a href="${pageContext.request.contextPath}/member/memberLogout" id="logout">Logout</a>
 		<a href="/finalProject/movie/movieHome" id="movie">Movie</a>
 		<a href="/finalProject/user/userHome" id="user">User</a>
 	</c:if>

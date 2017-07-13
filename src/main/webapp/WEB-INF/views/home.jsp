@@ -8,14 +8,15 @@
 <%@ include file="/resources/part/bootStrap.jspf" %>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sideMenu.css">
 <title>Home</title>
 <script type="text/javascript">
 $(function(){
-/* 	var message = '${message}';
+ 	var message = '${message}';
 
 	if(message != ""){
 		alert(message);
-	} */
+	}
 	
 	$(".menu").click(function(){
 		var go = $(this).attr("id");
@@ -139,11 +140,13 @@ video{
 }
 
 .menu{
+	transition: .5s ease;
 	min-width: 450px;
 	min-height: 450px;
 	width: auto;
 	height: auto;
 	opacity : 0.4;
+	border: 0px;
 	border-radius: 100%;
 	cursor: pointer;
 	z-index: 2;
@@ -154,21 +157,31 @@ video{
 }
 
 .center{
-	background-image: url("${pageContext.request.contextPath}/resources/img/start.jpg");
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/button1.jpg");
 	background-size: cover;
 	margin: 0 auto;
 }
 
 .left{
-	background-image: url("${pageContext.request.contextPath}/resources/img/left.jpg");
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/button1.jpg");
 	background-size: cover;
 	float: left;
 }
 
 .right{
-	background-image: url("${pageContext.request.contextPath}/resources/img/right.jpg");
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/button2.jpg");
 	background-size: cover;
 	float: right;
+}
+
+.button_text {
+	font-size: 25px;
+	font-weight: bolder;
+	color: black;
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+	-moz-text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+	-webkit-text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
 }
 
 body {
@@ -196,11 +209,12 @@ body {
 	width: 410px;
 	height: auto;
 	border-radius: 30px;
-	border: solid blue 2px;
 	overflow: visible;
 	float: left;
-	opacity: 0.4;
+	opacity: 0.6;
 	overflow: hidden;
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/info-background.jpg");
+	background-size: cover;
 }
 
 .appear {
@@ -210,7 +224,16 @@ body {
 	position: relative;
 	height: auto;
 	width: 405px;
-	border: solid yellow 2px;
+}
+
+.info-title {
+	transition: .5s ease;
+	top: 370px;
+	position: relative;
+	opacity: inherit;
+	color: white;
+	font-weight: bolder;
+	font-size: 25px;
 }
 
 .event:hover {
@@ -219,6 +242,10 @@ body {
 
 .event:hover .appear {
 	opacity: 1;
+}
+
+.event:hover .info-title {
+	opacity: 0;
 }
 
 video {
@@ -246,7 +273,6 @@ video {
 .notice {
 	width: 70%;
 	float: left;
-	border: solid red 2px;
 }
 
 .noticeView:hover {
@@ -269,14 +295,18 @@ video {
 				<center>
 					<!-- Trigger the modal with a button -->
 					<button class="menu center" data-toggle="modal" data-target="#myModal">
-						<p>'로그인'을 해주셔야 이용가능합니다.</p>
+						<p class="button_text">'로그인'을 해주셔야 이용가능합니다.</p>
 					</button>
 				</center>	
 			</c:if>
 	
 			<c:if test="${memberDTO ne null}">
-				<button class="menu left" id="left"></button>
-				<button class="menu right" id="right"></button>
+				<button class="menu left" id="left">
+					<p class="button_text">Movie Home</p>
+				</button>
+				<button class="menu right" id="right">
+					<p class="button_text">User Home</p>
+				</button>
 			</c:if>
 		</div>
 
@@ -320,7 +350,7 @@ video {
 <!-- info -->
 	<div id="intro" class="container">
 		<div class="event">
-			<div>마우스를 올려보려무나~</div>
+			<div class="info-title">"MOVIE COMMUNICATION" 란?</div>
 
 			<div class="appear">
 				<div class="title">MOVIE COMMUNICATION</div>
