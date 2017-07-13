@@ -22,11 +22,11 @@ th{
 	width: 300px;
 	height: 70px;
 	text-align: center;
-	border-right: 2px solid gray;
-	border-bottom: 2px solid gray; 
+	border-right: 2px solid #ccc;
+	border-bottom: 2px solid #ccc; 
 }
 td{
-	border-bottom: 2px solid gray; 
+	border-bottom: 2px solid #ccc; 
 }
 .img_td{
 	height: 500px;
@@ -65,9 +65,9 @@ td{
 			<img alt="" src="../../resources/upload/agency/${dto.fname }">
 		</h2> --%>
 
-		<a href="./agencyList"><button class="btn"><span class="titleSpan">LIST</span></button></a>
-		<a href="./agencyUpdate?num=${dto.num }"><button class="btn"><span class="titleSpan">수정</span></button></a>
-		<a href="./agencyDelete?num=${dto.num }"><button class="btn"><span class="titleSpan">삭제</span></button></a>
+		<a href="./agencyList"><button class="btn btn-default"><span class="titleSpan">LIST</span></button></a>
+		<a href="./agencyUpdate?num=${dto.num }"><button class="btn btn-default"><span class="titleSpan">수정</span></button></a>
+		<a href="./agencyDelete?num=${dto.num }"><button class="btn btn-default"><span class="titleSpan">삭제</span></button></a>
 	</div>
 	</section>
 </body>

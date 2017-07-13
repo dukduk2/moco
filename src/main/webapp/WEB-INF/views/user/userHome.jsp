@@ -25,12 +25,15 @@
 	});
 </script>
 <style type="text/css">
+h3{
+	margin-left: 10px;
+}
 .rank {
 	width: 70%;
-	height: 600px;
-	border: solid blue 2px;
+	height: 700px;
+	border: solid #ccc 1px;
 	margin: 0 auto;
-	margin-top: -50px;
+	margin-top: 10px;
 	font-size: 30px;
 	font-weight: bold;
 }
@@ -45,13 +48,13 @@
 
 .left{
 	margin-left: 4%;
-	border: solid red 2px;
+	border: solid #ccc 1px;
 	float: left;
 }
 
 .right {
 	margin-right: 4%;
-	border: solid green 2px;
+	border: solid #ccc 1px;
 	float: right;
 }
 #funding-top{
@@ -133,14 +136,15 @@
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<div class="rank">
+			<p style="font-size:30px; font-weight:bold;">ActorPR TOP 11</p>
 			<c:forEach items="${list }" var="list">
 				<div class="profile">
 
 						<a href="./actorPR/actorPRView?num=${list.num}">
-							<button type="button" class="btn btn-info">${list.writer }
+							<button type="button" class="btn btn-default">${list.writer }
 								<span class="badge">${list.voteCount }</span>
 							</button>
-							<img src="../resources/upload/member/${fnames[i.index]}" class="img-responsive" style="width: 100%; height: 70%;"
+							<img src="${pageContext.request.contextPath}/resources/upload/member/${fnames[i.index]}" class="img-responsive" style="width: 100%; height: 70%;"
 							alt="Image">
 						</a>
 					</div>
