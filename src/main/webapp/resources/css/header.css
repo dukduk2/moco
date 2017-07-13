@@ -16,22 +16,26 @@ header {
 .navbar {
 	width: 1500px; /* header width 같게하기 */
 	margin-bottom: 0;
-	background-color: #808080;
+	background-color: white;
 	z-index: 9999;
 	border: 0;
-	font-size: 12px !important;
+	font-size: 16px !important;
 	line-height: 1.42857143 !important;
 	letter-spacing: 4px;
 	border-radius: 0;
 	font-family: Montserrat, sans-serif;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 .navbar li a, .navbar .navbar-brand {
-	color: #fff !important;
+	color: #333 !important;
+	font-weight: bold;
 }
 
 .navbar-nav li a:hover, .navbar-nav li.active a {
-	color: white !important;
+	color: red !important;
+	
 }
 
 .log {
@@ -40,7 +44,7 @@ header {
 	margin-right: 10px;
 	float: right;
 	text-align: right;
-	color: white;
+	color: #333;
 	font-weight: bold;
 }
 
@@ -67,6 +71,10 @@ header {
 	cursor: default;
 }
 
+.topButton>a:hover{
+	color:red;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -82,18 +90,18 @@ header {
 }
 
 .switch1 {
-	background-color: black;
-	color: white !important;
+	background-color: white;
+	color: #333 !important;
 }
 
 .switch2 {
-	background-color: #808080;
-	color: black !important;
+	background-color: white;
+	color: red !important;
 }
 
 .switch3 {
-	background-color: black;
-	color: white !important;
+	background-color: white;
+	color: red !important;
 }
 
 .dropdown-content a {
@@ -111,6 +119,17 @@ header {
 .dropdown:hover .dropbtn {
     background-color: #f4511e;
 	color: white;
+}
+
+.point{
+	color:red;
+	border: 1px solid red;
+	
+}
+
+.adminpage{
+	color:red;
+	border: 1px solid red;
 }
 /* ---------------- */
 
