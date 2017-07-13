@@ -108,7 +108,7 @@
 					<a href="./theaterCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/theater_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./theaterCommit">극장 승인</a></span>
+					<span class="titleSpan"><a href="./theaterInsert">극장 추가</a></span>
 					<span class="badge">${theaterUnCommitCount}</span>
 				</td>
 			</tr>
