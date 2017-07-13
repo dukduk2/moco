@@ -44,6 +44,7 @@
 	        <exclude-mapping path="/error/error404"/>
 	        <exclude-mapping path="/member/memberLogin"/>
 	        <exclude-mapping path="/member/memberJoin"/>
+	        <exclude-mapping path="/member/memberIdCheck"/>
 	        <exclude-mapping path="/member/memberSearch"/>
 	        <exclude-mapping path="/member/memberSearchID"/>
 	        <exclude-mapping path="/member/memberSearchPW"/>

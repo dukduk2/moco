@@ -32,6 +32,11 @@ public class PointController {
 		PageMaker pageMaker = new PageMaker(curPage, 10);
 		PageResult pageResult = pageMaker.paging(pointService.totalCount(id));
 		model.addAttribute("pageResult", pageResult);
+		
+		// benefit, point
+		String grade = ((MemberDTO)session.getAttribute("memberDTO")).getGrade();
+		pointService.getPoint(grade, model);
+		
 	}
 	
 	@RequestMapping(value="pointInsert", method=RequestMethod.POST)
