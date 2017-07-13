@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.moco.movieSchedule.MovieScheduleDAO;
 import com.moco.multiplex.MultiplexDAO;
 import com.moco.multiplex.MultiplexDTO;
 import com.moco.point.PointDAO;
@@ -40,20 +42,36 @@ public class TestClass {
 	private TheaterDAO theaterDAO;
 	@Inject
 	private PointDAO pointDAO;
+	@Inject
+	private MovieScheduleDAO movieScheduleDAO;
 
 	@Test
 	public void test() throws Exception{
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", "admin");
-		RowMaker rowMaker = new RowMaker();
-		rowMaker.makeRow(1, 10);
-		map.put("row", rowMaker);
-		List<PointDTO >ar = pointDAO.pointList(map);
-		for (PointDTO pointDTO : ar) {
-			System.out.println("be:"+pointDTO.getBenefit());
-		}
-		assertNotNull(ar);
 		
+		Date date = new Date();
+		System.out.println(date.getTime());
+		// 1초 1000, 1분 60000, 1시간 3600000, 20시간 28800000
+		// 크론으로 19:59분에 롱타입 + long = totalTime
+		// startTime 19:59 long, totalTime
+		// nowTime boolean true, false
+		// !!!!스트리밍!!!!
+		/*String play_Time = movieScheduleDAO.getPlayTime(816);
+		System.out.println(play_Time);
+		int playTime = 0;
+		play_Time = play_Time.substring(0,play_Time.indexOf("분"));
+		System.out.println(play_Time);
+		playTime = Integer.parseInt(play_Time);
+		System.out.println(playTime);
+		System.out.println("========================");
+		Date date = new Date();
+		long now = date.getTime();
+		System.out.println(now);
+		long play = playTime*60*1000;
+		System.out.println(play);
+		long total = now+play;
+		System.out.println(total);
+		int h = date.getHours();
+		System.out.println(h);*/
 	}
 	/*@Test
 	public void test() throws Exception{

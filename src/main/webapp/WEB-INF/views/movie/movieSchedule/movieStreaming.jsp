@@ -9,8 +9,20 @@
 </head>
 <body>
 	<h2>${title}</h2>
-	<video autoplay="autoplay" width="640" height="344">
-		<source src="${ROOT}/resources/upload/adminMovieUpload/${fname}" type="video/mp4">
-	</video>
+	
+	<c:if test="${commit}">
+		<div>
+			<p>${message}</p>
+			<video autoplay="autoplay" width="640" height="344">
+				<source src="${ROOT}/resources/upload/adminMovieUpload/${fname}" type="video/mp4">
+			</video>	
+		</div>	
+	</c:if>
+	<c:if test="${!commit}">
+		<div>
+			<p>${message}</p>
+		</div>
+	</c:if>
+	
 </body>
 </html>
