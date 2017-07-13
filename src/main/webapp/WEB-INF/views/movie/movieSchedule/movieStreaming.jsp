@@ -13,6 +13,7 @@
 	<c:if test="${commit}">
 		<div>
 			<p>${message}</p>
+			${fname}
 			<video autoplay="autoplay" width="640" height="344">
 				<source src="${ROOT}/resources/upload/adminMovieUpload/${fname}" type="video/mp4">
 			</video>	
