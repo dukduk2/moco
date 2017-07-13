@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:if test="${size ne 0}">
 ${lowpricemovie.title }
 <br>
 <img id="${lowpricemovie.num}" class="movieGo" src="${lowpricemovie.thumnail}" style="width:200px;">
@@ -24,14 +25,7 @@ ${lowpricemovie.title }
 		<br>
 	</c:if>
 </c:forEach>
-
-
-
-
- 
-
-
-
-	
-
-
+</c:if>
+<c:if test="${size eq 0}">
+	현재 상영중인 영화가 없습니다.
+</c:if>

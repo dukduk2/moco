@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moco.jjim.JjimDTO;
+import com.moco.member.MemberDAO;
+import com.moco.member.MemberDTO;
 import com.moco.multiplex.MultiplexDAO;
 import com.moco.multiplex.MultiplexDTO;
 import com.moco.reservation.ReservationDAO;
@@ -38,7 +40,7 @@ public class LowPriceMovieService {
 	private ScreenDAO screenDAO;
 	@Autowired
 	private ReservationDAO reservationDAO;
-	
+
 	//영화 LIST
 	public Map<String, Object> list(int curPage, int perPage, String kind, String search) throws Exception{
 		PageMaker pageMaker = new PageMaker(curPage, perPage);
@@ -304,9 +306,12 @@ public class LowPriceMovieService {
 		return map;
 	}
 	
-	
 	public void screenInfo(int theater_num) throws Exception{
 		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
 		
+	}
+	
+	public MemberDTO memberView(String id) throws Exception{
+		return reservationDAO.memberView(id);
 	}
 }
