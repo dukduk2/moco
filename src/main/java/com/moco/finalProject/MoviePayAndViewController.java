@@ -85,33 +85,35 @@ public class MoviePayAndViewController {
 	}
 	
 	@RequestMapping(value="/payMovieList/payMovieLow", method=RequestMethod.GET)
-	public void payMovieLow(String title, Integer curPage, Model model) throws Exception{		
+	public String payMovieLow(String title, Integer curPage, Model model) throws Exception{		
+		List<LowPriceMovieDTO> ar=new ArrayList<LowPriceMovieDTO>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(curPage==null){
 			curPage=1;
 		}
-		if(title==""){
-			title=null;
+		if(title==null){
+			title="%";
 		}
-		map.put("curPage", curPage);
+		map.put("title", title);
 		int totalCount=0;
 		
-		totalCount=paidMovieService.payMovieLowCount();
+		totalCount=paidMovieService.payMovieLowCount(map);
 		
 		PageMaker pageMaker = new PageMaker(curPage);
 		RowMaker rowMaker = pageMaker.getRowMaker();
 		PageResult pageResult = pageMaker.paging(totalCount);
 		map.put("rowMaker", rowMaker);
-		map.put("title", title);
 		
-		List<LowPriceMovieDTO> ar = paidMovieService.payMovieLow(map);
+		ar = paidMovieService.payMovieLow(map);
 		for(int i=0;i<ar.size();i++){
 			System.out.println(ar.get(i).getTitle());
 		}
 		model.addAttribute("list", ar);
 		model.addAttribute("pageResult", pageResult);
+		model.addAttribute("title", title);
 		model.addAttribute("curPage", curPage);
+		return "movie/payMovieList/payMovieLow";
 	}
 	
 	@RequestMapping(value="/moviePlay", method=RequestMethod.GET)

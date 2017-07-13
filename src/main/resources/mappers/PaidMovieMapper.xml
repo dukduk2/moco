@@ -15,37 +15,22 @@
 		(select rownum r, b.* from 
 		(select basicmovie.* from basicmovie, paidmovie where basicmovie.num=paidmovie.bnum) b) 
 		where title like '%'||#{title}||'%' or eng_title like '%'||#{title}||'%') where r between #{rowMaker.startRow} and #{rowMaker.lastRow} 
-		
-		<!-- select * from 
-		(select rownum r, b.* from 
-		(select basicmovie.* from basicmovie, paidmovie 
-		where basicmovie.num=paidmovie.bnum and basicmovie.title like '%'||#{title}||'%' 
-		and basicmovie.eng_title like '%'||#{title}||'%' order by basicmovie.num desc) b) 
-		where r between #{rowMaker.startRow} and #{rowMaker.lastRow} -->
-		
-		<!-- select * from (select rownum r, b.* from 
-		(select basicmovie.* from basicmovie, paidmovie where basicmovie.num=paidmovie.bnum 
-		order by basicmovie.num desc) b) where r between #{rowMaker.startRow} and #{rowMaker.lastRow} -->
 	</select>
 	
 	<select id="payMovieLow" parameterType="java.util.Map" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
-		select * from
-		(select rownum r, l.* from
-		(select lowpricemovie.* from lowpricemovie,paidmovie where lowpricemovie.num=paidmovie.lnum and 
-		lowpricemovie.title like '%'||#{title}||'%' order by lowpricemovie.num desc) l)
-		where r between #{rowMaker.startRow} and #{rowMaker.lastRow}
-		
-		<!-- select * from (select rownum r, l.* from 
+		select * from 
+		(select * from 
+		(select rownum r, l.* from 
 		(select lowpricemovie.* from lowpricemovie, paidmovie where lowpricemovie.num=paidmovie.lnum) l) 
-		where r between #{rowMaker.startRow} and #{rowMaker.lastRow} -->
+		where title like '%'||#{title}||'%') where r between #{rowMaker.startRow} and #{rowMaker.lastRow} 
 	</select>
 	
 	<select id="payMovieBasicCount" parameterType="java.util.Map" resultType="java.lang.Integer">
 		select count(num) from (select paidmovie.* from paidmovie, basicmovie where basicmovie.title like '%'||#{title}||'%' and paidmovie.bnum>0 and paidmovie.bnum=basicmovie.num)
 	</select>
 	
-	<select id="payMovieLowCount" resultType="java.lang.Integer">
-		select count(num) from paidmovie where lnum>0
+	<select id="payMovieLowCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(num) from (select paidmovie.* from paidmovie, lowpricemovie where lowpricemovie.title like '%'||#{title}||'%' and paidmovie.lnum>0 and paidmovie.lnum=lowpricemovie.num)
 	</select>
 	
 	<!-- Basic List -->

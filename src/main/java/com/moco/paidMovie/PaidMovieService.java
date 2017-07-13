@@ -111,8 +111,8 @@ public class PaidMovieService {
 		return paidMovieDAO.payMovieBasicCount(map);
 	}
 	
-	public int payMovieLowCount() throws Exception{
-		return paidMovieDAO.payMovieLowCount();
+	public int payMovieLowCount(Map<String, Object> map) throws Exception{
+		return paidMovieDAO.payMovieLowCount(map);
 	}
 
 }

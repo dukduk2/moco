@@ -44,15 +44,6 @@
 			<input type="text" name="title" placeholder="영화 제목 검색">
 			<input type="hidden" name="curPage" value="1">
 			<input type="button" class="btn" value="Search" id="search">
-		<!-- <table class="search_table">
-			<tr>
-				<td class="title top_left">제목</td>
-				<td class="input top_right"><input type="text" class="form-control" id="title" style="width :100%;"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="button" value="검색" id="searchBtn" class="btn"></td>
-			</tr>
-		</table> -->
 		</form>
 	</div>
 	
