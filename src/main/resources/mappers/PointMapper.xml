@@ -15,7 +15,7 @@
 	<insert id="pointInsert" parameterType="com.moco.point.PointDTO">
 		insert into point values(NVL((select max(num) from point),0)+1, #{id}, #{kind}, #{likes}, #{cash}, #{point}, sysdate, #{benefit})	
 	</insert>
-	<update id="pointInsert2" parameterType="com.moco.point.PointDTO">
+	<update id="pointInsert2" parameterType="com.moco.member.MemberDTO">
 		update member set point=point+#{point} where id=#{id}
 	</update>
 	<!-- 좋아요 결제시 avaliableLikes 차감 -->

@@ -26,8 +26,8 @@ public class PointDAO {
 		return sqlSession.insert(NAMESPACE+"pointInsert", pointDTO);
 	}
 	// pointInsert2
-	public int pointInsert2(PointDTO pointDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"pointInsert2", pointDTO);
+	public int pointInsert2(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"pointInsert2", memberDTO);
 	}
 	
 	// avaliableLikesUpdate
