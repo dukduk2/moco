@@ -19,6 +19,9 @@
 		});
 		
 		// kind 설정 시
+		$("#selectBox").attr("name", "cash");
+		$("#hiddenName").attr("name", "likes");
+		
 		$("input[name='kind']:radio").change(function() {
 			var radio = $(this).val();
 			if(radio == '좋아요'){
@@ -28,8 +31,6 @@
 				$("#selectBox").attr("name", "cash");
 				$("#hiddenName").attr("name", "likes");
 			}
-			alert($("#selectBox").attr("name"));
-			alert($("#hiddenName").attr("name"));
 		});
 		
 		// benefit, point 계산 val()셋팅
@@ -37,9 +38,25 @@
 			var money = $("#selectBox").val();
 			var percent = ${percent};
 			var benefit = money*percent;
-			var point = Number(money+benefit);
+			var point = benefit+money*1;
 			$("#benefit").val(benefit);
 			$("#point").val(point);
+		});
+		
+		// go!
+		$("#pointGo").click(function() {
+			var kind = $("#selectBox").attr("name");
+			var money = $("#selectBox").val();
+			var avlikes = $("#avlikes").val();
+			if(kind == 'likes'){
+				if(avlikes*1<money*1){
+					alert("사용 가능한 '좋아요' 가 부족합니다.");
+				}else{
+					$("#pointForm").submit();
+				}
+			}else{
+				$("#pointForm").submit();				
+			}
 		});
 		
 	});
@@ -48,7 +65,7 @@
 <body>
 	<section>
 		<div class="container">
-			<h2 style="text-align: center;">POINT LIST</h2>
+			<h2 style="text-align: center;">POINT 결제 내역 LIST</h2>
 			<table class="table">
 				<tr>
 					<td class="titleTD">번호</td>
@@ -63,7 +80,7 @@
 					<tr>
 						<td class="contentsTD">${list.num}</td>
 						<td class="contentsTD">${list.point_date}</td>
-						<c:if test="${list.kind == 'likes'}">
+						<c:if test="${list.kind == '좋아요'}">
 							<td class="contentsTD">좋아요</td>
 						</c:if>
 						<c:if test="${list.kind == '현금/무통장' }">
@@ -108,11 +125,17 @@
 			          <table>
 			          		<tr>
 			          			<td>ID</td>
-			          			<td>${memberDTO.id}</td>
+			          			<td>
+			          				${memberDTO.id}
+			          				<input type="hidden" name="id" value="${memberDTO.id}">
+			          			</td>
 			          		</tr>
 			          		<tr>
 			          			<td>AVALIABLELIKES</td>
-			          			<td>${memberDTO.avaliableLikes}</td>
+			          			<td>
+			          				${memberDTO.avaliableLikes}
+			          				<input type="hidden" id="avlikes" value="${memberDTO.avaliableLikes}">
+			          			</td>
 			          		</tr>
 			          		<tr>
 			          			<td>POINT</td>

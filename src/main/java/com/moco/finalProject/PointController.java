@@ -40,8 +40,9 @@ public class PointController {
 	}
 	
 	@RequestMapping(value="pointInsert", method=RequestMethod.POST)
-	public void pointInsert(PointDTO pointDTO) throws Exception{
-		
+	public String pointInsert(HttpSession session, PointDTO pointDTO) throws Exception{
+		pointService.pointInsert(pointDTO, session);
+		return "redirect:/point/pointList";
 	}
 	
 }
