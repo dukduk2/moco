@@ -59,26 +59,23 @@ public class PointService {
 	// pointInsert
 	public int pointInsert(PointDTO pointDTO, HttpSession session) throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("memberDTO");
-		int result = 0;
-		// 현금 결제시
-		if(pointDTO.getKind().equals("현금/무통장")){
-			// pointDB에 insert
-			result = pointDAO.pointInsert(pointDTO);			
+		// pointDB에 insert
+		int result = pointDAO.pointInsert(pointDTO);			
 		// 좋아요 결제시
-		}else{
-			// pointDB에 insert
-			result = pointDAO.pointInsert(pointDTO);
+		if(pointDTO.getKind().equals("좋아요")){
 			// 현재 있는 likes
 			int avlikes = memberDTO.getAvaliableLikes();
 			// 사용한 likes
 			int pointLikes = pointDTO.getLikes();
 			// 남은 likes로 memberTableUpdate
 			memberDTO.setAvaliableLikes(avlikes-pointLikes);
+			// memberTable에서 avaliableLikes 차감
 			pointDAO.avaliableLikesUpdate(memberDTO);
 		}
 		// memberTable PointUp
 		result += pointDAO.pointInsert2(pointDTO);
 		// update 된 정보를 다시 세션에 저장하자
+		memberDTO = pointDAO.memberOne(memberDTO.getId());
 		session.setAttribute("memberDTO", memberDTO);
 		return result;
 	}

@@ -44,6 +44,10 @@
 					<a href="${pageContext.request.contextPath}/movie/payMovieList/payMovieLow">독립영화</a>
 	  			</div>
 			</li>
+			
+			<li>
+				<a href="${pageContext.request.contextPath}/movie/movieSchedule/movieStreaming">스트리밍 상영관</a>
+			</li>
 		</ul>
 	
 		<div class="log">

@@ -448,50 +448,58 @@ public class LowPriceMovieController {
 	@RequestMapping(value="screen_ajax", method=RequestMethod.POST)
 	public void screenAdd(int multi_num, Model model) throws Exception{
 		List<ScreenDTO> ar = lowPriceMovieService.screenList(multi_num);
-		int lNum = ar.get(0).getMovie_num();
+		
+		int lNum = 0; 
 
-		List<String> dates = new ArrayList<String>();
-		List<String> hours = new ArrayList<String>();
-		List<String> minutes = new ArrayList<String>();
-
-		for(int i=0; i<ar.size() ; i++){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			dates.add(sdf.format(ar.get(i).getShow_date()));
-
-			if(0<=ar.get(i).getHour() && ar.get(i).getHour()<10){
-				hours.add("0"+ar.get(i).getHour());
-			}else{
-				hours.add(ar.get(i).getHour()+"");
+		List<String> dates = null;
+		List<String> hours = null;
+		List<String> minutes = null;
+		
+		if(ar.size() != 0){
+			lNum = ar.get(0).getMovie_num();
+			
+			dates = new ArrayList<String>();
+			hours = new ArrayList<String>();
+			minutes = new ArrayList<String>();
+			
+			for(int i=0; i<ar.size() ; i++){
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+				dates.add(sdf.format(ar.get(i).getShow_date()));
+	
+				if(0<=ar.get(i).getHour() && ar.get(i).getHour()<10){
+					hours.add("0"+ar.get(i).getHour());
+				}else{
+					hours.add(ar.get(i).getHour()+"");
+				}
+	
+				if(0<=ar.get(i).getMinute() && ar.get(i).getMinute()<10){
+					minutes.add("0"+ar.get(i).getMinute());
+				}else{
+					minutes.add(ar.get(i).getMinute()+"");
+				}
 			}
-
-			if(0<=ar.get(i).getMinute() && ar.get(i).getMinute()<10){
-				minutes.add("0"+ar.get(i).getMinute());
-			}else{
-				minutes.add(ar.get(i).getMinute()+"");
-			}
+			model.addAttribute("screenList", ar);
+			model.addAttribute("date", dates);
+			model.addAttribute("hour", hours);
+			model.addAttribute("minute", minutes);
+			model.addAttribute("lowpricemovie", lowPriceMovieService.view(lNum));
 		}
-
-		model.addAttribute("screenList", ar);
-		model.addAttribute("date", dates);
-		model.addAttribute("hour", hours);
-		model.addAttribute("minute", minutes);
-		model.addAttribute("lowpricemovie", lowPriceMovieService.view(lNum));
+		
+		model.addAttribute("size", ar.size());
 	}
 	
 	@RequestMapping(value="reservationInsert", method=RequestMethod.POST)
-	public String reservationInsert(ReservationDTO reservationDTO) throws Exception{
-		
-		System.out.println("controller in");
-		System.out.println(reservationDTO.getId());
-		System.out.println(reservationDTO.getScreen_num());
-		System.out.println(reservationDTO.getSeat());
-		System.out.println(reservationDTO.getRprice());
+	public String reservationInsert(ReservationDTO reservationDTO, HttpSession session) throws Exception{
 		
 		int result = 0;
-		//프로시저 사용.(reservation db insert & screen db update)
+		//프로시저 사용.(reservation db insert & screen db update & member db update & pay db insert)
 		result = lowPriceMovieService.reservationInsert(reservationDTO);
 		
-		return "";
+		if(result > 0){
+			MemberDTO memberDTO = lowPriceMovieService.memberView(reservationDTO.getId());
+			session.setAttribute("memberDTO", memberDTO);
+		}
+		return "movie/movieHome";
 		
 	}
 	/*

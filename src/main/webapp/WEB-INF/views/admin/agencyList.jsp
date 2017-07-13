@@ -5,18 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ include file="/resources/part/bootStrap.jspf" %>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
+<title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function() {
 		var curPage1 = ${map1.curPage1}; //commit
@@ -64,7 +58,7 @@
 		<div id="uncommitAjax">
 		<table class="table table-hover">
 		<tr>
-			<th>num</th>
+			<th style="height: 100px; vertical-align: middle;">num</th>
 			<th>title</th>
 			<th>director</th>
 			<th>pubdate</th>

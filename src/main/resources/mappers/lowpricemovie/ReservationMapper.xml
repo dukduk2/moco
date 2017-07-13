@@ -14,4 +14,8 @@
 	    	#{reservationDTO.rprice, mode=IN},   
 	    	#{result, javaType=int, mode=OUT, jdbcType=INTEGER, resultMap=myMap}) }
     </insert>	
+    
+    <select id="memberView" parameterType="java.lang.String" resultType="com.moco.member.MemberDTO">
+    	select * from member where id=#{id}
+    </select>
 </mapper>

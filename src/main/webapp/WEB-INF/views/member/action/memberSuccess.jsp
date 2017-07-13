@@ -15,11 +15,18 @@ $(function(){
 	if(message != ""){
 		alert(message);
 	}
-
+	
 	$("#bye").click(function(){
 		window.close();
 		/* session.invalidate(); */
 	});
+
+	/* $(window).resize(function (){
+		var height_size = window.outerHeight;
+		if (height_size >= 800) {
+			alert('Curren width = 800px');
+		}
+	}).resize(); */
 });
 </script>
 

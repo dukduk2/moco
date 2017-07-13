@@ -61,6 +61,37 @@
 		
 	});
 </script>
+<style type="text/css">
+	.titleTD{
+		font-weight: bold;
+		font-size: 1.1em;
+		font-family: Montserrat, sans-serif;
+	}
+	.modalTable{
+		width : 100%;
+		max-width : 100%;
+		margin-bottom: 20px;
+		background-color: transparent;
+		border-spacing : 0;
+		border-collapse : collapse;
+		border-color: grey;
+		vertical-align: middle;	
+	}
+	.modalTable tr{
+		display: table-row;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+	.modalTable td{
+		padding: 8px;
+	 	line-height: 1.42857143;
+	 	vertical-align: middle;
+	 	border-top: 1px solid #ddd;
+	 	font-family: Montserrat, sans-serif;
+		font-size: 1.1em;
+		font-weight: bold;
+	}
+</style>
  </head>
 <body>
 	<section>
@@ -110,7 +141,7 @@
 			</div>
 
 			<br>
-			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">포인트 충전</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">포인트 충전</button>
 			<!-- modal - 충전 -->
 	 		<div class="modal fade" id="myModal" role="dialog">
 			    <div class="modal-dialog">
@@ -122,64 +153,60 @@
 			          <h4 class="modal-title">포인트 충전</h4>
 			        </div>
 			        <div class="modal-body">
-			          <table>
+			          <table class="modalTable">
 			          		<tr>
 			          			<td>ID</td>
-			          			<td>
+			          			<td colspan="2">
 			          				${memberDTO.id}
 			          				<input type="hidden" name="id" value="${memberDTO.id}">
 			          			</td>
 			          		</tr>
 			          		<tr>
 			          			<td>AVALIABLELIKES</td>
-			          			<td>
-			          				${memberDTO.avaliableLikes}
+			          			<td colspan="2">
+			          				${memberDTO.avaliableLikes} 개
 			          				<input type="hidden" id="avlikes" value="${memberDTO.avaliableLikes}">
 			          			</td>
 			          		</tr>
 			          		<tr>
 			          			<td>POINT</td>
-			          			<td>${memberDTO.point }</td>
+			          			<td colspan="2">${memberDTO.point} 점</td>
 			          		</tr>
 			          		<tr>
-			          			<td>GRADE</td>
-			          			<td>${memberDTO.grade}</td>
-			          		</tr>
-			          		<tr>
-			          			<td>BENEFIT</td>
-			          			<c:choose>
-			          				<c:when test="${memberDTO.grade == '일반' }">
-			          					<td>충전 금액의 5%</td>
-			          				</c:when>
-			          				<c:when test="${memberDTO.grade == '브론즈' }">
-			          					<td>충전 금액의 10%</td>
-			          				</c:when>
-			          				<c:when test="${memberDTO.grade == '실버' }">
-			          					<td>충전 금액의 15%</td>
-			          				</c:when>
-			          				<c:when test="${memberDTO.grade == '골드' }">
-			          					<td>충전 금액의 20%</td>
-			          				</c:when>
-			          				<c:when test="${memberDTO.grade == '다이아몬드' }">
-			          					<td>충전 금액의 25%</td>
-			          				</c:when>
-			          			</c:choose>
+			          			<td>GRADE / BENEFIT</td>
+				          			<c:choose>
+				          				<c:when test="${memberDTO.grade == '일반' }">
+				          					<td colspan="2">${memberDTO.grade} / 충전 금액의 5%</td>
+				          				</c:when>
+				          				<c:when test="${memberDTO.grade == '브론즈' }">
+				          					<td colspan="2">${memberDTO.grade} / 충전 금액의 10%</td>
+				          				</c:when>
+				          				<c:when test="${memberDTO.grade == '실버' }">
+				          					<td colspan="2">${memberDTO.grade} / 충전 금액의 15%</td>
+				          				</c:when>
+				          				<c:when test="${memberDTO.grade == '골드' }">
+				          					<td colspan="2">${memberDTO.grade} / 충전 금액의 20%</td>
+				          				</c:when>
+				          				<c:when test="${memberDTO.grade == '다이아몬드' }">
+				          					<td colspan="2">${memberDTO.grade} / 충전 금액의 25%</td>
+				          				</c:when>
+				          			</c:choose>
 			          		</tr>
 			          		<tr>
 			          			<td><span>포인트 충전 방식</span></td>
-			          			<td>
+			          			<td colspan="2">
 			          				<label class="radio-inline">
-			          					<input type="radio" name="kind" value="현금/무통장" checked="checked"><span>현금/무통장</span>
+			          					<input type="radio" name="kind" value="현금/무통장" checked="checked"><span class="titleTD">현금/무통장</span>
 			          				</label>
 			          				<label class="radio-inline">
-			          					<input type="radio" name="kind" value="좋아요"><span>좋아요</span>
+			          					<input type="radio" name="kind" value="좋아요"><span class="titleTD">좋아요</span>
 			          				</label>
 			          			</td>
 			          		</tr>
 				          	<tr>
 				          		<td>충전 금액</td>
-				          		<td>
-					          		<select name="likes" id="selectBox">
+				          		<td colspan="2">
+					          		<select name="likes" id="selectBox" class="form-control inputCSS">
 					          			<option value="5000">5000원</option>
 					          			<option value="10000">10000원</option>
 					          			<option value="30000">30000원</option>
@@ -191,19 +218,21 @@
 				          	<tr>
 				          		<td>BENEFIT</td>
 				          		<td>
-					          		<input type="text" name="benefit" value="${benefit}" id="benefit" readonly="readonly">포인트		          			
+					          		<input type="text" name="benefit" value="${benefit}" id="benefit" readonly="readonly" class="form-control inputCSS">		          			
 				          		</td>
+				          		<td>포인트</td>
 				          	</tr>
 				          	<tr>
 				          		<td>POINT</td>
 				          		<td>				          		
-					          		<input type="text" name="point" value="${point}" id="point" readonly="readonly">포인트
+					          		<input type="text" name="point" value="${point}" id="point" readonly="readonly" class="form-control inputCSS">
 				          		</td>
+				          		<td>포인트</td>
 				          	</tr>
 			          </table>
 			        </div>
 			        <div class="modal-footer">
-			          <input type="button" class="btn btn-default" value="충전하기" id="pointGo">
+			          <input type="button" class="btn btn-primary" value="충전하기" id="pointGo">
 			        </div>
 			      </div>
 			      </form>

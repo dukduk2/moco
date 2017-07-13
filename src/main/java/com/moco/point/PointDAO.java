@@ -30,6 +30,11 @@ public class PointDAO {
 		return sqlSession.update(NAMESPACE+"pointInsert2", pointDTO);
 	}
 	
+	// memberOne
+	public MemberDTO memberOne(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberOne", id);
+	}
+	
 	// avaliableLikesUpdate
 	public int avaliableLikesUpdate(MemberDTO memberDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"avaliableLikesUpdate", memberDTO);
