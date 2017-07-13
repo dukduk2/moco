@@ -56,7 +56,7 @@
 			});
 		});
 		// state 선택
-		$(".invest_state").change(function(){
+		$(".invest_state").click(function(){
 			chked_state = $(this).val();
 			$.ajax({
 				url : "./directorBoardList_ajax",
@@ -203,30 +203,42 @@
 		</div>
 	</div>
 	<br>
-	<p id="invest">투자하기</p>
-	<!-- 장르 검색 -->
-	<p>-------------- genre(최대 3개까지 선택) ---------------</p> 
-			드라마<input type="checkbox" class="chx" name="genre" value="드라마">
-			판타지<input type="checkbox" class="chx" name="genre" value="판타지">
-			공포<input type="checkbox" class="chx" name="genre" value="공포">
-			로맨스/멜로<input type="checkbox" class="chx" name="genre" value="로맨스/멜로">
-			모험<input type="checkbox" class="chx" name="genre" value="모험">
-			스릴러<input type="checkbox" class="chx" name="genre" value="스릴러">
-			느와르<input type="checkbox" class="chx" name="genre" value="느와르">
-			다큐멘터리<input type="checkbox" class="chx" name="genre" value="다큐멘터리">
-			코미디<input type="checkbox" class="chx" name="genre" value="코미디">
-			가족<input type="checkbox" class="chx" name="genre" value="가족">
-			미스터리<input type="checkbox" class="chx" name="genre" value="미스터리">
-			전쟁<input type="checkbox" class="chx" name="genre" value="전쟁">
-			애니메이션<input type="checkbox" class="chx" name="genre" value="애니메이션">
-			범죄<input type="checkbox" class="chx" name="genre" value="범죄">
-			뮤지컬<input type="checkbox" class="chx" name="genre" value="뮤지컬">
-			SF<input type="checkbox" class="chx" name="genre" value="SF">
-			액션<input type="checkbox" class="chx" name="genre" value="액션">
-	<p>-------------- state ---------------</p>
-			전체보기 <input type="radio" class="invest_state" name="invest_state" checked="checked" value="2">
-			진행중<input type="radio" class="invest_state" name="invest_state" value="1">
-			마감완료<input type="radio" class="invest_state" name="invest_state" value="0">
+	<div id="invest-wrap">
+		<p id="invest">투자하기</p>
+	</div>
+	<!-- 검색 -->
+	<table id="serch-table">
+		<tr>
+			<th>장르</th>
+			<td>
+				드라마<input type="checkbox" class="chx" name="genre" value="드라마">
+				판타지<input type="checkbox" class="chx" name="genre" value="판타지">
+				공포<input type="checkbox" class="chx" name="genre" value="공포">
+				로맨스/멜로<input type="checkbox" class="chx" name="genre" value="로맨스/멜로">
+				모험<input type="checkbox" class="chx" name="genre" value="모험">
+				스릴러<input type="checkbox" class="chx" name="genre" value="스릴러">
+				느와르<input type="checkbox" class="chx" name="genre" value="느와르">
+				다큐멘터리<input type="checkbox" class="chx" name="genre" value="다큐멘터리">
+				코미디<input type="checkbox" class="chx" name="genre" value="코미디">
+				가족<input type="checkbox" class="chx" name="genre" value="가족">
+				미스터리<input type="checkbox" class="chx" name="genre" value="미스터리">
+				전쟁<input type="checkbox" class="chx" name="genre" value="전쟁">
+				애니메이션<input type="checkbox" class="chx" name="genre" value="애니메이션">
+				범죄<input type="checkbox" class="chx" name="genre" value="범죄">
+				뮤지컬<input type="checkbox" class="chx" name="genre" value="뮤지컬">
+				SF<input type="checkbox" class="chx" name="genre" value="SF">
+				액션<input type="checkbox" class="chx" name="genre" value="액션">
+			</td>
+		</tr>
+		<tr>
+			<th>상태</th>
+			<td>
+				<button class="invest_state btn btn-default" name="invest_state" value="2">전체보기</button> | 
+				<button class="invest_state btn btn-default" name="invest_state" value="1">진행중</button> | 
+				<button class="invest_state btn btn-default" name="invest_state" value="0">마감완료</button>
+			</td>
+		</tr>
+	</table>
 	<div id="search-result"></div>
 	</section>
 </body>

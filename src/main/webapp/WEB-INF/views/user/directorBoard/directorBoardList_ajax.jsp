@@ -5,7 +5,7 @@
 <!-- 펀딩 컨텐츠 -->
 <div id="search-result">
 	<c:forEach var="list" items="${list }">
-		<div class="contents" id="${list.num}">
+		<div class="funding-contents" id="${list.num}" style="margin-left: 50px; margin-bottom: 40px;">
 		<div class="contents-top">
 			<div class="contents-top-left">
 				<img src="../../resources/images/directorBoard/sample_img.jpg">
@@ -30,10 +30,10 @@
 			</div>
 		</div>
 		<div class="contents-middle">
-			<p>펀딩 오픈일 ${list.openDate}</p>
+			<p style="margin-top: 2px;">펀딩 오픈일 ${list.openDate}</p>
 		</div>
 		<div class="contents-bottom">
-			<div style="float: left;"><p>펀딩 마감일 ${list.targetDate }</p></div>
+			<div style="float: left;"><p style="margin-top: 4px;">펀딩 마감일 ${list.targetDate }</p></div>
 			<c:if test="${list.state eq 1 }">
 				<div class="state" id="state1">진행중</div>
 			</c:if>
