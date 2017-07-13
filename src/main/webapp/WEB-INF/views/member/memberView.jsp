@@ -113,10 +113,10 @@ $(function(){
 
 				<tr>
 					<td colspan="2">
-						<input type="button" class="btn btn-warning" value="UPDATE" id="update">
-						<input type="button" class="btn btn-danger" value="DELETE" id="delete">
-						<input type="button" class="btn btn-success" value="HOME" id="home">
-						<input type="button" class="btn btn-info" value="내찜리스트" id="jjim">
+						<input type="button" class="btn btn-default" value="UPDATE" id="update">
+						<input type="button" class="btn btn-default" value="DELETE" id="delete">
+						<input type="button" class="btn btn-default" value="HOME" id="home">
+						<input type="button" class="btn btn-default" value="내찜리스트" id="jjim">
 					</td>
 				</tr>
 			</table>
