@@ -75,9 +75,11 @@ public class PointService {
 			// 남은 likes로 memberTableUpdate
 			memberDTO.setAvaliableLikes(avlikes-pointLikes);
 			pointDAO.avaliableLikesUpdate(memberDTO);
-			// update 된 정보를 다시 세션에 저장하자
-			session.setAttribute("memberDTO", memberDTO);
 		}
+		// memberTable PointUp
+		result += pointDAO.pointInsert2(pointDTO);
+		// update 된 정보를 다시 세션에 저장하자
+		session.setAttribute("memberDTO", memberDTO);
 		return result;
 	}
 
