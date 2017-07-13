@@ -2,14 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>Home</title>
-</head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/resources/part/bootStrap.jspf" %>
-<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
-<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sideMenu.css">
-<title>Home</title>
+<title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 $(function(){
  	var message = '${message}';
@@ -184,11 +182,6 @@ video{
 	-webkit-text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
 }
 
-body {
-	font: 400 15px/1.8 Lato, sans-serif;
-	color: #777;
-}
-
 .container {
 	height: 100%;
 	width: 100%;
@@ -215,6 +208,7 @@ body {
 	overflow: hidden;
 	background-image: url("${pageContext.request.contextPath}/resources/images/home/info-background.jpg");
 	background-size: cover;
+	bac
 }
 
 .appear {
@@ -281,6 +275,8 @@ video {
 	cursor: pointer;
 }
 </style>
+</head>
+
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 	<%@ include file="/resources/part/sideMenu.jspf" %>
@@ -373,7 +369,7 @@ video {
 					<td>DATE</td>
 					<td>HIT</td>
 				</tr></thead>
-		
+
 				<c:forEach items="${list}" var="dto">
 					<tbody><tr class="body">
 						<td>${dto.num}</td>
@@ -392,7 +388,7 @@ video {
 					</tr></tbody>
 				</c:forEach>
 			</table>
-	
+
 			<!-- 페이징 처리 -->
 			<div class="paging">
 				<div class="btn-group">
@@ -411,7 +407,7 @@ video {
 					</div>
 				</div>
 			</div>
-		
+
 			<c:if test="${memberDTO.id eq 'admin'}">
 				<p><input value="WRITE" type="button" class="btn btn-success noticeWrite"></p>
 			</c:if>

@@ -39,6 +39,7 @@
 				</c:if>
 				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/member/memberView">View</a></span>
 				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></span>
+				<span><a class="btn btn-default point" href="${pageContext.request.contextPath}/point/pointList">충전소</a></span>
 			</c:if>
 		</div>
 	
