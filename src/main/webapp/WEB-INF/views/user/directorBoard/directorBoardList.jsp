@@ -8,6 +8,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/directorboardList.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
@@ -95,72 +96,37 @@
 		});
 	});
 </script>
-<style type="text/css">
-	.contents{
-		height: 200px;
-		width: 400px;
-		border: 1px solid black;
-		float: left;
-		margin: 10 10px;
-	}
-	.contents-top{
-		height: 70%;
-		border: 1px solid black;
-	}
-	.contents-middle{
-		height: 15%;
-		border: 1px solid black;
-	}
-	.contents-bottom{
-		height: 15%;
-		border: 1px solid black;
-	}
-	.contents-top-left{
-		height: 100%;
-		width: 30%;
-		float: left;
-	}
-	.contents-top-left img{
-		border: 1px solid black;
-		border-radius: 50%;
-	}
-	.contents-top-rigth{
-		width: 60%;
-		height: 100%;
-		float: right;
-		margin-right: 10px;
-		padding-top: 10px;
-	}
-	.contents-top-rigth p{
-		height: 14px;
-		font-size: 13px;
-	}
-	#search-result{
-		width: 1300px;
-	}
-	.state{
-		width: 80px;
-		float: right;
-		margin-top: 2px;
-		margin-right: 5px;
-		border: 1px solid black;
-		text-align: center;
-	}
-	#state0{
-		background-color: #ffcccc;
-	}
-	#state1{
-		background-color: #c6ebc6;
-	}
-	.load-more{
-		width: 100%;
-	}
-</style>
 </head>
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<%@ include file="/resources/part/sideMenu.jspf" %>
 	<section>
+	<!-- introduce -->
+	<div id="intro-wrap">
+		<div class=intro-contents>
+			<div>
+				<div class="intro-left">
+					
+				</div>
+				<div class="intro-right">
+					<img src="../../resources/images/directorBoard/구좌신청.png">
+				</div>
+			</div>
+		</div>
+		<div class=intro-contents>
+			
+		</div>
+		<div class=intro-contents>
+			
+		</div>
+		<div class=intro-contents>
+			
+		</div>
+		<div class=intro-contents>
+			
+		</div>
+	</div>
+	
 	<a href="./download?fileName=planning_document.hwp">양식 다운로드</a><br>
 	<a href="./directorBoardWrite">펀딩 등록하기</a>
 	<!-- 장르 검색 -->
