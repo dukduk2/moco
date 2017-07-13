@@ -97,7 +97,6 @@ $(function(){
 .title {
 	width: 400px;
 	margin: 10px auto;
-	border: solid red 2px;
 	text-align: center;
 	font-family: 'Sofia';
 	font-size: 30px;
@@ -109,7 +108,6 @@ $(function(){
 	width: 400px;
 	height: 500px;
 	margin: 20px auto;
-	border: solid red 2px;
 	text-align: center;
 	font-family: 'Sofia';
 	font-size: 20px;
@@ -134,7 +132,6 @@ video{
 	height: 450px;
 	margin: 0 auto;
 	margin-top: 250px;
-	border: solid blue 2px;
 }
 
 .menu{
@@ -155,19 +152,19 @@ video{
 }
 
 .center{
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/button1.jpg");
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/button_center.jpg");
 	background-size: cover;
 	margin: 0 auto;
 }
 
 .left{
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/button1.jpg");
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/button_left.jpg");
 	background-size: cover;
 	float: left;
 }
 
 .right{
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/button2.jpg");
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/button_right.jpg");
 	background-size: cover;
 	float: right;
 }
