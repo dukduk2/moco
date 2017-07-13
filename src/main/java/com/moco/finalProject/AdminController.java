@@ -816,5 +816,8 @@ public class AdminController {
 		return "";
 		
 	}
-	
+	@RequestMapping(value="theaterInsert", method=RequestMethod.GET)
+	public void theaterInsert() throws Exception{
+		
+	}
 }
