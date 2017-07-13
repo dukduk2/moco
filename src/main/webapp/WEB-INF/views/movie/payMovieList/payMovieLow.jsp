@@ -13,10 +13,40 @@
 <link rel="styleSheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/movieSearchHome.css">	
+<script type="text/javascript">
+	$(function(){
+		var curPage=${curPage };
+		
+		$("#search").click(function(){
+			$("#frm").submit();
+		});
+		
+		$(".go").click(function() {
+			curPage = $(this).attr("id");
+			location.href = "./payMovieLow?curPage=" + curPage;
+		});
+		
+		$("#searchResult").on('click','.searchResultWrap',function(){
+			var num = $(this).attr("id");
+			location.href="../lowpricemovie/movieView?num="+num;
+		});
+		
+	});
+</script>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
+	
+	<!-- SEARCH -->
+	<div id="searchForm">
+		<form action="./payMovieLow" id="frm">
+			<input type="text" name="title" placeholder="영화 제목 검색">
+			<input type="hidden" name="curPage" value="1">
+			<input type="button" class="btn" value="Search" id="search">
+		</form>
+	</div>
+	
 	<div class="container">
 	<div id="searchResult">
 	<c:forEach var="list" items="${list }">
