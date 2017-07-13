@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moco.member.MemberDTO;
+
 @Repository
 public class ReservationDAO {
 	
@@ -23,5 +25,9 @@ public class ReservationDAO {
 		int result = (Integer)map.get("result");
 		
 		return result;
+	}
+	
+	public MemberDTO memberView(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberView", id);
 	}
 }
