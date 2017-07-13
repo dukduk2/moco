@@ -18,17 +18,29 @@
 			location.href="./pointList?curPage="+curPage;
 		});
 		
+		// kind 설정 시
 		$("input[name='kind']:radio").change(function() {
 			var radio = $(this).val();
 			if(radio == '좋아요'){
-				$("#selectBox").attr("name", "좋아요");
+				$("#selectBox").attr("name", "likes");
+				$("#hiddenName").attr("name", "cash");
 			}else{
-				$("#selectBox").attr("name", "현금/무통장");
+				$("#selectBox").attr("name", "cash");
+				$("#hiddenName").attr("name", "likes");
 			}
 			alert($("#selectBox").attr("name"));
+			alert($("#hiddenName").attr("name"));
 		});
 		
-		//alert($("#selectBox").val());
+		// benefit, point 계산 val()셋팅
+		$("#selectBox").change(function() {
+			var money = $("#selectBox").val();
+			var percent = ${percent};
+			var benefit = money*percent;
+			var point = Number(money+benefit);
+			$("#benefit").val(benefit);
+			$("#point").val(point);
+		});
 		
 	});
 </script>
@@ -148,13 +160,21 @@
 					          			<option value="5000">5000원</option>
 					          			<option value="10000">10000원</option>
 					          			<option value="30000">30000원</option>
-					          			<option value="500000">50000원</option>
+					          			<option value="50000">50000원</option>
 					          		</select>
+					          		<input type="hidden" name="cash" value="0" id="hiddenName">
 				          		</td>
 				          	</tr>
 				          	<tr>
-				          		<td colspan="2">
-				          			<input type="hidden" name="benefit" id="bf" value="">
+				          		<td>BENEFIT</td>
+				          		<td>
+					          		<input type="text" name="benefit" value="${benefit}" id="benefit" readonly="readonly">포인트		          			
+				          		</td>
+				          	</tr>
+				          	<tr>
+				          		<td>POINT</td>
+				          		<td>				          		
+					          		<input type="text" name="point" value="${point}" id="point" readonly="readonly">포인트
 				          		</td>
 				          	</tr>
 			          </table>
