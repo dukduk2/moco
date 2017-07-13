@@ -15,14 +15,14 @@
 	
 			<li class="switch1 dropdown">
 				<a class="fa fa-home" style="color: white !important" href="${pageContext.request.contextPath}/movie/movieHome">Main</a>
-				<div class="dropdown-content">
-					<a style="color: white !important" href="${pageContext.request.contextPath}">Home</a>
+				<div class="dropdown-content switch1">
+					<a style="color: white !important;" href="${pageContext.request.contextPath}">Home</a>
 	  			</div>
 			</li>
 			
 			<li class="dropdown">
 				<a class="topButton" href="">영화검색&추천</a>
-				<div class="dropdown-content">
+				<div class="dropdown-content switch2">
 					<a href="${pageContext.request.contextPath}/movie/basicMovieSearch/movieSearchHome">일반영화</a>
 					<a href="${pageContext.request.contextPath}/movie/lowpricemovie/movieSearchHome">독립영화</a>
 	  			</div>
@@ -30,7 +30,7 @@
 			
 			<li class="dropdown">
 				<a class="topButton" href="">독립영화상영관</a>
-				<div class="dropdown-content">
+				<div class="dropdown-content switch2">
 					<a href="${pageContext.request.contextPath}/movie/lowpricemovie/theaterList">상영관 리스트</a>
 					<a href="#">Link 2</a>
 					<a href="#">Link 3</a>
@@ -39,7 +39,7 @@
 			
 			<li class="dropdown">
 				<a class="topButton" href="">유료상영관</a>
-				<div class="dropdown-content">
+				<div class="dropdown-content switch2">
 					<a href="${pageContext.request.contextPath}/movie/payMovieList/payMovieBasic">일반영화</a>
 					<a href="${pageContext.request.contextPath}/movie/payMovieList/payMovieLow">독립영화</a>
 	  			</div>
@@ -61,9 +61,9 @@
 				<c:if test="${memberDTO.kind eq '관리자' }">
 					<span><a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/index">Admin Page</a></span>
 				</c:if>
-				<span><a class="btn btn-info" href="${pageContext.request.contextPath}/member/memberView">View</a></span>
-				<span><a class="btn btn-warning" href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></span>
-				<span><a class="btn btn-success" href="${pageContext.request.contextPath}/point/pointList">충전소</a></span>
+				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/member/memberView">View</a></span>
+				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></span>
+				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/point/pointList">충전소</a></span>
 			</c:if>
 		</div>
 	

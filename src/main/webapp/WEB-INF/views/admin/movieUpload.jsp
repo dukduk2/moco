@@ -115,7 +115,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/resources/part/header2.jspf" %>
+	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
 			<h2 style="text-align: center;">MovieUpload LIST</h2>

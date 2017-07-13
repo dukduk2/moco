@@ -42,36 +42,35 @@
 		
 	});
 </script>
-<style type="text/css">
-.contents-wrap {
-	width: 1000px;
-	margin: 0 auto;
-}
-</style>
 </head>
 <body>
-	<div class="contents-wrap">
-		<h2>AGENCY LIST</h2>
+	<%@ include file="/resources/part/header3.jspf" %>
+	<section>
+	<div class="container">
+		<h2 style="text-align: center;">AGENCY LIST</h2>
 
 		<h3>승인되지 않은 배급사</h3>
-		<!-- <button id="uncommitBtn">UNCOMMIT LIST</button> -->
+		
 		<div id="uncommitAjax">
-		<table class="table table-hover">
-		<tr>
-			<th style="height: 100px; vertical-align: middle;">num</th>
-			<th>title</th>
-			<th>director</th>
-			<th>pubdate</th>
-		</tr>
-		<c:forEach items="${list2 }" var="dto">
-			<tr>
-			<td>${dto.num }</td>
-			<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
-			<td>${dto.director }</td>
-			<td>${dto.pubdate }</td>	
-			</tr>
-		</c:forEach>
-		</table>
+			<table class="table table-hover">
+				<thead><tr class="head">
+					<td>NUM</td>
+					<td>TITLE</td>
+					<td>DIRECTOR</td>
+					<td>PUBDATE</td>
+				</tr></thead>
+
+				<tbody>
+					<c:forEach items="${list2 }" var="dto">
+						<tr>
+							<td>${dto.num }</td>
+							<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
+							<td>${dto.director }</td>
+							<td>${dto.pubdate }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 		
 		<div class="paging">
@@ -93,8 +92,8 @@
 			</c:if>
 		</div>
 
-		<h3>승인된 배급사</h3>
-		<!-- <button id="commitBtn">COMMIT LIST</button> -->
+		<h2 style="text-align: center;">승인된 배급사</h2>
+
 		<div id="commitAjax">
 		<table class="table table-hover">
 			<tr>
@@ -113,7 +112,7 @@
 	</c:forEach>
 			
 		</table>
-</div>
+	</div>
 		<div class="paging">
 			<c:if test="${pageResult1.curBlock>1 }">
 				<button class="btn">
@@ -132,31 +131,12 @@
 				</button>
 			</c:if>
 		</div>
-		<%-- <table class="table table-hover">
-		<th>num</th>
-		<th>title</th>
-		<th>director</th>
-		<th>pubdate</th>
-		<c:forEach items="${list }" var="dto">
-		<c:if test="${dto.commit eq 1 }">
-			<tr>
-			<td>${dto.num }</td>
-			<td><a href="./agencyView?num=${dto.num}">${dto.title }</a></td>
-			<td>${dto.director }</td>
-			<td>${dto.pubdate }</td>
-			
-			
-			</tr>
-			</c:if>
-		</c:forEach>
-		</table> --%>
-
-
 
 		<p>
 			<a class="btn btn-info" href="../">HOME</a>
 		</p>
 
 	</div>
+	</section>
 </body>
 </html>

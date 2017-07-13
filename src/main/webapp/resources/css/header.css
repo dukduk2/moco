@@ -16,7 +16,7 @@ header {
 .navbar {
 	width: 1500px; /* header width 같게하기 */
 	margin-bottom: 0;
-	background-color: #f4511e;
+	background-color: #808080;
 	z-index: 9999;
 	border: 0;
 	font-size: 12px !important;
@@ -40,6 +40,8 @@ header {
 	margin-right: 10px;
 	float: right;
 	text-align: right;
+	color: white;
+	font-weight: bold;
 }
 
 .modal-title, .table{
@@ -73,7 +75,7 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f4511e;
+    background-color: black;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -85,13 +87,13 @@ header {
 }
 
 .switch2 {
-	background-color: white;
+	background-color: #808080;
 	color: black !important;
 }
 
 .switch3 {
-	background-color: skyblue;
-	color: black !important;
+	background-color: black;
+	color: white !important;
 }
 
 .dropdown-content a {

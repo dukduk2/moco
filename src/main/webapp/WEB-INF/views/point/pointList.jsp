@@ -94,6 +94,7 @@
 </style>
  </head>
 <body>
+	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
 			<h2 style="text-align: center;">POINT 결제 내역 LIST</h2>
