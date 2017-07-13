@@ -12,16 +12,22 @@
 		where R between #{row.startRow} and #{row.lastRow}
 	</select>
 	
+	<!-- pointTable insert -->
 	<insert id="pointInsert" parameterType="com.moco.point.PointDTO">
 		insert into point values(NVL((select max(num) from point),0)+1, #{id}, #{kind}, #{likes}, #{cash}, #{point}, sysdate, #{benefit})	
 	</insert>
-	<update id="pointInsert2" parameterType="com.moco.member.MemberDTO">
+	<!-- member Point++ -->
+	<update id="pointInsert2" parameterType="com.moco.point.PointDTO">
 		update member set point=point+#{point} where id=#{id}
 	</update>
 	<!-- 좋아요 결제시 avaliableLikes 차감 -->
 	<update id="avaliableLikesUpdate" parameterType="com.moco.member.MemberDTO">
 		update member set avaliableLikes=#{avaliableLikes} where id=#{id}
 	</update>
+	<!-- session Update -->
+	<select id="memberOne" parameterType="java.lang.String" resultType="com.moco.member.MemberDTO">
+		select * from member where id=#{id}
+	</select>
 
 	<select id="totalCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		select count(num) from point where id=#{id}
