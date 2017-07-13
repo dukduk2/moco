@@ -137,7 +137,7 @@ h3{
 	<section>
 		<div class="rank">
 			<p style="font-size:30px; font-weight:bold;">ActorPR TOP 11</p>
-			<c:forEach items="${list }" var="list">
+			<c:forEach items="${list }" var="list" varStatus="i">
 				<div class="profile">
 
 						<a href="./actorPR/actorPRView?num=${list.num}">
