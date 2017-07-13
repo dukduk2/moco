@@ -35,7 +35,7 @@ public class MovieScheduleController {
 			String fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
 			String title = movieScheduleService.one2(movieScheduleDTO.getPnum());
 			model.addAttribute("fname", fname);
-			model.addAttribute("title", title);			
+			model.addAttribute("title", title);
 		}
 	}
 	
