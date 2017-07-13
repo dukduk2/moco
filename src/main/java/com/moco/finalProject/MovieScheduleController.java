@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +24,10 @@ public class MovieScheduleController {
 	@Autowired
 	private MovieScheduleService movieScheduleService;
 	
-	@RequestMapping(value="movieScheduleTable", method=RequestMethod.GET)
-	public void movieScheduleTable(){
-		
-	}
-	
 	// 스트리밍
 	@RequestMapping(value="movieStreaming", method=RequestMethod.GET)
-	public void movieStreaming(Model model) throws Exception{
+	public void movieStreaming(HttpSession session, Model model) throws Exception{
+		// 오늘 날짜 영화 불러오기
 		MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
 		if(movieScheduleDTO != null){
 			String fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
@@ -37,8 +35,24 @@ public class MovieScheduleController {
 			model.addAttribute("fname", fname);
 			model.addAttribute("title", title);
 		}
+		/*// 20:00~ 상영시간 까지 boolean으로 model 넣어주기
+		boolean commit = movieScheduleService.timeCheck(session, movieScheduleDTO.getPnum());
+		String message = "";
+		if(commit){
+			message = "즐거운 영화 관람 되세요.";
+		}else{
+			message = "영화 상영 시간이 아닙니다.";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("commit", commit);*/
 	}
 	
+	
+	@RequestMapping(value="movieScheduleTable", method=RequestMethod.GET)
+	public void movieScheduleTable(){
+		
+	}
 	
 	@RequestMapping(value="movieScheduleTableShow", method=RequestMethod.GET)
 	@ResponseBody

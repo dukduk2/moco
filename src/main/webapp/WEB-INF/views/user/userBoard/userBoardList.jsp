@@ -84,7 +84,7 @@
 								<input type="hidden" name="curPage" value="1">
 							</td>
 							<td>
-								<input type="button" value="Search" id="search" class="btn titleSpan">
+								<input type="button" value="Search" id="search" class="btn btn-default titleSpan">
 							</td>
 						</tr>
 					</table>				
@@ -127,13 +127,13 @@
 			<div class="paging">
 				<div class="btn-group">
 					<c:if test="${pageResult.curBlock>1}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						<input type="button" class="go btn btn-default" id="${pageResult.startNum-1}" value="[이전]">
 					</c:if>
 					<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-						<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						<input type="button" class="go btn btn-default" id="${i}" value="${i}">
 					</c:forEach>
 					<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						<input type="button" class="go btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
 			</div>
@@ -141,7 +141,7 @@
 			<!-- BTN -->
 			<div class="btnBox">
 				<c:if test="${seasonCheck && memberDTO != null}">
-					<a href="./userBoardWrite"><button class="btn"><span class="titleSpan">WRITE</span></button></a>
+					<a href="./userBoardWrite"><button class="btn btn-default"><span class="titleSpan">WRITE</span></button></a>
 				</c:if>
 			</div>
 		</div>

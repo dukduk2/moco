@@ -24,10 +24,11 @@ $(function(){
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<div class="container">
-			<h2 style="text-align: center;">MY AGENCY REQUEST</h2>
+			<h2 style="text-align: center;">My Agency Request</h2>
 			<table class="table table-hover">
 				<thead>
 					<tr class="head">
+						<td>DIRECTOR</td>
 						<td>TITLE</td>
 						<td>PUBDATE</td>
 						<td>COMMIT</td>
@@ -38,6 +39,7 @@ $(function(){
 					<c:forEach items="${list}" var="dto">
 						<%-- <c:if test="${memberDTO.name eq dto.director}"> --%>
 						<tr>
+							<td>${dto.director }</td>
 							<td><a href="./agencyView?num=${dto.num}">${dto.title}</a></td>
 							<td>${dto.pubdate}</td>
 							<c:if test="${dto.commit eq 0}">
@@ -70,7 +72,7 @@ $(function(){
 			<!-- BTN -->
 			<div class="btnBox">
 				<c:if test="${memberDTO != null}">
-					<a href="./agencyRequest"><button class="btn"><span class="titleSpan">WRITE</span></button></a>
+					<a href="./agencyRequest"><button class="btn btn-default"><span class="titleSpan">WRITE</span></button></a>
 				</c:if>
 			</div>
 		</div>

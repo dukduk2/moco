@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
 import com.moco.util.RowMaker;
@@ -17,7 +19,48 @@ public class MovieScheduleService {
 
 	@Autowired
 	private MovieScheduleDAO movieScheduleDAO;
-
+	
+	// 스트리밍 --------------------------------------------------------------------------------------------------------
+	
+	// getCurTime
+	public void getCurTime(long curTime) throws Exception{ 
+		//session.setAttribute("curTime", curTime);
+	}
+	
+	// 지금 시간 vs 20:00~영화상영시간
+	public boolean timeCheck(HttpSession session, int num) throws Exception{
+		boolean commit = false;
+		// curTime >> 20:00
+		long curTime = (Long)(session.getAttribute("curTime"));
+		// totalTime
+		long totalTime = curTime+this.getPlayTime(num);
+		// 클라이언트 시간
+		java.util.Date n = new java.util.Date();
+		long nowTime = n.getTime();
+		if(nowTime>=curTime && nowTime<=totalTime){
+			commit = !commit;
+		}
+		return commit;
+	}
+	
+	
+	// getPlayTime - pnum
+	public long getPlayTime(int num) throws Exception{
+		String playTime = "";
+		// paidMovieDTO로 basic인지 low인지 판별
+		PaidMovieDTO paidMovieDTO = movieScheduleDAO.kindGet(num);
+		// basicMovie
+		if(paidMovieDTO.getlNum() ==0){
+			playTime = movieScheduleDAO.getPlayTime(paidMovieDTO.getbNum());
+		// lowPriceMovie
+		}else{
+			playTime = movieScheduleDAO.getPlayTime2(paidMovieDTO.getlNum());
+		}
+		int play_time = Integer.parseInt(playTime.substring(0, playTime.indexOf("분")));
+		long play = play_time*1000*60*1000;
+		return play;
+	}
+	
 	// sysdateMovie
 	public MovieScheduleDTO sysdateMovie() throws Exception{
 		return movieScheduleDAO.sysdateMovie();
@@ -32,6 +75,7 @@ public class MovieScheduleService {
 		return movieScheduleDAO.one2(num);
 	}
 
+	// movie---------------------------------------------------------------------------
 	public List<MovieScheduleDTO> movieScheduleShow() throws Exception{
 		return movieScheduleDAO.movieScheduleShow();
 	}

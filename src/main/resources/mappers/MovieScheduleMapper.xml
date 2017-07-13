@@ -37,7 +37,7 @@
 		select moviedate from movieschedule where moviedate=#{moviedate}
 	</select>
 	
-	<!-- movieSchedullerOne -->
+	<!-- movieStreaming -->
 	<select id="sysdateMovie" resultType="com.moco.movieSchedule.MovieScheduleDTO">
 		select * from MOVIESCHEDULE where  moviedate = to_char(sysdate,'yyyymmdd')
 	</select>
@@ -46,6 +46,17 @@
 	</select>
 	<select id="one2" parameterType="java.lang.Integer" resultType="java.lang.String">
 		select movieschedule.title from MOVIESCHEDULE,PAIDMOVIE where MOVIESCHEDULE.pnum=#{num} and paidmovie.num=#{num}
+	</select>
+	<!-- pnum 으로 bnum인지 lnum인지 구하기 -->
+	<select id="kindGet" parameterType="java.lang.Integer" resultType="com.moco.paidMovie.PaidMovieDTO">
+		select * from paidMovie where num=#{num}
+	</select>
+	<!-- playTime -->
+	<select id="getPlayTime" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select play_time from basicMovie where num=#{num}
+	</select>
+	<select id="getPlayTime2" parameterType="java.lang.Integer" resultType="java.lang.String">
+		select play_time from lowPriceMovie where num=#{num}
 	</select>
 	
 </mapper>
