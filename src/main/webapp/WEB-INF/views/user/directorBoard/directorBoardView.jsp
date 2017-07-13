@@ -196,7 +196,7 @@
 								</div>
 								<div class="box-sub box-sub-middle">
 									<p>사용가능<br>포인트</p>
-									<fmt:formatNumber var="my_available" pattern="#,###">${sessionScope.memberDTO.avaliableLikes}</fmt:formatNumber>
+									<fmt:formatNumber var="my_available" pattern="#,###">${sessionScope.memberDTO.point}</fmt:formatNumber>
 									<p>${my_available }</p>
 								</div>
 								<div class="box-sub">
@@ -206,7 +206,7 @@
 								</div>
 							</div>
 							<div id="input-money-box-bottom">
-								<input type="number" name="money" id="money" title="${sessionScope.memberDTO.avaliableLikes}" min="0" step="10000">
+								<input type="number" name="money" id="money" title="${sessionScope.memberDTO.point}" min="0" step="10000">
 							</div>
 						</div>
 						</form>

@@ -102,33 +102,108 @@
 	<%@ include file="/resources/part/sideMenu.jspf" %>
 	<section>
 	<!-- introduce -->
+	<!-- <div id="introduce">
+		<img src="../../resources/images/directorBoard/introduce.jpg">
+		<div id="introduce-contents">
+			
+		</div>
+	</div> -->
 	<div id="intro-wrap">
+		<!-- 등록 -->
+		<div class=intro-contents>
+				<div>
+					<div class="intro-left">
+						<img src="../../resources/images/directorBoard/계약서작성.png">
+					</div>
+					<div class="intro-right" style="margin-top: 30px;">
+						<p class="intro-num">0. 시나리오펀딩 등록하기</p>
+						<div>
+							<p>펀딩 등록시 아래의 양식을 채워서 함께 업로드해주세요. </p>
+							<p>	
+								<a href="./download?fileName=planning_document.hwp">양식 다운로드</a>
+								<span> | </span>
+								<a href="./directorBoardWrite">펀딩 등록하기</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- 신청 -->
 		<div class=intro-contents>
 			<div>
 				<div class="intro-left">
-					
+					<p class="intro-num">1. 시나리오 확인</p>
+					<div>
+						<p>홈페이지에 게재된 펀딩마다 영화 제작 계획서를 다운받아 확인하실 수 있습니다. </p>
+					</div>
 				</div>
-				<div class="intro-right">
+				<div class="intro-right" style="margin-top: 30px;">
 					<img src="../../resources/images/directorBoard/구좌신청.png">
 				</div>
 			</div>
 		</div>
+		<!-- 계약서 -->
 		<div class=intro-contents>
-			
+			<div>
+				<div class="intro-left" style="margin-top: 40px;">
+					<img src="../../resources/images/directorBoard/수익금지급.png">
+				</div>
+				<div class="intro-right" style="margin-top: 60px;">
+					<p class="intro-num">2. 투자 페이지로 이동</p>
+					<div>
+						<p>영화 제작 계획서를 확인 후 '투자하기' 버튼 클릭으로 투자 페이지로 이동합니다.</p>
+					</div>
+				</div>
+			</div>
 		</div>
+		<!-- 참여금액 -->
 		<div class=intro-contents>
-			
+			<div>
+				<div class="intro-left">
+					<p class="intro-num">3. 투자금 확인 후 투자하기</p>
+					<div>
+						<p>투자 페이지에서 현재 투자액, 가능 투자액을 확인합니다.</p>
+						<p>최소 참여 투자액은 10,000원이며 10,000만원 단위로 투자하실 수 있습니다.</p>
+						<p>투자액은 모두 포인트로 결제 가능하며 투자 즉시 가용포인트에서 차감됩니다.</p>
+					</div>
+				</div>
+				<div class="intro-right" style="margin-top: 30px;">
+					<img src="../../resources/images/directorBoard/참여금액송금.png">
+				</div>
+			</div>
 		</div>
+		<!-- 모집완료 -->
 		<div class=intro-contents>
-			
+			<div>
+				<div class="intro-left" style="margin-top: 40px;">
+					<img src="../../resources/images/directorBoard/모집완료.png">
+				</div>
+				<div class="intro-right" style="margin-top: 60px;">
+					<p class="intro-num">4. 투자자 리스트 확인</p>
+					<div>
+						<p>감독님께서는 펀딩페이지에서 투자자 리스트를 확인하실 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
 		</div>
+		<!-- 투자금 -->
 		<div class=intro-contents>
-			
+			<div>
+				<div class="intro-left">
+					<p class="intro-num">5. 투자 마감</p>
+					<div>
+						<p>마감일 이전 모집금을 달성할 시, 달성 즉시 투자금액 100%가 포인트로 전환됩니다.</p>
+						<p>모집금 미달성 시, 마감일 자정에 투자자의 투자금액 100%를 포인트로 전환해드립니다.</p>
+					</div>
+				</div>
+				<div class="intro-right">
+					<img src="../../resources/images/directorBoard/투자금회수.png">
+				</div>
+			</div>
 		</div>
 	</div>
-	
-	<a href="./download?fileName=planning_document.hwp">양식 다운로드</a><br>
-	<a href="./directorBoardWrite">펀딩 등록하기</a>
+	<br>
+	<p id="invest">투자하기</p>
 	<!-- 장르 검색 -->
 	<p>-------------- genre(최대 3개까지 선택) ---------------</p> 
 			드라마<input type="checkbox" class="chx" name="genre" value="드라마">

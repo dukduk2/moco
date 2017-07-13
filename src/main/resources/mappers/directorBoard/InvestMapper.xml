@@ -15,14 +15,14 @@
 		update member set 
 		<if test="kind=='investor'">
 			<if test="flag=='minus'">
-				avaliableLikes=avaliableLikes-#{money} 
+				point=point-#{money} 
 			</if>
 			<if test="flag=='plus'">
-				avaliableLikes=avaliableLikes+#{money} 
+				point=point+#{money} 
 			</if>
 		</if>
 		<if test="kind=='director'">
-			avaliableLikes=avaliableLikes+#{totalMoney} 
+			point=point+#{totalMoney} 
 		</if>
 		where id=#{id}
 	</update>
