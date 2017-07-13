@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.util.RowMaker;
 
 @Repository
@@ -17,6 +18,20 @@ public class MovieScheduleDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String namespace = "MovieScheduleMapper.";
+	
+	// kindGet
+	public PaidMovieDTO kindGet(int num) throws Exception{
+		return sqlSession.selectOne(namespace+"kindGet", num);
+	}
+	
+	// getPlayTime - basic
+	public String getPlayTime(int num) throws Exception{
+		return sqlSession.selectOne(namespace+"getPlayTime", num);
+	}
+	// getPlayTime2 - low
+	public String getPlayTime2(int num) throws Exception{
+		return sqlSession.selectOne(namespace+"getPlayTime2", num);
+	}
 	
 	// sysdateMovie
 	public MovieScheduleDTO sysdateMovie() throws Exception{
