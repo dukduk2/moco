@@ -10,11 +10,11 @@
 		<h1>관리자 & 회원 페이지</h1>
 	</div>
 	
-	<nav class="navbar navbar-inverse" style="background-color: black" data-spy="affix" data-offset-top="197">
+	<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
 		<ul class="nav navbar-nav">
 
 			<li class="switch3">
-				<a class="fa fa-home" style="color: white !important" href="${pageContext.request.contextPath}">Home</a>
+				<a class="fa fa-home" style="color: red !important" href="${pageContext.request.contextPath}">Home</a>
 			</li>
 
 			<li>
@@ -35,7 +35,7 @@
 			<c:if test="${memberDTO ne null }">
 				<span>${memberDTO.name} 님</span>
 				<c:if test="${memberDTO.kind eq '관리자' }">
-					<span><a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/index">Admin Page</a></span>
+					<span><a class="btn btn-default adminpage" href="${pageContext.request.contextPath}/admin/index">Admin Page</a></span>
 				</c:if>
 				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/member/memberView">View</a></span>
 				<span><a class="btn btn-default" href="${pageContext.request.contextPath}/member/memberLogout">Logout</a></span>

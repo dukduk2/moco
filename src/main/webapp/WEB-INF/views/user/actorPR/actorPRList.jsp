@@ -89,8 +89,6 @@
 	margin-left: 20px;
 	display: inline-block;
 	padding: 2px;
-	background-color: black;
-	border-radius: 10px;
 }
 
 #frm{
@@ -130,11 +128,11 @@ img {
 				<table>
 					<tr>
 						<c:if test="${totalCount <= 101 && memberDTO ne null && memberDTO.kind eq '배우'}"><td>
-							<a href="./actorPRWrite"><button class="btn">Actor Apply</button></a>
+							<a href="./actorPRWrite"><button class="btn btn-default">Actor Apply</button></a>
 						</td></c:if>
 						
 						<c:if test="${memberDTO ne null }"><td>
-							<input class="btn btn-info" type="button" id="vote" value="vote">
+							<input class="btn btn-default" type="button" id="vote" value="vote">
 						</td></c:if>
 					</tr>
 				</table>
@@ -164,7 +162,7 @@ img {
 							</td>
 
 							<td>
-								<input type="button" class="btn" value="Search" id="search">
+								<input type="button" class="btn btn-default" value="Search" id="search">
 							</td>
 						</tr>
 					</table>
@@ -177,7 +175,7 @@ img {
 						<input type="hidden" name="num" value="${list.num }">
 						<div class="profile">
 							<a href="./actorPRView?num=${list.num}">
-								<button type="button" class="btn btn-info">${list.writer }
+								<button type="button" class="btn btn-default">${list.writer }
 									<span class="badge">${list.voteCount }</span>
 								</button>
 							</a> <input type="checkbox" name="vote" class="chk" value="${list.writer }" id="chk${list.num }">
