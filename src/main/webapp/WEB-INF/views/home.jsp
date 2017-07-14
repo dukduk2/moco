@@ -123,11 +123,11 @@ body {
 
 .contents {
 	width: 400px;
-	height: 500px;
+	height: 250px;
 	margin: 20px auto;
 	text-align: center;
 	font-family: 'Sofia';
-	font-size: 15px;
+	font-size: 12px;
 	font-weight: bold;
 	color: white;
 }
@@ -219,9 +219,8 @@ video{
 	float: left;
 	opacity: 0.6;
 	overflow: hidden;
-	/* background-image: url("${pageContext.request.contextPath}/resources/images/home/info-background.jpg"); */
-	background-size: cover;
-	bac
+	/* background-image: url("${pageContext.request.contextPath}/resources/images/home/info-background.jpg");
+	background-size: cover; */
 }
 
 .appear {
@@ -235,7 +234,7 @@ video{
 
 .info-title {
 	transition: .5s ease;
-	top: 370px;
+	top: 230px;
 	position: relative;
 	opacity: inherit;
 	color: white;
@@ -358,11 +357,11 @@ video {
 <!-- info -->
 	 <div id="intro" class="container">
 		<div class="event">
-			<!-- <div class="info-title">"MOVIE COMMUNICATION" 란?</div> -->
+			<div class="info-title">"MOVIE COMMUNICATION" 란?</div>
 
 			<div class="appear">
-				<div class="title"></div>
-				<!-- <div class="contents"><p>
+				<div class="title">MOVIE COMMUNICATION</div>
+				<div class="contents"><p>
 					한국독립영화는 정치적 압박에 대한 저항과 표현의 자유를 위한 투쟁속에서 자라왔습니다.<br>
 					그 가운데 독립영화는 치열한 자기 부정과 실험의 시대를 보내야했고,<br>
 					새로운 세기의 독립영화는 이전 활동의 성과를 계승하며,<br>
@@ -375,8 +374,7 @@ video {
 					제작지원사업, 배급 등의 활동을 주로 합니다.<br><br>
 					
 					뿐만 아니라 독립영화의 사회적 지위를 획득하며, 공공의 이익과 한국영화발전의 토대가 될 것을 믿어 의심치 않습니다.
-
-</p></div> -->
+				</p></div>
 				
 			</div>
 		</div>
