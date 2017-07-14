@@ -95,7 +95,7 @@ $(function(){
 	$(".noticeDelete").click(function() {
 		var id = $(this).attr("id");
 		$.get("./notice/noticeDelete?num="+id, function(data){
-			
+			location.reload();
 		});
 	});
 	
