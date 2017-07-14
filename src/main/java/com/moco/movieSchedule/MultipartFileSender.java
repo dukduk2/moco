@@ -218,7 +218,7 @@ public class MultipartFileSender {
         // Send requested file (part(s)) to client ------------------------------------------------
 
         // Prepare streams.
-        try (InputStream input = new BufferedInputStream(Files.newInputStream(filepath));
+        /*try (InputStream input = new BufferedInputStream(Files.newInputStream(filepath));
              OutputStream output = response.getOutputStream()) {
 
             if (ranges.isEmpty() || ranges.get(0) == full) {
@@ -269,7 +269,7 @@ public class MultipartFileSender {
                 sos.println();
                 sos.println("--" + MULTIPART_BOUNDARY + "--");
             }
-        }
+        }*/
 
     }
 
