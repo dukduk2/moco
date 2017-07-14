@@ -28,15 +28,15 @@ $(function(){
 	});
 	
 	$("#join").click(function(){
-		window.open("${pageContext.request.contextPath}/member/memberJoin", "actity", "width=800, height=800, left=300, top=100");
+		window.open("${pageContext.request.contextPath}/member/memberJoin", "actity", "width=800, height=850, left=300, top=100");
 	});
 	
 	$("#search_id").click(function(){
-		window.open("${pageContext.request.contextPath}/member/memberSearch?kind=id", "actity", "width=500, height=300, left=300, top=100");
+		window.open("${pageContext.request.contextPath}/member/memberSearch?kind=id", "actity", "width=600, height=300, left=300, top=100");
 	});
 	
 	$("#search_pw").click(function(){
-		window.open("${pageContext.request.contextPath}/member/memberSearch?kind=password", "actity", "width=500, height=400, left=300, top=100");
+		window.open("${pageContext.request.contextPath}/member/memberSearch?kind=password", "actity", "width=600, height=400, left=300, top=100");
 	});
 	
 

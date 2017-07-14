@@ -28,20 +28,30 @@ $(function(){
 		}
 	}).resize(); */
 });
+
+function resizeWin() {
+    resizeTo('500', '200');
+    focus();
+}
 </script>
 
 <style type="text/css">
 .button {
-	width: 100px;
-	margin: 0 auto;
+	width: 100%;
+	height: 42px;
+	float: right;
+	margin-top: 10px;
+	background-color: black;
+	color: white;
+	border-radius: 5px;
 }
 </style>
 
 </head>
-<body>
+<body onload="resizeWin()">
 	<div class="container">
-		<h2 class="title">${message}</h2>
-		<div class="button"><input type="button" id="bye" class="btn btn-primary" value="확인"></div>
+		<p class="title">${message}</p>
+		<input type="button" id="bye" class="button btn btn-primary" value="확인">
 	</div>
 </body>
 </html>
