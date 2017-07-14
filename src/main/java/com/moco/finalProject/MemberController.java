@@ -101,11 +101,8 @@ public class MemberController {
 		}
 		
 		if(memberDTO != null && permission.equals("승인")){
-			message = "Login Success";
 			
 			session.setAttribute("memberDTO", memberDTO);
-			redirectAttributes.addFlashAttribute("message", message);
-			
 			
 		} else {
 			message = "아이디/비밀번호를 확인하세요.";
