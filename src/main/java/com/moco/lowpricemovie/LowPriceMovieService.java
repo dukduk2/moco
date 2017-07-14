@@ -316,7 +316,14 @@ public class LowPriceMovieService {
 	}
 	
 	public int theaterInsert(TheaterDTO theaterDTO, String[] multi_name, Integer[] totalseat) throws Exception{
-		
-		return 0;
+		int result = 0;
+		result = theaterDAO.insert(theaterDTO);
+		for(int i=0; i<multi_name.length ; i++){
+			MultiplexDTO multiplexDTO = new MultiplexDTO();
+			multiplexDTO.setName(multi_name[i]);
+			multiplexDTO.setTotalseat(totalseat[i]);
+			result = result * multiplexDAO.insert(multiplexDTO);
+		}
+		return result;
 	}
 }

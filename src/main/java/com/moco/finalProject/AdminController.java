@@ -822,8 +822,11 @@ public class AdminController {
 		
 	}
 	@RequestMapping(value="theaterInsert", method=RequestMethod.POST)
-	public void theaterInsert(TheaterDTO theaterDTO, String detailLocation, String[] multi_name, Integer[] totalseat) throws Exception{
-		theaterDTO.setLocation(theaterDTO.getLocation()+detailLocation);
+	public String theaterInsert(TheaterDTO theaterDTO, String detailLocation, String[] multi_name, Integer[] totalseat) throws Exception{
+		theaterDTO.setLocation(theaterDTO.getLocation()+" "+detailLocation);
+		int result = lowPriceMovieService.theaterInsert(theaterDTO, multi_name, totalseat);
+		System.out.println(result);
 		
+		return "redirect:/admin/index";
 	}
 }
