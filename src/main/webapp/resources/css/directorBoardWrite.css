@@ -1,1 +1,83 @@
 @CHARSET "UTF-8";
+#notice-contents-wrap{
+	width: 80%;
+	margin: 0 auto;
+	letter-spacing: 1px;
+	color: #737373;
+	border-top: 1px solid #cccccc;
+}
+/* top */
+#notice-contents-top{
+	width: 100%;
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	float: left;
+	margin: 30px auto;
+	font-size: 15px;
+}
+#notice-contents-top th{
+	width: 300px;
+	text-indent: 80px;
+	vertical-align: top;
+}
+#notice-contents-top td{
+	vertical-align: top;
+}
+/* mid */
+#notice-contents-mid{
+	width: 49%;
+	height: 500px;
+	float: left;
+}
+#targetDate-wrap{
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+	color: #666666;
+}
+.targetDate-info{
+	text-align: center;
+	color: #666666;
+	font-size: 13px;
+}
+/* bot */
+#notice-contents-bot{
+	width: 49%;
+	height: 500px;
+	float: right;
+}
+/* Write Form */
+#writeForm{
+	width: 80%;
+	margin: 0 auto;
+	letter-spacing: 1px;
+	color: #666666;
+}
+#writeForm table{
+	width: 90%;
+	margin: 0 auto;
+}
+#writeForm input{
+	border: none;
+}
+#writeForm #title,
+#writeForm #targetDate,
+#writeForm #targetPrice,
+#writeForm #file{
+	width: 90%;
+	height: 100%;
+	margin-left: 10px;
+}
+#writeForm td, #writeForm tr{
+	border: 1px solid black;
+}
+#writeForm th{
+	width: 150px;
+	text-align: center;
+}
+#checkbox-wrap{
+	font-size: 15px;
+}
+#checkbox-wrap input{
+	margin-right: 10px;
+}

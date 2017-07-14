@@ -8,10 +8,10 @@
 	<insert id="write" parameterType="directorBoardDTO">
 		insert into directorboard
 		(num, title, writer, contents, reg_date, genre, curPrice, 
-		targetPrice, state, targetDate, fname, oname, openDate, name) 
+		targetPrice, state, targetDate, fname, oname, openDate) 
 		values
 		(directorboard_seq.nextval, #{title}, #{writer}, #{contents}, sysdate,
-		#{genre}, 0, #{targetPrice}, 1, #{targetDate}, #{fname}, #{oname}, sysdate, #{name})
+		#{genre}, 0, #{targetPrice}, 1, #{targetDate}, #{fname}, #{oname}, sysdate)
 	</insert>
 	
 	<!-- delete -->

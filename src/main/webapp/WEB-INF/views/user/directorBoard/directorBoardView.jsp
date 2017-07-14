@@ -92,16 +92,18 @@
 			</div>
 			<fmt:formatNumber var="tPrice" pattern="#,###">${boardDTO.targetPrice }</fmt:formatNumber>
 			<p id="funding-intro">이 펀딩은 <span>${tPrice}원</span>을 목표로 <span>${boardDTO.targetDate }</span>까지 진행합니다.</p>
-			<c:if test="${boardDTO.curPrice eq boardDTO.targetPrice}">
-				<p>목표금액 달성으로 조기 마감되었습니다.</p>
+		</div>
+		<div style="padding-bottom: 20px;">
+			<c:if test="${sessionScope.memberDTO.id == boardDTO.writer }">
+				<button id="deleteBtn" class="btn btn-default" title="${boardDTO.num }">펀딩 중도 포기</button>
+				<button id="viewInvestors" class="btn btn-default" title="${boardDTO.num }">투자자 리스트</button>
+			</c:if>
+			<c:if test="${boardDTO.state == 1 }">
+				<button id="goInvest" type="button" class="btn btn-default" data-toggle="modal" data-target="#myInvestModal">투자하기</button>
 			</c:if>
 		</div>
-		<c:if test="${sessionScope.memberDTO.id == boardDTO.writer }">
-			<button id="deleteBtn" class="btn btn-default" title="${boardDTO.num }">펀딩 중도 포기</button>
-			<button id="viewInvestors" class="btn btn-default" title="${boardDTO.num }">투자자 리스트</button>
-		</c:if>
-		<c:if test="${boardDTO.state == 1 }">
-			<button id="goInvest" type="button" class="btn btn-default" data-toggle="modal" data-target="#myInvestModal">투자하기</button>
+		<c:if test="${boardDTO.curPrice eq boardDTO.targetPrice}">
+			<p style="text-align: center; margin-left: 250px;">목표금액 달성으로 조기 마감되었습니다.</p>
 		</c:if>
 	</div>
 	

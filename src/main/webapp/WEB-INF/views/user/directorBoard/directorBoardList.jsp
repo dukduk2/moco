@@ -112,6 +112,7 @@
 						<p class="intro-num">0. 시나리오펀딩 등록하기</p>
 						<div>
 							<p>펀딩 등록시 아래의 양식을 채워서 함께 업로드해주세요. </p>
+							<p>펀딩 등록은 '감독'으로 가입한 회원만 가능합니다.</p>
 							<p>	
 								<a href="./download?fileName=planning_document.hwp">양식 다운로드</a>
 								<span> | </span>
@@ -202,7 +203,7 @@
 	<!-- 검색 -->
 	<table id="serch-table">
 		<tr>
-			<th>장르</th>
+			<th>장 &nbsp; &nbsp; &nbsp; 르</th>
 			<td>
 				드라마<input type="checkbox" class="chx" name="genre" value="드라마">
 				판타지<input type="checkbox" class="chx" name="genre" value="판타지">
@@ -224,7 +225,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>상태</th>
+			<th>마감상태</th>
 			<td>
 				<button class="invest_state btn btn-default" name="invest_state" value="2">전체보기</button> | 
 				<button class="invest_state btn btn-default" name="invest_state" value="1">진행중</button> | 
