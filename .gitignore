@@ -6,5 +6,3 @@ target
 src/main/webapp/META-INF
 .idea
 *.iml
-src/main/webapp/resources/upload/*
-src/main/webapp/resources/images/*
