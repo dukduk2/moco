@@ -33,7 +33,7 @@ $(function(){
 		}, function(data) {
 			$("#result").html(data);
 		})
-	})
+	});
 
 	$(".delete").click(function(){
 		var selectId = $(this).attr("id");
@@ -43,15 +43,15 @@ $(function(){
 		}, function(data) {
 			$("#result").html(data);
 		})
-	})
+	});
 	
 	$("#back").click(function(){
 		location.href="javascript:history.back()";
-	})
+	});
 	
 	$("#refreash").click(function(){
 		location.href="javascript:location.reload()";
-	})
+	});
 	
 	$("#home").click(function(){
 		location.href="../";

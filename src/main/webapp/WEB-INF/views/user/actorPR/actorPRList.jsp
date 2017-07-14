@@ -94,7 +94,6 @@
 #frm{
 	float: left;
 	width: 1150px;
-	border:1px solid gray;
 }
 
 .chk {

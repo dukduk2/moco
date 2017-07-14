@@ -356,7 +356,7 @@ video {
 
 <!-- notice -->
 		<div class="notice">
-			<h2 style="text-align: center;">NOTICE</h2>
+			<h2 style="text-align: center; color: white;">NOTICE</h2>
 	
 			<table class="table table-hover">
 				<thead><tr class="head">
@@ -368,7 +368,7 @@ video {
 				</tr></thead>
 
 				<c:forEach items="${list}" var="dto">
-					<tbody><tr class="body">
+					<tbody><tr class="body" style="color: white;">
 						<td>${dto.num}</td>
 						<td><span class="noticeView" id="${dto.num}">${dto.title}</span></td>
 						<td>${dto.writer}</td>
@@ -376,7 +376,7 @@ video {
 						<td>${dto.hit}</td>
 					</tr>
 					<tr class="noticeShowHide" id="${dto.num}View">
-						<td colspan="5">${dto.contents}<br>
+						<td colspan="5" style="color: white;">${dto.contents}<br>
 							<c:if test="${memberDTO.id eq 'admin'}">
 								<input type="button" value="수정" id="${dto.num}" class="btn btn-warning noticeUpdate">
 								<input type="button" value="삭제" id="${dto.num}" class="btn btn-danger noticeDelete">
@@ -391,22 +391,22 @@ video {
 				<div class="btn-group">
 					<div class="btn-group">
 						<c:if test="${pageResult.curBlock>1}">
-							<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+							<input type="button" class="go btn btn-default" id="${pageResult.startNum-1}" value="[이전]">
 						</c:if>
 		
 						<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-							<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+							<input type="button" class="go btn btn-default" id="${i}" value="${i}">
 						</c:forEach>
 		
 						<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-							<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+							<input type="button" class="go btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 						</c:if>
 					</div>
 				</div>
 			</div>
 
 			<c:if test="${memberDTO.id eq 'admin'}">
-				<p><input value="WRITE" type="button" class="btn btn-success noticeWrite"></p>
+				<p><input value="WRITE" type="button" class="btn btn-default noticeWrite"></p>
 			</c:if>
 		</div>
 	</div>
