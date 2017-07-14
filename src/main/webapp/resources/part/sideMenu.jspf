@@ -3,6 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sideMenu.css">
 
+<script>
+$(function(){	
+	$("#movie").click(function(){
+		window.open("${pageContext.request.contextPath}/movie/movieSchedule/movieScheduleTable", "actity", "width=1200, height=800, left=300, top=100");
+	});
+});
+</script>
+
 <div id="mySidenav" class="sidenav">
 	<a href="/finalProject/#intro" id="notice">Notice</a>
 
