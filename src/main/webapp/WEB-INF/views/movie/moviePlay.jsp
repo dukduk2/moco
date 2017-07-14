@@ -11,14 +11,20 @@
 	href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/section.css">
+<style type="text/css">
+	.movieFile{
+		margin: 0 auto;
+	}
+</style>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf"%>
 	<section>
 
-	<p><video width="800" controls>
+	<div class="movieFile"><video width="1500" controls>
 			<source src="../resources/upload/adminMovieUpload/${dto.fname}" type="video/mp4">
-		</video></p>
+		</video>
+	</div>
 	</section>
 </body>
 </html>

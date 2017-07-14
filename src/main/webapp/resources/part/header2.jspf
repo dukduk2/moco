@@ -26,11 +26,6 @@
 	
 			<li class="dropdown">
 				<a href="${pageContext.request.contextPath}/user/userBoard/userBoardList?season=all">유저 프로젝트</a>
-				<div class="dropdown-content switch1">
-					<a href="#">Link 1</a>
-					<a href="#">Link 2</a>
-					<a href="#">Link 3</a>
-	  			</div>
 			</li>
 			
 			<li class="dropdown">
