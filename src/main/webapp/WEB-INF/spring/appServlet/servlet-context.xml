@@ -63,6 +63,11 @@
 	        <mapping path="/notice/noticeDelete"/>
 	        <beans:bean class="com.moco.interceptor.AdminInterCeptor"/>
 	    </interceptor>
+	    <!-- 스트리밍 인터셉터 -->
+	    <interceptor>
+	    	<mapping path="/movie/movieSchedule/movieStreaming"/>
+	    	<beans:bean class="com.moco.interceptor.StreamingInterCeptor" />
+	    </interceptor>
 	</interceptors>
 	
 	
