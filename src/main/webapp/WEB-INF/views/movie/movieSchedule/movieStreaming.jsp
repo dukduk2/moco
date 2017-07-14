@@ -11,7 +11,9 @@
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>Insert title here</title>
 <script type="text/javascript">
-	
+	$(function() {
+		
+	});
 </script>
 <style type="text/css">
 	.video{
@@ -22,21 +24,12 @@
 </head>
 <body>
 	<div class="container">
-		<h2>${title}</h2>
-		
-		<c:if test="${commit}">
+		<h2 style="text-align: center;">${title}</h2>
 			<div>
-				<p>${message}</p>
-				<video autoplay="autoplay"  class="video">
+				<video autoplay="autoplay"  class="video" preload="metadata">
 					<source src="${ROOT}/resources/upload/adminMovieUpload/${fname}" type="video/mp4">
-				</video>	
+				</video>
 			</div>	
-		</c:if>
-		<c:if test="${!commit}">
-			<div>
-				<p>${message}</p>
-			</div>
-		</c:if>		
 	</div>
 	
 </body>
