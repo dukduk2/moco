@@ -161,25 +161,25 @@ h3{
 			</div>
 			<div id="funding-bot">
 				<div class="funding-info">
-					<img src="../resources/upload/directorBoardUpload/community1.png">
+					<img src="../resources/images/directorBoard/community1.png">
 					<p>누적 투자자 수</p>
 					<fmt:formatNumber var="totalInvestor" pattern="#,###">${totalInvestor }</fmt:formatNumber>
 					<p class="chart">${totalInvestor }명</p>
 				</div>
 				<div class="funding-info">
-					<img src="../resources/upload/directorBoardUpload/financial1.png">
+					<img src="../resources/images/directorBoard/financial1.png">
 					<p>인당 평균 누적 투자액</p>
 					<fmt:formatNumber var="avgInvestMoney" pattern="#,###">${avgInvestMoney }</fmt:formatNumber>
 					<p class="chart">${avgInvestMoney }원</p>
 				</div>
 				<div class="funding-info">
-					<img src="../resources/upload/directorBoardUpload/success2.png">
+					<img src="../resources/images/directorBoard/success2.png">
 					<p>펀딩 달성률</p>
 					<fmt:formatNumber var="chart" pattern="#.#">${chart }</fmt:formatNumber>
 					<p class="chart">${chart }%</p>
 				</div>
 				<div class="funding-info">
-					<img src="../resources/upload/directorBoardUpload/totalMoney.png">
+					<img src="../resources/images/directorBoard/totalMoney.png">
 					<p>누적 투자액</p>
 					<fmt:formatNumber var="totalInvestMoney" pattern="#,###">${totalInvestMoney }</fmt:formatNumber>
 					<p class="chart">${totalInvestMoney }만원</p>

@@ -8,7 +8,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
-<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/directorboardList.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/directorBoardList.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
@@ -101,18 +101,11 @@
 	<%@ include file="/resources/part/header2.jspf" %>
 	<%@ include file="/resources/part/sideMenu.jspf" %>
 	<section>
-	<!-- introduce -->
-	<!-- <div id="introduce">
-		<img src="../../resources/images/directorBoard/introduce.jpg">
-		<div id="introduce-contents">
-			
-		</div>
-	</div> -->
 	<div id="intro-wrap">
 		<!-- 등록 -->
 		<div class=intro-contents>
 				<div>
-					<div class="intro-left">
+					<div class="intro-left" style="margin: 20px 40px;">
 						<img src="../../resources/images/directorBoard/계약서작성.png">
 					</div>
 					<div class="intro-right" style="margin-top: 30px;">
@@ -131,7 +124,7 @@
 		<!-- 신청 -->
 		<div class=intro-contents>
 			<div>
-				<div class="intro-left">
+				<div class="intro-left" style="margin: 40px 40px;">
 					<p class="intro-num">1. 시나리오 확인</p>
 					<div>
 						<p>홈페이지에 게재된 펀딩마다 영화 제작 계획서를 다운받아 확인하실 수 있습니다. </p>
@@ -145,7 +138,7 @@
 		<!-- 계약서 -->
 		<div class=intro-contents>
 			<div>
-				<div class="intro-left" style="margin-top: 40px;">
+				<div class="intro-left" style="margin: 20px 40px;">
 					<img src="../../resources/images/directorBoard/수익금지급.png">
 				</div>
 				<div class="intro-right" style="margin-top: 60px;">
@@ -159,7 +152,7 @@
 		<!-- 참여금액 -->
 		<div class=intro-contents>
 			<div>
-				<div class="intro-left">
+				<div class="intro-left" style="margin: 20px 40px;">
 					<p class="intro-num">3. 투자금 확인 후 투자하기</p>
 					<div>
 						<p>투자 페이지에서 현재 투자액, 가능 투자액을 확인합니다.</p>
@@ -175,7 +168,7 @@
 		<!-- 모집완료 -->
 		<div class=intro-contents>
 			<div>
-				<div class="intro-left" style="margin-top: 40px;">
+				<div class="intro-left" style="margin: 20px 40px;">
 					<img src="../../resources/images/directorBoard/모집완료.png">
 				</div>
 				<div class="intro-right" style="margin-top: 60px;">
@@ -189,7 +182,7 @@
 		<!-- 투자금 -->
 		<div class=intro-contents>
 			<div>
-				<div class="intro-left">
+				<div class="intro-left" style="margin: 30px 40px;">
 					<p class="intro-num">5. 투자 마감</p>
 					<div>
 						<p>마감일 이전 모집금을 달성할 시, 달성 즉시 투자금액 100%가 포인트로 전환됩니다.</p>

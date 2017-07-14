@@ -23,6 +23,7 @@ import com.moco.directorBoard.invest.InvestDTO;
 import com.moco.directorBoard.invest.InvestService;
 import com.moco.fileTest.FileSaver;
 import com.moco.member.MemberDTO;
+import com.moco.member.MemberService;
 
 @Controller
 @RequestMapping(value="/user/directorBoard/")
@@ -31,6 +32,8 @@ public class DirectorBoardController {
 	DirectorBoardService directorBoardService;
 	@Inject
 	InvestService investService;
+	@Inject
+	MemberService memberService;
 	
 	// 양식 다운로드
 	@RequestMapping(value="download")
@@ -48,7 +51,9 @@ public class DirectorBoardController {
 
 	@RequestMapping(value="directorBoardList_ajax", method=RequestMethod.GET)
 	public void list(Model model, String chked_val, Integer chked_state, Integer sRow){
-		List<BoardDTO> ar = new ArrayList<BoardDTO>();
+		List<BoardDTO> fundingList = new ArrayList<BoardDTO>();
+		List<Map<String, Object>> mapList = new ArrayList<Map<String,Object>>();
+		
 		String genreCheck = "false";
 		int totalCount = 0;
 		int startRow = 0;
@@ -94,16 +99,25 @@ public class DirectorBoardController {
 		
 		try {
 			totalCount = directorBoardService.totalCount(map);
-			ar = directorBoardService.list(map);
+			fundingList = directorBoardService.list(map);
+			for(BoardDTO boardDTO: fundingList){
+				Map<String , Object> map2 = new HashMap<String, Object>();
+				map2.put("funding", boardDTO);
+				MemberDTO memberDTO = new MemberDTO();
+				memberDTO.setId(boardDTO.getWriter());
+				memberDTO = memberService.memberView(memberDTO);
+				map2.put("member", memberDTO);
+				mapList.add(map2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		if(ar.size()==0){
+		if(fundingList.size()==0){
 			model.addAttribute("searchMessage", "NO LIST");
 		}
 		
-		model.addAttribute("list", ar).addAttribute("lastRow", lastRow)
+		model.addAttribute("mapList", mapList).addAttribute("lastRow", lastRow)
 		.addAttribute("totalCount", totalCount);
 	}
 	
@@ -134,10 +148,13 @@ public class DirectorBoardController {
 	@RequestMapping(value="directorBoardView", method=RequestMethod.GET)
 	public void view(int num, Model model, HttpSession session){
 		DirectorBoardDTO directorBoardDTO = null;
+		MemberDTO memberDTO = new MemberDTO();
 		int countInvestors = 0;
 		int myInvestMoney = 0;
 		try {
 			directorBoardDTO = (DirectorBoardDTO) directorBoardService.view(num);
+			memberDTO.setId(directorBoardDTO.getWriter());
+			memberDTO = memberService.memberView(memberDTO);
 			countInvestors = investService.countInvestors(num);
 			Map<String, Object> map = new HashMap<String, Object>();
 			String id = ((MemberDTO)session.getAttribute("memberDTO")).getId();
@@ -149,7 +166,8 @@ public class DirectorBoardController {
 		}
 		model.addAttribute("boardDTO", directorBoardDTO)
 		.addAttribute("countInvestors", countInvestors)
-		.addAttribute("myInvestMoney", myInvestMoney);
+		.addAttribute("myInvestMoney", myInvestMoney)
+		.addAttribute("directorMemberDTO", memberDTO);
 	}
 	
 	@RequestMapping(value="deleteFunding", method=RequestMethod.GET)
