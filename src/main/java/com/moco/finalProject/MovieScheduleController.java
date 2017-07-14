@@ -1,14 +1,11 @@
 package com.moco.finalProject;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.File;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +26,6 @@ public class MovieScheduleController{
 	@Autowired
 	private MovieScheduleService movieScheduleService;
 	private static final Logger logger = LoggerFactory.getLogger(MovieScheduleController.class);
-	/*private static final String FILE_PATH = "/Final/resources/upload/adminMovieUpload";*/
 	
 	// 스트리밍
 	 @RequestMapping(value = "movieStreaming", method = RequestMethod.GET)
@@ -43,8 +39,6 @@ public class MovieScheduleController{
 	    if(movieScheduleDTO != null){
 			fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
 			title = movieScheduleService.one2(movieScheduleDTO.getPnum());
-			model.addAttribute("fname", fname);
-			model.addAttribute("title", title);
 		}
 	    logger.info("동영상 스트리밍 요청 : " + filePath + fname);
 	    
@@ -62,6 +56,10 @@ public class MovieScheduleController{
 	      // 사용자 취소 Exception 은 콘솔 출력 제외
 	      if (!e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) e.printStackTrace();
 	    }
+	    
+	    boolean commit = true;
+	    model.addAttribute("commit", commit);
+	    
 	  }
 	//////////////////////////////////////////////// END STREAMING //////////////////////////////////////////////////////
 
