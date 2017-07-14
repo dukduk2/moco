@@ -11,6 +11,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#bye").click(function(){
+		opener.location.reload();
 		window.close();
 	});
 });
