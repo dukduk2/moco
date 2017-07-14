@@ -14,7 +14,7 @@
 		var xx;
 		var dd;
 		
-		var check = false;
+		
 		
 		$('#multiplexAdd').click(function(){
 			xx = $('#xx'+num+'').val();
@@ -34,40 +34,90 @@
 		});
 		
 		$('#theaterInsert').click(function(){
-			var name = $('#name').val();
-			var location = $('#location').val();
-			var detailLocation = $('#detailLocation').val();
-			var phone = $('#phone').val();
-			var price = $('#price').val();
 			var opening_time = $('#opening_time').val();
+			var check = true;
 			
-			if(name == ''){
+			if($('#name').val() == ''){
 				alert('극장을 입력해주세요');
 				check = false;	
 			}
-			if(location == ''){
+			if($('#location').val() == ''){
+				alert('주소를 입력해주세요');
 				check = false;
 			}
-			if(detailLocation == ''){
+			if($('#detailLocation').val() == ''){
+				alert('상세주소를 입력해주세요');
 				check = false;
 			}
-			if(phone == ''){
+			if($('#phone').val() == ''){
+				alert('문의전화번호를 입력해주세요');
 				check = false;
 			}
-			if(price == ''){
+			if($('#price').val() == ''){
+				alert('예매가를 입력해주세요');
 				check = false;
 			}
 			if(opening_time == ''){
+				alert('영화시작시간을 입력해주세요');
+				check = false;
+			}else{
+				var one = opening_time.substring(0,1);
+				var two = opening_time.substring(1,2);
+				var three = opening_time.substring(2,3);
+				var four = opening_time.substring(3,4);
+				var five = opening_time.substring(4);
+				
+				var oneASC = one.charCodeAt(0);
+				var twoASC = two.charCodeAt(0);
+				var threeASC = three.charCodeAt(0);
+				var fourASC = four.charCodeAt(0);
+				var fiveASC = five.charCodeAt(0);
+
+				if(opening_time.length !=5){
+					alert("00:00 형식을 지켜주세요(ex: 13:00)");
+					check = false;
+				}
+				if(oneASC<48 || oneASC>50){
+					alert("00:00 형식을 지켜주세요(ex: 13:00)");
+					check = false;
+				}
+				if(oneASC==50){
+					if(twoASC<48 || twoASC>51){
+						alert("00:00 형식을 지켜주세요(ex: 13:00)");
+						check = false;
+					}
+				}
+				if(twoASC<48 || twoASC>57){
+					alert("00:00 형식을 지켜주세요(ex: 13:00)");
+					check = false;
+				}
+				if(threeASC!=58){
+					alert("00:00 형식을 지켜주세요(ex: 13:00)");
+					check = false;
+				}
+				if(fourASC<48 || fourASC>53){
+					alert("00:00 형식을 지켜주세요(ex: 13:00)");
+					check = false;
+				}
+				if(fiveASC<48 || fiveASC>57){
+					alert("00:00 형식을 지켜주세요(ex: 13:00)");
+					check = false;
+				}
+			}
+
+			if($('#xx0').val() == ''){
+				alert('상영관을 입력해주세요');
 				check = false;
 			}
-			/* if(opening_time != ){
-				
-			} */
-			
-			
+			if($('#dd0').val() == ''){
+				alert('좌석수를 입력해주세요');
+				check = false;
+			}
 			
 			if(check == true){
-				$('#frm').submit();
+				if(confirm("극장 정보를 입력 하시겠습니까?")){
+					$('#frm').submit();
+				}
 			}
 		});
 	});
