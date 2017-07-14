@@ -48,21 +48,27 @@ $(function(){
 	//notice -------------------------------------------------
 	
 	$(".noticeShowHide").hide();
-	var hideCheck= true;
+	/* var hideCheck= true; */
 	
 	// noticeView
 	$(".noticeView").click(function() {
 		var id = $(this).attr("id");
-		if(hideCheck){
-			$("#"+id+"View").show();
+		/* if(hideCheck){ */
+			for(i = id-10; i < id+10; i++) {
+				if(i != id){
+					$("#"+i+"View").hide();
+				} else {
+					$("#"+id+"View").show();
+				}
+			}
 			hideCheck = !hideCheck;
 			$.get("./notice/noticeView?num="+id, function(data){
 				
 			});
-		}else{
+		/* }else{
 			$("#"+id+"View").hide();
 			hideCheck = !hideCheck;	
-		}
+		} */
 	});
 	
 	/* // videoCancel
