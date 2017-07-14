@@ -111,20 +111,20 @@
 			<!-- 페이징 처리 -->
 			<div class="paging">
 				<c:if test="${pageResult.curBlock>1}">
-					<button class="btn"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
+					<button class="btn btn-default"><span class="go" id="${pageResult.startNum-1}">[이전]</span></button>
 				</c:if>
 				<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-					<button class="btn"><span class="go" id="${i}">${i}</span></button>
+					<button class="btn btn-default"><span class="go" id="${i}">${i}</span></button>
 				</c:forEach>
 				<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-					<button class="btn"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
+					<button class="btn btn-default"><span class="go" id="${pageResult.lastNum+1}">[다음]</span></button>
 				</c:if>
 			</div>
 			
 			<!-- BTN -->
 			<div class="btnBox">
-				<a href="./index"><button class="btn">Admin Index</button></a>
-				<a href="../"><button class="btn">HOME</button></a>
+				<a href="./index"><button class="btn btn-default">Admin Index</button></a>
+				<a href="../"><button class="btn btn-default">HOME</button></a>
 			</div>
 		</div>
 		

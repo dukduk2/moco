@@ -10,7 +10,6 @@
 	height: auto;
 	margin: 10px auto;
 	cursor: pointer;
-	background-color: white;
 	border-radius: 10px;
 }
 
@@ -129,7 +128,7 @@ td.bottom_right {
 	width: 157px;
 }
 
-.point {
+.movie_info {
 	font-size: 1.1em;
 	color: black;
 	font-weight: bold;

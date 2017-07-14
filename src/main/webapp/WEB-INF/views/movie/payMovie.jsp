@@ -39,7 +39,7 @@
 	margin: 0 auto;
 }
 .pay_title{
-	width: 100px;
+	width: 400px;
 	margin: 0 auto;
 }
 #btn{

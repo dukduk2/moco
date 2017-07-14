@@ -67,6 +67,13 @@
 		}
 	});
 </script>
+<style type="text/css">
+
+.searchResultWrap{
+	border:1px solid #ccc;
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>

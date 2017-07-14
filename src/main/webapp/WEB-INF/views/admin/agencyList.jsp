@@ -77,17 +77,17 @@
 			<div class="paging">
 				<div class="btn-group">
 					<c:if test="${pageResult2.curBlock>1}">
-						<input type="button" class="go2 btn btn-primary" id="${pageResult2.startNum-1}" value="[이전]">
+						<input type="button" class="go2 btn btn-default" id="${pageResult2.startNum-1}" value="[이전]">
 					</c:if>
 					<c:forEach begin="${pageResult2.startNum}" end="${pageResult2.lastNum}" var="i">
-						<input type="button" class="go2 btn btn-primary" id="${i}" value="${i}">
+						<input type="button" class="go2 btn btn-default" id="${i}" value="${i}">
 					</c:forEach>
 					<c:if test="${pageResult2.curBlock<pageResult2.totalBlock}">
-						<input type="button" class="go2 btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						<input type="button" class="go2 btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
 			</div>
-	
+			<br><br>
 			<h2 style="text-align: center;">승인된 배급사</h2>
 	
 			<div id="commitAjax">
@@ -117,13 +117,13 @@
 			<div class="paging">
 				<div class="btn-group">
 					<c:if test="${pageResult1.curBlock>1}">
-						<input type="button" class="go1 btn btn-primary" id="${pageResult1.startNum-1}" value="[이전]">
+						<input type="button" class="go1 btn btn-default" id="${pageResult1.startNum-1}" value="[이전]">
 					</c:if>
 					<c:forEach begin="${pageResult1.startNum}" end="${pageResult1.lastNum}" var="i">
-						<input type="button" class="go1 btn btn-primary" id="${i}" value="${i}">
+						<input type="button" class="go1 btn btn-default" id="${i}" value="${i}">
 					</c:forEach>
 					<c:if test="${pageResult1.curBlock<pageResult1.totalBlock}">
-						<input type="button" class="go1 btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						<input type="button" class="go1 btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
 			</div>

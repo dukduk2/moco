@@ -124,7 +124,7 @@
 				<table>
 					<tr>
 						<!-- Trigger the modal with a button -->
-						<td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">ADD</button></td>
+						<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">ADD</button></td>
 					</tr>
 				</table>
 				<!-- Modal -->
@@ -181,7 +181,7 @@
 					<table>
 						<tr>
 							<td><input type="text" class="form-control" placeholder="제목으로 검색..." name="search" style="width: 200px;"></td>
-							<td><button class="btn btn-success">SEARCH</button></td>
+							<td><button class="btn btn-default">SEARCH</button></td>
 						</tr>
 					</table>
 					<input type="hidden" name="curPage" value="1">
@@ -203,7 +203,7 @@
 						<td ><span class="videoView" id="${i.current.num}">${movie.oname}</span></td>
 						<td>${movie.price} 원</td>
 						<td>
-							<button id="${movie.fname}" class="movieDelete btn">Delete</button>
+							<button id="${movie.fname}" class="movieDelete btn btn-danger">Delete</button>
 						</td>
 					</tr>
 					<tr id="${i.current.num}TR" class="videoTR">
@@ -223,20 +223,20 @@
 			<div class="paging">
 				<div class="btn-group">
 					<c:if test="${pageResult.curBlock>1}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						<input type="button" class="go btn btn-default" id="${pageResult.startNum-1}" value="[이전]">
 					</c:if>
 					<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-						<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						<input type="button" class="go btn btn-default" id="${i}" value="${i}">
 					</c:forEach>
 					<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						<input type="button" class="go btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
 			</div>
 
 			<!-- BTN -->
 			<div class="btnBox">
-				<a href="./index"><button class="btn">Admin Index</button></a>
+				<a href="./index"><button class="btn btn-default">Admin Index</button></a>
 			</div>
 		</div>
 	</section>
