@@ -5,7 +5,7 @@
     
 <mapper namespace="MultiplexMapper">
 	<select id="list" parameterType="java.lang.Integer" resultType="com.moco.multiplex.MultiplexDTO">
-		select * from multiplex where theater_num=#{theater_num}
+		select * from multiplex where theater_num=#{theater_num} order by num asc
 	</select>
 	
 	<select id="view" parameterType="java.lang.Integer" resultType="com.moco.multiplex.MultiplexDTO">

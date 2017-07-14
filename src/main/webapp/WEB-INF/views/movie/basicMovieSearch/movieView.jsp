@@ -441,7 +441,7 @@
 			<div id="reviewResult" class=""></div>
 
 			<div class="button">
-				<c:if test="${movieKind eq 'low'}">
+				<c:if test="${movieKind eq 'low' && memberDTO.id eq 'admin'}">
 					<a class="btn btn-primary" href="theaterInsert?num=${movieDTO.num }">상영관 신청하기</a>
 				</c:if>
 	

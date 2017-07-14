@@ -14,10 +14,7 @@ public class MultiplexDAO {
 	private static final String NAMESPACE = "MultiplexMapper.";
 	
 	public List<MultiplexDTO> list(int theater_num) throws Exception{
-		List<MultiplexDTO> ar = new ArrayList<MultiplexDTO>();
-		ar = sqlSession.selectList(NAMESPACE+"list", theater_num);
-		
-		return ar;
+		return sqlSession.selectList(NAMESPACE+"list", theater_num);
 	}
 	
 	//NUM필드로
