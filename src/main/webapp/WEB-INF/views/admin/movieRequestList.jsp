@@ -90,13 +90,13 @@
 			<div class="paging">
 				<div class="btn-group">
 					<c:if test="${pageResult.curBlock>1}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						<input type="button" class="go btn btn-default" id="${pageResult.startNum-1}" value="[이전]">
 					</c:if>
 					<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-						<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						<input type="button" class="go btn btn-default" id="${i}" value="${i}">
 					</c:forEach>
 					<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						<input type="button" class="go btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
 			</div>

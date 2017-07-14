@@ -21,6 +21,9 @@
 	width:1000px;
 	margin:0 auto;
 	}
+	#savebutton{
+	float:right;
+	}
 </style>
 </head>
 <body>
@@ -46,9 +49,9 @@
 			<input type="file" name="f1" class="form-control">
 		</div>
 
-		<input type="button" value="AGENCY REQUEST" id="savebutton">
+		<input type="button" value="AGENCY REQUEST" class="btn btn-default" id="savebutton">
 	</form>
-	<a href="../"><button>HOME</button></a>
+	<a href="../"><button class="btn btn-default" >HOME</button></a>
 	</div>
 	</section>
 </body>

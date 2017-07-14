@@ -62,9 +62,10 @@ public class MemberController {
 			
 			String from = "unique3552@gmail.com";
 			String to = memberDTO.getEmail();
-			String subject = "김유진과 아이들에서 "+memberDTO.getName()+"님의 가입을 감사드립니다.";
-			String contents = "회원님께서는 "+memberDTO.getKind()+"으로 가입하셨습니다.\n"
-					+ "회원가입을 진심으로 감사드리며 최고의 서비스를 제공해드리겠습니다.";
+			String subject = "MOVIE COMMUNICATION에서 "+memberDTO.getName()+"님의 가입을 감사드립니다.";
+			String contents = "회원님께서는 ["+memberDTO.getKind()+"]회원으로 가입하셨습니다.\n"
+					+ "회원가입을 진심으로 감사드리며 최고의 서비스를 제공해드리겠습니다.\n"
+					+ "- MOVIE COMMUNICATION -";
 			mailService.sendMail(from, to, subject, contents);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -375,8 +376,10 @@ public class MemberController {
 		if(message != null){
 			String from = "unique3552@gmail.com";
 			String to = email;
-			String subject = id+"님의 비밀번호입니다.";
-			String contents = "회원님의 PW 는 "+message+" 입니다.";
+			String subject = "[MOVIE COMMUNICATION] "+id+" 님의 비밀번호입니다.";
+			String contents = "회원님의 PW 는 ["+message+"] 입니다.\n"
+					+ "본인이 아니시라면 연락바랍니다.\n"
+					+ "- MOVIE COMMUNICATION -";
 			mailService.sendMail(from, to, subject, contents);
 			model.addAttribute("message", "회원님의 비밀번호를 이메일로 전송해드렸습니다.");
 		} else if(message == null) {

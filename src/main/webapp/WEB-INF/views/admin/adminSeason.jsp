@@ -60,8 +60,8 @@ pageEncoding="UTF-8"%>
 	<section>
 		<div class="container">
 			<!-- Trigger the modal with a button -->
-			<button type="button" class="btn btn-primary btn-lg"
-				data-toggle="modal" data-target="#myModal">Season Insert</button>
+			<button type="button" class="btn btn-default btn-lg"
+				data-toggle="modal" data-target="#myModal">ADD</button>
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
@@ -135,13 +135,13 @@ pageEncoding="UTF-8"%>
 							<c:if test="${user.state == 0}">
 								<td>시즌 기간 아님</td>
 								<td>
-									<button class="btn btn-danger SeasonDelete" id="${user.num}">시즌 삭제</button>
+									<button class="btn btn-danger SeasonDelete" id="${user.num}">Delete</button>
 								</td>
 							</c:if>
 							<c:if test="${user.state == 1}">
 								<td>진행 중</td>
 								<td>
-									<button class="btn btn-danger SeasonDelete" id="${user.num}">시즌 삭제</button>
+									<button class="btn btn-danger SeasonDelete" id="${user.num}">Delete</button>
 								</td>
 							</c:if>
 						</tr>
@@ -186,13 +186,13 @@ pageEncoding="UTF-8"%>
 							<c:if test="${actor.state == 0}">
 								<td>시즌 기간 아님</td>
 								<td>
-									<button class="btn btn-danger SeasonDelete" id="${actor.num}">시즌 삭제</button>
+									<button class="btn btn-danger SeasonDelete" id="${actor.num}">Delete</button>
 								</td>
 							</c:if>
 							<c:if test="${actor.state == 1}">
 								<td>진행 중</td>
 								<td>
-									<button class="btn btn-danger SeasonDelete" id="${actor.num}">시즌 삭제</button>
+									<button class="btn btn-danger SeasonDelete" id="${actor.num}">Delete</button>
 								</td>
 							</c:if>
 						</tr>
@@ -216,8 +216,8 @@ pageEncoding="UTF-8"%>
 
 			<!-- BTN -->
 			<div class="container btnBox">
-				<a href="./index"><button class="btn">Admin Index</button></a>&nbsp;
-				<a href="../"><button class="btn">HOME</button></a>
+				<a href="./index"><button class="btn btn-default">Admin Index</button></a>&nbsp;
+				<a href="../"><button class="btn btn-default">HOME</button></a>
 			</div>
 		</div>
 

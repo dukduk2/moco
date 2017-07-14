@@ -33,6 +33,13 @@
 		
 	});
 </script>
+<style type="text/css">
+
+.searchResultWrap{
+	border:1px solid #ccc;
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
@@ -64,10 +71,10 @@
 				<span class="star-rating">
 					<span style="width: ${list.user_rating*10}%"></span>
 				</span>
-				<span class="point" style="font-size: 17px; margin-bottom: 2px;">${list.user_rating }/10</span>
-				<p><span class="point">${list.genre}</span>| <span class="point">${list.pub_date}</span> | <span class="point">${list.play_time}</span> |	<span class="point">${list.nation}</span> | <span class="point">${list.watching_rate}</span></p>
-				<p><span class="point">감독</span> ${list.director}</p>
-				<p><span class="point">주연</span> ${list.actor}</p>
+				<span class="movie_info" style="font-size: 17px; margin-bottom: 2px;">${list.user_rating }/10</span>
+				<p><span class="movie_info">${list.genre}</span>| <span class="movie_info">${list.pub_date}</span> | <span class="movie_info">${list.play_time}</span> |	<span class="movie_info">${list.nation}</span> | <span class="movie_info">${list.watching_rate}</span></p>
+				<p><span class="movie_info">감독</span> ${list.director}</p>
+				<p><span class="movie_info">주연</span> ${list.actor}</p>
 			</div>
 		</div>
 	</c:forEach>

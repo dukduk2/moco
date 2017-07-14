@@ -59,11 +59,11 @@ $(function(){
 			<div class="search_left">
 				<table>
 					<tr>
-						<td><input type="button" class="btn btn-warning" id="refreash" value="REFREASH"></td>
+						<td><input type="button" class="btn btn-default" id="refreash" value="REFREASH"></td>
 
 						<td>
 							<!-- Trigger the modal with a button -->
-							<button class="btn btn-info" data-toggle="modal" data-target="#myModal2">MOVIE ADD</button>
+							<button class="btn btn-default" data-toggle="modal" data-target="#myModal2">MOVIE ADD</button>
 					
 							<!-- Modal -->
 							<div class="modal fade" id="myModal2" role="dialog">
@@ -92,7 +92,7 @@ $(function(){
 										</div>
 					
 										<div class="modal-footer">					
-											<input type="button" id="btn" class="btn btn-success" value="등록">
+											<input type="button" id="btn" class="btn btn-default" value="등록">
 										</div>
 										</form>
 									</div>
@@ -108,7 +108,7 @@ $(function(){
 					<table>
 						<tr>
 							<td><input type="date" class="form-control" name="search" placeholder="검색"></td>
-							<td><button class="btn btn-info">검색</button></td>
+							<td><button class="btn btn-default">검색</button></td>
 						</tr>
 					</table>
 					<input type="hidden" name="curPage" value="${curPage}">
@@ -132,7 +132,7 @@ $(function(){
 							<td>${movie.title}</td>
 							<td>${movie.moviedate}</td>
 							<td>${movie.pnum}</td>
-							<td><input type="button" class="delete btn btn-danger" id="${movie.num}" value="X"></td>
+							<td><input type="button" class="delete btn btn-danger" id="${movie.num}" value="Delete"></td>
 						</tr>
 					</c:forEach>
 					</tbody>

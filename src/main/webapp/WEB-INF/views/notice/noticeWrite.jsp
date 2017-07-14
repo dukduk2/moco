@@ -42,6 +42,9 @@
 	width:1000px;
 	margin:0 auto;
 }
+#write{
+	float: right;
+}
 </style>
 </head>
 <body>
@@ -61,7 +64,7 @@
 					<textarea id="contents" name="contents" class="form-control" style="height: 300px; width: 995px;" placeholder="Enter Contents"></textarea>
 				</div>
 			
-			<input type="button" value="WRITE" id="write">
+			<input type="button" value="WRITE" id="write" class="btn btn-default">
 		</form>
 	</div>
 </body>

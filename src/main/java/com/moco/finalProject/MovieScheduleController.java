@@ -1,11 +1,13 @@
 package com.moco.finalProject;
 
+import java.io.File;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,43 +15,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.moco.movieSchedule.MovieScheduleDTO;
 import com.moco.movieSchedule.MovieScheduleService;
+import com.moco.movieSchedule.MultipartFileSender;
 
 @Controller
 @RequestMapping(value="/movie/movieSchedule/**")
-public class MovieScheduleController {
-
+public class MovieScheduleController{
+	
 	@Autowired
 	private MovieScheduleService movieScheduleService;
+	private static final Logger logger = LoggerFactory.getLogger(MovieScheduleController.class);
 	
 	// 스트리밍
-	@RequestMapping(value="movieStreaming", method=RequestMethod.GET)
-	public void movieStreaming(HttpSession session, Model model) throws Exception{
-		// 오늘 날짜 영화 불러오기
-		MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
-		if(movieScheduleDTO != null){
-			String fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
-			String title = movieScheduleService.one2(movieScheduleDTO.getPnum());
-			model.addAttribute("fname", fname);
-			model.addAttribute("title", title);
+	 @RequestMapping(value = "movieStreaming", method = RequestMethod.GET)
+	  public void getVideo(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception{
+	    String filePath = request.getSession().getServletContext().getRealPath("resources/upload/adminMovieUpload");
+	    System.out.println(filePath);
+	    String fname = "";
+	    String title = "";
+	    // 데이터 조회
+	    MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
+	    if(movieScheduleDTO != null){
+			fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
+			title = movieScheduleService.one2(movieScheduleDTO.getPnum());
 		}
-		// 20:00~ 상영시간 까지 boolean으로 model 넣어주기
-		boolean commit = true; 
-		//movieScheduleService.timeCheck(session, movieScheduleDTO.getPnum());
-		String message = "";
-		if(commit){
-			message = "즐거운 영화 관람 되세요.";
-		}else{
-			message = "영화 상영 시간이 아닙니다.";
-		}
-		
-		model.addAttribute("message", message);
-		model.addAttribute("commit", commit);
-	}
-	
-	
+	    logger.info("동영상 스트리밍 요청 : " + filePath + fname);
+	    
+	    File getFile = new File(filePath,fname);
+	  
+	    try {
+	      // 미디어 처리
+	      MultipartFileSender
+	        .fromFile(getFile)
+	        .with(request)
+	        .with(response)
+	        .serveResource();
+	      
+	    } catch (Exception e) {
+	      // 사용자 취소 Exception 은 콘솔 출력 제외
+	      if (!e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) e.printStackTrace();
+	    }
+	    
+	    boolean commit = true;
+	    model.addAttribute("commit", commit);
+	    
+	  }
+	//////////////////////////////////////////////// END STREAMING //////////////////////////////////////////////////////
+
 	@RequestMapping(value="movieScheduleTable", method=RequestMethod.GET)
 	public void movieScheduleTable(){
 		

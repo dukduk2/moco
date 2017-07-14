@@ -19,7 +19,7 @@
     	<select id="agencyCommitList" parameterType="java.util.Map" resultType="com.moco.agency.AgencyDTO">
   			select * from 
 			(select rownum R, A.* from 
-			(select * from agencyrequest where commit=1 order by num asc) A) 
+			(select * from agencyrequest where commit=1 order by num desc) A) 
 			where R between #{startRow1} and #{lastRow1}
     	</select>
     	
@@ -31,7 +31,7 @@
     	<select id="agencyUncommitList" parameterType="java.util.Map" resultType="com.moco.agency.AgencyDTO">
     		select * from 
 			(select rownum R, A.* from 
-			(select * from agencyrequest where commit=0 order by num asc) A) 
+			(select * from agencyrequest where commit=0 order by num desc) A) 
 			where R between #{startRow2} and #{lastRow2}
     	</select>
     	

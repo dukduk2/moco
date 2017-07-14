@@ -291,7 +291,7 @@ pageEncoding="UTF-8"%>
 					<tr>
 						<td class="write-tdName"><span class="titleSpan">TRAILER</span></td>
 						<td class="write-tdWrite"><input class="form-control" type="file" name="trailer_file" id="trailer_file"></td>
-						<td class="write-tdWrite btnTD"><input type="button" id="trailerX" class="btn" value="지우기"></td>
+						<td class="write-tdWrite btnTD"><input type="button" id="trailerX" class="btn btn-danger" value="지우기"></td>
 					</tr>
 					<tr>
 						<td class="write-tdName"><span class="titleSpan">PUB_DATE</span></td>
@@ -320,7 +320,7 @@ pageEncoding="UTF-8"%>
 					<tr>
 						<td class="write-tdName"><span class="titleSpan">THUMNAIL</span></td>
 						<td class="write-tdWrite"><input class="form-control" type="file" name="thumnail_file" id="thumnail_file"></td>
-						<td class="write-tdWrite btnTD"><input type="button" id="thumnailX" class="btn" value="지우기"></td>
+						<td class="write-tdWrite btnTD"><input type="button" id="thumnailX" class="btn btn-danger" value="지우기"></td>
 					</tr>
 					<tr>
 						<td class="lastTD" colspan="3">

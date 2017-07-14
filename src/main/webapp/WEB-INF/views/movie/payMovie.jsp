@@ -39,7 +39,7 @@
 	margin: 0 auto;
 }
 .pay_title{
-	width: 100px;
+	width: 400px;
 	margin: 0 auto;
 }
 #btn{
@@ -69,7 +69,7 @@
 					type="hidden" value="${kind }" name="kind">
 
 				<p>
-				<h2 class="pay_title"> ${dto.title }</h2>
+				<h2 class="pay_title text-center"> ${dto.title }</h2>
 				</p>
 				<p>
 					<img class="photo" src="${dto.thumnail }">

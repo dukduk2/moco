@@ -4,7 +4,15 @@ header {
 	width: 1500px; /* header width 같게하기 */
 	margin: 0 auto;
 }
-
+.mc_title{
+	font-family: Montserrat, sans-serif;
+	font-weight: bold;
+	font-size: 65px;
+	margin-top: 80px;
+	color: #333;
+	letter-spacing: 3px;
+	
+}
 /* ----- menu ----- */
 .container-fluid{
 	/* background-image: url("../img/header.jpg");
