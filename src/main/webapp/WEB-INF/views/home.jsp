@@ -94,6 +94,9 @@ $(function(){
 </script>
 
 <style type="text/css">
+body {
+	background-color: black;
+}
 .title {
 	width: 400px;
 	margin: 10px auto;
