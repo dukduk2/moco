@@ -60,5 +60,7 @@
 		delete theater where num=#{num}
 	</delete>
 	
-	
+	<insert id="insert" parameterType="com.moco.theater.TheaterDTO">
+		insert into theater values(NVL((select max(num) from theater), 0)+1, #{name}, #{location}, #{phone}, #{price}, #{opening_time}, #{commit})
+	</insert>
 </mapper>

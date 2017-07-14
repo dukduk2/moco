@@ -77,5 +77,7 @@ public class TheaterDAO {
 		return sqlSession.delete(NAMESPACE+"delete", num);
 	}
 	
-	public void 
+	public int insert(TheaterDTO theaterDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"insert", theaterDTO);
+	}
 }

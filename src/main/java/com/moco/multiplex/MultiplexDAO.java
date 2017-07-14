@@ -29,4 +29,8 @@ public class MultiplexDAO {
 		return sqlSession.selectOne(NAMESPACE+"unCommitList", multi_num);
 	}
 	
+	public int insert(MultiplexDTO multiplexDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"insert", multiplexDTO);
+	}
+	
 }

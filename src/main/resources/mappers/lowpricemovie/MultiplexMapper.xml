@@ -15,4 +15,8 @@
 	<select id="unCommitList" parameterType="java.lang.Integer" resultType="com.moco.multiplex.MultiplexDTO">
 		select * from multiplex where num=#{multi_num}
 	</select>
+	
+	<insert id="insert" parameterType="com.moco.multiplex.MultiplexDTO">
+		insert into multiplex values(NVL((select max(num) from multiplex), 0)+1, NVL((select max(num) from theater), 0), #{name}, #{totalseat})
+	</insert>
 </mapper>
