@@ -41,6 +41,8 @@
 
 #calendar table td.date-cell {
    height: 100px;
+   font-size: 20px;
+   font-weight: bolder;
 }
 
 #calendar table td.sun {
@@ -58,7 +60,11 @@
 #calendar table .title {
    color: black;
    font-weight: bold;
-   font-size: 20px;
+   font-size: 15px;
+}
+body {
+	background-image: url("${pageContext.request.contextPath}/resources/images/home/movieSchedule.jpg");
+	background-size: cover;
 }
 </style>
 <script type="text/javascript">
@@ -125,13 +131,14 @@
 					}
 				
 					var sClass = 'date-cell ';
-					sClass += m_oMonth.getMonth() != oStartDt.getMonth() ? 'not-this-month ' : '';
+					/* sClass += m_oMonth.getMonth() != oStartDt.getMonth() ? 'not-this-month ' : ''; */
 					sClass += i % 7 == 0 ? 'sun' : '';
 					sClass += i % 7 == 6 ? 'sat' : '';
 					
 					//---------------------------------------------------------					
 					if(m_oMonth.getMonth() != oStartDt.getMonth()){
-						arrTable.push('<td class="'+sClass+'">'	+ oStartDt.getDate() + '</td>');
+						/* arrTable.push('<td class="'+sClass+'">'	+ oStartDt.getDate() + '</td>'); */
+						arrTable.push('<td class="'+sClass+'">'	+ '</td>');
 					} else {
 						for (var j = 0; j < title.length; j++) {
 							//alert("날짜 : " + m_oMonth.getFullYear() + "/" + (m_oMonth.getMonth()+1) + "/" + oStartDt.getDate() + '<br>' + year[j] + "/" + month[j] + "/" + day[j] + " : " + title[j]);
