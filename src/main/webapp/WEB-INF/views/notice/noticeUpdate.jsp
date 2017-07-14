@@ -41,6 +41,9 @@
 	width: 1000px;
 	margin: 0 auto;
 }
+#update{
+	float: right;
+}
 </style>
 </head>
 <body>
@@ -64,7 +67,7 @@
 					</textarea>
 				</div>
 
-				<input type="button" value="UPDATE" id="update">
+				<input type="button" value="UPDATE" id="update" class="btn btn-default">
 			</form>
 		</div>
 </body>

@@ -130,19 +130,19 @@
 			<div class="paging">
 				<div class="btn-group">
 					<c:if test="${pageResult.curBlock>1}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.startNum-1}" value="[이전]">
+						<input type="button" class="go btn btn-default" id="${pageResult.startNum-1}" value="[이전]">
 					</c:if>
 					<c:forEach begin="${pageResult.startNum}" end="${pageResult.lastNum}" var="i">
-						<input type="button" class="go btn btn-primary" id="${i}" value="${i}">
+						<input type="button" class="go btn btn-default" id="${i}" value="${i}">
 					</c:forEach>
 					<c:if test="${pageResult.curBlock<pageResult.totalBlock}">
-						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
+						<input type="button" class="go btn btn-default" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
 			</div>
 
 			<br>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">포인트 충전</button>
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">포인트 충전</button>
 			<!-- modal - 충전 -->
 	 		<div class="modal fade" id="myModal" role="dialog">
 			    <div class="modal-dialog">
@@ -233,7 +233,7 @@
 			          </table>
 			        </div>
 			        <div class="modal-footer">
-			          <input type="button" class="btn btn-primary" value="충전하기" id="pointGo">
+			          <input type="button" class="btn btn-default" value="충전하기" id="pointGo">
 			        </div>
 			      </div>
 			      </form>
