@@ -43,6 +43,14 @@ $(function(){
 	$(".go").click(function() {
 		curPage = $(this).attr("id");
 		location.href = "./?curPage=" + curPage;
+		window.scrollTo(0, 9999);
+
+		/* SelectPage = $(this).attr("id");
+		$.get("/", {
+			curPage: SelectPage
+		}, function(data) {
+			$("#notice").html(data);
+		}) */
 	});
 	
 	//notice -------------------------------------------------
