@@ -78,7 +78,7 @@
 			<input type="text" name="season" value="${season }" readonly="readonly" class="form-control">
 		</div>
 
-		<input type="button" value="UPDATE" id="write">
+		<input type="button" class="btn btn-default" value="UPDATE" id="write">
 	</form>
 	</div>
 	</section>
