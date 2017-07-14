@@ -72,11 +72,13 @@ public class InvestController {
 	@RequestMapping(value="/user/directorBoard/investorList", method=RequestMethod.GET)
 	public void investorList(int pnum, Model model) {
 		int countInvestors = 0;
+		int totalMoney = 0;
 		List<InvestDTO> investorList = new ArrayList<InvestDTO>();
 		ArrayList<Map<String, Object>> ar = new ArrayList<Map<String,Object>>();
 		try {
 			countInvestors = investService.countInvestors(pnum);
 			investorList = investService.investorList(pnum);
+			totalMoney = investService.totalMoney(pnum);
 			for(InvestDTO investDTO : investorList){
 				Map<String, Object> map = new HashMap<String, Object>();
 				MemberDTO memberDTO = new MemberDTO();
@@ -92,6 +94,6 @@ public class InvestController {
 			model.addAttribute("noList", "NO LIST");
 		}
 		model.addAttribute("countInvestors", countInvestors)
-		.addAttribute("list", ar);
+		.addAttribute("list", ar).addAttribute("totalMoney", totalMoney);
 	}
 }

@@ -25,7 +25,7 @@
 		// investors list
 		$("#viewInvestors").click(function(){
 			var pnum = $(this).attr("title");
-			window.open("./investorList?pnum="+pnum, "", "width=600,height=800");
+			window.open("./investorList?pnum="+pnum, "", "width=800,height=800");
 		});
 		
 		$("#investBtn").click(function(){

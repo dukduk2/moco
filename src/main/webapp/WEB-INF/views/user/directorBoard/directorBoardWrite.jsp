@@ -8,6 +8,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/directorBoardWrite.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
@@ -93,7 +94,24 @@
 <body>
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
+	<div id="notice-contents-wrap">
+		<div id="notice-contents-top">
+			<div id="top-left">
+				
+			</div>
+			<div id="top-rigth">
+				
+			</div>
+		</div>
+		<div id="notice-contents-mid">
+			
+		</div>
+		<div id="notice-contents-bot">
+			
+		</div>
+	</div>
 	
+	<!-- form 입력 -->
 	<form action="./directorBoardWrite" method="post" enctype="multipart/form-data" name="frm">
 		<p>title <input type="text" name="title" id="title"></p>
 		<p>contents <input type="text" name="contents" id="contents"></p>
