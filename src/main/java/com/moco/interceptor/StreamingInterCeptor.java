@@ -37,10 +37,12 @@ public class StreamingInterCeptor extends HandlerInterceptorAdapter{
 		// playTime
 		MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
 		int playTime = movieScheduleService.getPlayTime(movieScheduleDTO.getPnum());
+		// 2분 더주기
+		playTime += 2;
 
-		// 영화 startTime
-		int startH = 20;
-		int startM = 0;
+		// 영화 startTime >> 19시58분으로 셋팅
+		int startH = 19;
+		int startM = 58;
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, startH);
 		calendar.set(Calendar.MINUTE, startM);
