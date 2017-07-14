@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
 
 .title {
+	top: 200px;
+	font-size: 20px;
+	font-weight: bolder;
+	color: black;
 	text-align: center;
 }
 
