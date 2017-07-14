@@ -42,10 +42,10 @@
 		select * from MOVIESCHEDULE where  moviedate = to_char(sysdate,'yyyymmdd')
 	</select>
 	<select id="one1" parameterType="java.lang.Integer" resultType="java.lang.String">
-		select PAIDMOVIE.FNAME from MOVIESCHEDULE,PAIDMOVIE where MOVIESCHEDULE.pnum=#{num} and paidmovie.num=#{num}
+		select PAIDMOVIE.FNAME from MOVIESCHEDULE,PAIDMOVIE where MOVIESCHEDULE.pnum=#{num} and paidmovie.num=#{num} and moviedate = to_char(sysdate,'yyyymmdd')
 	</select>
 	<select id="one2" parameterType="java.lang.Integer" resultType="java.lang.String">
-		select movieschedule.title from MOVIESCHEDULE,PAIDMOVIE where MOVIESCHEDULE.pnum=#{num} and paidmovie.num=#{num}
+		select movieschedule.title from MOVIESCHEDULE,PAIDMOVIE where MOVIESCHEDULE.pnum=#{num} and paidmovie.num=#{num} and moviedate = to_char(sysdate,'yyyymmdd')
 	</select>
 	<!-- pnum 으로 bnum인지 lnum인지 구하기 -->
 	<select id="kindGet" parameterType="java.lang.Integer" resultType="com.moco.paidMovie.PaidMovieDTO">

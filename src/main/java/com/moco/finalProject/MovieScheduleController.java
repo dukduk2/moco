@@ -32,12 +32,8 @@ public class MovieScheduleController {
 		if(movieScheduleDTO != null){
 			String fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
 			String title = movieScheduleService.one2(movieScheduleDTO.getPnum());
-			System.out.println(fname);
-			System.out.println(title);
 			model.addAttribute("fname", fname);
 			model.addAttribute("title", title);
-		}else{
-			System.out.println("뭐야 ㅡㅡ");
 		}
 		// 20:00~ 상영시간 까지 boolean으로 model 넣어주기
 		boolean commit = true; 

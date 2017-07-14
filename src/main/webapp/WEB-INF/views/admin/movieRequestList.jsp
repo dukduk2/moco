@@ -37,16 +37,13 @@
 		font-size: 1.2em;
 		font-weight: bold;
 	}
-	/* .uploadGo{
+	.uploadGo{
 		border: none;	
 		font-weight: bold;
 	}
 	.uploadGo:hover{
 		background-color : white;
 		text-decoration: underline;
-	} */
-	.btnBox{
-		text-align: right;
 	}
 </style>
 </head>
@@ -78,7 +75,9 @@
 				<tbody><c:forEach items="${movieRequestList}" var="movie">
 					<tr>
 						<td>${movie.num}</td>
-						<td><span id="${movie.num}" class="uploadGo boardView">${movie.title}</span></td>
+						<td>
+							<input type="button" class="uploadGo btn btn-default" id="${movie.num}" value="${movie.title}">
+						</td>
 						<td>${movie.eng_title}</td>
 						<td>${movie.genre}</td>
 						<td>${movie.director}</td>
@@ -100,12 +99,6 @@
 						<input type="button" class="go btn btn-primary" id="${pageResult.lastNum+1}" value="[다음]">
 					</c:if>
 				</div>
-			</div>
-			
-			<!-- BTN -->
-			<div class="btnBox">
-				<a href="./index"><button class="btn">Admin Index</button></a>&nbsp;&nbsp;
-				<a href="../"><button class="btn">HOME</button></a>
 			</div>
 			
 		</div>
