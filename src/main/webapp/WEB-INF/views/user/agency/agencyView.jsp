@@ -52,7 +52,7 @@ td{
 				<th>PUBDATE</th><td>${dto.pubdate }</td>
 			</tr>
 			<tr>
-				<th class="img_th">CERTIFICATE</th><td class="img_td"><img alt="" src="../../resources/upload/agency/${dto.fname }"></td>
+				<th class="img_th">CERTIFICATE</th><td class="img_td"><img alt="" src="../../resources/upload/agency/${dto.fname }" width="500"></td>
 			</tr>
 
 		
