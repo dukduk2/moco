@@ -197,7 +197,7 @@
 	</div>
 	<br>
 	<div id="invest-wrap">
-		<p id="invest">투자하기</p>
+		<p id="invest" style="letter-spacing: 1px;">투 자 하 기</p>
 	</div>
 	<!-- 검색 -->
 	<table id="serch-table">

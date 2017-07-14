@@ -201,7 +201,7 @@ MOCO의 시나리오 펀딩은 다음과 같은 내용을 담고 있습니다.<b
 									<p class="box-sub-info">최대투자<br>가능금액</p>
 									<c:set var="total_available" value="${boardDTO.targetPrice - boardDTO.curPrice}"></c:set>
 									<fmt:formatNumber var="tAvailable" pattern="#,###">${boardDTO.targetPrice - boardDTO.curPrice}</fmt:formatNumber>
-									<p id="tAavailable" title="${boardDTO.targetPrice - boardDTO.curPrice}">${tAvailable }원</p>
+									<p id="tAavailable" title="${boardDTO.targetPrice - boardDTO.curPrice}"  style="color:#e65c00;">${tAvailable }원</p>
 								</div>
 								<div class="box-sub box-sub-middle">
 									<p class="box-sub-info">사용가능<br>포인트</p>
