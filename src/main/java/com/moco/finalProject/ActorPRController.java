@@ -185,7 +185,10 @@ public class ActorPRController {
 
 
 		int totalCount=actorPRService.totalCount(map);
-
+		
+		System.out.println(totalCount+"totalCount");
+		System.out.println(season+"season");
+		
 		List<ActorPRDTO> ar = new ArrayList<ActorPRDTO>();
 		if(sort ==1){
 			ar=actorPRService.actorPRList2(map); //이름순

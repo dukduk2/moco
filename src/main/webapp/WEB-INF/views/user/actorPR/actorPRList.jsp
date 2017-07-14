@@ -133,7 +133,7 @@ img {
 			<div class="search_left">
 				<table>
 					<tr>
-						<c:if test="${totalCount < 101 && memberDTO ne null && memberDTO.kind eq '배우'}"><td>
+						<c:if test="${totalCount < 101 && memberDTO.kind eq '배우'}"><td>
 							<a href="./actorPRWrite"><button class="btn btn-default">Actor Apply</button></a>
 						</td></c:if>
 						

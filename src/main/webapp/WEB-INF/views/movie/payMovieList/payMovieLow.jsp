@@ -43,7 +43,7 @@
 		<form action="./payMovieLow" id="frm">
 			<input type="text" name="title" placeholder="영화 제목 검색">
 			<input type="hidden" name="curPage" value="1">
-			<input type="button" class="btn" value="Search" id="search">
+			<input type="button" class="btn btn-default" value="Search" id="search">
 		</form>
 	</div>
 	
