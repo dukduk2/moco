@@ -63,8 +63,10 @@
    font-size: 15px;
 }
 body {
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/movieSchedule.jpg");
 	background-size: cover;
+}
+hr{
+	border: 1px solid #ccc;
 }
 </style>
 <script type="text/javascript">
@@ -222,7 +224,7 @@ body {
 
 <body>
 	<div class="wrap">
-		<h2>이 달의 상영영화</h2>
+		<h2>이 달의 상영영화</h2><hr>
 		<div class="btn-holder">
 			<button class="btn" id="btnPrev">&lt;</button>
 			<span id="currentDate"></span>

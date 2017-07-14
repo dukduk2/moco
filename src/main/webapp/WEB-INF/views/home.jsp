@@ -152,19 +152,18 @@ video{
 }
 
 .center{
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/button_center.jpg");
 	background-size: cover;
 	margin: 0 auto;
 }
 
 .left{
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/button_left.jpg");
+	background-color: black;
 	background-size: cover;
 	float: left;
 }
 
 .right{
-	background-image: url("${pageContext.request.contextPath}/resources/images/home/button_right.jpg");
+	background-color: black;
 	background-size: cover;
 	float: right;
 }
@@ -267,7 +266,6 @@ video {
 }
 
 .noticeView:hover {
-	color: blue;
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -309,7 +307,7 @@ video {
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<button type="button" class="btn btn-default close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">LOGIN</h4>
 					</div>
 	
@@ -324,7 +322,7 @@ video {
 								</tr>
 							</table>
 	
-							<input class="btn btn-success" type="submit" value="LOGIN">
+							<input class="btn btn-default" type="submit" value="LOGIN">
 						</form>
 					</div>
 	
@@ -358,7 +356,7 @@ video {
 		<div class="notice">
 			<h2 style="text-align: center; color: white;">NOTICE</h2>
 	
-			<table class="table table-hover">
+			<table class="table table-condensed">
 				<thead><tr class="head">
 					<td>NUM</td>
 					<td>TITLE</td>
@@ -378,8 +376,8 @@ video {
 					<tr class="noticeShowHide" id="${dto.num}View">
 						<td colspan="5" style="color: white;">${dto.contents}<br>
 							<c:if test="${memberDTO.id eq 'admin'}">
-								<input type="button" value="수정" id="${dto.num}" class="btn btn-warning noticeUpdate">
-								<input type="button" value="삭제" id="${dto.num}" class="btn btn-danger noticeDelete">
+								<input type="button" value="수정" id="${dto.num}" class="btn btn-default noticeUpdate">
+								<input type="button" value="삭제" id="${dto.num}" class="btn btn-default noticeDelete">
 							</c:if>
 						</td>
 					</tr></tbody>
