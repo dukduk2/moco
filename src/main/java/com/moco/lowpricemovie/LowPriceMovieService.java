@@ -314,4 +314,9 @@ public class LowPriceMovieService {
 	public MemberDTO memberView(String id) throws Exception{
 		return reservationDAO.memberView(id);
 	}
+	
+	public int theaterInsert(TheaterDTO theaterDTO, String[] multi_name, Integer[] totalseat) throws Exception{
+		
+		return 0;
+	}
 }

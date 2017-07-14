@@ -32,6 +32,7 @@ import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
 import com.moco.season.SeasonDTO;
 import com.moco.season.SeasonService;
+import com.moco.theater.TheaterDTO;
 import com.moco.userBoard.UserBoardService;
 import com.moco.util.PageMaker;
 import com.moco.util.PageResult;
@@ -818,6 +819,11 @@ public class AdminController {
 	}
 	@RequestMapping(value="theaterInsert", method=RequestMethod.GET)
 	public void theaterInsert() throws Exception{
+		
+	}
+	@RequestMapping(value="theaterInsert", method=RequestMethod.POST)
+	public void theaterInsert(TheaterDTO theaterDTO, String detailLocation, String[] multi_name, Integer[] totalseat) throws Exception{
+		theaterDTO.setLocation(theaterDTO.getLocation()+detailLocation);
 		
 	}
 }
