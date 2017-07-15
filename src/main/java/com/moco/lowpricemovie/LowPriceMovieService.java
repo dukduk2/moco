@@ -157,7 +157,7 @@ public class LowPriceMovieService {
 				//배열인덱스 증가가 아니라 배열값의 +1 증가.
 				screenDTO.setShow_date(Date.valueOf(this.toString(ca)));
 				screenDTO.setAvailable_seat(available_seat);
-				screenDTO.setCommit(0);
+				screenDTO.setCommit(1);
 				
 				//상영시간수만큼 for문 돌려야하니까.
 				//screenDTO에 시간 세팅
