@@ -77,6 +77,17 @@
 	td{
 		height: 50px;
 	}
+	body{
+		font-family: Montserrat, sans-serif;
+	}
+	h2{
+		text-align: center;
+	}
+	.content_tb{
+		width : 700px;
+		margin : 0 auto;
+		background-color: lightgreen;
+	}
 </style>
 </head>
 <body>
@@ -84,10 +95,8 @@
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
 		<div class="container">
-			<table>
-				<tr>
-					<td colspan="2" style="width:120px;"><h2>${theater.name }</h2></td>
-				</tr>
+			<h2>${theater.name }</h2>
+			<table class="content_tb">
 				<tr>
 					<td style="width:120px;">번호</td><td>${theater.num }</td>
 				</tr>

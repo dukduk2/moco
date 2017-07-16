@@ -21,15 +21,11 @@
 	});
 </script>
 <style type="text/css">
-.titleSpan{
-	font-family: Montserrat, sans-serif;
-}
 .theaterView{
 		font-family: Montserrat, sans-serif;
 		font-weight: bold;
 		cursor: pointer;
-	}
-
+}
 </style>
 </head>
 <body>
@@ -50,10 +46,10 @@
 						<c:forEach items="${list }" var="list">
 							<c:if test="${list.commit eq 1}">
 								<tr>
-									<td>${list.num }</td>
+									<td><span class="titleSpan">${list.num }</span></td>
 									<td><span id="${list.num }" class="theaterView">${list.name}</span></td>
-									<td>${list.location}</td>
-									<td>${list.phone}</td>
+									<td><span class="titleSpan">${list.location}</span></td>
+									<td><span class="titleSpan">${list.phone}</span></td>
 								</tr>
 							</c:if>
 						</c:forEach>
