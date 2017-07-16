@@ -9,6 +9,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
+<link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
 <title>MOVIE COMMUNICATION</title>
 <script type="text/javascript">
 	$(function(){
@@ -137,22 +138,22 @@
 		<div class="container">
 			<form id="frm" action="theaterRequest" method="post" style="width: 1000px;">
 				<input type="hidden" id="movie_num" name="movie_num" value="${lowpricemovie.num }"><br>
-				<table>
+				<table style="width: 650px;">
 					<tr>
-						<td rowspan="2">영화</td>
-						<td>
+						<td class="write-tdName" rowspan="2"><span class="titleSpan">영화</span></td>
+						<td class="write-tdWrite">
 							<span><img alt="" src="${lowpricemovie.thumnail }" style="width:200px;"></span>
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="font-size: 20px; font-weight: bold;">
 							${lowpricemovie.title }
 						</td>
 					</tr>
 					<tr>
-						<td>극장</td>
+						<td class="write-tdName"><span class="titleSpan">극장</span></td>
 						<td>
-							<select id="theater" name="theater_num">
+							<select class="form-control" id="theater" name="theater_num">
 								<option value="0">선택</option>
 								<c:forEach items="${list }" var="list">
 									<option value="${list.num }">${list.name }</option>
@@ -163,16 +164,20 @@
 				</table>
 				
 				
-				<table id="multiplex">
+				<table style="width: 650px;" id="multiplex">
 					
 					
 				</table>
 				
-				<input type="button" value="상영관 추가하기" id="mul_add">
-				
-				<!-- 상영시작시간 : 영화시간+준비시간10  -->
-				
-				<input type="button" id="theaterRequest" value="상영 추가하기">
+				<table>
+					<tr>
+						<td style="padding-left: 150px;"><input class="button btn btn-default" type="button" value="상영관 추가하기" id="mul_add">
+						
+						<!-- 상영시작시간 : 영화시간+준비시간10  -->
+						
+						<input class="button btn btn-default" type="button" id="theaterRequest" value="상영 추가하기"></td>
+					</tr>
+				</table>
 			</form>
 		</div>
 	</section>
