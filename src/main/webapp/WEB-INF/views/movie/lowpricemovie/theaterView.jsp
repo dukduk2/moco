@@ -5,9 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ include file="/resources/part/bootStrap.jspf" %>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -57,7 +55,7 @@
 			if(rprice > myPoint){
 				alert('Point가 부족합니다. Point를 충전하신 후 이용해주세요');
 			}else{
-				alert('예매가 완료되었습니다.');
+				confirm('예매하시겠습니까?');
 				$('#reservationForm').submit();
 			};
 		});

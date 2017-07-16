@@ -403,7 +403,7 @@ public class LowPriceMovieController {
 		lowPriceMovieService.theaterInsert(movie_num, multi_num, start_date, end_date);
 
 
-		return "redirect:/";
+		return "redirect:/movie/movieHome";
 	}
 
 	//상영관 리스트
