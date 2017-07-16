@@ -257,11 +257,9 @@
 						<td class="write-tdName"><span class="titleSpan">오픈시간</span></td>
 						<td class="write-tdWrite"><input type="text" name="opening_time" placeholder="ex) 13:00" id="opening_time" class="form-control"></td>
 					</tr>
+
 					<tr>
-						<td colspan="2"><input type="hidden" name="commit" value="1" class="form-control"></td>
-					</tr>
-					<tr>
-						<td colspan="2"></td>
+						<td colspan="2"><hr style="border: solid black 0.5px;"></td>
 					</tr>
 
 					<tr>
@@ -274,7 +272,7 @@
 						<td class="write-tdWrite"><input type="number" name="totalseat" id="totalseat0" class="form-control"></td>
 					</tr>
 				</table>
-					
+				<input type="hidden" name="commit" value="1" class="form-control">
 				<input type="button" id="theaterInsert" class="button btn btn-primary" value="입력">
 				<input type="button" id="cancel" class="button btn btn-danger" value="취소">				
 				
