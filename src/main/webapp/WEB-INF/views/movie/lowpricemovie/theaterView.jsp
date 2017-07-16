@@ -12,7 +12,6 @@
 <script type="text/javascript">
 	$(function(){
 		var theater_price = ${theater.price};
-		
 		$('.screenAdd').click(function(){
 			var screenAdd = $(this).attr('id');
 			var multi_num = screenAdd.substring(1);
@@ -30,34 +29,66 @@
 		
 		//영화시간 클릭시 예매 이벤트 발생.);
 		$("body").on("click", ".reservationAdd", function(){
+			$('#seat').val(0);
+			$('#rprice').val(0);
 			var num = $(this).attr('id');
+			var time = $('.time'+num+'').val();
+			var multiplex_num = $('.multiplex'+num+'').val();
+			
+			var mul_span_id = '#s'+multiplex_num;
+			mul_span_id = $(mul_span_id).text();
+			
+			$('#movieTimeGo').html(time);
+			$('#multiplexGo').html(mul_span_id);
+			
 			//screen_num setting
 			$("#s_num").val(num);
 			
-			$('#seat').change(function(){
-				var seat = $(this).val();
-				if(seat < 0) { 
-					alert("양수만 입력 해 주세요"); 
-					$(this).val(0);
-				} 
-				
-				var rprice = theater_price * seat ;
-				$("#rprice").val(rprice);
-			});
 		});
+		$('#seat').change(function(){
+			var seat = $(this).val();
+			if(seat < 0) { 
+				alert("양수만 입력 해 주세요"); 
+				$(this).val(0);
+			}
+			var rprice = theater_price * seat ;
+			$("#rprice").val(rprice);
+		});
+			
 		
 		
 		//결제하기 누르면 결제 고고싱
 		$('#reservation').click(function(){
 			var myPoint = $('.myPoint').val();
+			myPoint = myPoint*1;
 			var rprice = $('#rprice').val();
+			rprice = rprice*1;
+			var rprice_check = false;
+			var point_check = false;
 			
-			if(rprice > myPoint){
-				alert('Point가 부족합니다. Point를 충전하신 후 이용해주세요');
+			
+			
+			if(rprice == 0){
+				rprice_check = false;
+				alert('예매하실 좌석수를 입력해주세요.');
 			}else{
-				confirm('예매하시겠습니까?');
-				$('#reservationForm').submit();
-			};
+				rprice_check = true;
+			}
+			
+			if(rprice>myPoint){
+				point_check = false;
+				alert('포인트를 충전해주세요.');
+			}else{
+				point_check = true;
+			}
+			
+			
+			
+			if(rprice_check && point_check){
+				if(confirm('예매하시겠습니까?')){
+					$('#reservationForm').submit();
+				}
+			}
 		});
 		
 		$('#charge').click(function(){
@@ -79,14 +110,108 @@
 	}
 	body{
 		font-family: Montserrat, sans-serif;
+		font-size: 18px;
 	}
 	h2{
+		font-size : 35px;
+		font-weight:bold;
 		text-align: center;
 	}
-	.content_tb{
-		width : 700px;
+	.total_wrap{
+		width : 800px;
 		margin : 0 auto;
-		background-color: lightgreen;
+		/* background-color: skyblue; */
+	}
+	.tb_wrap{
+		border-top : 1px solid #cccccc;
+	}
+	.content_wrap{
+		border-top : 1px solid #cccccc;
+		width : 800px;
+		margin : 0 auto;
+		/* background-color: lightgreen; */
+	}
+	.content_tb{
+		width : 800px;
+		margin : 0 auto;
+		/* background-color: lightgreen; */
+	}
+	.contents{
+		margin-top: 30px;
+	}
+	.multi_wrap{
+		display: inline-block; 
+		width:120px;
+		text-align: center;
+		/* background-color: #808080; */
+	 	color : black;
+	 	font-size: 19px;
+	 	font-weight: bold;
+	}
+
+	.multi{
+		display:inline-block;
+		width: 150px;
+		text-align: center;
+		cursor: pointer;
+	}
+	.screenInfo{
+		display: inline-block;
+	}
+	.movieInfo{
+		display: inline-block;
+		text-align: center;
+	}
+	.screenTime{
+		display: inline-block;
+		float: right;
+	}
+	.reservationAdd{
+		width : 90px;
+	}
+	 .td_name{
+	 	width:270px;
+	 	/* background-color: #808080; */
+	 	color : black;
+	 	text-align: center;
+	 	font-size: 19px;
+	 	font-weight: bold;
+	 }
+	 .td_write{
+	 	text-align: center;
+	 }
+	 .btn_wrap{
+	 	text-align: center;
+	 	height : 70px;
+	 	margin-top:30px;
+	 	border-top : 1px solid #cccccc;
+	 }
+	 #theaterDelete{
+	 	margin-top: 20px;
+	 }
+	 .modalTable{
+	 	width : 100%;
+		max-width : 100%;
+		margin-bottom: 20px;
+		background-color: transparent;
+		border-spacing : 0;
+		border-collapse : collapse;
+		border-color: grey;
+		vertical-align: middle;	
+	 }
+	.modal_tr{
+		display: table-row;
+		vertical-align: middle;
+		border-color: inherit;
+	}
+	.modal_td{
+		padding: 8px;
+	 	line-height: 1.42857143;
+	 	vertical-align: middle;
+	 	border-top: 1px solid #ddd;
+	 	font-family: Montserrat, sans-serif;
+		font-size: 1.1em;
+		font-weight: bold;
 	}
 </style>
 </head>
@@ -95,42 +220,41 @@
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
 		<div class="container">
-			<h2>${theater.name }</h2>
-			<table class="content_tb">
-				<tr>
-					<td style="width:120px;">번호</td><td>${theater.num }</td>
-				</tr>
-				<tr>
-					<td style="width:120px;">주소</td><td>${theater.location }</td>
-				</tr>
-				<tr>
-					<td style="width:120px;">가격</td><td>${theater.price }</td>
-				</tr>
-				<tr>
-					<td style="width:120px;">오픈시간</td><td>${theater.opening_time }</td>
-				</tr>
-				<tr>
-					<td style="width:120px;">문의전화</td><td>${theater.phone }</td>
-				</tr>
-				<tr>
-					<td>상영관</td>
-				</tr>
-			</table>
-			
-			
-			<br>
-			<c:forEach items="${multiplexList }" var="list">
-				<p><span id="s${list.num}" class="screenAdd">${list.name}</span></p>
-				<div id="result${list.num}"></div>
-				<br>
-			</c:forEach>
-			
-			<c:if test="${memberDTO.id eq 'admin'}">
-				<div>
-					<input type="button" id="theaterDelete" value="극장 삭제">
+			<div class="total_wrap">
+				<div class="tb_wrap">
+					<h2>${theater.name }</h2>
+					<table class="content_tb">
+						<tr>
+							<td class="td_name">LOCATION</td><td class="td_write" colspan="3">${theater.location }</td>
+						</tr>
+						<tr>
+							<td class="td_name">PRICE</td><td class="td_write" colspan="3">${theater.price }원</td>
+						</tr>
+						<tr>
+							<td class="td_name">OPEN TIME</td><td class="td_write" colspan="3">${theater.opening_time }</td>
+						</tr>
+						<tr>
+							<td class="td_name">PHONE</td><td class="td_write" colspan="3">${theater.phone }</td>
+						</tr>
+					</table>
 				</div>
-			</c:if>
-			
+				<br>
+				<div class="content_wrap">
+					<c:forEach items="${multiplexList }" var="list">
+						<div class="contents">
+							<div class="multi_wrap"><span>상영관</span></div>
+							<div class="multi"><span id="s${list.num}" class="screenAdd">${list.name}</span></div>
+							<div id="result${list.num}" class="screenInfo"></div>
+						</div>
+					</c:forEach>
+				</div>
+				
+				<div class="btn_wrap">
+					<c:if test="${memberDTO.id eq 'admin'}">
+						<input type="button" id="theaterDelete" class="btn btn-default" value="극장 삭제">
+					</c:if>
+				</div>
+			</div>
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
@@ -141,23 +265,43 @@
 							<h4 class="modal-title">영화좌석 예매</h4>
 						</div>
 			        	<div class="modal-body">
-			        		<table>
-			        			<tr><td></td></tr>
-			        			<tr><td>극장  ${theater.name }</td></tr>
-			        			<tr><td>상영관  </td></tr>
-			        			<tr><td>상영시간  </td></tr>
-			        			<tr><td>영화금액  ${theater.price }</td></tr>
-			        		</table>
-			        		<hr>
 			        		<form action="reservationInsert" id="reservationForm" method="post">
+					        	<input type="hidden" name="screen_num" id="s_num">
+				        		<table class="modalTable">
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">THEATER</td>
+				        				<td class="modal_td">${theater.name}</td>
+				        			</tr>
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">MULTIPLEX</td>
+				        				<td class="modal_td" id="multiplexGo"></td>	
+				        			</tr>
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">상영시간</td>
+				        				<td class="modal_td" id="movieTimeGo"></td>
+				        			</tr>
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">영화금액</td>
+				        				<td class="modal_td">${theater.price}원</td>	
+				        			</tr>
+				        		
 			        			<!-- num은 자동생성 -->
-			        			ID : <input type="text" name="id" value="${memberDTO.id}" readonly="readonly">
-				        		<input type="hidden" name="screen_num" id="s_num">
-			        			<table>
-				        			<tr><td>예매할 좌석수 : <input type="number" name="seat" id="seat"></td></tr>
-				        			<tr><td>결제할 금액 : <input type="number" name="rprice" readonly="readonly" id="rprice"></td></tr>
-				        			<tr><td>사용가능한 POINT : <input type="number" class="myPoint" value="${memberDTO.point}" readonly="readonly"></td></tr>
-				        			<tr><td><input type="button" class="btn btn-default" value="Point충전" id="charge"></td></tr>
+			        				<tr class="modal_tr">
+			        					<td class="modal_td">ID</td>
+			        					<td class="modal_td"><input type="text" name="id" value="${memberDTO.id}" readonly="readonly"></td>
+			        			
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">예매할 좌석수</td>
+				        				<td class="modal_td"><input type="number" name="seat" id="seat"></td>
+				        			</tr>
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">결제할 금액</td>
+				        				<td class="modal_td"><input type="number" name="rprice" readonly="readonly" id="rprice"></td>
+				        			</tr>
+				        			<tr class="modal_tr">
+				        				<td class="modal_td">사용가능한 POINT</td>
+				        				<td class="modal_td"><input type="number" class="myPoint" value="${memberDTO.point}" readonly="readonly"></td>
+				        			</tr>
 				        		</table>        		
 			        		
 				        		
@@ -165,6 +309,7 @@
 			        		</form>
 			        	</div>
 			        	<div class="modal-footer">
+			        		<input type="button" class="btn btn-default" value="Point충전" id="charge">
 							<input type="button" id="reservation" class="btn btn-default" data-dismiss="modal" value="결제하기">
 			        	</div>
 					</div>

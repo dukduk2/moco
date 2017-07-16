@@ -19,33 +19,9 @@
 		});
 		
 		// view - Ajax
-		$(".theaterName").click(function(){
+		$(".boardView").click(function(){
 			var num = $(this).attr("id");
-			$.post("./screenCommit_ajax",
-				{
-					num : num
-				},
-				function(data){
-					$("#screenView").html(data);
-				});
-		});
-		
-		// 승인(commit=0 -> commit=1)
-		$("#screenView").on("click", "#confirm",function(){
-			var num = $("#Snum").val();
-			alert("승인");
-			$.post("./screenCommit", {num:num}, function(data){
-					location.reload();
-			});
-		});
-		
-		// refuse - 삭제
-		$("#screenView").on("click", "#refuse",function(){
-			var num = $("#Snum").val();
-			alert("승인 거절");
-			$.post("./screenUnCommit", {num:num}, function(data){
-				location.reload();
-			});
+			location.href = '../movie/lowpricemovie/theaterView?num='+num;
 		});
 		
 	});
@@ -77,24 +53,28 @@
 			<h3 class="title">SCREEN MANAGEMENT</h3>
 			<br>
 			<table class="table table-hover">
-				<tr>
-					<td>NUM</td>
-					<td>NAME</td>
-					<td>LOCATION</td>
-					<td>OPENNING TIME</td>
-					<td>PRICE</td>
-					<td>PHONE</td>
-				</tr>
-				<c:forEach items="${list}" var="dto">
-					<tr>
-						<td>${dto.num}	</td>
-						<td><span id="${dto.num}" class="theaterName" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
-						<td>${dto.location}</td>
-						<td>${dto.opening_time }</td>
-						<td>${dto.price}</td>
-						<td>${dto.phone}</td>
+				<thead>
+					<tr class="head">
+						<td><span class="titleSpan">NUM</span></td>
+						<td><span class="titleSpan">NAME</span></td>
+						<td><span class="titleSpan">LOCATION</span></td>
+						<td><span class="titleSpan">OPENNING TIME</span></td>
+						<td><span class="titleSpan">PRICE</span></td>
+						<td><span class="titleSpan">PHONE</span></td>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.num}	</td>
+							<td><span id="${dto.num}" class="boardView" data-toggle="modal" data-target="#myModal">${dto.name}</span></td>
+							<td>${dto.location}</td>
+							<td>${dto.opening_time }</td>
+							<td>${dto.price}</td>
+							<td>${dto.phone}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 			
 			<!-- modal Ajax -->
@@ -124,7 +104,6 @@
 			<!-- BTN -->
 			<div class="btnBox">
 				<a href="../movie/lowpricemovie/movieSearchHome"><button class="btn btn-default">상영 추가하기</button></a>
-				
 			</div>
 		</div>
 		

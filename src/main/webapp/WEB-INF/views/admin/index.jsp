@@ -100,16 +100,14 @@
 					<a href="./screenCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/screen_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./screenCommit">상영 관리</a></span>
-					<span class="badge">${screenUnCommitCount}</span>			
+					<span class="titleSpan"><a href="./screenCommit">상영 관리</a></span>	
 				</td>
 				<!-- theater 승인 -->
 				<td class="imgTD">
 					<a href="./theaterCommit" class="imgATag"><img alt="" src="../resources/adminIndexIcon/theater_icon.png" class="iconIMG"></a>
 				</td>
 				<td class="contentsTD">
-					<span class="titleSpan"><a href="./theaterInsert">극장 추가</a></span>
-					<span class="badge">${theaterUnCommitCount}</span>
+					<span class="titleSpan"><a href="../movie/lowpricemovie/theaterList">극장 관리</a></span>
 				</td>
 			</tr>
 			<tr class="tableTR">

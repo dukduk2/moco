@@ -18,6 +18,9 @@
 			var num = $(this).attr('id');
 			location.href='./theaterView?num='+num;
 		});
+		$('#theaterInsert').click(function(){
+			location.href='../../admin/theaterInsert';
+		});
 	});
 </script>
 <style type="text/css">
@@ -34,7 +37,7 @@
 		<div class="container">
 			<h2 style="text-align: center;">Theater List</h2>
 			
-			<div class="tb_wrap">
+			<div class="tb_wrap" style="text-align: right;">
 				<table class="table table-hover">
 					<thead>
 						<tr class="head">
@@ -55,6 +58,9 @@
 						</c:forEach>
 					</thead>
 				</table>
+				<c:if test="${memberDTO.id eq 'admin' }">
+					<input type="button" class="button btn btn-default" id="theaterInsert" value="극장 추가하기" style="margin-top: 20px;">
+				</c:if>
 			</div>
 		</div>
 	</section>

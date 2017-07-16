@@ -278,7 +278,7 @@ public class LowPriceMovieService {
 	public Map<String, Object> unCommitScreenTheater(int curPage, int perPage) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		//commit=0인 screenDTO
+		//commit=1인 screenDTO
 		List<ScreenDTO> screens = screenDAO.unCommitList();
 		
 		//screens의 multiplex num들

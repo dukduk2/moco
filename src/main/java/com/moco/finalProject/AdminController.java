@@ -72,10 +72,6 @@ public class AdminController {
 		model.addAttribute("agencyCommitCount", agencyService.agencyUncommitCount());
 		// movieRequest - 요청 중
 		model.addAttribute("movieRequest", movieRequestService.movieRequestTotalCount());
-		//theaterRequest - 대기중
-		model.addAttribute("theaterUnCommitCount", lowPriceMovieService.theaterUncommitCount());
-		// screenRequest - 대기중
-		model.addAttribute("screenUnCommitCount", lowPriceMovieService.screenUncommitCount());
 	}
 
 	// movieRequest
@@ -803,8 +799,8 @@ public class AdminController {
 			perPage = 10;
 		}
 		Map<String, Object> map = lowPriceMovieService.unCommitScreenTheater(curPage, perPage);
-		
-		model.addAttribute("list", map.get("list"));
+		System.out.println(((List<TheaterDTO>)map.get("list")).size());
+		model.addAttribute("list", ((List<TheaterDTO>)map.get("list")));
 		model.addAttribute("pageResult", map.get("pageResult"));
 	}
 	@RequestMapping(value="screenCommit_ajax", method=RequestMethod.POST)
