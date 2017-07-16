@@ -14,27 +14,117 @@
 	$(function(){
 		var movie_num = $("#movie_num").val();
 		var theater_num = 0;
-		var multi_num = 0;
+		var count = 1;
+		var size = 0;
+		
+		var theater_check = false;
+		var multiplex_check = true;
+		
 		
 		$("#theater").change(function(){
+			count = 1;
 			theater_num = $(this).val();
-			
-			$.post("multiplexList_ajax", {theater_num:theater_num}, function(data){
-				$("#multiplex").html(data);
-			});
+			if(theater_num != 0){
+				theater_check = true;
+				$.post("multiplexList_ajax", {theater_num:theater_num}, function(data){
+					$("#multiplex").html(data);
+				});
+			}else{
+				$("#multiplex").html("");
+				theater_check = false;
+			}
 		});
 		
-		$("#multiplex").change(function(){
-			multi_num = $(this).val();
+		$('body').on("change", ".multiplexList", function(){
+			var multi_num = $(this).val();
+			size = $("#size").val(); 
+			var m = document.getElementsByName("multi_num");
+			
+			if(multi_num == 0){
+				multiplex_check = false;
+			}else{
+				loop:
+				for(var i=0; i<m.length ;i++){
+					for(var j=0; j<i; j++){
+						if(m[i].value == m[j].value){
+							multiplex_check = false;
+							alert("이미 선택된 상영관입니다.");
+							break loop;
+						}else{
+							multiplex_check = true;
+						}
+					}
+				}
+			}
+			
 			
 		});
+		
 		
 		$("#mul_add").click(function(){
-			$.post("multiplexList_ajax", {theater_num:theater_num}, function(data){
-				$("#multiplex").append(data);
-			});
+			var start_date = $('#start_date').val();
+			var end_date = $('#end_date').val();
+			size = $("#size").val();
+			count++;
+						
+			if(theater_num != 0 && size >= count && start_date != '' && end_date != ''){
+				$.post("multiplexList_ajax", {theater_num:theater_num}, function(data){
+					$("#multiplex").append(data);
+				});
+			}else if(theater_num == 0){
+				count--;
+				alert("극장을 선택해주세요");
+			}else if(size < count){
+				count--;
+				alert("더 이상 추가할 상영관이 존재하지 않습니다.");
+			}else if(start_date == ''){
+				count--;
+				alert("상영시작일을 입력해주세요");
+			}else if(end_date == ''){
+				count--;
+				alert("상영종료일을 입력해주세요");
+			}
 		});
 		 
+		$("#theaterRequest").click(function(){
+			
+			
+			size = $("#size").val();
+			var s = document.getElementsByName("start_date");
+			var e = document.getElementsByName("end_date");
+			
+			var s_check = 1;
+			var e_check = 1;
+ 			
+ 			
+			for(var i=0; i<s.length ; i++){
+				if(s[i].value == ''){
+					s_check = s_check*0;
+				}
+				if(e[i].value == ''){
+					e_check = e_check*0;
+				}
+			}
+			
+			
+			
+			
+			if(theater_check && multiplex_check && s_check==1 && e_check==1){
+				if(confirm("상영 정보를 추가하시겠습니까?")){
+					$('#frm').submit();
+				}
+			}else if(!theater_check){
+				alert("극장을 선택해주세요");
+			}else if(!multiplex_check){
+				alert("상영관을 다시 선택해주세요");
+			}else if(s_check!=1){
+				alert("상영시작일을 입력해주세요");
+			}else if(e_check!=1){
+				alert("상영종료일을 입력해주세요");
+			}else{
+				alert("상영을 추가하실 수 없습니다");
+			}
+		});
 		
 	});
 </script>
@@ -45,44 +135,44 @@
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
 		<div class="container">
-			<form action="theaterRequest" method="post" style="width: 1000px;">
+			<form id="frm" action="theaterRequest" method="post" style="width: 1000px;">
 				<input type="hidden" id="movie_num" name="movie_num" value="${lowpricemovie.num }"><br>
 				<table>
 					<tr>
+						<td rowspan="2">영화</td>
 						<td>
 							<span><img alt="" src="${lowpricemovie.thumnail }" style="width:200px;"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							영화 제목 : ${lowpricemovie.title }
+							${lowpricemovie.title }
 						</td>
 					</tr>
 					<tr>
 						<td>극장</td>
 						<td>
 							<select id="theater" name="theater_num">
-								<option>선택</option>
+								<option value="0">선택</option>
 								<c:forEach items="${list }" var="list">
 									<option value="${list.num }">${list.name }</option>
 								</c:forEach>
 							</select>
 						</td>
 					</tr>
-					<tr>
-						<td>상영관</td>
-					</tr>
-					
-					<tr id="multiplex">
-						
-					</tr>
 				</table>
 				
-				<input type="button" value="add" id="mul_add">
+				
+				<table id="multiplex">
+					
+					
+				</table>
+				
+				<input type="button" value="상영관 추가하기" id="mul_add">
 				
 				<!-- 상영시작시간 : 영화시간+준비시간10  -->
 				
-				<button>insert</button>
+				<input type="button" id="theaterRequest" value="상영 추가하기">
 			</form>
 		</div>
 	</section>

@@ -847,6 +847,26 @@ public class AdminController {
 		List<MultiplexDTO> ar =lowPriceMovieService.multiplexList(theater_num);
 
 		model.addAttribute("list", ar);
-
+		model.addAttribute("size", ar.size());
 	}
+	@RequestMapping(value="theaterRequest", method=RequestMethod.POST)
+	public String insert(Integer movie_num, Integer[] multi_num, Date[] start_date, Date[] end_date, Model model) throws Exception{
+		System.out.println("movie_num : "+movie_num);
+		System.out.println("multi_num : "+multi_num);
+		System.out.println("start_date : "+start_date);
+		System.out.println("last_date : "+end_date);
+		System.out.println("=========================");
+
+		for(int i=0; i<multi_num.length ; i++){
+			System.out.println(multi_num[i]);
+			System.out.println(start_date[i]);
+			System.out.println(end_date[i]);
+		}
+		lowPriceMovieService.theaterInsert(movie_num, multi_num, start_date, end_date);
+
+
+		return "redirect:/admin/index";
+	}
+	
+	
 }

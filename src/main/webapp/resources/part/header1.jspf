@@ -30,12 +30,7 @@
 			</li>
 			
 			<li class="dropdown">
-				<a class="topButton" href="">독립영화상영관</a>
-				<div class="dropdown-content switch2">
-					<a href="${pageContext.request.contextPath}/movie/lowpricemovie/theaterList">상영관 리스트</a>
-					<a href="#">Link 2</a>
-					<a href="#">Link 3</a>
-	  			</div>
+				<a href="${pageContext.request.contextPath}/movie/lowpricemovie/theaterList">독립영화상영관</a>
 			</li>
 			
 			<li class="dropdown">
