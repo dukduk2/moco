@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/resources/part/bootStrap.jspf" %>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/section.css">
 <link rel="styleSheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
@@ -33,7 +34,7 @@
 				alert("상영관과 좌석수를 입력해주세요");
 			}else{
 				num++;
-				$('#m').append('<tr class="t'+num+'"><td class="write-tdName"><span class="titleSpan">상영관명</span></td><td class="write-tdWrite"><input type="text" id="multi_name'+num+'" name="multi_name" class="form-control"></td><td><span id="'+num+'" class="s">x</span></td></tr><tr class="t'+num+'"><td class="write-tdName"><span class="titleSpan">총 좌석수</span></td><td class="write-tdWrite"><input type="number" id="totalseat'+num+'" name="totalseat" class="form-control"></td></tr>');
+				$('#m').append('<tr class="t'+num+'"><td class="write-tdName"><span class="titleSpan">MULTIPLEX</span></td><td class="write-tdWrite"><input type="text" id="multi_name'+num+'" name="multi_name" class="form-control"></td><td><span id="'+num+'" class="s">x</span></td></tr><tr class="t'+num+'"><td class="write-tdName"><span class="titleSpan">TOTAL SEAT</span></td><td class="write-tdWrite"><input type="number" id="totalseat'+num+'" name="totalseat" class="form-control"></td></tr>');
 			}
 		});
 		
@@ -224,6 +225,9 @@
 		color: white;
 		border-radius: 5px;
 	}
+	.write-tdName{
+		width : 300px;
+	}
 </style>
 </head>
 <body>
@@ -234,27 +238,27 @@
 			<form id="frm" action="theaterInsert" method="post" style="width : 1000px;">
 				<table id="m" style="width : 1000px;">
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">극장</span></td>
+						<td class="write-tdName"><span class="titleSpan">THEATER</span></td>
 						<td class="write-tdWrite"><input type="text" name="name" id="name" class="form-control"></td>
 					</tr>
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">주소</span></td>
+						<td class="write-tdName"><span class="titleSpan">LOCATION</span></td>
 						<td class="write-tdWrite"><input type="text" name="location" id="location" class="form-control"></td>
 					</tr>
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">상세주소</span></td>
+						<td class="write-tdName"><span class="titleSpan">DETAIL LOCATION</span></td>
 						<td class="write-tdWrite"><input type="text" name="detailLocation" id="detailLocation" class="form-control"></td>
 					</tr>
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">문의전화</span></td>
+						<td class="write-tdName"><span class="titleSpan">PHONE</span></td>
 						<td class="write-tdWrite"><input type="text" name="phone" id="phone" class="form-control"></td>
 					</tr>
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">가격</span></td>
+						<td class="write-tdName"><span class="titleSpan">PRICE</span></td>
 						<td class="write-tdWrite"><input type="number" name="price" id="price" class="form-control"></td>
 					</tr>
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">오픈시간</span></td>
+						<td class="write-tdName"><span class="titleSpan">OPEN TIME</span></td>
 						<td class="write-tdWrite"><input type="text" name="opening_time" placeholder="ex) 13:00" id="opening_time" class="form-control"></td>
 					</tr>
 
@@ -263,12 +267,12 @@
 					</tr>
 
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">상영관</span></td>
+						<td class="write-tdName"><span class="titleSpan">MULTIPLEX</span></td>
 						<td class="write-tdWrite"><input type="text" name="multi_name" id="multi_name0" class="form-control"></td>
 						<td class="write-tdWrite btnTD"><input type="button" id="multiplexAdd" class="button btn btn-primary" value="상영관 추가" style="background-color: black;"></td>
 					</tr>
 					<tr>
-						<td class="write-tdName"><span class="titleSpan">좌석수</span></td>
+						<td class="write-tdName"><span class="titleSpan">TOTAL SEAT</span></td>
 						<td class="write-tdWrite"><input type="number" name="totalseat" id="totalseat0" class="form-control"></td>
 					</tr>
 				</table>
