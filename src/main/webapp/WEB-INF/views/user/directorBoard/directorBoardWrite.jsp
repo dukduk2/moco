@@ -170,7 +170,7 @@
 						<p>영화를 관람하신 분들과 사회에 어떤 메시지를 전할 수 있을까요?</p>
 						<p>이 영화가 제작되어야 할 이유를 명확히 풀어주세요. </p>
 						<p>이미지와 상세 정보를 첨부해주세요.</p>
-						<p><span style="font-weight: bold; color: #e65c00;">* 영화제작계획서 필수 첨부</span></p>
+						<p><span style="font-weight: bold; color: #e65c00; text-decoration: underline;">* 영화제작계획서 필수 첨부</span></p>
 					</td>
 				</tr>
 			</table>

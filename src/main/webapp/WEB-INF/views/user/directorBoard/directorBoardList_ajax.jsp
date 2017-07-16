@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="contents-middle">
-			<p style="margin-top: 2px;">펀딩 오픈일 ${list.openDate}</p>
+			<p style="margin-top: 2px;">펀딩 오픈일 ${list.funding.openDate}</p>
 		</div>
 		<div class="contents-bottom">
 			<div style="float: left;"><p style="margin-top: 4px;">펀딩 마감일 ${list.funding.targetDate }</p></div>

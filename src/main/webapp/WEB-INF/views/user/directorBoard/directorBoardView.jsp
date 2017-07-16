@@ -95,15 +95,18 @@
 		</div>
 		<div style="padding-bottom: 20px;">
 			<c:if test="${sessionScope.memberDTO.id == boardDTO.writer }">
-				<button id="deleteBtn" class="btn btn-default" title="${boardDTO.num }">펀딩 중도 포기</button>
+				<c:if test="boardDTO.state == 1">
+					<button id="deleteBtn" class="btn btn-default" title="${boardDTO.num }">펀딩 중도 포기</button>
+				</c:if>
 				<button id="viewInvestors" class="btn btn-default" title="${boardDTO.num }">투자자 리스트</button>
 			</c:if>
 			<c:if test="${boardDTO.state == 1 }">
 				<button id="goInvest" type="button" class="btn btn-default" data-toggle="modal" data-target="#myInvestModal">투자하기</button>
 			</c:if>
 		</div>
+		<br>
 		<c:if test="${boardDTO.curPrice eq boardDTO.targetPrice}">
-			<p style="text-align: center; margin-left: 250px;">목표금액 달성으로 조기 마감되었습니다.</p>
+			<p style="text-align: center;">목표금액 달성으로 조기 마감되었습니다.</p>
 		</c:if>
 	</div>
 	
