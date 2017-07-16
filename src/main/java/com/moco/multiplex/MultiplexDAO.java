@@ -30,4 +30,7 @@ public class MultiplexDAO {
 		return sqlSession.insert(NAMESPACE+"insert", multiplexDTO);
 	}
 	
+	public int delete(int theater_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", theater_num);
+	}
 }
