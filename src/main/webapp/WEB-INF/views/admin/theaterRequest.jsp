@@ -107,7 +107,17 @@
 				}
 			}
 			
+			var m = document.getElementsByName("multi_num");
 			
+			var m_check = false;
+			
+			for(var i=0 ; i<m.length ; i++){
+				if(m[i].value != 0){
+					multiplex_check = true;
+				}else{
+					multiplex_check = false;
+				}
+			}
 			
 			
 			if(theater_check && multiplex_check && s_check==1 && e_check==1){
