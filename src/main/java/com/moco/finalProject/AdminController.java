@@ -28,6 +28,7 @@ import com.moco.movieAPI.BasicMovieService;
 import com.moco.movieRequest.MovieRequestService;
 import com.moco.movieSchedule.MovieScheduleDTO;
 import com.moco.movieSchedule.MovieScheduleService;
+import com.moco.multiplex.MultiplexDTO;
 import com.moco.paidMovie.PaidMovieDTO;
 import com.moco.paidMovie.PaidMovieService;
 import com.moco.season.SeasonDTO;
@@ -828,5 +829,24 @@ public class AdminController {
 		System.out.println(result);
 		
 		return "redirect:/admin/index";
+	}
+	@RequestMapping(value="theaterRequest", method=RequestMethod.GET)
+	public void insert(Integer curPage, Integer perPage, int num, Model model) throws Exception{
+		if(curPage == null){
+			curPage = 1;
+		}
+		if(perPage == null){
+			perPage = 10;
+		}
+		model.addAttribute("lowpricemovie", lowPriceMovieService.view(num));
+		Map<String, Object> map = lowPriceMovieService.theaterList(curPage, perPage, "%", "%");
+		model.addAttribute("list", map.get("list"));
+	}
+	@RequestMapping(value="multiplexList_ajax", method=RequestMethod.POST)
+	public void multiplexList_ajax(int theater_num, Model model) throws Exception{
+		List<MultiplexDTO> ar =lowPriceMovieService.multiplexList(theater_num);
+
+		model.addAttribute("list", ar);
+
 	}
 }

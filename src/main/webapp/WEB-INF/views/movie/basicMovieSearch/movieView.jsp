@@ -442,7 +442,7 @@
 
 			<div class="button">
 				<c:if test="${movieKind eq 'low' && memberDTO.id eq 'admin'}">
-					<a class="btn btn-primary" href="theaterInsert?num=${movieDTO.num }">상영 추가하기</a>
+					<a class="btn btn-primary" href="../../admin/theaterRequest?num=${movieDTO.num }">상영 추가하기</a>
 				</c:if>
 	
 				<c:if test="${memberDTO.id eq 'admin' }">
