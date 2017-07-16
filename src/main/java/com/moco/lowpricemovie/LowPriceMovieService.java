@@ -254,8 +254,21 @@ public class LowPriceMovieService {
 		return theaterDAO.commitUpdate(num);
 	}
 	//극장 삭제
-	public int theaterDelete(int num) throws Exception{
-		return theaterDAO.delete(num);
+	public void theaterDelete(int num) throws Exception{
+		
+		//상영관 조회
+		List<MultiplexDTO> ar = multiplexDAO.list(num);
+		
+		//상영관별 상영영화 삭제
+		for (MultiplexDTO multiplexDTO : ar) {
+			screenDAO.delete(multiplexDTO.getNum());
+		}
+		
+		//상영관 삭제
+		multiplexDAO.delete(num);
+		
+		//극장 삭제
+		theaterDAO.delete(num);
 	}
 	
 	public int screenUncommitCount() throws Exception{

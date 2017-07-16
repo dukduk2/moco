@@ -74,7 +74,7 @@
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
-			<h3 class="title">SCREEN COMMIT</h3>
+			<h3 class="title">SCREEN MANAGEMENT</h3>
 			<br>
 			<table class="table table-hover">
 				<tr>
@@ -123,8 +123,8 @@
 			
 			<!-- BTN -->
 			<div class="btnBox">
-				<a href="./index"><button class="btn btn-default">Admin Index</button></a>
-				<a href="../"><button class="btn btn-default">HOME</button></a>
+				<a href="../movie/lowpricemovie/movieSearchHome"><button class="btn btn-default">상영 추가하기</button></a>
+				
 			</div>
 		</div>
 		

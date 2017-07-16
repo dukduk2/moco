@@ -24,4 +24,7 @@
 		select * from screen where multi_num=#{multi_num} and commit=0 order by num asc
 	</select>
 	
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete screen where multi_num=#{multi_num}
+	</delete>
 </mapper>

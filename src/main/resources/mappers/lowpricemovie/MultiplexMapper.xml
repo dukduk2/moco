@@ -19,4 +19,8 @@
 	<insert id="insert" parameterType="com.moco.multiplex.MultiplexDTO">
 		insert into multiplex values(NVL((select max(num) from multiplex), 0)+1, NVL((select max(num) from theater), 0), #{name}, #{totalseat})
 	</insert>
+	
+	<delete id="delete">
+		delete multiplex where theater_num=#{theater_num}
+	</delete>
 </mapper>

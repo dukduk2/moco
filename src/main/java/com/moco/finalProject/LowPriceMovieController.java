@@ -502,27 +502,13 @@ public class LowPriceMovieController {
 		return "movie/movieHome";
 		
 	}
-	/*
-	//상영관 수정(관리자)
-	@RequestMapping(value="theaterUpdate", method=RequestMethod.GET)
-	public String theaterUpdate(int num, Model model){
-		TheaterDTO theaterDTO = lowPriceMovieService.theaterView(num);
-		model.addAttribute("theaterDTO", theaterDTO);
-		return "movie/lowpricemovie/theaterUpdate";
-	}
-	@RequestMapping(value="theaterUpdate", method=RequestMethod.POST)
-	public String theaterUpdate(TheaterDTO theaterDTO, String detailLocation){
-		theaterDTO.setLocation(theaterDTO.getLocation()+" "+detailLocation);
-		lowPriceMovieService.theaterUpdate(theaterDTO);
-		return "redirect:/movie/lowpricemovie/theaterList";
-	}
-
 	//상영관 삭제(관리자)
 	@RequestMapping(value="theaterDelete", method=RequestMethod.GET)
-	public String theaterDelete(int num){
+	public String theaterDelete(int num) throws Exception{
+		//극장, 상영관, 상영영화정보 삭제.
 		lowPriceMovieService.theaterDelete(num);
-		return "redirect:/movie/lowpricemovie/theaterList";
+		return "redirect:movie/lowpricemovie/theaterList";
 	}
-	 */
+	
 
 }

@@ -61,7 +61,14 @@
 		});
 		
 		$('#charge').click(function(){
-			location.href='';
+			location.href='../../point/pointList';
+		});
+		
+		$('#theaterDelete').click(function(){
+			var num = ${theater.num};
+			if(confirm("정말 이 극장의 정보를 삭제하시겠습니까?")){
+				location.href='theaterDelete?num='+num;
+			}
 		});
 	});
 </script>
@@ -106,8 +113,14 @@
 			<c:forEach items="${multiplexList }" var="list">
 				<p><span id="s${list.num}" class="screenAdd">${list.name}</span></p>
 				<div id="result${list.num}"></div>
+				<br>
 			</c:forEach>
 			
+			<c:if test="${memberDTO.id eq 'admin'}">
+				<div>
+					<input type="button" id="theaterDelete" value="극장 삭제">
+				</div>
+			</c:if>
 			
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">

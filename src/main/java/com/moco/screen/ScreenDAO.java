@@ -33,5 +33,8 @@ public class ScreenDAO {
 		return sqlSession.selectList(NAMESPACE+"unCommitListMultiNum", multi_num);
 	}
 	
+	public int delete(int multi_num)throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", multi_num);
+	}
 	
 }
