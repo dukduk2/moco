@@ -31,7 +31,6 @@ h3{
 .rank {
 	width: 70%;
 	height: 700px;
-	border: solid #ccc 1px;
 	margin: 0 auto;
 	margin-top: 10px;
 	font-size: 30px;
@@ -48,13 +47,11 @@ h3{
 
 .left{
 	margin-left: 4%;
-	border: solid #ccc 1px;
 	float: left;
 }
 
 .right {
 	margin-right: 4%;
-	border: solid #ccc 1px;
 	float: right;
 }
 #funding-top{
