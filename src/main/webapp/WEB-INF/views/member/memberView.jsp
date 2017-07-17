@@ -67,10 +67,10 @@ $(function(){
 					<td class="write-tdName">프로필 사진</td>
 					<td class="write-tdWrite">
 						<c:if test="${memberDTO.getFname() ne ' '}">
-							<p><img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}"></p>
+							<p><img class="profile" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.oname}"></p>
 						</c:if>
 
-						<c:if test="${memberDTO.getFname() eq ' '}">
+						<c:if test="${memberDTO.getOname() eq ' '}">
 							<p>사진이 없습니다.</p>
 						</c:if>
 					</td>

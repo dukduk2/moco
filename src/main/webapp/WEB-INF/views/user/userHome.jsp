@@ -194,10 +194,10 @@ h3{
 			</p>
 			<div class="userboardTitle">실시간 RANK</div>
 			<div class="rank3">
-				<c:forEach items="${rank3Member}" var="memberDTO" varStatus="i">
+				<c:forEach items="${rank3Member}" var="member" varStatus="i">
 					<div class="rank3Info">
 						<a href="./userBoard/userBoardView?num=${rank3Likes[i.index].num}">
-							<img id="${rank3Likes[i.index].likes}" class="memberIMG" alt="" src="${pageContext.request.contextPath}/resources/upload/member/${memberDTO.fname}">
+							<img id="${rank3Likes[i.index].likes}" class="memberIMG" alt="" src="${pageContext.request.contextPath}/resources/upload/member/${member.oname}">
 						</a>
 						<br>
 						좋아요 ${rank3Likes[i.index].likes}

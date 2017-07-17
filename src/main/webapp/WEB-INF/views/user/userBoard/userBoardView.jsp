@@ -285,7 +285,7 @@
 			</c:if>
 			<tr>
 				<td rowspan="2" style="width: 130px;">
-					<img class="memberProfileIMG" alt="이미지를 불러 올 수 없습니다." src="${pageContext.request.contextPath}/resources/upload/member/${writerInfo.fname}">
+					<img class="memberProfileIMG" alt="이미지를 불러 올 수 없습니다." src="${pageContext.request.contextPath}/resources/upload/member/${writerInfo.oname}">
 				</td>
 				<td></td>
 			</tr>
