@@ -95,7 +95,7 @@
 		</div>
 		<div style="padding-bottom: 20px;">
 			<c:if test="${sessionScope.memberDTO.id == boardDTO.writer }">
-				<c:if test="boardDTO.state == 1">
+				<c:if test="${boardDTO.state == 1}">
 					<button id="deleteBtn" class="btn btn-default" title="${boardDTO.num }">펀딩 중도 포기</button>
 				</c:if>
 				<button id="viewInvestors" class="btn btn-default" title="${boardDTO.num }">투자자 리스트</button>

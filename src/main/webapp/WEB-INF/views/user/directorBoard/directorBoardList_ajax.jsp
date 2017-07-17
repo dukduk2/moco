@@ -49,7 +49,7 @@
 		</c:if>
 	</c:if>
 	<c:if test="${searchMessage != null }">
-		<p>${searchMessage }</p>
+		<p style="font-size: 30px; text-align: center;">검색 결과가 없습니다.</p>
 	</c:if>
 </div>
 

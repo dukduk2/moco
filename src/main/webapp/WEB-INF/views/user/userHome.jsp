@@ -162,27 +162,27 @@ h3{
 			<div id="funding-bot">
 				<div class="funding-info">
 					<img src="../resources/images/directorBoard/community1.png">
-					<p>누적 투자자 수</p>
+					<p style="text-indent: 27px;">누적 투자자 수</p>
 					<fmt:formatNumber var="totalInvestor" pattern="#,###">${totalInvestor }</fmt:formatNumber>
-					<p class="chart">${totalInvestor }명</p>
+					<p class="chart" style="text-indent: 45px;">${totalInvestor }명</p>
 				</div>
 				<div class="funding-info">
 					<img src="../resources/images/directorBoard/financial1.png">
 					<p>인당 평균 누적 투자액</p>
 					<fmt:formatNumber var="avgInvestMoney" pattern="#,###">${avgInvestMoney }</fmt:formatNumber>
-					<p class="chart">${avgInvestMoney }원</p>
+					<p class="chart" style="text-indent: 20px;">${avgInvestMoney }원</p>
 				</div>
 				<div class="funding-info">
 					<img src="../resources/images/directorBoard/success2.png">
-					<p>펀딩 달성률</p>
+					<p style="text-indent: 35px;">펀딩 달성률</p>
 					<fmt:formatNumber var="chart" pattern="#.#">${chart }</fmt:formatNumber>
-					<p class="chart">${chart }%</p>
+					<p class="chart" style="text-indent: 40px;">${chart }%</p>
 				</div>
 				<div class="funding-info">
 					<img src="../resources/images/directorBoard/totalMoney.png">
-					<p>누적 투자액</p>
+					<p style="text-indent: 30px;">누적 투자액</p>
 					<fmt:formatNumber var="totalInvestMoney" pattern="#,###">${totalInvestMoney }</fmt:formatNumber>
-					<p class="chart">${totalInvestMoney }만원</p>
+					<p class="chart" style="text-indent: 20px;">${totalInvestMoney }만원</p>
 				</div>
 			</div>
 		</div>

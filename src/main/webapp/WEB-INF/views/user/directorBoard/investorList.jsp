@@ -49,7 +49,7 @@
 			</c:if>
 			<c:if test="${noList != null }">
 				<tr>
-					<td colspan="6">${noList }</td>
+					<td colspan="6" style="text-align: center;">리스트가 없습니다.</td>
 				</tr>
 			</c:if>
 		</table>
