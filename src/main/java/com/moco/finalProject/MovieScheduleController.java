@@ -22,67 +22,67 @@ import com.moco.movieSchedule.MultipartFileSender;
 @Controller
 @RequestMapping(value="/movie/movieSchedule/**")
 public class MovieScheduleController{
-	
+
 	@Autowired
 	private MovieScheduleService movieScheduleService;
 	private static final Logger logger = LoggerFactory.getLogger(MovieScheduleController.class);
-	
+
 	// 스트리밍
-	 @RequestMapping(value = "movieStreaming", method = RequestMethod.GET)
-	  public void getVideo(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception{
-	    String filePath = request.getSession().getServletContext().getRealPath("resources/upload/adminMovieUpload");
-	    System.out.println(filePath);
-	    String fname = "";
-	    String title = "";
-	    // 데이터 조회
-	    MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
-	    if(movieScheduleDTO != null){
+	@RequestMapping(value = "movieStreaming", method = RequestMethod.GET)
+	public void getVideo(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception{
+		String filePath = request.getSession().getServletContext().getRealPath("resources/upload/adminMovieUpload");
+		System.out.println(filePath);
+		String fname = "";
+		String title = "";
+		// 데이터 조회
+		MovieScheduleDTO movieScheduleDTO = movieScheduleService.sysdateMovie();
+		if(movieScheduleDTO != null){
 			fname = movieScheduleService.one1(movieScheduleDTO.getPnum());
 			title = movieScheduleService.one2(movieScheduleDTO.getPnum());
 		}
-	    logger.info("동영상 스트리밍 요청 : " + filePath + fname);
-	    
-	    File getFile = new File(filePath,fname);
-	  
-	    try {
-	      // 미디어 처리
-	      MultipartFileSender
-	        .fromFile(getFile)
-	        .with(request)
-	        .with(response)
-	        .serveResource();
-	      
-	    } catch (Exception e) {
-	      // 사용자 취소 Exception 은 콘솔 출력 제외
-	      if (!e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) e.printStackTrace();
-	    }
-	    
-	    boolean commit = true;
-	    model.addAttribute("commit", commit);
-	    
-	  }
+		logger.info("동영상 스트리밍 요청 : " + filePath + fname);
+
+		File getFile = new File(filePath,fname);
+
+		try {
+			// 미디어 처리
+			MultipartFileSender
+			.fromFile(getFile)
+			.with(request)
+			.with(response)
+			.serveResource();
+
+		} catch (Exception e) {
+			// 사용자 취소 Exception 은 콘솔 출력 제외
+			if (!e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) e.printStackTrace();
+		}
+
+		boolean commit = true;
+		model.addAttribute("commit", commit);
+
+	}
 	//////////////////////////////////////////////// END STREAMING //////////////////////////////////////////////////////
 
 	@RequestMapping(value="movieScheduleTable", method=RequestMethod.GET)
 	public void movieScheduleTable(){
-		
+
 	}
-	
+
 	@RequestMapping(value="movieScheduleTableShow", method=RequestMethod.GET)
 	@ResponseBody
 	public List<MovieScheduleDTO> movieScheduleTableShow(Model model){		
 		List<MovieScheduleDTO> ar = null;
-		
+
 		try {
 			ar = movieScheduleService.movieScheduleShow();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return ar;
 	}
-	
+
 	@RequestMapping(value="movieScheduleList", method=RequestMethod.GET)
 	public void movieScheduleList(Integer curPage, @RequestParam(required=false)String search, Model model){
 		try {
@@ -92,7 +92,7 @@ public class MovieScheduleController{
 			if(search == null){
 				search="00000101";
 			}
-			
+
 			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
 			model.addAttribute("list", map.get("list"));
 			model.addAttribute("pageResult",map.get("pageResult"));
@@ -106,9 +106,9 @@ public class MovieScheduleController{
 
 	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.GET)
 	public void movieScheduleAdd() {
-		
+
 	}
-	
+
 	@RequestMapping(value="movieScheduleAdd", method=RequestMethod.POST)
 	public String movieScheduleAdd(MovieScheduleDTO movieScheduleDTO, Integer curPage, @RequestParam(required=false)String search, Model model){
 		try {
@@ -133,40 +133,40 @@ public class MovieScheduleController{
 
 		return "redirect:/movie/movieSchedule/movieScheduleList";
 	}
-	
+
 	@RequestMapping(value="paidMovieCheck1", method=RequestMethod.POST)
 	public String paidMovieCheck1(int pnum, Model model){
 		String title = null;
-		
+
 		try {
 			title = movieScheduleService.paidMovieCheck1(pnum);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(title == null){
 			model.addAttribute("message", null);
 		} else {
 			model.addAttribute("message", title);
 		}
-		
+
 		System.out.println("title : "+title);
 
 		return "/movie/movieSchedule/action/movieSearchResult";
 	}
-	
+
 	@RequestMapping(value="paidMovieCheck2", method=RequestMethod.POST)
 	public String paidMovieCheck2(Date moviedate, Model model){
 		Date date = null;
-		
+
 		try {
 			date = movieScheduleService.paidMovieCheck2(moviedate);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if(date == null){
 			System.out.println("날짜가 중복되지 않습니다.");
 		} else {
@@ -178,21 +178,21 @@ public class MovieScheduleController{
 
 		return "/movie/movieSchedule/action/movieSearchResult";
 	}
-	
+
 	@RequestMapping(value="movieScheduleDelete", method=RequestMethod.POST)
 	public String movieScheduleDelete(int num, Integer curPage, @RequestParam(required=false)String search, Model model){
 		int result = 0;
-		
+
 		try {
 			result = movieScheduleService.movieScheduleDelete(num);
-			
+
 			if(curPage == null){
 				curPage = 1;
 			}
 			if(search == null){
 				search="00000101";
 			}
-			
+
 			Map<String, Object> map = movieScheduleService.movieScheduleList(curPage, search);
 			model.addAttribute("list", map.get("list"));
 			model.addAttribute("pageResult",map.get("pageResult"));
@@ -205,5 +205,12 @@ public class MovieScheduleController{
 
 		return "/movie/movieSchedule/movieScheduleList";
 	}
-	
+
+	// 스트리밍 에러 페이지
+	// 스트리밍 exception
+	@RequestMapping(value="error405", method=RequestMethod.GET)
+	public void error405() throws Exception{
+
+	}
+
 }

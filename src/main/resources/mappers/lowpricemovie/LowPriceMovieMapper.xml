@@ -54,5 +54,12 @@
 		delete jjim where id=#{id} and lnum=#{lNum}
 	</delete>
 	
+	<!-- movidHome에 뿌릴 사진 -->
+	<select id="getThumnail1" resultType="java.lang.Integer">
+		(select movie_num from screen where AVAILABLE_SEAT>0 and show_date = to_char(sysdate,'yyyymmdd') and hour = 7 and MINUTE = 30)
+	</select>
+	<select id="getThumnail2" parameterType="java.lang.Integer" resultType="com.moco.lowpricemovie.LowPriceMovieDTO">
+		select * from lowpricemovie where num=#{num}
+	</select>
 	
 </mapper>

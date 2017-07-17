@@ -339,4 +339,16 @@ public class LowPriceMovieService {
 		}
 		return result;
 	}
+	
+	// // getThumnail1
+	public List<LowPriceMovieDTO> getThumnail1() throws Exception{
+		List<LowPriceMovieDTO> thumnail = new ArrayList<LowPriceMovieDTO>();
+		List<Integer> nums = lowPriceMovieDAO.getThumnail1();
+		for (Integer num : nums) {
+			thumnail.add(lowPriceMovieDAO.getThumnail2(num));
+		}
+		return thumnail;
+	}
+	
+	
 }

@@ -213,12 +213,6 @@ pageEncoding="UTF-8"%>
 					</c:if>
 				</div>
 			</div>
-
-			<!-- BTN -->
-			<div class="container btnBox">
-				<a href="./index"><button class="btn btn-default">Admin Index</button></a>&nbsp;
-				<a href="../"><button class="btn btn-default">HOME</button></a>
-			</div>
 		</div>
 
 	</section>

@@ -21,6 +21,10 @@
 		height: 130px;
 		cursor: pointer;
 	}
+	.message{
+		font-size: 1.2em;
+		font-weight: bold;
+	}
 </style>
 </head>
 <body>
@@ -30,10 +34,12 @@
 					<a href="${pageContext.request.contextPath}/#go"><img alt="" src="${pageContext.request.contextPath}/resources/logo/logo.png" class="logoIMG"></a>
 					&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/#go" style="text-decoration: underline; color: teal;">모코 홈으로 가기</a>
 				</p>
-				<br><br>
-		            <p>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br />페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.</p>
-		            <p>입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.</p>
-		            <p>감사합니다.</p>
+				<div class="message">
+					<br><br>
+			            <p>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br />페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.</p>
+			            <p>입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.</p>
+			            <p>감사합니다.</p>				
+				</div>
 	         </div>
         </div>
 </body>

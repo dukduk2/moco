@@ -61,7 +61,7 @@ public class StreamingInterCeptor extends HandlerInterceptorAdapter{
 		if(user>=start && user<=end){
 			check = !check;
 		}else{
-			response.sendRedirect("/finalProject/error/error405");
+			response.sendRedirect("/finalProject/movie/movieSchedule/error405");
 		}
 		
 		return check;
