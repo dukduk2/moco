@@ -133,7 +133,7 @@ h3{
 	<%@ include file="/resources/part/header2.jspf" %>
 	<section>
 		<div class="rank">
-			<p style="font-size:30px; font-weight:bold;">ActorPR TOP 11</p>
+			<p style="font-size:30px; font-weight:bold;">PR 배우 TOP 11</p>
 			<c:forEach items="${list }" var="list" varStatus="i">
 				<div class="profile">
 
