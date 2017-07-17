@@ -112,7 +112,7 @@ body {
 	background-color: black;
 }
 .title {
-	width: 400px;
+	width: 100%;
 	margin: 10px auto;
 	text-align: center;
 	font-family: 'Sofia';
@@ -122,7 +122,7 @@ body {
 }
 
 .contents {
-	width: 400px;
+	width: 100%;
 	height: 250px;
 	margin: 20px auto;
 	text-align: center;
@@ -212,7 +212,7 @@ video{
 /* info-effect */
 .event {
 	text-align: center;
-	width: 410px;
+	width: 100%;
 	height: auto;
 	border-radius: 30px;
 	overflow: visible;
@@ -229,7 +229,7 @@ video{
 	opacity: 0;
 	position: relative;
 	height: auto;
-	width: 405px;
+	width: 100%;
 }
 
 .info-title {
@@ -278,7 +278,7 @@ video {
 
 .notice {
 	width: 70%;
-	float: left;
+	margin: 10px auto;
 }
 
 .noticeView:hover {
