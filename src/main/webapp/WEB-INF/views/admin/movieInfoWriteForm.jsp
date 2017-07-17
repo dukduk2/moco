@@ -176,6 +176,8 @@ pageEncoding="UTF-8"%>
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
+		<h2 style="text-align: center;">MOVIE INFO ADD</h2>
+		<br>
 			<form name="frm" id="frm" action="./movieInfoWrite" method="post" enctype="multipart/form-data">
 				<table style="width: 1000px;">
 					<tr>

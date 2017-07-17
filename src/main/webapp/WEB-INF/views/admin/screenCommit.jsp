@@ -50,7 +50,7 @@
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
-			<h3 class="title">SCREEN MANAGEMENT</h3>
+			<h2 style="text-align: center;">SCREEN MANAGEMENT</h2>
 			<br>
 			<table class="table table-hover">
 				<thead>
