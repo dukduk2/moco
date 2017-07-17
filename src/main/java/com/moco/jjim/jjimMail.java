@@ -25,7 +25,7 @@ public class jjimMail {
 	@Inject
 	private MailService mailService;
 	
-	@Scheduled(cron="0 0 14 * * ?")
+	@Scheduled(cron="0 0 12 * * ?")
 	public void jjimMailService() throws Exception{		
 		List<BasicMovieDTO> ar=new ArrayList<BasicMovieDTO>();
 		ar=jjimService.jjimList();
