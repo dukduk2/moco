@@ -56,6 +56,7 @@ $(function(){
 	
 	<section>
 		<div class="container">
+			<h2 style="text-align: center;">MOVIE SCHEDULE LIST</h2>
 			<div class="search_left">
 				<table>
 					<tr>

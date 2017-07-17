@@ -70,7 +70,7 @@ $(function(){
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
 		<div class="container">
-
+				<h2 style="text-align: center;">MEMBER LIST</h2>
 				<div class=search_right>
 					<form action="memberList">
 						<table>

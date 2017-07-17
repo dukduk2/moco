@@ -234,10 +234,6 @@
 				</div>
 			</div>
 
-			<!-- BTN -->
-			<div class="btnBox">
-				<a href="./index"><button class="btn btn-default">Admin Index</button></a>
-			</div>
 		</div>
 	</section>
 </body>

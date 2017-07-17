@@ -71,6 +71,7 @@
 <body>
 	<%@ include file="/resources/part/header1.jspf" %>
 		<section>
+			<h2 style="text-align: center;">독립 영화</h2>
 			<ul class="nav nav-tabs nav-justified">
 			    <li class="active"><a href="#">영화검색</a></li>
 			    <li><a href="./movieRecommend/recommendHome">영화추천</a></li>
