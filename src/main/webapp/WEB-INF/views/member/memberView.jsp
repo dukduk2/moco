@@ -52,6 +52,15 @@ $(function(){
 	width: 200px;
 	height: 200px;
 }
+.write-tdName{
+	font-size: 1.3em;
+	font-weight: bold;
+	font-family: Montserrat, sans-serif;
+}
+.write-tdWrite{
+	font-size: 1.3em;
+	font-weight: bold;
+}
 </style>
 
 </head>
@@ -107,10 +116,20 @@ $(function(){
 				</tr>
 				
 				<tr>
-					<td class="write-tdName">포인트</td>
-					<td class="write-tdWrite">${memberDTO.point} P</td>
+					<td class="write-tdName">내가 받은 좋아요</td>
+					<td class="write-tdWrite">${memberDTO.likes} 개</td>
 				</tr>
-
+				
+				<tr>
+					<td class="write-tdName">포인트 전환 가능 좋아요</td>
+					<td class="write-tdWrite">${memberDTO.avaliableLikes} 개</td>
+				</tr>
+				
+				<tr>
+					<td class="write-tdName">포인트</td>
+					<td class="write-tdWrite">${memberDTO.point} Point</td>
+				</tr>
+				
 				<tr>
 					<td colspan="2">
 						<input type="button" class="btn btn-default" value="UPDATE" id="update">

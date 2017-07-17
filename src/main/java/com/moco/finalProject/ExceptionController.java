@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.NestedServletException;
 
@@ -33,6 +35,12 @@ public class ExceptionController{
 		}
 			
 		return modelAndView;
+	}
+
+	// 스트리밍 exception
+	@RequestMapping(value="/error/error405", method=RequestMethod.GET)
+	public void error405() throws Exception{
+		
 	}
 	
 }

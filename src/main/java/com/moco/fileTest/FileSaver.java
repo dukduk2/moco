@@ -38,7 +38,9 @@ public class FileSaver {
 	
 	public String saver(MultipartFile multipartFile, String path) throws Exception{
 		String fileName = multipartFile.getOriginalFilename();
-		fileName = this.getSaveName(fileName);
+		
+		// 원래 있던 코드지만 , oname으로 불러오기 때문에... 어쩔수 없어 멤버
+		/*fileName = this.getSaveName(fileName);*/
 		
 		File f = new File(path); // 경로명
 		if(!f.exists()){
