@@ -21,6 +21,10 @@
 		height: 130px;
 		cursor: pointer;
 	}
+	.message{
+		font-size: 1.2em;
+		font-weight: bold;
+	}
 </style>
 </head>
 <body>
@@ -31,11 +35,13 @@
 				&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/#go" style="text-decoration: underline; color: teal;">모코 홈으로 가기</a>
 			</p>
 			<br><br>
-		<h4>${message}</h4><br>
-		    <p>죄송합니다. <br/>
-		    	이용도중 에러가 발생하였습니다. 다시 시도하여 주시기 바랍니다.
-		    </p>
-		    <p>감사합니다.</p>
+		<div class="message">
+			<h4>${message}</h4><br>
+			    <p>죄송합니다. <br/>
+			    	이용도중 에러가 발생하였습니다. 다시 시도하여 주시기 바랍니다.
+			    </p>
+			    <p>감사합니다.</p>		
+		</div>
 	  	</div>
       </div>
 </body>

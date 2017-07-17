@@ -75,4 +75,13 @@ public class LowPriceMovieDAO {
 		return sqlSession.delete(NAMESPACE+"jjimDelete", jjimDTO);
 	}
 	
+	// getThumnail1
+	public List<Integer> getThumnail1() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getThumnail1");
+	}
+	//getThumnail2
+	public LowPriceMovieDTO getThumnail2(int num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getThumnail2", num);
+	}
+	
 }

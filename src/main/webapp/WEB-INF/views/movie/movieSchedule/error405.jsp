@@ -21,6 +21,10 @@
 		height: 130px;
 		cursor: pointer;
 	}
+	.message{
+		font-size: 1.2em;
+		font-weight: bold;
+	}
 </style>
 </head>
 <body>
@@ -28,12 +32,14 @@
 			<div>
 				<p>
 					<a href="${pageContext.request.contextPath}/#go"><img alt="" src="${pageContext.request.contextPath}/resources/logo/logo.png" class="logoIMG"></a>
-					&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/#go" style="text-decoration: underline; color: teal;">모코 홈으로 가기</a>
+					&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/#go" style="text-decoration: underline; color: teal; font-size: 1.2em;">모코 홈으로 가기</a>
 				</p>
 				<br><br>
-		            <p>지금은 스트리밍 제공 시간이 아닙니다<br /> 스트리밍 제공시간은 편성표에 등록되어 있는 날짜에 20시 부터 입니다.</p>
-		            <p>다음에 다시 이용하여 주시기 바랍니다.</p>
-		            <p>감사합니다.</p>
+		            <div class="message">
+			            <p>지금은 스트리밍 제공 시간이 아닙니다.<br /> 스트리밍 제공시간은 편성표에 등록되어 있는 날짜에 <span style="color: red;">20시</span>부터 입니다.</p>
+			            <p>다음에 다시 이용하여 주시기 바랍니다.</p>
+			            <p>감사합니다.</p>
+		            </div>
 	         </div>
         </div>
 </body>

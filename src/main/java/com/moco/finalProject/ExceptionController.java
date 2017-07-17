@@ -37,10 +37,5 @@ public class ExceptionController{
 		return modelAndView;
 	}
 
-	// 스트리밍 exception
-	@RequestMapping(value="/error/error405", method=RequestMethod.GET)
-	public void error405() throws Exception{
-		
-	}
 	
 }

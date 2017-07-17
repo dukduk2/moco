@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.moco.actorPR.ActorPRDTO;
 import com.moco.actorPR.ActorPRService;
 import com.moco.directorBoard.invest.InvestService;
+import com.moco.lowpricemovie.LowPriceMovieService;
 import com.moco.member.MemberService;
 import com.moco.movieAPI.BasicMovieDTO;
 import com.moco.movieAPI.BasicMovieService;
@@ -63,6 +64,8 @@ public class HomeController {
 	SeasonService seasonService;
 	@Inject
 	UserBoardService userBoardService;
+	@Inject
+	LowPriceMovieService lowpricemovieservice;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -243,6 +246,12 @@ public class HomeController {
 		model.addAttribute("basicInfoList", basicInfoList).addAttribute("lowInfoList", lowInfoList)
 		.addAttribute("reviewList", reviewList).addAttribute("basicMovieRecommendList", basicMovieRecommendList)
 		.addAttribute("lowMovieRecommendList", lowMovieRecommendList);
+		
+		// getThumnail
+		model.addAttribute("thumnail", lowpricemovieservice.getThumnail1());
+		model.addAttribute("thumSU", lowpricemovieservice.getThumnail1().size());
 	}
-
+	
+	
+	
 }

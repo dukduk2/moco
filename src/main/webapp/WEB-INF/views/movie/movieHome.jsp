@@ -131,7 +131,7 @@
 	<%@ include file="/resources/part/header1.jspf" %>
 	<section>
 	
-		<div class="img">
+		<%-- <div class="img">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
@@ -143,45 +143,31 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<a href="#"><img src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
-						<div class="carousel-caption">
-							<h3>사진 1</h3>
-						</div>
-					</div>
-
-					<div class="item">
-						<a href="#"><img src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
-						<div class="carousel-caption">
-							<h3>사진 2</h3>
-						</div>
-					</div>
-					
-					<div class="item">
-						<a href="#"><img src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
-						<div class="carousel-caption">
-							<h3>사진 3</h3>
-						</div>
-					</div>
-					
-					<div class="item">
-						<a href="#"><img src="${pageContext.request.contextPath}/resources/img/intro.jpg"></a>
-						<div class="carousel-caption">
-							<h3>사진 4</h3>
-						</div>
-					</div>
+					<c:forEach items="${thumnail}" var="thumnail">
+						<div class="item active">
+							<a href="./lowpricemovie/movieView?num=${thumnail.num}"><img style="width: 50%;" src="${thumnail.thumnail}"></a>
+							<div class="carousel-caption">
+								<!-- <h3>사진 1</h3> -->
+							</div>
+						</div>					
+					</c:forEach>
 				</div>
 
 				<!-- Left and right controls -->
-				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a> <a class="right carousel-control" href="#myCarousel" role="button"	data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
+				<c:if test="${thumSU>1}">
+					<div>
+					<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#myCarousel" role="button"	data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>				
+					</div>				
+				</c:if>
+				
 			</div>
-		</div>
+		</div> --%>
 		<!-- banner end -->
 		<div class="sub sub_left">
 			<div id="myCarousel2" class="carousel slide" data-ride="carousel">
