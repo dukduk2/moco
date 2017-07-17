@@ -61,8 +61,7 @@ public class StreamingInterCeptor extends HandlerInterceptorAdapter{
 		if(user>=start && user<=end){
 			check = !check;
 		}else{
-			System.out.println("스트리밍 시간 아니야");
-			response.sendRedirect("/finalProject/#go");
+			response.sendRedirect("/finalProject/error/error405");
 		}
 		
 		return check;

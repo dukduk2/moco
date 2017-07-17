@@ -69,7 +69,7 @@ $(function(){
 	<div id="result">
 	<%@ include file="/resources/part/header3.jspf" %>
 	<section>
-		<div class="container">
+		<div class="container" style="width: 1500px;">
 				<h2 style="text-align: center;">MEMBER LIST</h2>
 				<div class=search_right>
 					<form action="memberList">
@@ -91,7 +91,7 @@ $(function(){
 					</form>
 				</div>
 
-				<table class="table table-hover">
+				<table class="table table-hover" style="width: 1500px;">
 					<thead><tr class="head">
 						<td>아이디</td>
 						<td>이름</td>
